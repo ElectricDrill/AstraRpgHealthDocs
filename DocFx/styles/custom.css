@@ -1,0 +1,20 @@
+/* Nasconde il link "Edit this page" e l'area contribution */
+.contribution,
+.contribution * .edit-link,
+.edit-link,
+a.edit-link,
+a[title="Edit this page"],
+a[title*="Edit this page"],
+.footer-edit,
+.docfx-edit,
+.page-edit,
+.git-contribution,
+a[aria-label*="Edit"] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Changelog | Astra RPG Health </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Changelog | Astra RPG Health ">
+      
+      
+      <link rel="icon" href="../images/astra-rpg-ico.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo-astra.svg" alt="Astra RPG Health">
+            Astra RPG Health
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="changelog">Changelog</h1>
+
+<p>All notable changes to this project will be documented in this file.</p>
+<p>The format is based on <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>.</p>
+<h2 id="130---2025-12-16">[1.3.0] - 2025-12-16</h2>
+<h3 id="added">Added</h3>
+<h4 id="runtime-features">Runtime Features</h4>
+<ul>
+<li>Added <code>PRV[N]</code> and <code>AT[N]</code> keywords for growth formulas' expressions.
+<ul>
+<li><code>PRV[N]</code>: Represents the n-previous Growth Formula value. For example, <code>PRV[3]</code> at level 8 would return the Growth Formula value at level 5.</li>
+<li><code>AT[N]</code>: Represents the Growth Formula value at a specific level N. For example, <code>AT[10]</code> would return the Growth Formula value at level 10.</li>
+</ul>
+</li>
+<li><code>BoundedValue.Clamp</code> now supports also clamping of double values. For now is used internally by the framework and is reserved for future use is Astra RPG Health.</li>
+</ul>
+<h4 id="editor-features">Editor Features</h4>
+<ul>
+<li>Added support for <code>enum</code> formatting in <code>InspectorTypography</code>.</li>
+<li>Added utility to provide compact representation of large numbers in the editor (e.g., 1.5K, 4M). Reserved for future use in Astra RPG Health.</li>
+</ul>
+<h3 id="changed">Changed</h3>
+<h4 id="runtime-features-1">Runtime Features</h4>
+<ul>
+<li>Changed the internal <code>AttributePointsTracker</code> used by <code>EntityAttributes</code> to track spendable attribute points. <code>EntityPointsTracker</code> replaces the legacy tracker, and relies on a new <code>AttributePortfolio</code> to manage the allocation of attribute points to attributes. This new system is more readable, more robust, and more maintainable. The old system is left for backward compatibility. By updating the framework to this version, existing projects will automatically migrate to the new system.</li>
+</ul>
+<h3 id="fixed">Fixed</h3>
+<h4 id="runtime-features-2">Runtime Features</h4>
+<ul>
+<li>Fixed Round Robin Strategy for attribute points removal on level down or reset to level 1.</li>
+</ul>
+<h2 id="120---2025-11-25">[1.2.0] - 2025-11-25</h2>
+<h3 id="added-1">Added</h3>
+<h4 id="runtime-features-3">Runtime Features</h4>
+<ul>
+<li>Added <code>OnLevelDownEvent</code> Game Event. This event is triggered whenever an entity levels down, allowing you to respond to level down events in your game.</li>
+<li>Added XP deduction feature. Now you can deduct XP from an entity using the <code>EntityCore.Level.RemoveExp(long amount)</code> method. This will also handle level downs if the deducted XP causes the entity to drop below the current level's XP threshold. Triggers the <code>OnLevelDownEvent</code> once for each level the entity drops.</li>
+<li>Added reset to level 1 feature. You can now reset an entity's level and XP to level 1 using the <code>EntityCore.Level.ResetToLevelOne()</code> method. This will set the entity's level to 1 and XP to 0. Triggers the <code>OnLevelDownEvent</code> once for each level the entity drops.</li>
+<li>Added basic support for statistics, attributes, and classes names presentation. This includes:
+<ul>
+<li><code>IDisplaySONameProvider&lt;in T&gt; where T : ScriptableObject</code> interface for providing custom display names for ScriptableObjects.</li>
+<li><code>DefaultDisplaySONameProvider&lt;T&gt;</code> class that implements the above interface and returns the ScriptableObject's name as the display name.</li>
+<li><code>DefaultAttributeCompactDisplaySONameProvider</code> class that provides compact display names for attributes (e.g., &quot;Str&quot; for &quot;Strength&quot;). This one simply takes the first three letters of the attribute's name, capitalize them, and return that as the display name.<br>
+You can implement your own display name providers by implementing the <code>IDisplaySONameProvider&lt;T&gt;</code> interface to provide custom display names for your statistics, attributes, and classes or to use <strong>localization systems</strong>.</li>
+</ul>
+</li>
+</ul>
+<h4 id="editor-features-1">Editor Features</h4>
+<ul>
+<li>Added <em>Read Only</em> (<code>RO</code>) property in InspectorTypography. Marks a field in the inspector as read only, in the sense that the component automatically manages it, and the user should not manually edit any associate LongVar/IntVar associated values. Currently reserved for future use.</li>
+<li>Added <code>IValidatable</code> interface. Used by the framework to propagate validation events to depending objects. Used to ensure that when a MonoBehaviour/ScriptableObject is validated in the inspector, all depending objects are also validated to ensure data consistency.</li>
+<li>Added <code>TypeSelectionMenu</code>. Provides a reusable editor context menu to pick a concrete type derived from a given base type.
+Configurable display (optional &quot;None&quot; or &quot;Default&quot; entries, optional name trimming, exclusion of test types, extra filters).
+Returns the chosen type via a callback so callers can create or clear instances accordingly.</li>
+<li>Added <code>[TypeSelectable]</code> attribute for use on <code>[SerializeReference]</code> fields; supports an optional DefaultType to present a &quot;Default&quot; choice. Shows also &quot;None&quot; to clear the reference.</li>
+<li>Added <code>SerializeReferenceDrawer</code> custom property drawer. New editor PropertyDrawer showing current concrete type and a Select button for managed references.
+Opens centralized <code>TypeSelectionMenu</code>, supports choosing None, Default or concrete types and creates/assigns instances.</li>
+<li>Added <code>SerializeReferenceInitializer</code>. Runs in the editor to ensure <code>[SerializeReference]</code> fields marked with <code>[TypeSelectable]</code> that declare a default type are populated when scenes/prefabs are opened or on demand (during script compilation).
+Automatically instantiates and assigns default instances where fields are null, provides a menu command to initialize all applicable fields, and marks modified assets/scenes as dirty.</li>
+</ul>
+<h4 id="samples">Samples</h4>
+<ul>
+<li>Added <code>ExpUtils</code> MonoBehaviour. Adds utility methods that can be invoked from the Unity Editor (in play mode) to add or remove XP from an entity for testing purposes.</li>
+</ul>
+<h3 id="changed-1">Changed</h3>
+<h4 id="runtime">Runtime</h4>
+<ul>
+<li><code>SoSetScalingComponentBase</code> now logs a warning if no entity set is assigned during the lookup of values to use for scaling calculations.</li>
+<li><code>AttributeScalingComponent</code> and <code>StatScalingComponent</code> now return <code>0</code> as the scaled value if no entity set is assigned, instead of rasing an error. This behavior allows for more flexible setups with entities with different sets of attributes/stats. The warning logged by the base class will help identify potential misconfigurations.</li>
+<li>Marked <code>OnEntityLevelUp</code> and <code>OnEntityLevelDown</code> events in <code>EntityCore</code> as required (red *).
+Such methods are becoming crucial for the correct functioning of the various components of the framework. Therefore, it's important to ensure that these events are properly assigned.<br>
+Entities that are missing these events will raise an error during their <code>Start()</code> method.</li>
+</ul>
+<h4 id="editor">Editor</h4>
+<ul>
+<li>Improved hot-reloading support for StatSet and AttributeSet.</li>
+<li>Attributes of <code>AttributeSet</code> are not &quot;Re-play&quot; (yellow R) any more. This means that it supports changes (addition/removal) of attributes in the AttributeSet without exiting play-mode.</li>
+<li>Improved <code>InspectorTypography</code> class. Now it supports also property drawn within GUI rects.</li>
+</ul>
+<h4 id="samples-1">Samples</h4>
+<ul>
+<li><code>ValuesReader</code> and <code>ValueEntry</code> now use <code>[SerializeReference]</code> and <code>[TypeSelectable]</code> attributes for allowing easier selection of the presentation strategy for each value entry (<code>IDisplaySONameProvider</code> implementation).</li>
+</ul>
+<h3 id="deprecated">Deprecated</h3>
+<ul>
+<li>Deprecated <code>DerivedTypePicker</code> in favor of the new <code>TypeSelectionMenu</code> system. Use the new system for better type selection in the editor. <code>DerivedTypePicker</code> will be removed in future releases.</li>
+</ul>
+<h3 id="fixed-1">Fixed</h3>
+<ul>
+<li>Added missing invalidation of the cached values for the statistics in <code>EntityStats.OnEnable()</code> method.</li>
+<li>Fixed <code>SetTotalCurrentExp</code> that was not raising level up and level down events when appropriate.</li>
+<li>Fixed the assignment of total available attribute points. Previously, this was handled only in OnValidate, which caused issues in builds (where editor-only code is stripped). Initialization is now also performed in <code>EntityCore.Start()</code>. Additionally, total available attribute points are now updated within <code>AddPoints()</code>, ensuring they are correctly recalculated whenever points are added—not only during <code>Init()</code>.</li>
+</ul>
+<h2 id="112---2025-11-12">[1.1.2] - 2025-11-12</h2>
+<h3 id="changed-2">Changed</h3>
+<ul>
+<li>Updated the &quot;Example scene and instances&quot; samples. Now by default the Hero prefab uses a IntVar for the attribute spendable points per level. This makes more consistent the amount of spendable attribute points acquired by each character on level up</li>
+<li>Updated offline docs with Installation Guide section</li>
+</ul>
+<h2 id="111---2025-11-06">[1.1.1] - 2025-11-06</h2>
+<h3 id="changed-3">Changed</h3>
+<ul>
+<li>Updated the links in <code>package.json</code> to match the new docs URL</li>
+</ul>
+<h2 id="110---2025-11-06">[1.1.0] - 2025-11-06</h2>
+<h3 id="changed-4">Changed</h3>
+<h4 id="updated-branding-from-soap-rpg-framework-to-astra-rpg-framework">Updated branding from &quot;SOAP RPG Framework&quot; to &quot;Astra RPG Framework&quot;</h4>
+<p>IMPORTANT: Refer to the <a href="migration-guide.html">migration guide</a> for updating existing projects that used the previous version.</p>
+<ul>
+<li>UPM package name changed to &quot;com.electricdrill.astra-rpg-framework&quot;.</li>
+<li>UPM package display name changed to &quot;Astra RPG Framework&quot;.</li>
+<li>Namespaces updated to reflect new branding: &quot;ElectricDrill.AstraRPGFramework&quot;.</li>
+<li>Menu paths in Unity Editor updated to &quot;Astra RPG Framework&quot;.</li>
+</ul>
+<h3 id="deprecated-1">Deprecated</h3>
+<ul>
+<li><code>_includedStatSets</code> field in <code>StatSet</code> will become an internal property in future releases.</li>
+</ul>
+<h2 id="100---2025-10-30">[1.0.0] - 2025-10-30</h2>
+<h3 id="added-2">Added</h3>
+<ul>
+<li>Initial release of SOAP RPG Framework.</li>
+<li>ScriptableObject-based toolkit for core RPG mechanics.</li>
+<li>MonoBehaviour-based components for easy integration.</li>
+</ul>
+<h4 id="scriptableobject-features">ScriptableObject Features</h4>
+<ul>
+<li>Statistics &amp; Attributes: Define core stats like Strength and Intelligence, as well as derived attributes like Health or Mana.</li>
+<li>StatSets &amp; AttributeSets: Group related stats and attributes together for organization. Sets can be nested for complex structures.</li>
+<li>Experience &amp; Leveling System: Custom experience curves and character progression.</li>
+<li>Classes: Define character classes with unique progressions and abilities.</li>
+<li>Progression System: Control how stats and attributes grow as characters level up.</li>
+<li>Scaling Formulas: Custom formulas to calculate final values of stats and attributes.</li>
+<li>Scaling Components: Modular scaling formulas reusable across stats and attributes.</li>
+<li>Game Events: Design and trigger custom game events.</li>
+<li>Growth Formulas: Determine how values progress based on a character's level.</li>
+<li>Game Event Generators: Define custom game event types.</li>
+<li>Variables: Use Long and Int variables as ScriptableObjects for persistent data storage.</li>
+</ul>
+<h4 id="monobehaviour-features">MonoBehaviour Features</h4>
+<ul>
+<li>EntityCore: Manage a character's core data, including experience and level.</li>
+<li>EntityStats &amp; EntityAttributes: Assign statistics and attributes to any entity. Components can retrieve values from the assigned EntityClass based on level.</li>
+<li>EntityClass: Assign a class to an entity, linking it to specific progression paths.</li>
+</ul>
+<h4 id="api--modifiers">API &amp; Modifiers</h4>
+<ul>
+<li>Comprehensive API for advanced customization (see API Docs).</li>
+<li>Dynamic application of modifiers to stats and attributes:
+<ul>
+<li>Flat &amp; Percentage Modifiers for attributes.</li>
+<li>Flat, Percentage, &amp; Stat-to-Stat Modifiers for statistics.</li>
+</ul>
+</li>
+</ul>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

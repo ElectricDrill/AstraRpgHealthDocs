@@ -1,0 +1,75 @@
+{
+  "metadata": [
+      {
+          "src": [
+              {
+                  "src": "../../Geometrical-Invaders",
+                  "files": [
+                      "com.electricdrill.astra-rpg-health.Runtime.csproj"
+                  ],
+                  "exclude": [
+                      "Editor/**",
+                      "bin/**"
+                  ]
+              }
+          ],
+          "globalNamespaceId": "Global",
+          "filter": "filterConfig.yml",
+          "dest": "api",
+          "allowCompilationErrors": true,
+          "properties": {
+              "ProduceReferenceAssembly": "true"
+          }
+      }
+  ],
+  "build": {
+      "content": [
+          {
+              "files": [
+                  "**/*.{md,yml}"
+              ],
+              "exclude": [
+                  "_site/**"
+              ]
+          },
+          {
+              "files": [
+                  "api/toc.yml"
+              ]
+          },
+          {
+            "files": [
+              "DocFx/MD/**.md",
+              "DocFx/MD/**.yml"
+            ]
+          }
+      ],
+      "resource": [
+          {
+              "files": [
+                  "images/**"
+              ]
+          }
+      ],
+      "output": "../docs",
+      "template": [
+        "default",
+        "modern"
+      ],
+      "globalMetadata": {
+          "_appName": "Astra RPG Health",
+          "_appTitle": "Astra RPG Health",
+          "_appLogoPath": "images/logo-astra.svg",
+          "_appFaviconPath": "images/astra-rpg-ico.ico",
+          "_enableSearch": true,
+          "pdf": true,
+          "_disableContribution": true
+      },
+      "xref": [
+          "https://normanderwan.github.io/UnityXrefMaps/xrefmap.yml"
+      ],
+      "styles": [
+        "styles/custom.css"
+      ]
+  }
+}

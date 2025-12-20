@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Workflows | Astra RPG Health </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Workflows | Astra RPG Health ">
+      
+      
+      <link rel="icon" href="../images/astra-rpg-ico.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo-astra.svg" alt="Astra RPG Health">
+            Astra RPG Health
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="workflows">Workflows</h1>
+
+<!--
+======UTILITIES
+- Game Events as SOs
+- Int and Long Vars
+- Int and Long Refs
+- Growth Formulas
+
+======ENTITY
+- Make a GameObject an entity
+- EntityLevel
+
+======ATTRIBUTES
+- Create some Attributes
+- Create an AttributeSet
+    - Assign Attributes to an AttributeSet
+- Add EntityAttributes to an entity
+
+======STATS
+- Create some Stats
+    - Create AttributeScalingComponent for Stats
+- Create a StatSet
+    - Assign Stats to a StatSet
+- Add EntityStats to an entity
+
+======CLASS
+- Create a class
+- Add EntityClass to an entity
+- Use class based entity attributes and stats
+
+======SCALING FORMULA
+- ScalingFormulas
+- StatsScalingComponent
+- AttributesScalingComponent
+-->
+<h2 id="creating-instances-of-the-objects">Creating instances of the objects</h2>
+<p>All the scriptable objects provided by the framework can be created through the Unity Editor by either right-clicking in the hierarchy and selecting <code>Create &gt; Astra RPG</code> or navigating to the <code>Assets</code> menu at the top of the window and choosing <code>Create &gt; Astra RPG</code>.</p>
+<h2 id="mandatory-re-play-and-read-only-fields">Mandatory, re-play, and read-only fields</h2>
+<p>Fields marked with a red asterisk (<span style="color:red;">*</span>) are mandatory and must be filled out to ensure proper functionality of the framework.</p>
+<p>Fields marked with an orange <strong style="color:orange;">R</strong> are re-play fields. Any changes made to these fields during playtime will require a restart to ensure the changes take effect.</p>
+<p>Fields marked with a teal <strong style="color:teal;">RO</strong> are read-only fields. The framework manages these fields internally, and they cannot and should not be modified directly by the user.</p>
+<h2 id="some-utilities">Some utilities</h2>
+<p>Almost every class provided by this package uses events or variables in the form of <code>ScriptableObject</code>. Therefore, let's quickly introduce these concepts so that we are clear about what we are talking about when we encounter them in the following paragraphs.</p>
+<h3 id="game-events-as-scriptableobjects">Game events as <code>ScriptableObjects</code></h3>
+<p>The Scriptable Objects based architecture allows us to implement the Observer pattern through scriptable objects. In the simplest case, with events without context, we can define various game events as <code>GameEvent</code> instances: a class that derives from <code>ScriptableObject</code>. For example, we can create an instance called <code>PlayerJumped</code> that represents the event &quot;The player has jumped&quot;. This event will notify all listening systems when it occurs.
+Systems subscribe to this event using the <code>MonoBehaviour</code> <code>GameEventListener</code>. We can assign a <code>GameEvent</code> to this component, and it will handle the subscription and invoke a callback when the event is triggered. The callback is a <a href="https://docs.unity3d.com/ScriptReference/Events.UnityEvent.html">UnityEvent</a>, so we can select a callback to invoke in response to our event directly from the inspector.</p>
+<p>For more details, see the <a href="#game-events">Game Events section</a>.</p>
+<h3 id="int-and-long-vars">Int and Long Vars</h3>
+<p>Another common use of <code>ScriptableObject</code> in the SO based architecture is to define variables. The main advantage of these variables in the form of SO is that they can be easily shared between various objects that may decide to share the same value. A common example is the player's game score. There could be a game manager that adds or removes points from this variable, while the UI HUD uses it to display its value on the screen. This way, we can keep the game manager and UI completely decoupled, passing shared values (like variables) through the inspector.</p>
+<p>From the code, we can access the values held by these variables using the <code>Value</code> getter and setter:</p>
+<pre><code class="lang-csharp">// intVar is an instance of IntVar
+int value = intVar.Value; // Get the value
+
+// Thanks to implicit conversion, we can also use it as an int directly
+int intValue = intVar; // Implicit conversion to int
+
+intVar.Value = 10; // Set the value
+</code></pre>
+<h3 id="int-and-long-refs">Int and Long Refs</h3>
+<p><code>IntRef</code> and <code>LongRef</code> allow choosing whether to use a native value (<code>int</code> or <code>long</code>) or an <code>IntVar</code>/<code>LongVar</code>. As mentioned in the previous paragraph, <code>IntVar</code> and <code>LongVar</code> have the advantage of being shareable between different components/game objects, while native values are more immediate to use and require less setup (no need to instantiate an <code>IntVar</code>/<code>LongVar</code> and assign it in the inspector).</p>
+<p>Thanks to a custom property drawer, it will be possible, from the inspector, to check a checkbox named <code>Use constant</code> to use a native value instead of a <code>Ref</code>, and vice versa.</p>
+<p><code>IntRef</code> and <code>LongRef</code> are widely used in the package's <code>MonoBehaviour</code>.</p>
+<p>From the code, we can access the values held by these references using the <code>Value</code> getter and setter.
+It is worth mentioning that when we use the setter, we need to provide a native <code>int</code> or <code>long</code> value. If <code>Use constant</code> is unchecked, this value will be assigned to the <code>Value</code> property of the referenced <code>IntVar</code> or <code>LongVar</code> instance; if <code>Use constant</code> is checked, the assignment only updates the local constant value and does not affect any referenced variable.</p>
+<pre><code class="lang-csharp">// intRef is an instance of IntRef
+int value = intRef.Value; // Get the value
+// Thanks to implicit conversion, we can also use it as an int directly
+int intValue = intRef; // Implicit conversion to int
+intRef.Value = 10; // Set the value
+
+// Assigns the value of intVar to intRef.Value using implicit conversion.
+// Note: This does not change the IntVar reference held by intRef, only its value.
+intRef.Value = intVar;
+</code></pre>
+<h3 id="game-events">Game events</h3>
+<p>The package also supports game events with up to 4 context parameters. They are generics, but in Unity, it is not possible to instantiate classes that derive from <code>ScriptableObject</code> if they are generics with unspecified type parameters. To use them, we must explicitly declare classes that derive from the generic GameEvent and fix the type parameters with concrete types. To simplify the definition of new event types, with specific types as context parameters, the package provides <code>GameEventGenerator</code>. These generators, which derive from SO, allow generating the concrete classes of <code>GameEvent</code>.
+We will see these generators in more detail in the <a href="#game-event-generators">Game Event Generators</a> section.
+Some game events are already defined and made available by the package (see the <a href="samples.html">Samples</a> page).</p>
+<h3 id="growth-formulas">Growth Formulas</h3>
+<p><em>Relative path:</em> <code>Growth Formula</code></p>
+<p>As already mentioned in <a href="introduction.html">Introduction</a>, <code>GrowthFormula</code> allows defining how a certain value varies as levels increase. A <code>GrowthFormula</code> can be instantiated through the hierarchy context menu by going to <code>Astra RPG Framework -&gt; Growth Formula</code>.
+The package provides a custom property drawer for <code>GrowthFormula</code>.</p>
+<h4 id="max-level-for-the-values">Max level for the values</h4>
+<p>In the inspector of a <code>GrowthFormula</code>, we can pass an <code>IntVar</code> to define up to which level to grow the values.</p>
+<h4 id="use-constant-at-level-one">Use constant at level one</h4>
+<p>If the checkbox named <code>Use constant value at level 1</code> is checked, the respective constant value will be used.</p>
+<h4 id="growth-expressions">Growth expressions</h4>
+<p>The various values of the <code>GrowthFormula</code> are defined by a function where values, the y-axis, are expressed as a function of the levels, the x-axis. Such a function is defined as a composite function. Each segment of the function is represented by a string that specifies a mathematical expression for a range of levels.
+The string can be defined by using the <a href="https://docs.unity3d.com/6000.0/Documentation/ScriptReference/ExpressionEvaluator.html">Unity ExpressionEvaluator</a> syntax. On top of it, the following terms can be used:</p>
+<ul>
+<li><code>LVL</code>: the level at each iteration</li>
+<li><code>PRV</code>: the previous value of the <code>GrowthFormula</code> (value evaluated at the previous level)</li>
+<li><code>SPRV</code>: the second previous value of the <code>GrowthFormula</code> (value evaluated 2 levels ago)</li>
+<li><code>PRV[N]</code>: (🏷️<em>v1.3.0+</em>) the N-th previous value of the <code>GrowthFormula</code> (value evaluated N levels ago). N must be a valid number with respect to the level range being used. For example, N cannot be 5 if we are evaluating level an expression in the level range 3 --&gt; 10, as PRV[5] at level 3, 4, and 5 will be undefined.</li>
+<li><code>AT[N]</code>: (🏷️<em>v1.3.0+</em>) the value of the <code>GrowthFormula</code> at level N. N cannot be a value equal or grater than the current level being evaluated.</li>
+<li><code>SUM</code>: the sum of the values of the <code>GrowthFormula</code> from level 1 up to the previous level</li>
+</ul>
+<h4 id="example-of-a-growthformula">Example of a <code>GrowthFormula</code></h4>
+<p>Let's see an example of how to define a <code>GrowthFormula</code> for defining the Physical Attack of a warrior class. First of all, let's create a new <code>GrowthFormula</code> instance and name it <code>Warrior Physical Attack GF</code>. In the inspector, it should look like this:
+<img src="../images/workflows/warrior-physical-attack-editor.png" alt="Warrior Physical Attack"></p>
+<p>The <code>Max Level</code>, a mandatory field, is set with an <code>IntVar</code> assigned by default. We can edit that variable to change the maximum level that will be computed for our growth formula.</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>When modifying the value of a variable referenced in growth formulas, such as Max Level, the growth formulas are not directly updated unless you select them in the inspector. To update all growth formulas simultaneously after changing the maximum level, a command is available in the menu: <code>Tools &gt; Astra RPG Framework &gt; Validate All Growth Formulas</code>.<br>
+Validation occurs automatically during script compilation, upon entering play mode, and when instantiating a prefab. This is achieved through the <code>OnValidate</code> callback, which ensures that formulas are updated accordingly.</p>
+</div>
+<p>The <code>Use constant value at level 1</code> checkbox lets us decide whether to use a constant value at level 1 or not. If checked, the <code>Constant Value</code> field will be enabled, and we can set a value for it. In this case, we set it to 10.</p>
+<p>The <code>Add new growth expression</code> button lets us add a growth expression for a certain range of levels of our choice. If we press it, we will see the following:</p>
+<p><img src="../images/workflows/add-level-growth-formula.png" alt="Add level growth formula"></p>
+<p>The new section includes two fields: <code>From Level</code> and <code>Growth Expression</code>.</p>
+<ul>
+<li><strong>From Level</strong>: Specifies the starting level at which the corresponding <code>Growth Expression</code> becomes effective.</li>
+<li><strong>Growth Expression</strong>: Defines how the value evolves starting from the specified level.</li>
+</ul>
+<p>If the <code>Growth Expression</code> overlaps with the <code>Constant At Lvl 1</code> option, a warning will appear. To resolve this, set the <code>From Level</code> field to <code>2</code> or higher, and the warning will disappear.</p>
+<p>We want to model the Physical Attack of a warrior as follows:</p>
+<ul>
+<li>Level 1: 10</li>
+<li>From level 2 to level 5: +2 per level</li>
+<li>At level 11: flat +30 (like a bonus due to other game mechanics, such as an awakening)</li>
+<li>From level 12 and onward: grows by 7% each level</li>
+</ul>
+<p>To achieve this, set the <code>Constant At Lvl 1</code> field to <code>10</code>. For the first growth expression, use <code>PRV + 2</code> as the formula. <code>PRV</code>, as we saw before, represents the value of the growth formula at the previous level (in this case, <code>10</code> at level 1).</p>
+<p>This formula ensures that the value grows by <code>2</code> times the level at each subsequent level.</p>
+<p>Next we want to press the <code>Add new growth expression</code> button to add the next growth expression for the levels.
+For the second growth expression, set <code>From Level</code> to <code>11</code> and use the formula <code>PRV + 30</code>. This ensures that at level 11, a flat bonus of 30 is added to the previous value.</p>
+<p>Finally, for the third growth expression, set <code>From Level</code> to <code>12</code> and use the formula <code>PRV * 1.07</code>. This ensures that from level 12 onward, the value increases by 7% each level.</p>
+<p>After adding these growth expressions, the <code>GrowthFormula</code> for the <code>Warrior Physical Attack GF</code> should look like this:</p>
+<p><img src="../images/workflows/warrior-physical-attack-growth-formula.png" alt="Warrior Physical Attack Growth Formula"></p>
+<p>With this setup, the <code>GrowthFormula</code> will correctly calculate the Physical Attack values for the warrior class based on the specified rules.</p>
+<h4 id="interactive-chart">Interactive Chart</h4>
+<p>If you hold your mouse for a moment onto the chart, a label will show up, showing the exact value of the growth formula at the pointed level:</p>
+<p><img src="../images/workflows/interactive-chart.gif" alt="Interactive Chart"></p>
+<h4 id="retrieving-growth-values-from-code">Retrieving growth values from code</h4>
+<p>To retrieve the values of a <code>GrowthFormula</code> from code, you can use the <code>GetGrowthValue(int level)</code> method. For example, to get the Physical Attack value at level 5, you can do:</p>
+<pre><code class="lang-csharp">// warriorPhysicalAttackGF is a reference to the Warrior Physical Attack Growth Formula
+int physicalAttackLevel5 = warriorPhysicalAttackGF.GetGrowthValue(5);
+</code></pre>
+<h2 id="making-a-gameobject-an-entity">Making a <code>GameObject</code> an entity</h2>
+<p>To make a <code>GameObject</code> an entity, we need to add the <code>MonoBehaviour</code> <code>EntityCore</code> to it. Select your object from the hierarchy and click, in the inspector, on &quot;Add component&quot;. Then search for and select <code>EntityCore</code>.</p>
+<p><img src="../images/workflows/entity-core-editor.png" alt="Entity Core Custom Editor"></p>
+<p>From the inspector, we can configure several values. Let's analyze them one by one.</p>
+<p><code>Level</code>: defines the entity's level. By changing its value, we can assign a different level to the entity directly from the inspector. This can be useful for testing purposes.
+You'll notice the <code>Use Constant</code> checkbox. If checked, you can pass an <code>IntVar</code> instead of using a constant.</p>
+<p><code>Current Total Experience</code>: Represents the total experience possessed by the entity.</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>If you've passed a <code>LongRef</code> for the current total experience, the value contained in this variable should not be modified manually.
+If <code>Use constant</code> is checked instead, the value is readonly.</p>
+</div>
+<p><code>Max Level</code>: The maximum level the entity can reach</p>
+<p><code>Experience Formula</code>: <code>GrowthFormula</code> that describes how the total experience required to reach the next level grows at each level.</p>
+<p><code>On Level Up</code>: <code>EntityLeveledUpGameEvent</code> that should be raised when the entity levels up.</p>
+<p><code>On Level Down</code>: (🏷️<em>v1.2.0+</em>) <code>EntityLeveledDownGameEvent</code> that should be raised when the entity levels down.</p>
+<p><code>Spawned Entity Event</code>: <code>EntityCoreGameEvent</code> that should be raised when this entity's <code>Start()</code> method is executed.</p>
+<p>You may notice that a game event is already assigned to <code>Spawned Entity Event</code>. This is because an instance of that game event has been explicitly assigned directly in the inspector of the <code>EntityCore</code> script. This choice was made since in most cases the same event instance will always be used for entity spawning. This means you don't have to reassign this event every time you create a new entity in Unity. As we'll see later, this default assignment mechanism has been used for other components as well.</p>
+<h3 id="entitylevel-code-apis">EntityLevel code APIs</h3>
+<p>It is honorable to mention some code APIs that can be used to interact with the <code>EntityLevel</code> component.</p>
+<p>EntityLevel exposes a <code>Action&lt;EntityCore, int&gt; OnLevelUp</code> property that can be used to subscribe to level-up events from code.</p>
+<p>If we want to grant experience to the entity, we can use the <code>AddExp(long amount)</code> method. This method will automatically raise the <code>OnLevelUp</code> event if the entity levels up.
+Alternatively, it is available also the <code>SetTotalCurrentExp(long totalCurrentExperience)</code> method, which allows setting the total current experience of the entity. This method will also raise the <code>OnLevelUp</code> event if the entity levels up, and the <code>OnLevelDown</code> event if the entity levels down.</p>
+<p>(🏷️<em>v1.2.0+</em>) Similarly, the <code>RemoveExp(long amount)</code> method allows deducting experience from the entity. This method will raise the <code>OnLevelDown</code> event if the entity levels down. If you want to <em>respec</em> an entity, the <code>ResetToLevelOne()</code> method resets the entity's level and experience to level 1. This method will raise the <code>OnLevelDown</code> event if the entity levels down. Clearly, all spent attribute points will be reset as well.</p>
+<p>Finally, there are the <code>CurrentLevelTotalExperience()</code> and the <code>NextLevelTotalExperience()</code> methods. These methods return the total experience required to reach the current level and the next level, respectively. They are useful, for example, for checking how much experience is needed to level up.</p>
+<h2 id="creating-astra-rpg-framework-assets">Creating Astra RPG Framework assets</h2>
+<p>All the instances of the various assets that derive from <code>ScriptableObject</code>s can be created in the following ways:</p>
+<ul>
+<li>Context menu: <code>Right click on the hierarchy &gt; Create &gt; Astra RPG Framework</code></li>
+<li>Top bar: <code>Assets &gt; Create &gt; Astra RPG Framework</code></li>
+<li>Hotkeys: By pressing the respective keyboard shortcut while a folder or an element of the hierarchy is currently selected</li>
+</ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>For Mac users the <code>Ctrl</code> key corresponds to the <code>Cmd</code> key.</p>
+</div>
+<h2 id="create-attributes">Create attributes</h2>
+<p><em>Keyboard shortcut:</em> <code>Ctrl + Alt + A</code><br>
+<em>Relative path:</em> <code>Attribute</code></p>
+<p>Once created a new attribute you can name it as you wish and you'll be able tweak some settings in the inspector.
+For example lets create a <code>Strength</code> attribute. Create an <code>Attributes</code> folder in your hierarchy, then press <code>A</code> and name the newly created attribute <code>Strength</code>.<br>
+In the inspector it should look like:</p>
+<p><img src="../images/workflows/strength-attr-editor.png" alt="Strength Attribute"></p>
+<p>By checking <code>Has Max Value</code>, we will set a maximum value for the attribute. By default, there is no maximum value.</p>
+<p>By checking <code>Has Min Value</code>, we will set a minimum value for the attribute. By default, the minimum value is zero.</p>
+<p>Repeat the process for also the <code>Constitution</code>, <code>Intelligence</code>, and <code>Dexterity</code> attributes.</p>
+<h2 id="create-an-attribute-set">Create an attribute set</h2>
+<p><em>Relative path:</em> <code>Attribute Set</code></p>
+<p>Now that we have some attributes let's create an <code>AttributeSet</code> named, for example, <code>Hero Attribute Set</code>. In the inspector it should look like this:</p>
+<p><img src="../images/workflows/hero-attribute-set-editor.png" alt="Hero Attribute Set"></p>
+<p>An attribute set without attributes isn't very useful, so let's add the previously created ones, one at a time. To do this, click on the <code>Add</code> button. Notice that an entry with <code>None (Attribute)</code> appears:</p>
+<p><img src="../images/workflows/attribute-to-add-to-set-editor.png" alt="Hero Attribute Set with one empty entry"></p>
+<p>To assign an attribute to the entry, we can either drag &amp; drop from the hierarchy or click on the small circle button on the right of the newly appeared entry. This mechanism is the same used for public variables or, more generally, for fields annotated with <code>SerializeField</code>, so it will be familiar to you.<br>
+Let's add <code>Strength</code> using whichever method you prefer.
+Repeat the process of adding an attribute to the set for <code>Constitution</code>, <code>Intelligence</code>, and <code>Dexterity</code> as well.</p>
+<p>If you want to remove an attribute from the set, you can click on the small <code>-</code> button on the right of the attribute you want to remove.</p>
+<h2 id="add-entityattributes-to-an-entity">Add <code>EntityAttributes</code> to an entity</h2>
+<p>The next step is to assign the attribute set we created to an entity. To do this, let's add the <code>EntityAttributes</code> component to our game object. The inspector will look like this:</p>
+<p><img src="../images/workflows/entity-attributes-editor.png" alt="Entity Attributes"></p>
+<p>An entity has base points for attributes, which can be either fixed or derived from a class, a configurable amount of attribute points that can be arbitrarily assigned, and these points are granted at each level-up, along with flat and percentage modifiers for the attributes.
+Except for the modifiers, which can only be assigned via code, all other values can be configured from the inspector.</p>
+<p><code>Attr Points Per Level</code> defines how many arbitrarily spendable attribute points are provided at each level-up. They are assigned starting from level 2 on.</p>
+<p><code>Attribute Points Tracker</code> allows monitoring and assigning spendable points. <code>Available Points</code> defines how many unspent points are still available.<br>
+If you change the level of the entity you'll see that available points change accordingly. And as you spend them, <code>Available Points</code> will decrease.</p>
+<p>Moreover, there is a checkbox labeled <code>Use Class Base Attributes</code>. For now, let's leave it unchecked since we haven't added a class yet. However, in this case, we need to manually assign an attribute set. Therefore, let's set the <code>Attribute Set</code> field found under <code>Fixed Base Attributes</code> with the <code>Hero Attribute Set</code>. By doing this, we now have access to additional fields in the inspector:</p>
+<p><img src="../images/workflows/entity-attributes-with-attr-set-editor.png" alt="Entity Attributes with fixed base attributes AttributeSet"></p>
+<p>We can assign values to the attributes of <code>Fixed Base Attributes</code> as we see fit.</p>
+<h3 id="understanding-attribute-modifier-types">Understanding Attribute Modifier Types</h3>
+<p>The framework provides two distinct types of attribute modifiers that work together with spent attribute points to determine final attribute values. Understanding how each type works is essential for creating predictable character progression and balanced gameplay mechanics.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>General considerations for attribute modifiers</p>
+<ul>
+<li>When adding modifiers through code, the <code>OnAttributeChanged</code> event will automatically be raised if the final value changes</li>
+<li>If cache is being used: when adding modifiers through code, the attribute cache will automatically be invalidated to ensure the correct value is returned on the next access</li>
+</ul>
+</div>
+<h4 id="spent-attribute-points">Spent Attribute Points</h4>
+<p>Before diving into modifiers, it's important to understand that spent attribute points form the foundation of the attribute calculation system. These points are allocated by players during character progression and are applied immediately after the base value.</p>
+<p><strong>Characteristics:</strong></p>
+<ul>
+<li>Player-controlled allocation of points earned through leveling</li>
+<li>Applied directly after base values in the calculation order</li>
+<li>Permanent increases (until points are redistributed)</li>
+<li>Each point provides a 1:1 increase to the attribute</li>
+</ul>
+<p><strong>Code example:</strong></p>
+<pre><code class="lang-csharp">// Spend 3 points on Strength
+entityAttributes.SpendOn(strengthAttribute, 3);
+
+// Check available points before spending
+int availablePoints = entityAttributes.AvailableAvailableAttributePoints;
+if (availablePoints &gt;= 2) {
+    entityAttributes.SpendOn(constitutionAttribute, 2);
+}
+</code></pre>
+<h4 id="flat-modifiers">Flat Modifiers</h4>
+<p>Flat modifiers add or subtract a fixed amount to an attribute's value. They are applied after base values and spent points but before percentage modifiers.</p>
+<p><strong>Use cases:</strong></p>
+<ul>
+<li>Equipment bonuses (e.g., +3 Strength from gauntlets)</li>
+<li>Temporary buffs (e.g., +5 Constitution from a fortitude potion)</li>
+<li>Race or class bonuses (e.g., Dwarves get +2 Constitution)</li>
+<li>Status effects that provide fixed bonuses or penalties</li>
+<li>Environmental effects (e.g., library affecting Intelligence)</li>
+</ul>
+<p><strong>Code example:</strong></p>
+<pre><code class="lang-csharp">// Add a flat +4 bonus to Strength
+entityAttributes.AddFlatModifier(strengthAttribute, 4);
+
+// Add a flat -2 penalty to Dexterity (negative values work too)
+entityAttributes.AddFlatModifier(dexterityAttribute, -2);
+</code></pre>
+<p><strong>Calculation example:</strong></p>
+<ul>
+<li>Base Strength: 12</li>
+<li>Spent points: +3</li>
+<li>Flat modifier: +4</li>
+<li>Result after flat modifiers: 12 + 3 + 4 = 19</li>
+</ul>
+<h4 id="percentage-modifiers">Percentage Modifiers</h4>
+<p>Percentage modifiers apply a multiplicative increase or decrease to the current attribute value. They are the most powerful type of modifier and are applied last in the calculation chain, after all other values have been calculated.</p>
+<p><strong>Use cases:</strong></p>
+<ul>
+<li>Powerful equipment bonuses (e.g., +20% to all attributes)</li>
+<li>Character traits or talents (e.g., &quot;Natural Athlete: +15% Strength and Dexterity&quot;)</li>
+<li>Temporary powerful buffs or curses</li>
+<li>Class features</li>
+<li>Magical enchantments or artifacts</li>
+</ul>
+<p><strong>Code example:</strong></p>
+<pre><code class="lang-csharp">// Add a 20% increase to Strength
+entityAttributes.AddPercentageModifier(strengthAttribute, 20);
+
+// Add a 10% decrease to Intelligence (negative percentage)
+entityAttributes.AddPercentageModifier(intelligenceAttribute, -10)
+</code></pre>
+<p><strong>Calculation example:</strong></p>
+<ul>
+<li>Previous value: 19 (from previous steps)</li>
+<li>Percentage modifier: +20% = 19 × 0.20 = 3.8</li>
+<li>Final result: 19 + 3.8 = 22.8 (rounded to 23 for integer attributes)</li>
+</ul>
+<p><strong>Important notes:</strong></p>
+<ul>
+<li>Multiple percentage modifiers are additive before being applied (e.g., +20% and +10% = +30% total)</li>
+<li>The percentage is calculated based on the value after base, spent points, and flat modifiers</li>
+<li>Percentage modifiers can be negative to create penalties</li>
+</ul>
+<h4 id="complete-calculation-example">Complete Calculation Example</h4>
+<p>Let's see a complete example showing the full attribute calculation process:</p>
+<p><strong>Initial setup:</strong></p>
+<ul>
+<li>Base Intelligence: 14</li>
+<li>Points spent on Intelligence: 4</li>
+<li>Equipment flat bonus: +2 (from a circlet)</li>
+<li>Trait percentage bonus: +25% (from &quot;Scholar&quot; trait)</li>
+</ul>
+<p><strong>Step-by-step calculation:</strong></p>
+<ol>
+<li>Start with base: 14</li>
+<li>Add spent points: 14 + 4 = 18</li>
+<li>Apply flat modifiers: 18 + 2 = 20</li>
+<li>Apply percentage modifiers: 20 + (20 × 0.25) = 20 + 5 = 25</li>
+</ol>
+<p><strong>Final Intelligence value: 25</strong></p>
+<h4 id="comparison-with-stat-modifiers">Comparison with Stat Modifiers</h4>
+<p>Unlike stats, attributes have a simpler modifier system:</p>
+<p><strong>Attributes have:</strong></p>
+<ul>
+<li>Base values</li>
+<li>Spent attribute points (player-controlled)</li>
+<li>Flat modifiers</li>
+<li>Percentage modifiers</li>
+</ul>
+<p><strong>Stats additionally have:</strong></p>
+<ul>
+<li>Stat-to-stat modifiers (attributes don't have attribute-to-attribute modifiers)</li>
+<li>More complex scaling relationships</li>
+<li>Stats can scale upon attributes</li>
+</ul>
+<p>This simplicity makes attributes more predictable and easier for players to understand, while stats can have more complex interactions. Keeping them simple helps maintain clarity in gameplay</p>
+<h3 id="retrieving-attribute-values-from-code">Retrieving Attribute Values from code</h3>
+<p>Due to the relevance of retrieving attribute values from code, the methods to do so are worth mentioning here.</p>
+<p>To retrieve the final value of an attribute, you can use the <code>Get</code> method:</p>
+<pre><code class="lang-csharp">// strengthAttribute is a reference to the Strength Attribute
+int strength = entityAttributes.Get(strengthAttribute);
+</code></pre>
+<p>To retrieve the base value of an attribute, you can use the <code>GetBase</code> method:</p>
+<pre><code class="lang-csharp">// strengthAttribute is a reference to the Strength Attribute
+int baseStrength = entityAttributes.GetBase(strengthAttribute);
+</code></pre>
+<h3 id="spending-attribute-points">Spending attribute points</h3>
+<p>If the entity's <code>Attr Points Per Level</code> is greater than zero and the level is greater than 1, we can spend attribute points on the attributes. To do this, we can use the <code>SpendOn</code> method:</p>
+<pre><code class="lang-csharp">// strengthAttribute is a reference to the Strength Attribute
+entityAttributes.SpendOn(strengthAttribute, 2);
+</code></pre>
+<p>This will spend 2 points on the <code>Strength</code> attribute, increasing its value by 2. If there are not enough available points, a Debug.LogError will be raised.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Debug.LogError messages are shown only in development builds. If you run a production build, you won't see them.
+This is useful to avoid cluttering the console with error messages that are not relevant in production.</p>
+</div>
+<h2 id="create-stats">Create stats</h2>
+<p><em>Keyboard shortcut:</em> <code>Ctrl + Alt + S</code><br>
+<em>Relative path:</em> <code>Stat</code></p>
+<p>As with attributes, you can create stats as you wish and assign them the names you prefer.
+Let's create the <code>Physical Attack</code> stat together.
+Create a new <code>Stats</code> folder, select it and press <code>S</code>. Name it <code>Physical Attack</code>. In the inspector, it should look like this:</p>
+<p><img src="../images/workflows/phy-atck-stat-editor.png" alt="Physical Attack Stat"></p>
+<p>As with attributes, you can assign both a maximum and a minimum value to a stat.</p>
+<p>Repeat the process for the <code>Magical Power</code>, <code>Defense</code>, and <code>Critical Chance</code> stats.</p>
+<p>Unlike attributes, however, stats include <code>Attributes Scaling</code>.</p>
+<h3 id="create-an-attribute-scaling-component-for-stats">Create an Attribute Scaling Component for Stats</h3>
+<p><em>Relative path:</em> <code>Scaling -&gt; Attribute Scaling Component</code></p>
+<p>Let's create a new <code>Attribute Scaling Component</code> to use with the strength stat we created earlier.
+Create a new folder named, for example, <code>Attribute Scalings for Stats</code>, and inside it, create an attribute scaling component called <code>Physical Attack Strength Scaling</code>.</p>
+<p>Assign the previously created <code>Hero Attribute Set</code> to the <code>Set</code> field. You will see the attributes of the set appear. Here, you can assign scaling values using <code>double</code>. For example, set the scaling of <code>Strength</code> to <code>1.0</code>. This component defines a 100% scaling on the value of <code>Strength</code>.</p>
+<p><img src="../images/workflows/physical-attack-strength-scaling.png" alt="Physical Attack Strength Scaling"></p>
+<p>Now, assign this scaling component to the <code>Physical Attack</code> stat to ensure it scales with the <code>Strength</code> attribute.</p>
+<h2 id="create-a-stat-set">Create a stat set</h2>
+<p><em>Relative path:</em> <code>Stat Set</code></p>
+<p>Now that we have some stats, let's create a <code>StatSet</code> named, for example, <code>Hero Stat Set</code>.</p>
+<p>A stat set without stats isn't very useful, so let's add the previously created ones, one at a time. To do this, click on the <code>Add</code> button. Notice that an entry with <code>None (Stat)</code> appears. To assign a stat to the entry, we can either drag &amp; drop from the hierarchy or click on the small circle button on the right of the newly appeared entry. This mechanism is the same used for public variables or, more generally, for fields annotated with <code>SerializeField</code>, so it will be familiar to you.<br>
+Let's add <code>Physical Attack</code> using whichever method you prefer.<br>
+Repeat the process of adding a stat to the set for <code>Magical Power</code>, <code>Defense</code>, and <code>Critical Chance</code> as well. The stat set should look like:</p>
+<p><img src="../images/workflows/stat-set.png" alt="Hero Stat Set"></p>
+<p>If you want to remove a stat from the set, you can click on the small <code>-</code> button on the right of the stat you want to remove.</p>
+<h3 id="modular-stat-sets">Modular stat sets</h3>
+<p>Stat sets can include other stat sets, allowing for modular and reusable configurations. This is particularly useful if we have various kind of entities that share some stats but not all of them. For example, let's consider three entities: a deer, a ballista turret, and our hero character. The deer can take damage, move around, and cannot attack. The turret instead can take damage, deal damage, but cannot move. The hero can do all three things.</p>
+<p>A first approach could be to create three distinct stat sets for each entity, but this would lead to a lot of redundancy since many stats would be repeated across the three sets. What if we decide to add a new stat that all three entities should have? We would have to remember to add it to all three sets, which is error-prone and inefficient.
+Alternatively, we could use a single all-embracing stat set that includes all the stats needed by all entities. However, this would lead to unnecessary complexity for entities that don't need all those stats, making it harder to manage and understand.</p>
+<p>A better approach is to create modular stat sets that can be combined as needed.
+We can create three stat sets:</p>
+<ul>
+<li><code>Damageable Stat Set</code>: includes stats like <code>Armor</code>, <code>Magical Defense</code>, <code>Dmg Reduction</code>, and so on</li>
+<li><code>Damage Dealer Stat Set</code>: includes stats like <code>Physical Attack</code>, <code>Magical Power</code>, <code>Critical Chance</code>, and so on</li>
+<li><code>Movable Stat Set</code>: includes stats like <code>Movement Speed</code>, <code>Jump Height</code>, etc.</li>
+</ul>
+<p>Then, we can create three additional stat sets for our entities:</p>
+<ul>
+<li><code>Prey Stat Set</code> for the deer, which includes only the <code>Damageable Stat Set</code> and the <code>Movable Stat Set</code></li>
+<li><code>Turret Stat Set</code> for the ballista turret, which includes only the <code>Damageable Stat Set</code> and the <code>Damage Dealer Stat Set</code></li>
+<li><code>Hero Stat Set</code> for our hero character, which includes all three stat sets: <code>Damageable Stat Set</code>, <code>Damage Dealer Stat Set</code>, and <code>Movable Stat Set</code></li>
+</ul>
+<p>This modular approach allows us to reuse stat configurations across different entities, reducing redundancy and making it easier to manage and update stats.</p>
+<h2 id="add-entitystats-to-an-entity">Add <code>EntityStats</code> to an Entity</h2>
+<p>The next step is to assign the stat set we created to an entity. To do this, let's add the <code>EntityStats</code> component to our game object. The inspector will look like this:</p>
+<p><img src="../images/workflows/entity-stats.png" alt="Entity Stats"></p>
+<p>An entity has base stats that can be either fixed or derived from a class. Additionally, stats can be modified through flat modifiers, stat-to-stat modifiers, and percentage modifiers.</p>
+<p><code>Use Class Base Stats</code> checkbox determines whether the base stats should come from the entity's class (if one is available) or from fixed values defined in the inspector. For now, let's leave it unchecked since we haven't added a class yet.</p>
+<p>With <code>Use Class Base Stats</code> unchecked, we need to manually assign a stat set. Set the <code>Stat Set</code> field under <code>Fixed Base Stats</code> with our <code>Hero Stat Set</code>. This will reveal additional fields in the inspector where we can set the base values for each stat:</p>
+<p><img src="../images/workflows/entity-stats-fixed-base-stats.png" alt="Entity Stats"></p>
+<p><code>On Stat Changed</code> event gets raised whenever any stat value changes due to modifiers. You can use this to update UI elements or trigger other game logic.</p>
+<p><code>Use Cache</code> enables caching of final stat values. This is useful for performance when you have many entities or complex stat calculations.</p>
+<h3 id="understanding-stat-modifier-types">Understanding Stat Modifier Types</h3>
+<p>The framework provides three distinct types of stat modifiers, each serving different purposes and applied in a specific order during final value calculation. Understanding how each type works is crucial for creating balanced and predictable stat systems.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p><strong>General considerations for stat modifiers</strong></p>
+<ul>
+<li>If cache is being used: when adding modifiers through code, the attribute cache will automatically be invalidated to ensure the correct value is returned on the next access</li>
+<li>When adding modifiers through code, the <code>OnStatChanged</code> event will automatically be raised if the final value changes.</li>
+</ul>
+</div>
+<h4 id="flat-modifiers-1">Flat Modifiers</h4>
+<p>Flat modifiers add or subtract a fixed amount to a stat's value. They are the simplest type of modifier and are applied directly after the base value.</p>
+<p><strong>Use cases:</strong></p>
+<ul>
+<li>Equipment bonuses (e.g., +5 Physical Attack from a sword)</li>
+<li>Temporary buffs (e.g., +10 Defense from a shield spell)</li>
+<li>Status effects that provide fixed bonuses or penalties</li>
+</ul>
+<p><strong>Code example:</strong></p>
+<pre><code class="lang-csharp">// Add a flat +15 bonus to Physical Attack
+entityStats.AddFlatModifier(physicalAttackStat, 15);
+
+// Add a flat -5 penalty to Defense (negative values work too)
+entityStats.AddFlatModifier(defenseStat, -5);
+</code></pre>
+<p><strong>Calculation example:</strong></p>
+<ul>
+<li>Base Physical Attack: 50</li>
+<li>Flat modifier: +15</li>
+<li>Result after flat modifiers: 50 + 15 = 65</li>
+</ul>
+<h4 id="stat-to-stat-modifiers">Stat-to-Stat Modifiers</h4>
+<p>Stat-to-stat modifiers allow one stat to contribute a percentage of its value to another stat. This creates interesting dependencies between different stats and allows for more complex character builds.</p>
+<p>These modifiers are applied right after the flat modifiers.</p>
+<p><strong>Use cases:</strong></p>
+<ul>
+<li>Cross-stat synergies (e.g., 25% of Armor is added to Physical Attack).</li>
+</ul>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>When using stat-to-stat modifiers, <strong>only the base value and flat modifiers of the source stat are used</strong> in the calculation. Stat-to-stat modifiers and percentage modifiers applied to the source stat are ignored. This ensures predictable and non-circular calculations.</p>
+</div>
+<p><strong>Code example:</strong></p>
+<pre><code class="lang-csharp">// 25% of armor is added to physical attack
+entityStats.AddStatToStatModifer(physicalAttackStat, armorAttribute, 25);
+
+// Negative modifier: -10% of armor is subtracted from physical attack
+entityStats.AddStatToStatModifer(physicalAttackStat, armorAttribute, -10);
+</code></pre>
+<p><strong>Calculation example:</strong></p>
+<ul>
+<li>Base Physical Attack: 50</li>
+<li>Flat modifier: +15 (from previous step)</li>
+<li>Current value: 65</li>
+<li>Armor value: 40</li>
+<li>Stat-to-stat modifier: 50% of Armor = 40 × 0.5 = 20</li>
+<li>Result after stat-to-stat modifiers: 65 + 20 = 85</li>
+</ul>
+<p><strong>Important notes:</strong></p>
+<ul>
+<li>The source stat's base value + its flat modifiers is used for calculation</li>
+<li>Multiple stat-to-stat modifiers from different sources are additive, and order of calculation is commutative</li>
+<li>You can have the same source stat contribute to multiple target stats</li>
+<li>Circular dependencies can be defined, as the base values + flat modifiers are used for calculations</li>
+</ul>
+<h4 id="percentage-modifiers-1">Percentage Modifiers</h4>
+<p>Percentage modifiers apply a multiplicative increase or decrease to the current stat value. They are applied last in the calculation chain. Because of this, they can have a significant impact on the final value.</p>
+<p><strong>Use cases:</strong></p>
+<ul>
+<li>Powerful equipment bonuses (e.g., +25% damage increase)</li>
+<li>Character traits or talents (e.g., &quot;Warrior's Might: +20% Physical Attack&quot;)</li>
+<li>Temporary powerful buffs or debuffs</li>
+</ul>
+<p><strong>Code example:</strong></p>
+<pre><code class="lang-csharp">// Add a 25% increase to Physical Attack
+entityStats.AddPercentageModifier(physicalAttack, 25);
+
+// Add a 15% decrease to movement speed (negative percentage)
+entityStats.AddPercentageModifier(movementSpeed, -15);
+</code></pre>
+<p><strong>Calculation example:</strong></p>
+<ul>
+<li>Previous value: 85 (from previous steps)</li>
+<li>Percentage modifier: +25% = 85 × 0.25 = 21.25</li>
+<li>Final result: 85 + 21.25 = 106.25 (rounded to 106 for integer stats)</li>
+</ul>
+<p><strong>Important notes:</strong></p>
+<ul>
+<li>Multiple percentage modifiers are additive before being applied (e.g., +25% and +15% = +40% total)</li>
+<li>The percentage is calculated based on the value after flat and stat-to-stat modifiers</li>
+<li>Percentage modifiers can be negative to create penalties</li>
+</ul>
+<h4 id="complete-calculation-example-1">Complete Calculation Example</h4>
+<p>Let's see a complete example with all three modifier types:</p>
+<p><strong>Initial setup:</strong></p>
+<ul>
+<li>Base Physical Attack: 100</li>
+<li>Armor value: 60 (base + flat modifiers)</li>
+</ul>
+<p><strong>Applied modifiers:</strong></p>
+<ol>
+<li>Flat modifier: +20 (from weapon)</li>
+<li>Stat-to-stat modifier: 75% of Armor = 60 × 0.75 = 45</li>
+<li>Percentage modifier: +30% (from various sources)</li>
+</ol>
+<p><strong>Step-by-step calculation:</strong></p>
+<ol>
+<li>Start with base: 100</li>
+<li>Apply flat modifiers: 100 + 20 = 120</li>
+<li>Apply stat-to-stat modifiers: 120 + 45 = 165</li>
+<li>Apply percentage modifiers: 165 + (165 × 0.30) = 165 + 49.5 = 214.5 → 214</li>
+</ol>
+<p><strong>Final Physical Attack value: 214</strong></p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The framework does not provide a built-in tool for removing applied modifiers. It is up to you to define your own abstraction for buffs, debuffs, or other temporary effects that add and remove modifiers as needed.
+In the future, the Astra RPG Modifiers extension for this framework will be released, which will include such abstractions thought to integrate seamlessly with the existing systems. Check the status of the extension for more details at <a href="https://electricdrill.github.io/">https://electricdrill.github.io/</a></p>
+</div>
+<h3 id="retrieving-stat-values-from-code">Retrieving Stat Values from code</h3>
+<p>Due to the relevance of retrieving stat values from code, the methods to do so are worth mentioning here.</p>
+<p>To retrieve the final value of a stat, you can use the <code>Get</code> method:</p>
+<pre><code class="lang-csharp">// phyAtkStat is a reference to the Physical Attack Stat
+int physicalAttack = entityStats.Get(phyAtkStat);
+</code></pre>
+<p>To retrieve the base value of a stat, you can use the <code>GetBase</code> method:</p>
+<pre><code class="lang-csharp">// phyAtkStat is a reference to the Physical Attack Stat
+int basePhysicalAttack = entityStats.GetBase(phyAtkStat);
+</code></pre>
+<h2 id="create-a-class">Create a class</h2>
+<p><em>Relative path:</em> <code>Class</code></p>
+<p>Let's create an instance of <code>Class</code> called <code>Warrior</code>. It should appear like this:</p>
+<p><img src="../images/workflows/class.png" alt="Class"></p>
+<p>The only mandatory field is <code>Stat Set</code>. If we don't make use of attributes and Max HP, we can leave the <code>Attribute Set</code> and <code>Max HP Growth Formula</code> fields empty.</p>
+<p>In our case, let's assign our <code>Hero Stat Set</code> to <code>Stat Set</code> and <code>Hero Attribute Set</code> to <code>Attribute Set</code>. This way, the <code>Warrior</code> will have access to all stats and attributes from the assigned <code>Stat Set</code> and <code>Attribute Set</code>.
+As we fill these two fields, we'll see that the <code>Stat Growth Formulas</code> and <code>Attribute Growth Formulas</code> sections will automatically populate with the stats and attributes from the assigned <code>Stat Set</code> and <code>Attribute Set</code>.
+Let's proceed to create all the growth formulas for the warrior's stats and attributes.
+Follow the steps outlined in the <a href="#growth-formulas">Growth Formulas</a> section to create the growth formulas for the warrior's stats and attributes.<br>
+Once all growth formulas are assigned, the <code>Warrior</code> should look like this:</p>
+<p><img src="../images/workflows/warrior-class.png" alt="Warrior Class"></p>
+<p><code>Max HP Growth Formula</code> allows specifying how the Max HP value grows as levels change. In our example, we'll leave it empty.
+The presence of this field for hit points might be surprising since this module of the framework isn't focused on health management. Indeed, damage and health are managed by the <em>Astra RPG Health</em> module, which will be released in the coming months.
+However, this field is positioned here since the scaling of base max hp still depends on the class.</p>
+<h3 id="keeping-the-hierarchy-clean">Keeping the hierarchy clean</h3>
+<p>By now you should have a lot of assets in your hierarchy. To keep it clean, you can create a folder named <code>Classes</code> and move the <code>Warrior</code> class inside it. You can do the same for the <code>Attributes</code> and <code>Stats</code> growth formulas inside the <code>Warrior</code> folder. This way, you can keep the hierarchy organized and easily find the assets.<br>
+Similarly, the <code>Hero Stat Set</code> and <code>Hero Attribute Set</code> could be placed in a <code>Hero</code> folder, that is common to all the classes. This way, you can have a single set of stats and attributes for all the classes that will be created in the future.</p>
+<p>This is how your hierarchy could look like:</p>
+<p><img src="../images/workflows/hierarchy.png" alt="Hierarchy"></p>
+<p>Obviously this is just a possible organization of the assets. Feel free to organize it as you prefer.</p>
+<h2 id="add-entityclass-to-an-entity">Add <code>EntityClass</code> to an entity</h2>
+<p>To assign a class to an entity, we need to add the <code>EntityClass</code> component to it. The inspector will look like this:</p>
+<p><img src="../images/workflows/entity-class.png" alt="Entity Class"></p>
+<p>All we have to do now is just assign the <code>Warrior</code> class we created earlier to the <code>Class</code> field.</p>
+<h3 id="switching-to-class-based-attributes-and-stats">Switching to class-based attributes and stats</h3>
+<p>We can now check the <code>Use Class Base Attributes</code> and <code>Use Class Base Stats</code> checkboxes. By doing this, the entity will use the base attributes and stats defined by the class. The <code>Fixed Base Attributes</code> and <code>Fixed Base Stats</code> fields will be disabled, and the values will be automatically retrieved from the class growth formulas.</p>
+<h3 id="retrieving-class-based-values-from-code">Retrieving class-based values from code</h3>
+<p>With a class we can access:</p>
+<ul>
+<li>attributes values: <code>GetAttributeAt(Attribute attribute, int level)</code></li>
+<li>stats values: <code>GetStatAt(Stat stat, int level)</code></li>
+<li>Max HP values: <code>GetMaxHpAt(int level)</code>
+For example:</li>
+</ul>
+<pre><code class="lang-csharp">// hero is a reference to the EntityCore component of the hero
+EntityClass warriorClass = hero.GetComponent&lt;EntityClass&gt;();
+// hero.Level is of EntityLevel type, but it is implicitly be converted to an int
+int level = hero.Level;
+int strengthAtLevel5 = warriorClass.GetAttributeAt(strengthAttribute, level);
+int physicalAttackAtLevel5 = warriorClass.GetStatAt(phyAtkStat, level);
+int maxHpAtLevel5 = warriorClass.GetMaxHpAt(level);
+</code></pre>
+<h2 id="create-scaling-formulas">Create Scaling Formulas</h2>
+<p><em>Keyboard shortcut:</em> <code>Alt + Shift + S</code>
+<em>Relative path:</em> <code>Scaling -&gt; Scaling Formula</code></p>
+<p>We already saw how to create an <code>Attribute Scaling Component</code> for stats. On top of such usage, scaling components, and more in general scaling formulas, can be used for much more situations. For example, they can be used to define the damage of an ability, to define the bonus granted by a piece of equipment, or to define the damage of a weapon. In general, they can be used to define any kind of scaling that can be expressed as a function of one or more variables.</p>
+<p>For example, let's create a <code>Scaling Formula</code> called <code>Mighty Blow SF</code>. It should look like this in the inspector:</p>
+<p><img src="../images/workflows/scaling-formula.png" alt="Scaling Formula"></p>
+<p><code>Base Value</code> determines the starting point for the scaling formula. It can either be a fixed constant value or a value that scales with levels (e.g., the level of the Mighty Blow skill). If the latter is chosen, a <code>Growth Formula</code> must be provided to define how the base value changes as levels increase.</p>
+<p>This scaling formula will be used to define the damage of a skill called <code>Mighty Blow</code>.
+The scaling formula will be defined as follows:</p>
+<ul>
+<li>Base damage: 10 at lvl 1, 25 at level 2, 60 at lvl 3</li>
+<li>Damage scaling: 1.5 * Physical Attack + 0.5 * Constitution</li>
+</ul>
+<p>Since we want a base value that varies as level grows, let's check the <code>Use a scaling base value</code> checkbox and create a <code>Growth Formula</code> named <code>Mighty Blow Base Dmg GF</code>. The <code>Mighty Blow Base Damage GF</code> should look like this:</p>
+<p><img src="../images/workflows/mighty-blow-base-damage-gf.png" alt="Mighty Blow Base Damage GF"></p>
+<p>Notice that a new Skill Max Lvl has been created and assigned to <code>Max Level</code>. This is necessary as the skill max level is not related to the max level of our hero.</p>
+<p>We can now assign this growth formula to the <code>Base Value</code> field of the <code>Mighty Blow SF</code> scaling formula.</p>
+<p>Under <code>Entity Scalings</code> we have <code>Self Scaling Components</code> and <code>Target Scaling Components</code>. The former are used to define the scaling of the entity itself, while the latter are used to define the scaling of the target of the ability. In our case, we will only use <code>Self Scaling Components</code>, so we can leave <code>Target Scaling Components</code> empty.</p>
+<p>We can now proceed to create the scaling components for the <code>Physical Attack</code> stat and the <code>Constitution</code> attribute.</p>
+<p>Let's create a new <code>Stat Scaling Component</code> called <code>Mighty Blow Physical Attack Scaling</code>. Assign the <code>Hero Stat Set</code> to it and set the scaling of the <code>Physical Attack</code> stat to <code>1.5</code>. The scaling component should look like this:</p>
+<p><img src="../images/workflows/mighty-blow-physical-attack-scaling.png" alt="Mighty Blow Physical Attack Scaling"></p>
+<p>Next, we will create a similar <code>Attribute Scaling Component</code> for the <code>Constitution</code> attribute called <code>Mighty Blow Constitution Scaling</code>. Assign the <code>Hero Attribute Set</code> to it and set the scaling of the <code>Constitution</code> to <code>0.5</code>. The scaling component should look like this:</p>
+<p><img src="../images/workflows/mighty-blow-constitution-scaling.png" alt="Mighty Blow Constitution Scaling"></p>
+<p>Finally, let's press on the <code>+</code> of <code>Self Scaling Components</code> and assign the two scaling components we just created. The <code>Mighty Blow SF</code> should look like this:</p>
+<p><img src="../images/workflows/mighty-blow-sf-with-scaling-components.png" alt="Mighty Blow SF with scaling components"></p>
+<h3 id="using-scaling-formulas-in-code">Using scaling formulas in code</h3>
+<p>First of all, <code>ScalingFormula</code>s expose two code-only properties: <code>List&lt;ScalingComponent&gt; TmpSelfScalingComponents</code> and <code>List&lt;ScalingComponent&gt; TmpTargetScalingComponents</code>. These properties can be used to add scaling components to the scaling formula at runtime. This is useful when you want to dynamically change the scaling components based on certain conditions or game states, without changing the original serialized scaling formula asset.
+For example, the character could get a temporary buff that makes the, let's say, <code>Mighty Blow</code> skill scale also with the <code>Intelligence</code> attribute. In this case, we can add a <code>Attribute Scaling Component</code> for the <code>Intelligence</code> attribute to the <code>TmpSelfScalingComponents</code> list of the <code>Mighty Blow SF</code> scaling formula.</p>
+<p>If the buff wears off, we can remove the scaling component from the <code>TmpSelfScalingComponents</code> list.</p>
+<p>There is also a method for resetting all the temporary scaling components: <code>ResetTmpScalings()</code>.
+This method can be useful, for example, when the player completes a room and advances to the next stage or area of the game, and you want to clear all temporary buffs the character received during that stage.</p>
+<p>Moreover, there are four more methods that are worth mentioning:</p>
+<ul>
+<li><code>long CalculateValue(EntityCore self)</code>: Calculates the value of the scaling formula by summing the value returned by each self scaling component (calculated on the entity itself values), there must not be any target scaling components.</li>
+<li><code>long CalculateValue(EntityCore self, int level)</code>: If the scaling formula has a base value that varies with levels, this method calculates the value of the scaling formula for the entity itself, and adds the base value at a specific level. Again, there must not be any target scaling components.</li>
+<li><code>long CalculateValue(EntityCore self, EntityCore target)</code>: Calculates the value of the scaling formula by summing the value returned by each self scaling component (calculated on the entity itself values) and each target scaling component (calculated on the target entity values).</li>
+<li><code>long CalculateValue(EntityCore self, EntityCore target, int level)</code>: Calculates the value of the scaling formula by summing the value returned by each self scaling component (calculated on the entity itself values) and each target scaling component (calculated on the target entity values), and adds the base value at a specific level.</li>
+</ul>
+<h2 id="game-events-1">Game Events</h2>
+<p><em>Relative path:</em> <code>Events -&gt; Game Event</code>
+<em>Relative path for custom game events:</em> <code>Events -&gt; Generated -&gt; *CustomEventName*</code></p>
+<p>At the beginning of this page we briefly mentioned the concept of game events as scriptable objects, and we have introduced the generic <code>GameEvent</code>. Such event is great for notifying actions that happen in the game, but it has limited flexibility as it is not carrying along any context information. For example, if we want to notify that a character has leveled up, we might want to pass along the entity that leveled up and the new level reached. In other cases it could be useful to pass along with the event a reference to the entity that triggered the event, so we would like to be able to pass a reference of type <code>EntityCore</code> as context parameter. And so on.<br>
+The framework comes along with some pre-defined game events:</p>
+<ul>
+<li><code>IntGameEvent</code>: an event that carries along an <code>int</code> as context parameter</li>
+<li><code>EntityCoreGameEvent</code>: an event that carries along an <code>EntityCore</code> as context parameter</li>
+<li><code>EntityLeveledUpGameEvent</code>: an event that carries along an <code>EntityCore</code> and an <code>int</code> as context parameters, where the <code>EntityCore</code> is the entity that leveled up and the <code>int</code> is the new level reached</li>
+<li><code>StatChangedGameEvent</code>: an event that carries along a <code>StatChangeInfo</code> context parameter, which contains:
+<ul>
+<li>A reference to the <code>EntityStats</code> component of the entity that has changed</li>
+<li>The <code>Stat</code> that has changed</li>
+<li>The previous value of the stat</li>
+<li>The new value of the stat</li>
+</ul>
+</li>
+<li><code>AttributeChangedGameEvent</code>: an event that carries along an <code>AttributeChangeInfo</code> context parameter, which contains:
+<ul>
+<li>A reference to the <code>EntityAttributes</code> component of the entity that has changed</li>
+<li>The <code>Attribute</code> that has changed</li>
+<li>The previous value of the attribute</li>
+<li>The new value of the attribute</li>
+</ul>
+</li>
+</ul>
+<p>Along with the game events, the frameworks provides the <code>*GameEventListener</code> counterparts, which are components that can be attached to a game object to listen for the events and execute a method when the event is raised. For example, <code>IntGameEventListener</code> listens for a specific <code>IntGameEvent</code> and executes a method that takes an <code>int</code> as parameter when the event is raised.</p>
+<p>Let's suppose we need a game event for notifying, each time the player dies, how many times the player has died so far. In the inspector, create a new <code>IntGameEvent</code> called <code>PlayerDied</code>. It should look like this:</p>
+<p><img src="../images/workflows/player-died-event.png" alt="Player Died Event"></p>
+<p>There are no fields to fill in the inspector. The integer to be passed as context parameter will be passed in the code that is responsible for raising the event.<br>
+The method to raise the event is <code>Raise(int value)</code>, which will raise the event and pass along the integer as context parameter. Therefore in a dedicated script you can call it like this:</p>
+<pre><code class="lang-csharp">public void OnPlayerDeath() {
+    playerDeathCount++;
+    // Assuming playerDiedEvent is a reference to the PlayerDied event
+    playerDiedEvent.Raise(playerDeathCount);
+}
+</code></pre>
+<p>Now let's create a listener for this event. Let's say that we want to show a message in the console when the event is raised. To do this, create a new game object in the hierarchy and add a script that defines a public method for logging an event, that takes an <code>int</code> as input parameter. It should be like:</p>
+<pre><code class="lang-csharp">public void LogPlayerDeath(int deathCount) {
+    Debug.Log($&quot;Player has died {deathCount} times.&quot;);
+}
+</code></pre>
+<p>Now add the <code>IntGameEventListener</code> component to the listener game object and, in the inspector, assign the <code>PlayerDied</code> event to the <code>Event</code> field. Now drag the <code>Logger</code> script created before into the <code>Response</code>'s object selector. You should be able now to select the <code>LogPlayerDeath</code> method from the dropdown menu. The result should look like this:</p>
+<p><img src="../images/workflows/player-died-listener.png" alt="Player Died Listener"></p>
+<p>This is a powerful mechanism that decouples the event producers from the event consumers, allowing for a more modular and maintainable codebase. And most of the setup is inspector-based. You just need to define the raising and the listening methods from code.</p>
+<h3 id="game-event-generators">Game Event Generators</h3>
+<p><em>Relative path:</em> <code>Events -&gt; Game Event Generator</code></p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>Game event generators are an experimental feature and may change in future releases.<br>
+To avoid potential issues, it is recommended to back up or version control your project before renaming or moving the generated events to different folders.</p>
+</div>
+<p>Sometimes the pre-defined game events are not enough to cover all the use cases. In this case, you can create a custom game event generator. A game event generator is a scriptable object that lets you define a custom game events with up to four context parameters. You can choose the type of each parameter. Parameters can either be primitive types (like <code>int</code>, <code>float</code>, <code>string</code>, etc.) or more complex types (like <code>EntityCore</code>, <code>Stat</code>, <code>StatChangeInfo</code>, ..., or your own data types).</p>
+<h4 id="game-event-generator-setup">Game Event Generator setup</h4>
+<p>Let's create a custom game event generator to manage all the events related to the experience and leveling up of entities. Rename the newly created events generator <code>EntityLevelingEvents</code>. In the inspector, it should look like this:</p>
+<p><img src="../images/workflows/entity-leveling-events.png" alt="Entity Leveling Events"></p>
+<p>With <code>Menu Base Path</code> we can change the path of the context menu where the generated events will be available for creation. By default, it is set to <code>Astra RPG Core -&gt; Events -&gt; Generated</code>, but we can change it to <code>Astra RPG Core -&gt; Events/Generated/Experience</code> for the sake of organization.</p>
+<p>With <code>Base Save Location</code> we can change the path where the source code files for the generated events will be saved. By default it is set to <code>Assets</code>, but for this example let's set it to <code>Assets/Events</code>.</p>
+<h4 id="adding-new-events">Adding new events</h4>
+<p>Now let's create an event that will be raised when an entity grants experience to another entity. To do this, click on the <code>Add new event</code> button and fill in the fields as follows:</p>
+<ul>
+<li><code>Event Name</code>: <code>EntityGrantedExp</code></li>
+<li><code>Documentation</code>: an entity granted experience to another entity</li>
+<li><code>Parameters</code>: press the <code>+</code> button and add the following three parameters:
+<ul>
+<li><code>Parameter Type</code> to <code>Mono Script</code>, <code>Mono Script</code> type to <code>EntityCore</code> (drag it from the AstraRpgFramework folder located in the Packages folder)</li>
+<li><code>Parameter Type</code> to <code>Mono Script</code>, <code>Mono Script</code> type to <code>EntityCore</code> (drag it from the AstraRpgFramework folder located in the Packages folder)</li>
+<li><code>Parameter Type</code> to <code>Native</code>, <code>Native type</code> to <code>long</code></li>
+</ul>
+</li>
+</ul>
+<p>The first parameter represents the entity that granted the experience, the second parameter represents the entity that received the experience, and the third parameter represents the amount of experience granted.</p>
+<p>Now let's press the <code>Generate Game Events</code> button to create the new event.
+We can now navigate to <code>Assets/Events/GeneratedEvents/EntityLevelingEvents</code> to find the following two folders:</p>
+<ul>
+<li><code>GameEventListeners</code>: contains the source code for all the game event listeners generated by our <code>EntityLevelingEvents</code> game event generator.</li>
+<li><code>GameEvents</code>: contains the source code for all the game events generated by our <code>EntityLevelingEvents</code> game event generator.</li>
+</ul>
+<p>Inside both folders, you'll find a subfolder named <code>3</code>. The Game Event Generators organize the generated events in subfolders based on the number of parameters they have. In this case, we have a game event with three parameters, so it is placed in the <code>3</code> subfolder.</p>
+<p>However, more interesting is the fact that if we now use the context menu and navigate to <code>Astra RPG Core -&gt; Events -&gt; Generated -&gt; Experience</code>, we can find the <code>EntityGrantedExp</code> event.<br>
+From here, you can follow the same steps as for the pre-defined game events to create a listener for this event, and to wire it up to the appropriate game logic.</p>
+<p>If you need to create more experience related events, you can repeat the process of adding new events to the <code>EntityLevelingEvents</code> game event generator.</p>
+<p>After having generated the source code for the game events, you can also click on the <code>Remove Event</code> button under each Game Event to remove it from the generator and delete the generated source code files.
+It might be necessary to refresh (right click on an asset folder and select <code>Refresh</code>) the asset folder containing the generated events to see the changes reflected in the Unity editor.</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>Pay attention that renaming or moving the generated events to different folders will cause the game event generator to lose track of them.
+If you change the <code>Base Save Location</code> and then re-generate the events, the game event generator will first delete the old files and then create new source code files in the new location. This means that any references to the old files will be lost, so you will need to reassign them in the inspector or in the code. This can be highly disruptive if you have many references to the old files, so it is recommended to back up or version control your project before renaming or moving the generated events to different folders.<br>
+To safely move files you should move them from the Unity editor and then update the <code>Base Save Location</code> field in the game event generator to match the new location of the generated events. This way, the game event generator will be able to find the generated events in the new location and will not attempt to delete/recreate them.<br>
+Same applies if you rename the generated game event type scripts. To rename them, rename their C# scripts first, and then, and then update the <code>Event Name</code> field in the game event generator to match the new name.</p>
+</div>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
