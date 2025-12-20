@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      
+      <meta name="docfx:docurl" content="https://github.com/ElectricDrill/AstraRpgHealthDocs/blob/main/DocFx/MD/migration-guide.md/#L1">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -87,54 +87,6 @@
         <article data-uid="">
 <h1 id="migration-guide">Migration Guide</h1>
 
-<h2 id="migrating-from-v100-to-v110">Migrating from v1.0.0 to v1.1.0</h2>
-<p>The rebranding of SOAP RPG Framework to Astra RPG Framework involves several changes that need to be addressed when updating existing projects. This guide outlines the necessary steps to ensure a smooth transition.</p>
-<h3 id="1-backup-your-project">1. Backup Your Project</h3>
-<p>Before making any changes, it's crucial to back up your project. Whether you are using version control or simply creating a copy of your project folder, having a backup will allow you to revert to the previous state if anything goes wrong during the migration process.</p>
-<h3 id="2-update-the-package-from-the-package-manager">2. Update the Package from the Package Manager</h3>
-<p>Open Unity and navigate to the Package Manager (<code>Window -&gt; Package Manager</code>). In the &quot;In This Project&quot; section, locate the SOAP RPG Framework package. Update it to version 1.1.0, which is now listed as Astra RPG Framework.</p>
-<h3 id="3-update-namespaces-in-your-code">3. Update Namespaces in Your Code</h3>
-<p>If your project contains scripts that reference the old SOAP RPG Framework namespaces, you'll need to update these references to the new Astra RPG Framework namespaces. For doing this, you can use your IDE's find-and-replace-all functionality (<code>Ctrl + Shift + R</code> in VSCode):</p>
-<ol>
-<li>Open the find-and-replace dialog in your IDE.</li>
-<li>Type <code>ElectricDrill.SoapRpgFramework</code> and assert that the &quot;Match Case&quot; option is enabled.</li>
-<li>Inspect the found occurrences to ensure they are correct.</li>
-<li>Replace all occurrences that makes sense to you with <code>ElectricDrill.AstraRPGFramework</code>.</li>
-<li>Save all modified files.</li>
-<li>Return to Unity and recompile the project. If this is not automatic, you can force recompilation with <code>Ctrl + R</code>.</li>
-</ol>
-<p>If your project compiles correctly, you're done!
-If you get errors related to duplicate <code>.asmdef</code> files, follow the next steps.</p>
-<h3 id="4-remove-duplicate-asmdef-files-in-the-package">4. Remove duplicate <code>.asmdef</code> files in the package</h3>
-<ol>
-<li>In the hierarchy of your project, navigate to the <code>Packages</code> folder and locate the <code>Astra RPG Framework</code> package.</li>
-<li>Open the <code>Runtime</code> folder.</li>
-<li>Ensure that there is only one <code>.asmdef</code> file named <code>com.electricdrill.astra-rpg-framework.Runtime</code>. If you find also a file named <code>com.electricdrill.soap-rpg-framework.Runtime</code>, delete it.</li>
-<li>Open now the <code>Editor</code> folder of the package.</li>
-<li>Ensure that there is only one <code>.asmdef</code> file named <code>com.electricdrill.astra-rpg-framework.Editor</code>. If you find also a file named <code>com.electricdrill.soap-rpg-framework.Editor</code>, delete it.</li>
-<li>Click on the <code>com.electricdrill.astra-rpg-framework.Editor</code> file to select it. In the Inspector window, in the <code>Assembly Definition References</code> section, add the reference to <code>com.electricdrill.astra-rpg-framework.Runtime</code> if it's not already present, and delete any reference to <code>com.electricdrill.soap-rpg-framework.Runtime</code> if present.</li>
-<li>Click on apply to save the changes.</li>
-</ol>
-<div class="NOTE">
-<h5>Note</h5>
-<p>Unity sometimes has unpredictable behaviors when updating <code>.asmdef</code> files in and their references. After applying the changes mentioned above, try also to close and reopen Unity to ensure that the changes are correctly applied. If you still encounter issues, fix the new problems and re-start Unity again. At that point, the changes should be correctly applied.</p>
-</div>
-<h3 id="5-recompile-the-project">5. Recompile the Project</h3>
-<p>If Unity didn't automatically recompile the project after these changes, you can force recompilation.</p>
-<p>Your project should now be successfully migrated to Astra RPG Framework v1.1.0.<br>
-Happy developing!</p>
-<hr>
-<h3 id="troubleshooting">Troubleshooting</h3>
-<h4 id="i-re-imported-samples-that-i-already-had-from-v100-and-now-i-have-errors">I re-imported Samples that I already had from v1.0.0 and now I have errors</h4>
-<p>If you used the ScriptableObject based samples of the <code>Utils</code> folder in your project, you can keep using them as they are fully compatible with the new version. In fact, <strong>you should not re-import them as that would create duplicates in your project</strong>.</p>
-<div class="WARNING">
-<h5>Warning</h5>
-<p>Do not delete any ScriptableObject based asset that you are using in your project! Delete the duplicates from the newly imported samples instead. This will prevent data loss in your project.</p>
-</div>
-<p>Moreover, it was noticed that re-importing samples in a project that was using v1.0.0 of the package, resulted in old namespaces being used in the samples scripts. This is likely a Unity bug as does not happen on a fresh project.
-If this happens, please rename the old <code>ElectricDrill.SoapRpgFramework</code> namespace in the scripts of the samples to <code>ElectricDrill.AstraRPGFramework</code> manually, analogously to what is described in step #3.</p>
-<h3 id="still-need-help">Still Need Help?</h3>
-<p>For any issue during the migration, feel free to reach me out by sending me an email at electricdrill.info@gmail.com</p>
 
 </article>
 
