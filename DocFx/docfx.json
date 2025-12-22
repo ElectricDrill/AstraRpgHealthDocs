@@ -63,10 +63,12 @@
           "_appFaviconPath": "images/astra-rpg-ico.ico",
           "_enableSearch": true,
           "pdf": true,
-          "_disableContribution": true
+          "_disableContribution": true,
+          "_baseUrl": "https://electricdrill.github.io/AstraRpgHealthDocs/"
       },
       "xref": [
-          "https://normanderwan.github.io/UnityXrefMaps/xrefmap.yml"
+          "https://normanderwan.github.io/UnityXrefMaps/xrefmap.yml",
+          "https://electricdrill.github.io/AstraRpgFrameworkDocs/xrefmap.yml"
       ],
       "styles": [
         "styles/custom.css"

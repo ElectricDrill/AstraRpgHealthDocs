@@ -125,6 +125,1378 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.Attribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.Attribute.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Attributes.Attribute",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Attributes.Attribute.yml\" sourcestartlinenumber=\"1\">Represents a character attribute that extends BoundedValue functionality.\nAn attribute is a measurable characteristic such as strength, dexterity, luck, and so on.\nCan have a min and a max value.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.AttributeChangeInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.AttributeChangeInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Attributes.AttributeChangeInfo",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Attributes.AttributeChangeInfo.yml\" sourcestartlinenumber=\"1\">Immutable structure that contains information about an attribute value change.\nUsed to track and communicate attribute modifications across the system.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.AttributeMenuItems.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.AttributeMenuItems.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Attributes.AttributeMenuItems",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Attributes.AttributeMenuItems.yml\" sourcestartlinenumber=\"1\">Provides Unity Editor menu items for creating attributes.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.AttributeSet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.AttributeSet.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Attributes.AttributeSet",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Attributes.AttributeSet.yml\" sourcestartlinenumber=\"1\">A ScriptableObject that defines a collection of attributes for use in character systems.\nAttribute sets are usually used to group attributes that can be shared across different characters or classes.\nFor example, any character of any class could have the same attribute set, including attributes like\nstrength, dexterity, constitution, intelligence, and luck.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.AttributeSetInstance.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.AttributeSetInstance.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Attributes.AttributeSetInstance",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Attributes.AttributeSetInstance.yml\" sourcestartlinenumber=\"1\">Represents a runtime instance of an AttributeSet with actual values for each attribute.\nProvides methods to manipulate and access attribute values during gameplay.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.AttributeSetInstanceExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.AttributeSetInstanceExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Attributes.AttributeSetInstanceExtensions",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Attributes.AttributeSetInstanceExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for converting SerializableDictionary to AttributeSetInstance.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.AttributeSetMenuItems.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.AttributeSetMenuItems.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Attributes.AttributeSetMenuItems",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Attributes.AttributeSetMenuItems.yml\" sourcestartlinenumber=\"1\">Provides Unity Editor menu items for creating attribute sets.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.EntityAttributes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.EntityAttributes.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Attributes.EntityAttributes",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Attributes.EntityAttributes.yml\" sourcestartlinenumber=\"1\">Manages the attributes of an entity.\nThis component calculates attribute values by combining base values, flat modifiers, percentage modifiers, and spent attribute points.\nIt requires an <xref href=\"ElectricDrill.AstraRpgFramework.Attributes.EntityAttributes.EntityCore\" data-throw-if-not-resolved=\"false\"></xref> component on the same GameObject.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.IHasAttributeSet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.IHasAttributeSet.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Attributes.IHasAttributeSet",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Attributes.IHasAttributeSet.yml\" sourcestartlinenumber=\"1\">Interface for objects that expose an AttributeSet definition.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Attributes",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Classes.Class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Classes.Class.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Classes.Class",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Classes.Class.yml\" sourcestartlinenumber=\"1\">Represents a character class in the RPG system.\nIt can be used to define how attributes and stats grow over levels.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Classes.ClassMenuItems.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Classes.ClassMenuItems.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Classes.ClassMenuItems",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Classes.ClassMenuItems.yml\" sourcestartlinenumber=\"1\">Provides a menu item in the Unity Editor to create a Class asset.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Classes.EntityClass.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Classes.EntityClass.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Classes.EntityClass",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Classes.EntityClass.yml\" sourcestartlinenumber=\"1\">Component that represents the class of an entity in the game.\nImplements <xref href=\"ElectricDrill.AstraRpgFramework.Classes.IClassSource\" data-throw-if-not-resolved=\"false\"></xref> to provide access to the entity's class definition.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Classes.IClassSource.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Classes.IClassSource.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Classes.IClassSource",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Classes.IClassSource.yml\" sourcestartlinenumber=\"1\">Interface for objects that provide a source of a class.\nIn RPG games, a class typically defines the role or profession of an entity,\nsuch as a warrior, mage, or rogue.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Classes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Classes.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Classes",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.EntityCore.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.EntityCore.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.EntityCore",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.EntityCore.yml\" sourcestartlinenumber=\"1\">The core component for any entity in the game.\nIt is the mandatory base class for all entities, providing essential functionality.\nProvides easy access to the entity's level, stats, and attributes.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.AttributeChangedGameEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.AttributeChangedGameEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.AttributeChangedGameEvent",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.AttributeChangedGameEvent.yml\" sourcestartlinenumber=\"1\">Game event that is raised when an attribute changes.\nContains information about the attribute that changed, including its previous and new values.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.AttributeChangedGameEventListener.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.AttributeChangedGameEventListener.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.AttributeChangedGameEventListener",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.AttributeChangedGameEventListener.yml\" sourcestartlinenumber=\"1\">Game event that is raised when an attribute changes.\nContains information about the attribute that changed, including its previous and new values.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.EntityCoreGameEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.EntityCoreGameEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.EntityCoreGameEvent",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityCoreGameEvent.yml\" sourcestartlinenumber=\"1\">Game event that carries EntityCore data.\nUsed for events that need to pass information about an entity's core component.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.EntityCoreGameEventListener.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.EntityCoreGameEventListener.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.EntityCoreGameEventListener",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityCoreGameEventListener.yml\" sourcestartlinenumber=\"1\">Game event that carries EntityCore data.\nUsed for events that need to pass information about an entity's core component.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEvent",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEvent.yml\" sourcestartlinenumber=\"1\">Event to notify the decrease of the level of an entity.\nParameters are:</p>\n<ul sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEvent.yml\" sourcestartlinenumber=\"3\">\n<li sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEvent.yml\" sourcestartlinenumber=\"3\">the entity that changed level</li>\n<li sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEvent.yml\" sourcestartlinenumber=\"4\">the new level</li>\n</ul>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEventListener.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEventListener.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEventListener",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEventListener.yml\" sourcestartlinenumber=\"1\">Event to notify the decrease of the level of an entity.\nParameters are:</p>\n<ul sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEventListener.yml\" sourcestartlinenumber=\"3\">\n<li sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEventListener.yml\" sourcestartlinenumber=\"3\">the entity that changed level</li>\n<li sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEventListener.yml\" sourcestartlinenumber=\"4\">the new level</li>\n</ul>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEvent",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEvent.yml\" sourcestartlinenumber=\"1\">Event to notify the increase of the level of an entity.\nParameters are:</p>\n<ul sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEvent.yml\" sourcestartlinenumber=\"3\">\n<li sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEvent.yml\" sourcestartlinenumber=\"3\">the entity that changed level</li>\n<li sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEvent.yml\" sourcestartlinenumber=\"4\">the new level</li>\n</ul>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEventListener.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEventListener.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEventListener",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEventListener.yml\" sourcestartlinenumber=\"1\">Event to notify the increase of the level of an entity.\nParameters are:</p>\n<ul sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEventListener.yml\" sourcestartlinenumber=\"3\">\n<li sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEventListener.yml\" sourcestartlinenumber=\"3\">the entity that changed level</li>\n<li sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEventListener.yml\" sourcestartlinenumber=\"4\">the new level</li>\n</ul>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEvent",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEvent.yml\" sourcestartlinenumber=\"1\">A ScriptableObject-based event system that allows decoupled communication between game systems.\nGameEvents can be raised to notify all registered listeners without requiring direct references.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.EventParameter.NativeType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.EventParameter.NativeType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.EventParameter.NativeType",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.EventParameter.NativeType.yml\" sourcestartlinenumber=\"1\">Enumeration of supported native C# types for event parameters.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.EventParameter.ParameterType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.EventParameter.ParameterType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.EventParameter.ParameterType",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.EventParameter.ParameterType.yml\" sourcestartlinenumber=\"1\">Enumeration defining whether the parameter is a native type, a custom MonoScript type, or an enum.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.EventParameter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.EventParameter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.EventParameter",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.EventParameter.yml\" sourcestartlinenumber=\"1\">Represents a parameter that can be passed to a generated game event.\nSupports both native C# types and custom MonoScript-based types.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.GameEventDefinition.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.GameEventDefinition.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.GameEventDefinition",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.GameEventDefinition.yml\" sourcestartlinenumber=\"1\">Defines a complete game event with its name, parameters, and metadata.\nContains all information needed to generate the corresponding C# classes.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventGenerator",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.yml\" sourcestartlinenumber=\"1\">A ScriptableObject tool for automatically generating GameEvent and GameEventListener classes.\nAllows developers to define event schemas and generate strongly-typed event classes at design time.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGeneric1-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGeneric1-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventGeneric1<T>",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventGeneric1-1.yml\" sourcestartlinenumber=\"1\">A generic ScriptableObject-based event system that can carry one parameter of type T.\nSupports both MonoBehaviour-based listeners and code-based Action listeners.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGeneric2-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGeneric2-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventGeneric2<T, U>",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventGeneric2-2.yml\" sourcestartlinenumber=\"1\">A generic ScriptableObject-based event system that can carry two parameters of types T and U.\nSupports both MonoBehaviour-based listeners and code-based Action listeners.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGeneric3-3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGeneric3-3.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventGeneric3<T, U, W>",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventGeneric3-3.yml\" sourcestartlinenumber=\"1\">A generic ScriptableObject-based event system that can carry three parameters of types T, U, and W.\nSupports both MonoBehaviour-based listeners and code-based Action listeners.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGeneric4-4.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGeneric4-4.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventGeneric4<T, U, W, K>",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventGeneric4-4.yml\" sourcestartlinenumber=\"1\">A generic ScriptableObject-based event system that can carry four parameters of types T, U, W, and K.\nSupports both MonoBehaviour-based listeners and code-based Action listeners.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventListener.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventListener.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventListener",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventListener.yml\" sourcestartlinenumber=\"1\">MonoBehaviour component that listens to GameEvent objects and responds with UnityEvents.\nAutomatically registers and unregisters itself when enabled/disabled.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric1-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric1-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric1<T>",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric1-1.yml\" sourcestartlinenumber=\"1\">MonoBehaviour component that listens to GameEventGeneric1 objects and responds with UnityEvents.\nAutomatically registers and unregisters itself when enabled/disabled.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric2-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric2-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric2<T, U>",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric2-2.yml\" sourcestartlinenumber=\"1\">MonoBehaviour component that listens to GameEventGeneric2 objects and responds with UnityEvents.\nAutomatically registers and unregisters itself when enabled/disabled.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric3-3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric3-3.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric3<T, U, W>",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric3-3.yml\" sourcestartlinenumber=\"1\">MonoBehaviour component that listens to GameEventGeneric3 objects and responds with UnityEvents.\nAutomatically registers and unregisters itself when enabled/disabled.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric4-4.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric4-4.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric4<T, U, W, K>",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric4-4.yml\" sourcestartlinenumber=\"1\">MonoBehaviour component that listens to GameEventGeneric4 objects and responds with UnityEvents.\nAutomatically registers and unregisters itself when enabled/disabled.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.IRaisable-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.IRaisable-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.IRaisable<T>",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.IRaisable-1.yml\" sourcestartlinenumber=\"1\">Interface for objects that can be raised with one parameter of type T.\nDefines the contract for events that carry a single piece of data.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.IRaisable-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.IRaisable-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.IRaisable<T, U>",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.IRaisable-2.yml\" sourcestartlinenumber=\"1\">Interface for objects that can be raised with two parameters of types T and U.\nDefines the contract for events that carry two pieces of data.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.IRaisable-3.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.IRaisable-3.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.IRaisable<T, U, V>",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.IRaisable-3.yml\" sourcestartlinenumber=\"1\">Interface for objects that can be raised with three parameters of types T, U, and V.\nDefines the contract for events that carry three pieces of data.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.IRaisable-4.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.IRaisable-4.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.IRaisable<T, U, V, W>",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.IRaisable-4.yml\" sourcestartlinenumber=\"1\">Interface for objects that can be raised with four parameters of types T, U, V, and W.\nDefines the contract for events that carry four pieces of data.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.IntGameEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.IntGameEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.IntGameEvent",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.IntGameEvent.yml\" sourcestartlinenumber=\"1\">Game event that carries integer data.\nA general-purpose event for passing integer values between game systems.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.IntGameEventListener.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.IntGameEventListener.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.IntGameEventListener",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.IntGameEventListener.yml\" sourcestartlinenumber=\"1\">Game event that carries integer data.\nA general-purpose event for passing integer values between game systems.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.StatChangedGameEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.StatChangedGameEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.StatChangedGameEvent",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.StatChangedGameEvent.yml\" sourcestartlinenumber=\"1\">Game event that is raised when a stat changes.\nContains information about the stat that changed, including its previous and new values.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.StatChangedGameEventListener.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.StatChangedGameEventListener.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events.StatChangedGameEventListener",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.StatChangedGameEventListener.yml\" sourcestartlinenumber=\"1\">Game event that is raised when a stat changes.\nContains information about the stat that changed, including its previous and new values.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Events",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Experience.EntityLevel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Experience.EntityLevel.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Experience.EntityLevel",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Experience.EntityLevel.yml\" sourcestartlinenumber=\"1\">Represents the level and experience system of an entity in the RPG framework.\nHandles experience gain, level progression, and experience-based calculations.\nImplements <xref href=\"ElectricDrill.AstraRpgFramework.Experience.ILevelable\" data-throw-if-not-resolved=\"false\"></xref> to provide standard leveling functionality.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Experience.ExpSource.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Experience.ExpSource.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Experience.ExpSource",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Experience.ExpSource.yml\" sourcestartlinenumber=\"1\">A MonoBehaviour component that provides a source of experience points.\nImplements <xref href=\"ElectricDrill.AstraRpgFramework.Experience.IExpSource\" data-throw-if-not-resolved=\"false\"></xref> and can only be harvested once.\nOnce harvested, subsequent calls to Exp will return 0.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Experience.IExpSource.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Experience.IExpSource.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Experience.IExpSource",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Experience.IExpSource.yml\" sourcestartlinenumber=\"1\">Interface for objects that can provide experience points.\nDefines the contract for experience sources that can be harvested.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Experience.ILevelable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Experience.ILevelable.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Experience.ILevelable",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Experience.ILevelable.yml\" sourcestartlinenumber=\"1\">Interface for entities that have a leveling system based on experience points.\nProvides the core functionality for level progression and experience management.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Experience.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Experience.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Experience",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Scaling.ScalingComponent",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponent.yml\" sourcestartlinenumber=\"1\">Abstract base class for all scaling components.\nA scaling component calculates a value based on an entity's properties.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.AttributeScalingComponentMenuItems.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.AttributeScalingComponentMenuItems.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.AttributeScalingComponentMenuItems",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.AttributeScalingComponentMenuItems.yml\" sourcestartlinenumber=\"1\">Provides a menu item in the Unity Editor to create an AttributesScalingComponent asset.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.AttributesScalingComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.AttributesScalingComponent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.AttributesScalingComponent",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.AttributesScalingComponent.yml\" sourcestartlinenumber=\"1\">A scaling component that calculates a value based on an entity's attributes.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.StatScalingComponentMenuItems.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.StatScalingComponentMenuItems.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.StatScalingComponentMenuItems",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.StatScalingComponentMenuItems.yml\" sourcestartlinenumber=\"1\">Provides a menu item in the Unity Editor to create a StatsScalingComponent asset.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.StatsScalingComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.StatsScalingComponent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.StatsScalingComponent",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.StatsScalingComponent.yml\" sourcestartlinenumber=\"1\">A scaling component that calculates a value based on an entity's stats.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingFormula.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingFormula.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Scaling.ScalingFormula",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Scaling.ScalingFormula.yml\" sourcestartlinenumber=\"1\">Represents a formula to calculate a value based on values returned by several scaling components.\nThe calculation of each scaling component can either be based on the &quot;self&quot; entity (the entity that owns the formula)\nor the &quot;target&quot; entity (the entity that will be targeted by the action).\nFor example, a scaling formula for an attack that deals the more damage the higher the enemy's armor is,\ncan use the &quot;self&quot; entity to calculate the damage based on the attacker's stats\nand the &quot;target&quot; entity to calculate additional damage based on the target's armor.\nThe final damage will be the sum of the value returned by the two scaling components.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingFormulaMenuItems.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingFormulaMenuItems.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Scaling.ScalingFormulaMenuItems",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Scaling.ScalingFormulaMenuItems.yml\" sourcestartlinenumber=\"1\">Provides a menu item in the Unity Editor to create a ScalingFormula asset.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.SoSetScalingComponentBase-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.SoSetScalingComponentBase-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Scaling.SoSetScalingComponentBase<SetType, KeyType>",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Scaling.SoSetScalingComponentBase-2.yml\" sourcestartlinenumber=\"1\">Abstract base class for scaling components that work with ScriptableObject-based sets.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Scaling",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.EntityStats.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.EntityStats.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Stats.EntityStats",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Stats.EntityStats.yml\" sourcestartlinenumber=\"1\">Component that manages the statistics of an entity in the game.\nIt handles base stats, flat stat modifiers, stat to stat modifiers, and percentage stat modifiers.<br>\nBase stats can either be fixed or come from the entity's class (if one is available on the Game Object).\nWhen stats change because of a modifier of any kind, the assigned <xref href=\"ElectricDrill.AstraRpgFramework.Events.StatChangedGameEvent\" data-throw-if-not-resolved=\"false\"></xref> is raised.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.IHasStatSet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.IHasStatSet.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Stats.IHasStatSet",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Stats.IHasStatSet.yml\" sourcestartlinenumber=\"1\">Interface for objects that provide a source of stat sets.\nDefines the contract for accessing a StatSet that contains stat definitions.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.Stat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.Stat.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Stats.Stat",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Stats.Stat.yml\" sourcestartlinenumber=\"1\">Represents a stat in the RPG system that extends BoundedValue with attribute scaling capabilities.\nStats can be scaled based on entity attributes and provide equality comparison based on name.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatChangeInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatChangeInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Stats.StatChangeInfo",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Stats.StatChangeInfo.yml\" sourcestartlinenumber=\"1\">Contains information about a stat change event, including the entity, stat, and old/new values.\nUsed for tracking and responding to stat modifications.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatMenuItems.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatMenuItems.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Stats.StatMenuItems",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Stats.StatMenuItems.yml\" sourcestartlinenumber=\"1\">Provides Unity Editor menu items for creating Stat assets.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatSet.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatSet.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Stats.StatSet",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Stats.StatSet.yml\" sourcestartlinenumber=\"1\">A ScriptableObject that defines a collection of stats that can be used by entities.\nImplements IStatContainer to provide stat containment functionality.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatSetInstance.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatSetInstance.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Stats.StatSetInstance",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Stats.StatSetInstance.yml\" sourcestartlinenumber=\"1\">Represents an instance of a StatSet with actual values for each stat.\nImplements IEnumerable and IStatContainer to provide collection functionality.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatSetMenuItems.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatSetMenuItems.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Stats.StatSetMenuItems",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Stats.StatSetMenuItems.yml\" sourcestartlinenumber=\"1\">Provides Unity Editor menu items for creating StatSet assets.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatToStatModifier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatToStatModifier.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Stats.StatToStatModifier",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Stats.StatToStatModifier.yml\" sourcestartlinenumber=\"1\">A ScriptableObject that defines how one stat can scale upon another stat basing on a percentage.\nUsed to create relationships between different stats in the RPG system.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatToStatModifierMenuItems.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatToStatModifierMenuItems.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Stats.StatToStatModifierMenuItems",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Stats.StatToStatModifierMenuItems.yml\" sourcestartlinenumber=\"1\">Provides Unity Editor menu items for creating StatToStatModifier assets.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Stats",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.BoundedValue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.BoundedValue.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Utils.BoundedValue",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.BoundedValue.yml\" sourcestartlinenumber=\"1\">Abstract base class for values that can be bounded by minimum and maximum limits.\nProvides functionality to define optional min/max constraints and clamp values within those bounds.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.Cache-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.Cache-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Utils.Cache<KType, VType>",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.Cache-2.yml\" sourcestartlinenumber=\"1\">A generic cache class that provides basic caching functionality.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.GrowthFormula.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.GrowthFormula.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Utils.GrowthFormula",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.GrowthFormula.yml\" sourcestartlinenumber=\"1\">Represents a formula to calculate growth values for different levels, up to a maximum level.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.GrowthFormulaMenuItems.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.GrowthFormulaMenuItems.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Utils.GrowthFormulaMenuItems",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.GrowthFormulaMenuItems.yml\" sourcestartlinenumber=\"1\">Provides a menu item in the Unity Editor to create a GrowthFormula asset.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.IValidatable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.IValidatable.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Utils.IValidatable",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.IValidatable.yml\" sourcestartlinenumber=\"1\">Interface for objects that support validation events in the Unity Editor.\nThis allows other components to subscribe and react when an object is validated\n(typically through OnValidate in the inspector).</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.IValueContainer-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.IValueContainer-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Utils.IValueContainer<T>",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.IValueContainer-1.yml\" sourcestartlinenumber=\"1\">Interface for objects that can contain and query values.\nProvides a standardized way to check for value containment across different value containers.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.IValueProvider-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.IValueProvider-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Utils.IValueProvider<KeyType, ReturnType>",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.IValueProvider-2.yml\" sourcestartlinenumber=\"1\">Provides a method to retrieve a value based on a key.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.InitializationUtils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.InitializationUtils.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Utils.InitializationUtils",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.InitializationUtils.yml\" sourcestartlinenumber=\"1\">Provides utility methods for initializing and refreshing collections during object setup.\nContains helper methods commonly used during component initialization and validation.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.IntRef.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.IntRef.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Utils.IntRef",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.IntRef.yml\" sourcestartlinenumber=\"1\">A reference to an integer value.\nCan either be a constant value or a reference to an <xref href=\"ElectricDrill.AstraRpgFramework.Utils.IntVar\" data-throw-if-not-resolved=\"false\"></xref> ScriptableObject.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.IntVar.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.IntVar.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Utils.IntVar",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.IntVar.yml\" sourcestartlinenumber=\"1\">ScriptableObject that holds an integer value.\nCan be used to share an integer value between different GameObjects and scenes.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.LongRef.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.LongRef.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Utils.LongRef",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.LongRef.yml\" sourcestartlinenumber=\"1\">A reference to a long value.\nCan either be a constant value or a reference to a <xref href=\"ElectricDrill.AstraRpgFramework.Utils.LongVar\" data-throw-if-not-resolved=\"false\"></xref> ScriptableObject.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.LongVar.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.LongVar.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Utils.LongVar",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.LongVar.yml\" sourcestartlinenumber=\"1\">ScriptableObject that holds a long value.\nCan be used to share a long value between different GameObjects and scenes.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.Percentage.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.Percentage.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Utils.Percentage",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.Percentage.yml\" sourcestartlinenumber=\"1\">The Percentage class represents a percentage value and provides various operators and conversions.<br>\nImplicit long to Percentage value conversion is available. To express a 100% value, use 100L.<br>\nImplicit Percentage to double conversion is available. When doing so, the percentage is automatically\ndivided by 100.<br></p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.SerKeyValPair-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.SerKeyValPair-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Utils.SerKeyValPair<T, U>",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.SerKeyValPair-2.yml\" sourcestartlinenumber=\"1\">A serializable key-value pair structure that can be used in Unity's inspector.\nProvides implicit conversion to and from the standard KeyValuePair.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.SerializableDictionary-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.SerializableDictionary-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Utils.SerializableDictionary<TKey, TValue>",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.SerializableDictionary-2.yml\" sourcestartlinenumber=\"1\">A serializable dictionary implementation that can be displayed and edited in the Unity Inspector.\nProvides all standard dictionary functionality while maintaining Unity serialization compatibility.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.SerializableHashSet-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.SerializableHashSet-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Utils.SerializableHashSet<T>",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.SerializableHashSet-1.yml\" sourcestartlinenumber=\"1\">A serializable hash set implementation that can be displayed and edited in the Unity Inspector.\nProvides all standard hash set functionality while maintaining Unity serialization compatibility.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.TypeSelectableAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.TypeSelectableAttribute.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Utils.TypeSelectableAttribute",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.TypeSelectableAttribute.yml\" sourcestartlinenumber=\"1\">Custom attribute to mark fields for SerializeReference type selection.\nApply this to [SerializeReference] fields to enable type selection dropdown.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.UI.DefaultAttributeCompactDisplaySONameProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.UI.DefaultAttributeCompactDisplaySONameProvider.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Utils.UI.DefaultAttributeCompactDisplaySONameProvider",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.UI.DefaultAttributeCompactDisplaySONameProvider.yml\" sourcestartlinenumber=\"1\">Attribute display name provider that returns a compact version of the attribute's name.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.UI.DefaultDisplaySONameProvider-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.UI.DefaultDisplaySONameProvider-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Utils.UI.DefaultDisplaySONameProvider<T>",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.UI.DefaultDisplaySONameProvider-1.yml\" sourcestartlinenumber=\"1\">Default implementation of IDisplayNameProvider that returns the asset's name property.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.UI.IDisplaySONameProvider-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.UI.IDisplaySONameProvider-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Utils.UI.IDisplaySONameProvider<T>",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.UI.IDisplaySONameProvider-1.yml\" sourcestartlinenumber=\"1\">Provides display names for ScriptableObject assets.\nThis interface allows for flexible presentation strategies, including localization.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.UI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.UI.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Utils.UI",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.ValidationError.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.ValidationError.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Utils.ValidationError",
+      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.ValidationError.yml\" sourcestartlinenumber=\"1\">Represents a validation error that occurred during formula evaluation.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework.Utils",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ElectricDrill.AstraRpgFramework.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ElectricDrill.AstraRpgFramework",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfig.yml",
       "output": {
         ".html": {

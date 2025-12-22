@@ -114,10 +114,10 @@ public class EntityHealth : MonoBehaviour, IDamageable, IHealable, IResurrectabl
     <dt>Inheritance</dt>
     <dd>
       <div><span class="xref">object</span></div>
-      <div><span class="xref">Object</span></div>
-      <div><span class="xref">Component</span></div>
-      <div><span class="xref">Behaviour</span></div>
-      <div><span class="xref">MonoBehaviour</span></div>
+      <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></div>
+      <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/Component.html">Component</a></div>
+      <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/Behaviour.html">Behaviour</a></div>
+      <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/MonoBehaviour.html">MonoBehaviour</a></div>
       <div><span class="xref">EntityHealth</span></div>
     </dd>
   </dl>
@@ -195,7 +195,7 @@ public class EntityHealth : MonoBehaviour, IDamageable, IHealable, IResurrectabl
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><span class="xref">EntityClass</span></dt>
+    <dt><a class="xref" href="ElectricDrill.AstraRpgFramework.Classes.EntityClass.html">EntityClass</a></dt>
     <dd></dd>
   </dl>
 
@@ -227,7 +227,7 @@ public class EntityHealth : MonoBehaviour, IDamageable, IHealable, IResurrectabl
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><span class="xref">EntityAttributes</span></dt>
+    <dt><a class="xref" href="ElectricDrill.AstraRpgFramework.Attributes.EntityAttributes.html">EntityAttributes</a></dt>
     <dd></dd>
   </dl>
 
@@ -259,7 +259,7 @@ public class EntityHealth : MonoBehaviour, IDamageable, IHealable, IResurrectabl
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><span class="xref">EntityCore</span></dt>
+    <dt><a class="xref" href="ElectricDrill.AstraRpgFramework.EntityCore.html">EntityCore</a></dt>
     <dd></dd>
   </dl>
 
@@ -291,7 +291,7 @@ public class EntityHealth : MonoBehaviour, IDamageable, IHealable, IResurrectabl
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><span class="xref">EntityStats</span></dt>
+    <dt><a class="xref" href="ElectricDrill.AstraRpgFramework.Stats.EntityStats.html">EntityStats</a></dt>
     <dd></dd>
   </dl>
 
@@ -525,7 +525,7 @@ If null, the default strategy from the config will be used.</p>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>amount</code> <span class="xref">Percentage</span></dt>
+    <dt><code>amount</code> <a class="xref" href="ElectricDrill.AstraRpgFramework.Utils.Percentage.html">Percentage</a></dt>
     <dd><p>The percentage to add to the modifier.</p>
 </dd>
     <dt><code>onMaxHpIncrease</code> <a class="xref" href="ElectricDrill.AstraRpgHealth.EntityHealth.html">EntityHealth</a>.<a class="xref" href="ElectricDrill.AstraRpgHealth.EntityHealth.HpBehaviourOnMaxHpIncrease.html">HpBehaviourOnMaxHpIncrease</a></dt>
@@ -565,7 +565,7 @@ Subscribes to stat changes if this is the first scaling added.</p>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>scaling</code> <span class="xref">StatsScalingComponent</span></dt>
+    <dt><code>scaling</code> <a class="xref" href="ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.StatsScalingComponent.html">StatsScalingComponent</a></dt>
     <dd><p>The scaling component to add.</p>
 </dd>
     <dt><code>onMaxHpIncrease</code> <a class="xref" href="ElectricDrill.AstraRpgHealth.EntityHealth.html">EntityHealth</a>.<a class="xref" href="ElectricDrill.AstraRpgHealth.EntityHealth.HpBehaviourOnMaxHpIncrease.html">HpBehaviourOnMaxHpIncrease</a></dt>
@@ -616,7 +616,7 @@ Subscribes to stat changes if this is the first scaling added.</p>
     <dt><code>defensiveStatValue</code> <span class="xref">long</span></dt>
     <dd><p>The defender's defensive stat value.</p>
 </dd>
-    <dt><code>defensiveStat</code> <span class="xref">Stat</span></dt>
+    <dt><code>defensiveStat</code> <a class="xref" href="ElectricDrill.AstraRpgFramework.Stats.Stat.html">Stat</a></dt>
     <dd><p>The defensive stat object (can be null if defenseReductionFn is null).</p>
 </dd>
     <dt><code>damageReductionFn</code> <a class="xref" href="ElectricDrill.AstraRpgHealth.DamageReductionFunctions.DamageReductionFn.html">DamageReductionFn</a></dt>
@@ -838,7 +838,7 @@ Unsubscribes from stat changes if no scalings remain.</p>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>scaling</code> <span class="xref">StatsScalingComponent</span></dt>
+    <dt><code>scaling</code> <a class="xref" href="ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.StatsScalingComponent.html">StatsScalingComponent</a></dt>
     <dd><p>The scaling component to remove.</p>
 </dd>
     <dt><code>onMaxHpIncrease</code> <a class="xref" href="ElectricDrill.AstraRpgHealth.EntityHealth.html">EntityHealth</a>.<a class="xref" href="ElectricDrill.AstraRpgHealth.EntityHealth.HpBehaviourOnMaxHpIncrease.html">HpBehaviourOnMaxHpIncrease</a></dt>
@@ -878,7 +878,7 @@ Throws InvalidOperationException if the entity is already alive.</p>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>withHpPercent</code> <span class="xref">Percentage</span></dt>
+    <dt><code>withHpPercent</code> <a class="xref" href="ElectricDrill.AstraRpgFramework.Utils.Percentage.html">Percentage</a></dt>
     <dd><p>The percentage of maximum health to restore on resurrection.</p>
 </dd>
   </dl>
@@ -918,7 +918,7 @@ Throws InvalidOperationException if the entity is already alive.</p>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>withHpPercent</code> <span class="xref">Percentage</span></dt>
+    <dt><code>withHpPercent</code> <a class="xref" href="ElectricDrill.AstraRpgFramework.Utils.Percentage.html">Percentage</a></dt>
     <dd><p>The percentage of maximum health to restore on resurrection.</p>
 </dd>
     <dt><code>healSource</code> <a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.HealSource.html">HealSource</a></dt>
