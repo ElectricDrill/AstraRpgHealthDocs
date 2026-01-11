@@ -23,7 +23,7 @@
 Astra RPG Health estende il framework base, [](Astra RPG Framework), aggiungendo funzionalità per la manipolazione della vita e del calcolo dei danni per le entità.
 Il package è pensato con la stessa filosofia di design dell'asset base: architettura basata su Scriptable Objects per incentivare flessibilità, modularità, e testabilità. Se avete già familiarità con il package base, vi sentirete a casa con l'utilizzo delle sue funzionalità.
 
-Puoi definire i tuoi tipi di danno, designare le statistiche difensive usate per ridurre ciascun tipo di danno, configurare la pipeline per calcolare i danni con gli step desiderati, configurare il lifesteal per certi tipi di danni, e molto altro.
+Puoi definire i tuoi tipi di danno, designare le statistiche difensive usate per ridurre ciascun tipo di danno, configurare la pipeline per calcolare i danni con gli step desiderati, configurare il lifesteal per certi tipi di danni, le strategie da attuare all morte delle entità, e molto altro.
 
 ## Vocabolario di Astra RPG Health
 
