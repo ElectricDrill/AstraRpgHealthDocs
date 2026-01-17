@@ -1,5 +1,5 @@
 {
-  "source_base_path": "C:/Users/emaci/Documents/Unity/AstraRpgHealthDocs/DocFx",
+  "source_base_path": "C:/Users/emaci/Documents/AstraRpgHealthDocs/DocFx",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -125,1389 +125,13 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.Attribute.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.Attribute.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Attributes.Attribute",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Attributes.Attribute.yml\" sourcestartlinenumber=\"1\">Represents a character attribute that extends BoundedValue functionality.\nAn attribute is a measurable characteristic such as strength, dexterity, luck, and so on.\nCan have a min and a max value.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.AttributeChangeInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.AttributeChangeInfo.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Attributes.AttributeChangeInfo",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Attributes.AttributeChangeInfo.yml\" sourcestartlinenumber=\"1\">Immutable structure that contains information about an attribute value change.\nUsed to track and communicate attribute modifications across the system.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.AttributeMenuItems.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.AttributeMenuItems.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Attributes.AttributeMenuItems",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Attributes.AttributeMenuItems.yml\" sourcestartlinenumber=\"1\">Provides Unity Editor menu items for creating attributes.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.AttributeSet.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.AttributeSet.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Attributes.AttributeSet",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Attributes.AttributeSet.yml\" sourcestartlinenumber=\"1\">A ScriptableObject that defines a collection of attributes for use in character systems.\nAttribute sets are usually used to group attributes that can be shared across different characters or classes.\nFor example, any character of any class could have the same attribute set, including attributes like\nstrength, dexterity, constitution, intelligence, and luck.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.AttributeSetInstance.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.AttributeSetInstance.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Attributes.AttributeSetInstance",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Attributes.AttributeSetInstance.yml\" sourcestartlinenumber=\"1\">Represents a runtime instance of an AttributeSet with actual values for each attribute.\nProvides methods to manipulate and access attribute values during gameplay.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.AttributeSetInstanceExtensions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.AttributeSetInstanceExtensions.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Attributes.AttributeSetInstanceExtensions",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Attributes.AttributeSetInstanceExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for converting SerializableDictionary to AttributeSetInstance.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.AttributeSetMenuItems.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.AttributeSetMenuItems.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Attributes.AttributeSetMenuItems",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Attributes.AttributeSetMenuItems.yml\" sourcestartlinenumber=\"1\">Provides Unity Editor menu items for creating attribute sets.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.EntityAttributes.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.EntityAttributes.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Attributes.EntityAttributes",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Attributes.EntityAttributes.yml\" sourcestartlinenumber=\"1\">Manages the attributes of an entity.\nThis component calculates attribute values by combining base values, flat modifiers, percentage modifiers, and spent attribute points.\nIt requires an <xref href=\"ElectricDrill.AstraRpgFramework.Attributes.EntityAttributes.EntityCore\" data-throw-if-not-resolved=\"false\"></xref> component on the same GameObject.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.IHasAttributeSet.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.IHasAttributeSet.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Attributes.IHasAttributeSet",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Attributes.IHasAttributeSet.yml\" sourcestartlinenumber=\"1\">Interface for objects that expose an AttributeSet definition.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Attributes.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Attributes",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Classes.Class.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Classes.Class.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Classes.Class",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Classes.Class.yml\" sourcestartlinenumber=\"1\">Represents a character class in the RPG system.\nIt can be used to define how attributes and stats grow over levels.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Classes.ClassMenuItems.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Classes.ClassMenuItems.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Classes.ClassMenuItems",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Classes.ClassMenuItems.yml\" sourcestartlinenumber=\"1\">Provides a menu item in the Unity Editor to create a Class asset.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Classes.EntityClass.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Classes.EntityClass.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Classes.EntityClass",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Classes.EntityClass.yml\" sourcestartlinenumber=\"1\">Component that represents the class of an entity in the game.\nImplements <xref href=\"ElectricDrill.AstraRpgFramework.Classes.IClassSource\" data-throw-if-not-resolved=\"false\"></xref> to provide access to the entity's class definition.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Classes.IClassSource.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Classes.IClassSource.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Classes.IClassSource",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Classes.IClassSource.yml\" sourcestartlinenumber=\"1\">Interface for objects that provide a source of a class.\nIn RPG games, a class typically defines the role or profession of an entity,\nsuch as a warrior, mage, or rogue.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Classes.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Classes.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Classes",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.EntityCore.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.EntityCore.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.EntityCore",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.EntityCore.yml\" sourcestartlinenumber=\"1\">The core component for any entity in the game.\nIt is the mandatory base class for all entities, providing essential functionality.\nProvides easy access to the entity's level, stats, and attributes.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.AttributeChangedGameEvent.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.AttributeChangedGameEvent.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.AttributeChangedGameEvent",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.AttributeChangedGameEvent.yml\" sourcestartlinenumber=\"1\">Game event that is raised when an attribute changes.\nContains information about the attribute that changed, including its previous and new values.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.AttributeChangedGameEventListener.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.AttributeChangedGameEventListener.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.AttributeChangedGameEventListener",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.AttributeChangedGameEventListener.yml\" sourcestartlinenumber=\"1\">Game event that is raised when an attribute changes.\nContains information about the attribute that changed, including its previous and new values.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.EntityCoreGameEvent.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.EntityCoreGameEvent.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.EntityCoreGameEvent",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityCoreGameEvent.yml\" sourcestartlinenumber=\"1\">Game event that carries EntityCore data.\nUsed for events that need to pass information about an entity's core component.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.EntityCoreGameEventListener.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.EntityCoreGameEventListener.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.EntityCoreGameEventListener",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityCoreGameEventListener.yml\" sourcestartlinenumber=\"1\">Game event that carries EntityCore data.\nUsed for events that need to pass information about an entity's core component.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEvent.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEvent.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEvent",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEvent.yml\" sourcestartlinenumber=\"1\">Event to notify the decrease of the level of an entity.\nParameters are:</p>\n<ul sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEvent.yml\" sourcestartlinenumber=\"3\">\n<li sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEvent.yml\" sourcestartlinenumber=\"3\">the entity that changed level</li>\n<li sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEvent.yml\" sourcestartlinenumber=\"4\">the new level</li>\n</ul>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEventListener.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEventListener.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEventListener",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEventListener.yml\" sourcestartlinenumber=\"1\">Event to notify the decrease of the level of an entity.\nParameters are:</p>\n<ul sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEventListener.yml\" sourcestartlinenumber=\"3\">\n<li sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEventListener.yml\" sourcestartlinenumber=\"3\">the entity that changed level</li>\n<li sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledDownGameEventListener.yml\" sourcestartlinenumber=\"4\">the new level</li>\n</ul>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEvent.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEvent.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEvent",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEvent.yml\" sourcestartlinenumber=\"1\">Event to notify the increase of the level of an entity.\nParameters are:</p>\n<ul sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEvent.yml\" sourcestartlinenumber=\"3\">\n<li sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEvent.yml\" sourcestartlinenumber=\"3\">the entity that changed level</li>\n<li sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEvent.yml\" sourcestartlinenumber=\"4\">the new level</li>\n</ul>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEventListener.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEventListener.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEventListener",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEventListener.yml\" sourcestartlinenumber=\"1\">Event to notify the increase of the level of an entity.\nParameters are:</p>\n<ul sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEventListener.yml\" sourcestartlinenumber=\"3\">\n<li sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEventListener.yml\" sourcestartlinenumber=\"3\">the entity that changed level</li>\n<li sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.EntityLeveledUpGameEventListener.yml\" sourcestartlinenumber=\"4\">the new level</li>\n</ul>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEvent.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEvent.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEvent",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEvent.yml\" sourcestartlinenumber=\"1\">A ScriptableObject-based event system that allows decoupled communication between game systems.\nGameEvents can be raised to notify all registered listeners without requiring direct references.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.EventParameter.NativeType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.EventParameter.NativeType.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.EventParameter.NativeType",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.EventParameter.NativeType.yml\" sourcestartlinenumber=\"1\">Enumeration of supported native C# types for event parameters.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.EventParameter.ParameterType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.EventParameter.ParameterType.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.EventParameter.ParameterType",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.EventParameter.ParameterType.yml\" sourcestartlinenumber=\"1\">Enumeration defining whether the parameter is a native type, a custom MonoScript type, or an enum.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.EventParameter.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.EventParameter.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.EventParameter",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.EventParameter.yml\" sourcestartlinenumber=\"1\">Represents a parameter that can be passed to a generated game event.\nSupports both native C# types and custom MonoScript-based types.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.GameEventDefinition.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.GameEventDefinition.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.GameEventDefinition",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.GameEventDefinition.yml\" sourcestartlinenumber=\"1\">Defines a complete game event with its name, parameters, and metadata.\nContains all information needed to generate the corresponding C# classes.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventGenerator",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventGenerator.yml\" sourcestartlinenumber=\"1\">A ScriptableObject tool for automatically generating GameEvent and GameEventListener classes.\nAllows developers to define event schemas and generate strongly-typed event classes at design time.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGeneric1-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGeneric1-1.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventGeneric1<T>",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventGeneric1-1.yml\" sourcestartlinenumber=\"1\">A generic ScriptableObject-based event system that can carry one parameter of type T.\nSupports both MonoBehaviour-based listeners and code-based Action listeners.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGeneric2-2.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGeneric2-2.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventGeneric2<T, U>",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventGeneric2-2.yml\" sourcestartlinenumber=\"1\">A generic ScriptableObject-based event system that can carry two parameters of types T and U.\nSupports both MonoBehaviour-based listeners and code-based Action listeners.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGeneric3-3.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGeneric3-3.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventGeneric3<T, U, W>",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventGeneric3-3.yml\" sourcestartlinenumber=\"1\">A generic ScriptableObject-based event system that can carry three parameters of types T, U, and W.\nSupports both MonoBehaviour-based listeners and code-based Action listeners.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGeneric4-4.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventGeneric4-4.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventGeneric4<T, U, W, K>",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventGeneric4-4.yml\" sourcestartlinenumber=\"1\">A generic ScriptableObject-based event system that can carry four parameters of types T, U, W, and K.\nSupports both MonoBehaviour-based listeners and code-based Action listeners.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventListener.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventListener.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventListener",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventListener.yml\" sourcestartlinenumber=\"1\">MonoBehaviour component that listens to GameEvent objects and responds with UnityEvents.\nAutomatically registers and unregisters itself when enabled/disabled.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric1-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric1-1.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric1<T>",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric1-1.yml\" sourcestartlinenumber=\"1\">MonoBehaviour component that listens to GameEventGeneric1 objects and responds with UnityEvents.\nAutomatically registers and unregisters itself when enabled/disabled.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric2-2.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric2-2.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric2<T, U>",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric2-2.yml\" sourcestartlinenumber=\"1\">MonoBehaviour component that listens to GameEventGeneric2 objects and responds with UnityEvents.\nAutomatically registers and unregisters itself when enabled/disabled.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric3-3.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric3-3.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric3<T, U, W>",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric3-3.yml\" sourcestartlinenumber=\"1\">MonoBehaviour component that listens to GameEventGeneric3 objects and responds with UnityEvents.\nAutomatically registers and unregisters itself when enabled/disabled.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric4-4.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric4-4.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric4<T, U, W, K>",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.GameEventListenerGeneric4-4.yml\" sourcestartlinenumber=\"1\">MonoBehaviour component that listens to GameEventGeneric4 objects and responds with UnityEvents.\nAutomatically registers and unregisters itself when enabled/disabled.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.IRaisable-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.IRaisable-1.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.IRaisable<T>",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.IRaisable-1.yml\" sourcestartlinenumber=\"1\">Interface for objects that can be raised with one parameter of type T.\nDefines the contract for events that carry a single piece of data.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.IRaisable-2.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.IRaisable-2.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.IRaisable<T, U>",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.IRaisable-2.yml\" sourcestartlinenumber=\"1\">Interface for objects that can be raised with two parameters of types T and U.\nDefines the contract for events that carry two pieces of data.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.IRaisable-3.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.IRaisable-3.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.IRaisable<T, U, V>",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.IRaisable-3.yml\" sourcestartlinenumber=\"1\">Interface for objects that can be raised with three parameters of types T, U, and V.\nDefines the contract for events that carry three pieces of data.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.IRaisable-4.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.IRaisable-4.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.IRaisable<T, U, V, W>",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.IRaisable-4.yml\" sourcestartlinenumber=\"1\">Interface for objects that can be raised with four parameters of types T, U, V, and W.\nDefines the contract for events that carry four pieces of data.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.IntGameEvent.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.IntGameEvent.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.IntGameEvent",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.IntGameEvent.yml\" sourcestartlinenumber=\"1\">Game event that carries integer data.\nA general-purpose event for passing integer values between game systems.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.IntGameEventListener.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.IntGameEventListener.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.IntGameEventListener",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.IntGameEventListener.yml\" sourcestartlinenumber=\"1\">Game event that carries integer data.\nA general-purpose event for passing integer values between game systems.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.StatChangedGameEvent.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.StatChangedGameEvent.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.StatChangedGameEvent",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.StatChangedGameEvent.yml\" sourcestartlinenumber=\"1\">Game event that is raised when a stat changes.\nContains information about the stat that changed, including its previous and new values.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.StatChangedGameEventListener.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.StatChangedGameEventListener.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events.StatChangedGameEventListener",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Events.StatChangedGameEventListener.yml\" sourcestartlinenumber=\"1\">Game event that is raised when a stat changes.\nContains information about the stat that changed, including its previous and new values.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Events.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Events.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Events",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Experience.EntityLevel.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Experience.EntityLevel.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Experience.EntityLevel",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Experience.EntityLevel.yml\" sourcestartlinenumber=\"1\">Represents the level and experience system of an entity in the RPG framework.\nHandles experience gain, level progression, and experience-based calculations.\nImplements <xref href=\"ElectricDrill.AstraRpgFramework.Experience.ILevelable\" data-throw-if-not-resolved=\"false\"></xref> to provide standard leveling functionality.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Experience.ExpSource.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Experience.ExpSource.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Experience.ExpSource",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Experience.ExpSource.yml\" sourcestartlinenumber=\"1\">A MonoBehaviour component that provides a source of experience points.\nImplements <xref href=\"ElectricDrill.AstraRpgFramework.Experience.IExpSource\" data-throw-if-not-resolved=\"false\"></xref> and can only be harvested once.\nOnce harvested, subsequent calls to Exp will return 0.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Experience.IExpSource.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Experience.IExpSource.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Experience.IExpSource",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Experience.IExpSource.yml\" sourcestartlinenumber=\"1\">Interface for objects that can provide experience points.\nDefines the contract for experience sources that can be harvested.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Experience.ILevelable.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Experience.ILevelable.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Experience.ILevelable",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Experience.ILevelable.yml\" sourcestartlinenumber=\"1\">Interface for entities that have a leveling system based on experience points.\nProvides the core functionality for level progression and experience management.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Experience.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Experience.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Experience",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponent.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponent.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Scaling.ScalingComponent",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponent.yml\" sourcestartlinenumber=\"1\">Abstract base class for all scaling components.\nA scaling component calculates a value based on an entity's properties.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.AttributeScalingComponentMenuItems.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.AttributeScalingComponentMenuItems.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.AttributeScalingComponentMenuItems",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.AttributeScalingComponentMenuItems.yml\" sourcestartlinenumber=\"1\">Provides a menu item in the Unity Editor to create an AttributesScalingComponent asset.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.AttributesScalingComponent.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.AttributesScalingComponent.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.AttributesScalingComponent",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.AttributesScalingComponent.yml\" sourcestartlinenumber=\"1\">A scaling component that calculates a value based on an entity's attributes.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.StatScalingComponentMenuItems.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.StatScalingComponentMenuItems.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.StatScalingComponentMenuItems",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.StatScalingComponentMenuItems.yml\" sourcestartlinenumber=\"1\">Provides a menu item in the Unity Editor to create a StatsScalingComponent asset.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.StatsScalingComponent.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.StatsScalingComponent.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.StatsScalingComponent",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.StatsScalingComponent.yml\" sourcestartlinenumber=\"1\">A scaling component that calculates a value based on an entity's stats.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingFormula.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingFormula.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Scaling.ScalingFormula",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Scaling.ScalingFormula.yml\" sourcestartlinenumber=\"1\">Represents a formula to calculate a value based on values returned by several scaling components.\nThe calculation of each scaling component can either be based on the &quot;self&quot; entity (the entity that owns the formula)\nor the &quot;target&quot; entity (the entity that will be targeted by the action).\nFor example, a scaling formula for an attack that deals the more damage the higher the enemy's armor is,\ncan use the &quot;self&quot; entity to calculate the damage based on the attacker's stats\nand the &quot;target&quot; entity to calculate additional damage based on the target's armor.\nThe final damage will be the sum of the value returned by the two scaling components.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingFormulaMenuItems.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.ScalingFormulaMenuItems.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Scaling.ScalingFormulaMenuItems",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Scaling.ScalingFormulaMenuItems.yml\" sourcestartlinenumber=\"1\">Provides a menu item in the Unity Editor to create a ScalingFormula asset.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.SoSetScalingComponentBase-2.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.SoSetScalingComponentBase-2.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Scaling.SoSetScalingComponentBase<SetType, KeyType>",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Scaling.SoSetScalingComponentBase-2.yml\" sourcestartlinenumber=\"1\">Abstract base class for scaling components that work with ScriptableObject-based sets.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Scaling.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Scaling",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.EntityStats.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.EntityStats.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Stats.EntityStats",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Stats.EntityStats.yml\" sourcestartlinenumber=\"1\">Component that manages the statistics of an entity in the game.\nIt handles base stats, flat stat modifiers, stat to stat modifiers, and percentage stat modifiers.<br>\nBase stats can either be fixed or come from the entity's class (if one is available on the Game Object).\nWhen stats change because of a modifier of any kind, the assigned <xref href=\"ElectricDrill.AstraRpgFramework.Events.StatChangedGameEvent\" data-throw-if-not-resolved=\"false\"></xref> is raised.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.IHasStatSet.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.IHasStatSet.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Stats.IHasStatSet",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Stats.IHasStatSet.yml\" sourcestartlinenumber=\"1\">Interface for objects that provide a source of stat sets.\nDefines the contract for accessing a StatSet that contains stat definitions.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.Stat.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.Stat.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Stats.Stat",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Stats.Stat.yml\" sourcestartlinenumber=\"1\">Represents a stat in the RPG system that extends BoundedValue with attribute scaling capabilities.\nStats can be scaled based on entity attributes and provide equality comparison based on name.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatChangeInfo.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatChangeInfo.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Stats.StatChangeInfo",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Stats.StatChangeInfo.yml\" sourcestartlinenumber=\"1\">Contains information about a stat change event, including the entity, stat, and old/new values.\nUsed for tracking and responding to stat modifications.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatMenuItems.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatMenuItems.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Stats.StatMenuItems",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Stats.StatMenuItems.yml\" sourcestartlinenumber=\"1\">Provides Unity Editor menu items for creating Stat assets.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatSet.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatSet.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Stats.StatSet",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Stats.StatSet.yml\" sourcestartlinenumber=\"1\">A ScriptableObject that defines a collection of stats that can be used by entities.\nImplements IStatContainer to provide stat containment functionality.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatSetInstance.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatSetInstance.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Stats.StatSetInstance",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Stats.StatSetInstance.yml\" sourcestartlinenumber=\"1\">Represents an instance of a StatSet with actual values for each stat.\nImplements IEnumerable and IStatContainer to provide collection functionality.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatSetMenuItems.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatSetMenuItems.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Stats.StatSetMenuItems",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Stats.StatSetMenuItems.yml\" sourcestartlinenumber=\"1\">Provides Unity Editor menu items for creating StatSet assets.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatToStatModifier.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatToStatModifier.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Stats.StatToStatModifier",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Stats.StatToStatModifier.yml\" sourcestartlinenumber=\"1\">A ScriptableObject that defines how one stat can scale upon another stat basing on a percentage.\nUsed to create relationships between different stats in the RPG system.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatToStatModifierMenuItems.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.StatToStatModifierMenuItems.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Stats.StatToStatModifierMenuItems",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Stats.StatToStatModifierMenuItems.yml\" sourcestartlinenumber=\"1\">Provides Unity Editor menu items for creating StatToStatModifier assets.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Stats.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Stats",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.BoundedValue.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.BoundedValue.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Utils.BoundedValue",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.BoundedValue.yml\" sourcestartlinenumber=\"1\">Abstract base class for values that can be bounded by minimum and maximum limits.\nProvides functionality to define optional min/max constraints and clamp values within those bounds.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.Cache-2.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.Cache-2.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Utils.Cache<KType, VType>",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.Cache-2.yml\" sourcestartlinenumber=\"1\">A generic cache class that provides basic caching functionality.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.GrowthFormula.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.GrowthFormula.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Utils.GrowthFormula",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.GrowthFormula.yml\" sourcestartlinenumber=\"1\">Represents a formula to calculate growth values for different levels, up to a maximum level.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.GrowthFormulaMenuItems.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.GrowthFormulaMenuItems.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Utils.GrowthFormulaMenuItems",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.GrowthFormulaMenuItems.yml\" sourcestartlinenumber=\"1\">Provides a menu item in the Unity Editor to create a GrowthFormula asset.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.IValidatable.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.IValidatable.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Utils.IValidatable",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.IValidatable.yml\" sourcestartlinenumber=\"1\">Interface for objects that support validation events in the Unity Editor.\nThis allows other components to subscribe and react when an object is validated\n(typically through OnValidate in the inspector).</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.IValueContainer-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.IValueContainer-1.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Utils.IValueContainer<T>",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.IValueContainer-1.yml\" sourcestartlinenumber=\"1\">Interface for objects that can contain and query values.\nProvides a standardized way to check for value containment across different value containers.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.IValueProvider-2.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.IValueProvider-2.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Utils.IValueProvider<KeyType, ReturnType>",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.IValueProvider-2.yml\" sourcestartlinenumber=\"1\">Provides a method to retrieve a value based on a key.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.InitializationUtils.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.InitializationUtils.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Utils.InitializationUtils",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.InitializationUtils.yml\" sourcestartlinenumber=\"1\">Provides utility methods for initializing and refreshing collections during object setup.\nContains helper methods commonly used during component initialization and validation.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.IntRef.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.IntRef.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Utils.IntRef",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.IntRef.yml\" sourcestartlinenumber=\"1\">A reference to an integer value.\nCan either be a constant value or a reference to an <xref href=\"ElectricDrill.AstraRpgFramework.Utils.IntVar\" data-throw-if-not-resolved=\"false\"></xref> ScriptableObject.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.IntVar.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.IntVar.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Utils.IntVar",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.IntVar.yml\" sourcestartlinenumber=\"1\">ScriptableObject that holds an integer value.\nCan be used to share an integer value between different GameObjects and scenes.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.LongRef.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.LongRef.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Utils.LongRef",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.LongRef.yml\" sourcestartlinenumber=\"1\">A reference to a long value.\nCan either be a constant value or a reference to a <xref href=\"ElectricDrill.AstraRpgFramework.Utils.LongVar\" data-throw-if-not-resolved=\"false\"></xref> ScriptableObject.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.LongVar.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.LongVar.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Utils.LongVar",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.LongVar.yml\" sourcestartlinenumber=\"1\">ScriptableObject that holds a long value.\nCan be used to share a long value between different GameObjects and scenes.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.Percentage.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.Percentage.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Utils.Percentage",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.Percentage.yml\" sourcestartlinenumber=\"1\">The Percentage class represents a percentage value and provides various operators and conversions.<br>\nImplicit long to Percentage value conversion is available. To express a 100% value, use 100L.<br>\nImplicit Percentage to double conversion is available. When doing so, the percentage is automatically\ndivided by 100.<br></p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.SerKeyValPair-2.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.SerKeyValPair-2.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Utils.SerKeyValPair<T, U>",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.SerKeyValPair-2.yml\" sourcestartlinenumber=\"1\">A serializable key-value pair structure that can be used in Unity's inspector.\nProvides implicit conversion to and from the standard KeyValuePair.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.SerializableDictionary-2.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.SerializableDictionary-2.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Utils.SerializableDictionary<TKey, TValue>",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.SerializableDictionary-2.yml\" sourcestartlinenumber=\"1\">A serializable dictionary implementation that can be displayed and edited in the Unity Inspector.\nProvides all standard dictionary functionality while maintaining Unity serialization compatibility.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.SerializableHashSet-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.SerializableHashSet-1.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Utils.SerializableHashSet<T>",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.SerializableHashSet-1.yml\" sourcestartlinenumber=\"1\">A serializable hash set implementation that can be displayed and edited in the Unity Inspector.\nProvides all standard hash set functionality while maintaining Unity serialization compatibility.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.TypeSelectableAttribute.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.TypeSelectableAttribute.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Utils.TypeSelectableAttribute",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.TypeSelectableAttribute.yml\" sourcestartlinenumber=\"1\">Custom attribute to mark fields for SerializeReference type selection.\nApply this to [SerializeReference] fields to enable type selection dropdown.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.UI.DefaultAttributeCompactDisplaySONameProvider.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.UI.DefaultAttributeCompactDisplaySONameProvider.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Utils.UI.DefaultAttributeCompactDisplaySONameProvider",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.UI.DefaultAttributeCompactDisplaySONameProvider.yml\" sourcestartlinenumber=\"1\">Attribute display name provider that returns a compact version of the attribute's name.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.UI.DefaultDisplaySONameProvider-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.UI.DefaultDisplaySONameProvider-1.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Utils.UI.DefaultDisplaySONameProvider<T>",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.UI.DefaultDisplaySONameProvider-1.yml\" sourcestartlinenumber=\"1\">Default implementation of IDisplayNameProvider that returns the asset's name property.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.UI.IDisplaySONameProvider-1.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.UI.IDisplaySONameProvider-1.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Utils.UI.IDisplaySONameProvider<T>",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.UI.IDisplaySONameProvider-1.yml\" sourcestartlinenumber=\"1\">Provides display names for ScriptableObject assets.\nThis interface allows for flexible presentation strategies, including localization.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.UI.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.UI.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Utils.UI",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.ValidationError.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.ValidationError.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Utils.ValidationError",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgFramework.Utils.ValidationError.yml\" sourcestartlinenumber=\"1\">Represents a validation error that occurred during formula evaluation.</p>\n"
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.Utils.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework.Utils",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgFramework.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgFramework.html"
-        }
-      },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgFramework",
-      "Summary": null
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfig.yml",
       "output": {
         ".html": {
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfig.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfig",
-      "Summary": null
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1517,11 +141,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigProvider.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigProvider",
-      "Summary": null
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1531,11 +151,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthGlobalSettings.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthGlobalSettings",
-      "Summary": null
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1545,11 +161,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.yml\" sourcestartlinenumber=\"1\">Interface for health system configuration.\nThis allows for dependency injection and easier testing.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1559,11 +171,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Config.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Config",
-      "Summary": null
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1573,11 +181,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.ApplyBarrierStep.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.ApplyBarrierStep",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.ApplyBarrierStep.yml\" sourcestartlinenumber=\"1\">Damage step that consumes target barrier (temporary shields). It doesn't remove health.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1587,11 +191,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.ApplyCriticalMultiplierStep.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.ApplyCriticalMultiplierStep",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.ApplyCriticalMultiplierStep.yml\" sourcestartlinenumber=\"1\">Damage step that applies critical hit multipliers when the current damage is flagged as critical.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1601,11 +201,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.ApplyDefenseStep.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.ApplyDefenseStep",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.ApplyDefenseStep.yml\" sourcestartlinenumber=\"1\">Damage step that applies defensive calculations based on the damage type's\ndefensive and piercing stats and configured reduction functions.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1615,11 +211,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.ApplyDmgModifiersStep.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.ApplyDmgModifiersStep",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.ApplyDmgModifiersStep.yml\" sourcestartlinenumber=\"1\">Damage step that applies generic and configured damage source/type modifiers\n(for example weaknesses and resistances) to the current damage amount.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1629,11 +221,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageCalculationStrategy.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageCalculationStrategy",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageCalculationStrategy.yml\" sourcestartlinenumber=\"1\">ScriptableObject that defines a configurable damage calculation pipeline.\nThe pipeline is composed of ordered <xref href=\"ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageStep\" data-throw-if-not-resolved=\"false\"></xref> instances executed sequentially.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1643,11 +231,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageInfo.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageInfo",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageInfo.yml\" sourcestartlinenumber=\"1\">Container for damage pipeline state while a damage calculation is executed.\nHolds the amounts being transformed, the source/type metadata and accumulated prevention reasons.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1657,11 +241,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageStep.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageStep",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageStep.yml\" sourcestartlinenumber=\"1\">Base class for a single step in the damage calculation pipeline.\nA <xref href=\"ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageStep\" data-throw-if-not-resolved=\"false\"></xref> performs a focused transformation on a\n<xref href=\"ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageInfo\" data-throw-if-not-resolved=\"false\"></xref> instance (for example applying defenses, barriers or modifiers).</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1671,11 +251,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline",
-      "Summary": null
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1685,11 +261,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Damage.DamageAmountInfo.StepAmountRecord.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Damage.DamageAmountInfo.StepAmountRecord",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Damage.DamageAmountInfo.StepAmountRecord.yml\" sourcestartlinenumber=\"1\">Immutable record representing the damage value before and after\na single pipeline phase (identified by the phase type).</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1699,11 +271,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Damage.DamageAmountInfo.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Damage.DamageAmountInfo",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Damage.DamageAmountInfo.yml\" sourcestartlinenumber=\"1\">Holds numeric details related to an attempt to apply damage,\nallowing intermediate values to be recorded for each phase of the\ncalculation pipeline (e.g. reductions, resistances, absorptions).</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1713,11 +281,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Damage.DamageOutcome.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Damage.DamageOutcome",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Damage.DamageOutcome.yml\" sourcestartlinenumber=\"1\">The overall result of attempting to apply damage to a target.\nUse this in <xref href=\"ElectricDrill.AstraRpgHealth.Damage.DamageResolution\" data-throw-if-not-resolved=\"false\"></xref> to indicate whether any damage\nwas applied or if the attempt was prevented.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1727,11 +291,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReason.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReason",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReason.yml\" sourcestartlinenumber=\"1\">Flags that explain why a damage attempt was prevented. Multiple reasons may be combined.\nThese flags are used in <xref href=\"ElectricDrill.AstraRpgHealth.Damage.DamageResolution.Reasons\" data-throw-if-not-resolved=\"false\"></xref> when an attempt is prevented.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1741,11 +301,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReasonExtensions.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReasonExtensions",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReasonExtensions.yml\" sourcestartlinenumber=\"1\">Extension helpers for <xref href=\"ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReason\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1755,11 +311,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Damage.DamageResolution.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Damage.DamageResolution",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Damage.DamageResolution.yml\" sourcestartlinenumber=\"1\">The result returned by damage application attempts.\nEncapsulates whether the damage was applied or prevented, the reasons for prevention,\nand the concrete damage information that was ultimately applied (if any).</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1769,11 +321,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Damage.DamageSource.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Damage.DamageSource",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Damage.DamageSource.yml\" sourcestartlinenumber=\"1\">Defines a damage source asset that identifies how damage was produced\n(for example: a spell, trap, environmental hazard, system event, etc.).\nCreate instances via Assets -&gt; Create -&gt; Astra RPG Health / Damage Source.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1783,11 +331,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Damage.DamageType.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Damage.DamageType",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Damage.DamageType.yml\" sourcestartlinenumber=\"1\">Scriptable asset that describes a damage category (for example: Physical, Fire, Poison).\nA DamageType declares which stat reduces this damage, which reduction functions to use,\nwhether a stat pierces its defensive stats and whether it ignores barriers.\nCreate instances via Assets -&gt; Create -&gt; Astra RPG Health / DamageType.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1797,11 +341,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Damage.IDamageable.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Damage.IDamageable",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Damage.IDamageable.yml\" sourcestartlinenumber=\"1\">Implemented by entities that can receive damage.\nThe <xref href=\"ElectricDrill.AstraRpgHealth.Damage.IDamageable.TakeDamage(ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo)\" data-throw-if-not-resolved=\"false\"></xref> method accepts a <xref href=\"ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo\" data-throw-if-not-resolved=\"false\"></xref>\nrecord describing a pending damage attempt and returns a <xref href=\"ElectricDrill.AstraRpgHealth.Damage.DamageResolution\" data-throw-if-not-resolved=\"false\"></xref>\ndescribing whether the damage was applied or prevented and additional details.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1811,11 +351,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.DamageInfoAmount.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.DamageInfoAmount",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.DamageInfoAmount.yml\" sourcestartlinenumber=\"1\">Fluent builder step: specify the damage amount.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1825,11 +361,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.DamageInfoDealer.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.DamageInfoDealer",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.DamageInfoDealer.yml\" sourcestartlinenumber=\"1\">Fluent builder step: specify the dealer entity.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1839,11 +371,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.DamageInfoSource.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.DamageInfoSource",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.DamageInfoSource.yml\" sourcestartlinenumber=\"1\">Fluent builder step: specify the damage source.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1853,11 +381,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.DamageInfoTarget.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.DamageInfoTarget",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.DamageInfoTarget.yml\" sourcestartlinenumber=\"1\">Fluent builder step: specify the target entity.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1867,11 +391,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.DamageInfoType.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.DamageInfoType",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.DamageInfoType.yml\" sourcestartlinenumber=\"1\">Fluent builder step: specify the damage type.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1881,11 +401,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.PreDamageInfoStepBuilder.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.PreDamageInfoStepBuilder",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.PreDamageInfoStepBuilder.yml\" sourcestartlinenumber=\"1\">Concrete step builder implementing the fluent interfaces. After setting required fields,\noptional flags (critical, multiplier) can be configured before calling <xref href=\"ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.PreDamageInfoStepBuilder.Build\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1895,11 +411,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.yml\" sourcestartlinenumber=\"1\">Immutable container representing damage information before it is applied.\nUse <xref href=\"ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.Builder\" data-throw-if-not-resolved=\"false\"></xref> to construct instances using the fluent step builder.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1909,11 +421,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Damage.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Damage",
-      "Summary": null
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1923,11 +431,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.DamageReductionFunctions.DamageReductionFn.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.DamageReductionFunctions.DamageReductionFn",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.DamageReductionFunctions.DamageReductionFn.yml\" sourcestartlinenumber=\"1\">Base type for damage reduction functions.\nImplementations compute how an incoming damage amount is reduced using a defensive statistic value.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1937,11 +441,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.DamageReductionFunctions.DamageReductionFunctions.FlatDamageReductionFn.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.DamageReductionFunctions.DamageReductionFunctions.FlatDamageReductionFn",
-      "Summary": null
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1951,11 +451,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.DamageReductionFunctions.DamageReductionFunctions.LogDamageReductionFn.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.DamageReductionFunctions.DamageReductionFunctions.LogDamageReductionFn",
-      "Summary": null
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1965,11 +461,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.DamageReductionFunctions.DamageReductionFunctions.PercentageDamageReductionFn.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.DamageReductionFunctions.DamageReductionFunctions.PercentageDamageReductionFn",
-      "Summary": null
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1979,11 +471,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.DamageReductionFunctions.DamageReductionFunctions.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.DamageReductionFunctions.DamageReductionFunctions",
-      "Summary": null
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -1993,11 +481,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.DamageReductionFunctions.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.DamageReductionFunctions",
-      "Summary": null
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2007,11 +491,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Death.DestroyOnDeathStrategy.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Death.DestroyOnDeathStrategy",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Death.DestroyOnDeathStrategy.yml\" sourcestartlinenumber=\"1\">A death strategy that destroys the entity's <xref href=\"UnityEngine.GameObject\" data-throw-if-not-resolved=\"false\"></xref> when it dies.\nThis is provided as a ScriptableObject to be reused across entities.\nCreate instances via Assets -&gt; Create -&gt; Astra RPG Health / Death strategies / Destroy.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2021,11 +501,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Death.DisableOnDeathStrategy.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Death.DisableOnDeathStrategy",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Death.DisableOnDeathStrategy.yml\" sourcestartlinenumber=\"1\">A death strategy that disables the entity's <xref href=\"UnityEngine.GameObject\" data-throw-if-not-resolved=\"false\"></xref> when it dies.\nThis is useful for entities that should be hidden but not destroyed, allowing for resurrection.\nPairs well with EnableOnResurrectionStrategy to re-enable the GameObject on resurrection.\nProvided as a ScriptableObject for easy assignment in the editor.\nCreate instances via Assets -&gt; Create -&gt; Astra RPG Health / Death strategies / Disable.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2035,11 +511,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Death.DoNothingOnDeathStrategy.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Death.DoNothingOnDeathStrategy",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Death.DoNothingOnDeathStrategy.yml\" sourcestartlinenumber=\"1\">A no-op death strategy. Use this when no action is required upon an entity's death.\nProvided as a ScriptableObject for easy assignment in the editor.\nCreate instances via Assets -&gt; Create -&gt; Astra RPG Health / Death strategies / Do Nothing.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2049,11 +521,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Death.MultipleOnDeathStrategy.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Death.MultipleOnDeathStrategy",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Death.MultipleOnDeathStrategy.yml\" sourcestartlinenumber=\"1\">A death strategy that executes multiple death strategies in order.\nThis allows combining multiple death behaviors without creating new strategy classes.\nProvided as a ScriptableObject for easy assignment in the editor.\nCreate instances via Assets -&gt; Create -&gt; Astra RPG Health / Death strategies / Multiple.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2063,11 +531,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Death.OnDeathStrategy.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Death.OnDeathStrategy",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Death.OnDeathStrategy.yml\" sourcestartlinenumber=\"1\">Base strategy type for handling an entity's death.\nDerive from this class and implement <xref href=\"ElectricDrill.AstraRpgHealth.Death.OnDeathStrategy.Die(ElectricDrill.AstraRpgHealth.EntityHealth)\" data-throw-if-not-resolved=\"false\"></xref> to define custom death behavior.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2077,11 +541,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Death.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Death",
-      "Summary": null
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2091,11 +551,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.DefenseReductionFn.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.DefenseReductionFn",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.DefenseReductionFn.yml\" sourcestartlinenumber=\"1\">Base type for defense reduction functions.\nImplementations compute a reduced defense value based on a piercing stat and the pierced defense stat.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2105,11 +561,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.DefenseReductionFunctions.FlatDefenseReductionFn.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.DefenseReductionFunctions.FlatDefenseReductionFn",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.DefenseReductionFunctions.FlatDefenseReductionFn.yml\" sourcestartlinenumber=\"1\">Reduces defense by subtracting a scaled amount of the piercing stat from the pierced defense.\nThe result is clamped to the stat's min/max bounds.\nCreate instances via Assets -&gt; Create -&gt; Astra RPG Health / Def Reduction Functions / Flat Def Reduction.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2119,11 +571,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.DefenseReductionFunctions.LogDefenseReductionFn.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.DefenseReductionFunctions.LogDefenseReductionFn",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.DefenseReductionFunctions.LogDefenseReductionFn.yml\" sourcestartlinenumber=\"1\">Applies a logarithmic divisive reduction to defense to provide diminishing returns as piercing increases.\nCreate instances via Assets -&gt; Create -&gt; Astra RPG Health / Def Reduction Functions / Log Def Reduction.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2133,11 +581,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.DefenseReductionFunctions.PercentageDefenseReductionFn.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.DefenseReductionFunctions.PercentageDefenseReductionFn",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.DefenseReductionFunctions.PercentageDefenseReductionFn.yml\" sourcestartlinenumber=\"1\">Reduces defense by subtracting a percentage of the pierced defense equal to the piercing stat percentage.\nExample: piercingStatValue = 20 -&gt; reduces defense by 20%.\nCreate isntances via Assets -&gt; Create -&gt; Astra RPG Health / Def Reduction Functions / Log Def Reduction.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2147,11 +591,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.DefenseReductionFunctions.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.DefenseReductionFunctions",
-      "Summary": null
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2161,11 +601,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.DefenseReductionFunctions",
-      "Summary": null
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2175,11 +611,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.EntityHealth.HpBehaviourOnMaxHpDecrease.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.EntityHealth.HpBehaviourOnMaxHpDecrease",
-      "Summary": null
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2189,11 +621,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.EntityHealth.HpBehaviourOnMaxHpIncrease.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.EntityHealth.HpBehaviourOnMaxHpIncrease",
-      "Summary": null
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2203,11 +631,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.EntityHealth.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.EntityHealth",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.EntityHealth.yml\" sourcestartlinenumber=\"1\">Manages the health, damage, and healing mechanics for an entity.\nHandles damage calculation, health regeneration, barriers (temporary HP), and death events.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2217,11 +641,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Events.DamageResolutionGameEvent.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Events.DamageResolutionGameEvent",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Events.DamageResolutionGameEvent.yml\" sourcestartlinenumber=\"1\">Used to notify whether a damage was applied or prevented.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2231,11 +651,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Events.DamageResolutionGameEventListener.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Events.DamageResolutionGameEventListener",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Events.DamageResolutionGameEventListener.yml\" sourcestartlinenumber=\"1\">Used to notify whether a damage was applied or prevented.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2245,11 +661,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Events.EntityDiedGameEvent.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Events.EntityDiedGameEvent",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Events.EntityDiedGameEvent.yml\" sourcestartlinenumber=\"1\">The entity died.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2259,11 +671,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Events.EntityDiedGameEventListener.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Events.EntityDiedGameEventListener",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Events.EntityDiedGameEventListener.yml\" sourcestartlinenumber=\"1\">The entity died.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2273,11 +681,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Events.EntityGainedHealthGameEvent.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Events.EntityGainedHealthGameEvent",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Events.EntityGainedHealthGameEvent.yml\" sourcestartlinenumber=\"1\">The entity gained some health.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2287,11 +691,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Events.EntityGainedHealthGameEventListener.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Events.EntityGainedHealthGameEventListener",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Events.EntityGainedHealthGameEventListener.yml\" sourcestartlinenumber=\"1\">The entity gained some health.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2301,11 +701,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Events.EntityHealedGameEvent.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Events.EntityHealedGameEvent",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Events.EntityHealedGameEvent.yml\" sourcestartlinenumber=\"1\">The entity received an healing.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2315,11 +711,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Events.EntityHealedGameEventListener.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Events.EntityHealedGameEventListener",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Events.EntityHealedGameEventListener.yml\" sourcestartlinenumber=\"1\">The entity received an healing.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2329,11 +721,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Events.EntityLostHealthGameEvent.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Events.EntityLostHealthGameEvent",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Events.EntityLostHealthGameEvent.yml\" sourcestartlinenumber=\"1\">The entity lost some health.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2343,11 +731,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Events.EntityLostHealthGameEventListener.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Events.EntityLostHealthGameEventListener",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Events.EntityLostHealthGameEventListener.yml\" sourcestartlinenumber=\"1\">The entity lost some health.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2357,11 +741,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Events.EntityMaxHealthChangedGameEvent.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Events.EntityMaxHealthChangedGameEvent",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Events.EntityMaxHealthChangedGameEvent.yml\" sourcestartlinenumber=\"1\">The entity whose Max HP changed, the new Max HP, and the old Max HP.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2371,11 +751,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Events.EntityMaxHealthChangedGameEventListener.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Events.EntityMaxHealthChangedGameEventListener",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Events.EntityMaxHealthChangedGameEventListener.yml\" sourcestartlinenumber=\"1\">The entity whose Max HP changed, the new Max HP, and the old Max HP.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2385,11 +761,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Events.EntityResurrectedGameEvent.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Events.EntityResurrectedGameEvent",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Events.EntityResurrectedGameEvent.yml\" sourcestartlinenumber=\"1\">The entity resurrected with the specified amount of health.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2399,39 +771,27 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Events.EntityResurrectedGameEventListener.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Events.EntityResurrectedGameEventListener",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Events.EntityResurrectedGameEventListener.yml\" sourcestartlinenumber=\"1\">The entity resurrected with the specified amount of health.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgHealth.Events.PreDmgGameEvent.yml",
+      "source_relative_path": "api/ElectricDrill.AstraRpgHealth.Events.PreDamageGameEvent.yml",
       "output": {
         ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgHealth.Events.PreDmgGameEvent.html"
+          "relative_path": "api/ElectricDrill.AstraRpgHealth.Events.PreDamageGameEvent.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Events.PreDmgGameEvent",
-      "Summary": ""
+      "version": ""
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/ElectricDrill.AstraRpgHealth.Events.PreDmgGameEventListener.yml",
+      "source_relative_path": "api/ElectricDrill.AstraRpgHealth.Events.PreDamageGameEventListener.yml",
       "output": {
         ".html": {
-          "relative_path": "api/ElectricDrill.AstraRpgHealth.Events.PreDmgGameEventListener.html"
+          "relative_path": "api/ElectricDrill.AstraRpgHealth.Events.PreDamageGameEventListener.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Events.PreDmgGameEventListener",
-      "Summary": ""
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2441,11 +801,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Events.PreHealGameEvent.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Events.PreHealGameEvent",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Events.PreHealGameEvent.yml\" sourcestartlinenumber=\"1\">THe entity is about to be healed.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2455,11 +811,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Events.PreHealGameEventListener.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Events.PreHealGameEventListener",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Events.PreHealGameEventListener.yml\" sourcestartlinenumber=\"1\">THe entity is about to be healed.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2469,11 +821,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Events.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Events",
-      "Summary": null
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2483,11 +831,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Exceptions.DeadEntityException.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Exceptions.DeadEntityException",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Exceptions.DeadEntityException.yml\" sourcestartlinenumber=\"1\">Exception thrown when attempting to perform health-modifying operations on a dead entity.\nThis exception indicates a programming error where the caller attempted to heal, damage,\nor otherwise modify the health of an entity that has already died.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2497,11 +841,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Exceptions.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Exceptions",
-      "Summary": null
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2511,11 +851,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Experience.ExpCollector.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Experience.ExpCollector",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Experience.ExpCollector.yml\" sourcestartlinenumber=\"1\">Collects experience when this entity deals killing blows.\nRequires an <xref href=\"ElectricDrill.AstraRpgHealth.Events.EntityDiedGameEventListener\" data-throw-if-not-resolved=\"false\"></xref> on the GameObject.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2525,11 +861,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Experience.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Experience",
-      "Summary": null
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2539,11 +871,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Heal.HealAmountInfo.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Heal.HealAmountInfo",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Heal.HealAmountInfo.yml\" sourcestartlinenumber=\"1\">Represents the different numeric stages of a heal amount as it is processed:\nthe raw requested amount, the amount after applying a heal modifier, and the final net amount applied.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2553,11 +881,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Heal.HealSource.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Heal.HealSource",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Heal.HealSource.yml\" sourcestartlinenumber=\"1\">Defines a heal source asset that identifies how a heal was produced (e.g. spell, potion, resurrection, system, ...).\nCreate instances via Assets -&gt; Create -&gt; Astra RPG Health / Heal Source.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2567,11 +891,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Heal.IHealable.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Heal.IHealable",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Heal.IHealable.yml\" sourcestartlinenumber=\"1\">Interface for entities that can receive healing.\nImplementers apply healing based on the provided <xref href=\"ElectricDrill.AstraRpgHealth.Heal.PreHealInfo\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2581,11 +901,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Heal.LifestealAmountSelector.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Heal.LifestealAmountSelector",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Heal.LifestealAmountSelector.yml\" sourcestartlinenumber=\"1\">Selects which damage amount will be used as the basis for lifesteal calculations.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2595,11 +911,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Heal.LifestealBasisMode.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Heal.LifestealBasisMode",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Heal.LifestealBasisMode.yml\" sourcestartlinenumber=\"1\">Specifies which damage value should be used as the basis for lifesteal calculations.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2609,11 +921,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Heal.LifestealConfig.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Heal.LifestealConfig",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Heal.LifestealConfig.yml\" sourcestartlinenumber=\"1\">ScriptableObject for configuring lifesteal mappings for different damage types.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2623,11 +931,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Heal.LifestealStatConfig.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Heal.LifestealStatConfig",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Heal.LifestealStatConfig.yml\" sourcestartlinenumber=\"1\">Configuration that associates a lifesteal Stat and HealSource with an optional amount selector.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2637,11 +941,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.HealInfoAmount.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.HealInfoAmount",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.HealInfoAmount.yml\" sourcestartlinenumber=\"1\">Builder step interface for specifying the heal amount.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2651,11 +951,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.HealInfoHealer.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.HealInfoHealer",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.HealInfoHealer.yml\" sourcestartlinenumber=\"1\">Builder step interface for specifying the healer entity and optional extras.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2665,11 +961,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.HealInfoSource.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.HealInfoSource",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.HealInfoSource.yml\" sourcestartlinenumber=\"1\">Builder step interface for specifying the heal source.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2679,11 +971,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.PreHealInfoStepBuilder.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.PreHealInfoStepBuilder",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.PreHealInfoStepBuilder.yml\" sourcestartlinenumber=\"1\">Concrete builder implementing the fluent step interfaces to construct a <xref href=\"ElectricDrill.AstraRpgHealth.Heal.PreHealInfo\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2693,11 +981,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Heal.PreHealInfo",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.yml\" sourcestartlinenumber=\"1\">Immutable description of a pending heal operation that can be passed through\nheal processing logic before the actual health change is applied.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2707,11 +991,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.HealInfoAmount.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.HealInfoAmount",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.HealInfoAmount.yml\" sourcestartlinenumber=\"1\">Builder step: provide the heal amount.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2721,11 +1001,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.HealInfoHealer.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.HealInfoHealer",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.HealInfoHealer.yml\" sourcestartlinenumber=\"1\">Builder step: provide the healer entity.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2735,11 +1011,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.HealInfoSource.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.HealInfoSource",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.HealInfoSource.yml\" sourcestartlinenumber=\"1\">Builder step: provide the heal source.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2749,11 +1021,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.HealInfoTarget.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.HealInfoTarget",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.HealInfoTarget.yml\" sourcestartlinenumber=\"1\">Builder step: provide the target entity and finalize options.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2763,11 +1031,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.ReceivedHealInfoStepBuilder.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.ReceivedHealInfoStepBuilder",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.ReceivedHealInfoStepBuilder.yml\" sourcestartlinenumber=\"1\">Concrete fluent builder used to assemble a <xref href=\"ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo\" data-throw-if-not-resolved=\"false\"></xref>.\nUse <xref href=\"ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.Builder\" data-throw-if-not-resolved=\"false\"></xref> to start.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2777,11 +1041,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.yml\" sourcestartlinenumber=\"1\">Represents the result of a heal operation as actually received by the target.\nContains the resolved heal amount, source, involved entities and whether it was critical.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2791,11 +1051,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Heal.StepValuePoint.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Heal.StepValuePoint",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Heal.StepValuePoint.yml\" sourcestartlinenumber=\"1\">Selects whether to use the pre-step or post-step value when <xref href=\"ElectricDrill.AstraRpgHealth.Heal.LifestealBasisMode.Step\" data-throw-if-not-resolved=\"false\"></xref> is selected.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2805,11 +1061,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Heal.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Heal",
-      "Summary": null
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2819,11 +1071,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Resurrection.DoNothingOnResurrectionStrategy.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Resurrection.DoNothingOnResurrectionStrategy",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Resurrection.DoNothingOnResurrectionStrategy.yml\" sourcestartlinenumber=\"1\">A no-op resurrection strategy. Use this when no action is required upon an entity's resurrection.\nProvided as a ScriptableObject for easy assignment in the editor.\nCreate instances via Assets -&gt; Create -&gt; Astra RPG Health / Resurrection strategies / Do Nothing.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2833,11 +1081,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Resurrection.EnableOnResurrectionStrategy.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Resurrection.EnableOnResurrectionStrategy",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Resurrection.EnableOnResurrectionStrategy.yml\" sourcestartlinenumber=\"1\">A resurrection strategy that enables the entity's <xref href=\"UnityEngine.GameObject\" data-throw-if-not-resolved=\"false\"></xref> when it is resurrected.\nThis is useful when using a death strategy that disables the GameObject (e.g., DisableOnDeathStrategy).\nProvided as a ScriptableObject for easy assignment in the editor.\nCreate instances via Assets -&gt; Create -&gt; Astra RPG Health / Resurrection strategies / Enable.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2847,11 +1091,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable",
-      "Summary": null
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2861,11 +1101,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Resurrection.MultipleOnResurrectionStrategy.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Resurrection.MultipleOnResurrectionStrategy",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Resurrection.MultipleOnResurrectionStrategy.yml\" sourcestartlinenumber=\"1\">A resurrection strategy that executes multiple resurrection strategies in order.\nThis allows combining multiple resurrection behaviors without creating new strategy classes.\nProvided as a ScriptableObject for easy assignment in the editor.\nCreate instances via Assets -&gt; Create -&gt; Astra RPG Health / Resurrection strategies / Multiple.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2875,11 +1111,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Resurrection.OnResurrectionStrategy.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Resurrection.OnResurrectionStrategy",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Resurrection.OnResurrectionStrategy.yml\" sourcestartlinenumber=\"1\">Base strategy type for handling an entity's resurrection.\nDerive from this class and implement <xref href=\"ElectricDrill.AstraRpgHealth.Resurrection.OnResurrectionStrategy.Resurrect(ElectricDrill.AstraRpgHealth.EntityHealth)\" data-throw-if-not-resolved=\"false\"></xref> to define custom resurrection behavior.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2889,11 +1121,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionInfo.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionInfo",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionInfo.yml\" sourcestartlinenumber=\"1\">Contains information about an entity resurrection event.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2903,11 +1131,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Resurrection.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Resurrection",
-      "Summary": null
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2917,11 +1141,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Scaling.ScalingComponents.HealthScalingComponent.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Scaling.ScalingComponents.HealthScalingComponent",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Scaling.ScalingComponents.HealthScalingComponent.yml\" sourcestartlinenumber=\"1\">A scaling component that calculates a value based on an entity's health values.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2931,11 +1151,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Scaling.ScalingComponents.HealthScalingComponentMenuItems.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Scaling.ScalingComponents.HealthScalingComponentMenuItems",
-      "Summary": "<p sourcefile=\"api/ElectricDrill.AstraRpgHealth.Scaling.ScalingComponents.HealthScalingComponentMenuItems.yml\" sourcestartlinenumber=\"1\">Provides a menu item in the Unity Editor to create a HealthScalingComponent asset.</p>\n"
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2945,11 +1161,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.Scaling.ScalingComponents.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth.Scaling.ScalingComponents",
-      "Summary": null
+      "version": ""
     },
     {
       "type": "ManagedReference",
@@ -2959,11 +1171,7 @@
           "relative_path": "api/ElectricDrill.AstraRpgHealth.html"
         }
       },
-      "version": "",
-      "Uid": null,
-      "IsMRef": true,
-      "Title": "ElectricDrill.AstraRpgHealth",
-      "Summary": null
+      "version": ""
     },
     {
       "type": "Toc",
@@ -3150,10 +1358,10 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/astra-rpg-ico.ico",
+      "source_relative_path": "images/astra-health-ico.ico",
       "output": {
         "resource": {
-          "relative_path": "images/astra-rpg-ico.ico"
+          "relative_path": "images/astra-health-ico.ico"
         }
       },
       "version": ""
@@ -3189,11 +1397,41 @@
       "version": ""
     },
     {
+      "type": "Resource",
+      "source_relative_path": "images/logo-health.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/logo-health.svg"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "index.md",
       "output": {
         ".html": {
           "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "indexCoreFramework.md",
+      "output": {
+        ".html": {
+          "relative_path": "indexCoreFramework.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "technicalDetailsAssetStore.md",
+      "output": {
+        ".html": {
+          "relative_path": "technicalDetailsAssetStore.html"
         }
       },
       "version": ""

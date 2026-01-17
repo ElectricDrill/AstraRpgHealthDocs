@@ -3,7 +3,7 @@
       {
           "src": [
               {
-                  "src": "../../Geometrical-Invaders",
+                  "src": "../../AstraRpgPublishing_6_3_2D",
                   "files": [
                       "com.electricdrill.astra-rpg-health.Runtime.csproj"
                   ],
@@ -59,8 +59,8 @@
       "globalMetadata": {
           "_appName": "Astra RPG Health",
           "_appTitle": "Astra RPG Health",
-          "_appLogoPath": "images/logo-astra.svg",
-          "_appFaviconPath": "images/astra-rpg-ico.ico",
+          "_appLogoPath": "images/logo-health.svg",
+          "_appFaviconPath": "images/astra-health-ico.ico",
           "_enableSearch": true,
           "pdf": true,
           "_disableContribution": true,

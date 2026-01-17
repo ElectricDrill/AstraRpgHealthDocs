@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title> | Astra RPG Health </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content=" | Astra RPG Health ">
+      
+      
+      <link rel="icon" href="images/astra-health-ico.ico">
+      <link rel="stylesheet" href="public/docfx.min.css">
+      <link rel="stylesheet" href="public/main.css">
+      <meta name="docfx:navrel" content="toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/ElectricDrill/AstraRpgHealthDocs/blob/main/DocFx/technicalDetailsAssetStore.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="index.html">
+            <img id="logo" class="svg" src="images/logo-health.svg" alt="Astra RPG Health">
+            Astra RPG Health
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+
+      <div class="content">
+        <div class="actionbar">
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+
+<p>Health Management
+A new MonoBehaviour is provided to enhance your entities with health management. Any entity with such component can take damage, die, and even resurrect.</p>
+<p>Damage Types
+Damage types are bound to the specific game mechanics. Being them build on top of Scriptable Objects, you'll be able to define your own at will. They are then used to model the defensive statistics and damage reduction mechanics. For example, &quot;Physical Damage&quot; could be reduced by the &quot;Armor&quot; statistic.
+Always while configuring the Damage Type, you can also provide a piercing statistic for the defensive stat. For example, the &quot;Armor Pierce&quot; statistic could be designated to be used to ignore part of the &quot;Armor&quot; when calculating the net damage.</p>
+<p>Damage Sources
+Damage Sources, as for Damage Types, are bound to the specific game you're making. They represent the origin of the damage inflicted on an entity. Examples of Damage Sources include: Skill, Trap, Environment, etc. They can be used to implement specific game mechanics, such as resistances or vulnerabilities to certain sources of damage, or to track in a damage log where the damage came from.</p>
+<p>Damage Reduction Functions
+The damage reduction granted by defensive stats is modeled via mathematical functions. The frameworks comes along with 3 pre-defined and very common functions to be used in your game:
+flat damage reduction: each point of the defensive stat reduces n points of incoming damage. With n greater or equal to 1. The easiest and most predictable damage reduction function. Eases the balancing of your video-game.
+percentage damage reduction: the defensive stat expresses the percentage of damage reduction to be applied. Useful for implementing a defense that is effective even when the attacker/defender levels or damage input/defensive stat values difference are very big.
+logarithmic damage reduction: increments to the defensive stat provide diminishing returns as the value grows more and more. Useful for preventing complete damage negation.
+Obviously you can implement your own custom Damage Reduction formulas and use those isntead of the default one if you need. The framework is highly extensible.</p>
+<p>Defense Reduction Functions
+Similarly to Damage Reduction Functions, these functions allow to specify how a piercing stat should ignore defense when calculating the net damage to be taken.
+The package offers, out of the box, the same flat, percentage, and logarithmic functions.</p>
+<p>Damage Calculation Pipeline
+The process of transforming raw damage, that is the damage an attack/ability/trap/etc. intends to deal to an entity, into the net damage, the actual damage taken from an entity, can be customized so that the various steps (barrier absorption, defense application, critical multiplier, etc.) are applied in the desired order. The order of application of the steps is not idempotent, therefore, the pipeline can be customized to tailor the execution order to your game's needs.
+The package comes along with these pre-defined steps:
+defense mitigation: takes into consideration the defensive stat for the incoming damage type (if any) and any possible defense penetration.
+damage modifiers application: damage modifiers are positive or negative percentage damage modifications. They are intended to be used as foundations to implement higher level abstractions of damage modifiers buffs/debuffs such as weaknesses, resistences, immunities. This step applies general damage modifiers (for all damage types and sources), and also specific damage types and sources modifiers.
+barrier absorption: with barrier we refer to the temporary hit points that upon damage take precedence over actual HP. This step is responsible for detracting from the amount of damage to be taken by the entity, available barrier, if any.
+critical multiplier: if the damage to be taken is marked as critical, this steps multiplies the amount of damage by the critical multiplier passed along with the damage context. For now, is the only step that increase the damage amount.
+You can configure a default damage calculation strategy to be used, by default, by all the entities. If you need, you can also provide an entity with a custom damage calculation strategy. This enables you, for example, to design certain bosses with additional specific steps. For example, you could implement a damage limiter step that caps the damage amount at 10% of the max HP, and grant all bosses a strategy that includes such step. This would prevent the player to cheese the bosses too quickly. Furthermore, you can even override the damage calculation strategy during runtime. For example, you could want to implement a status effect that doubles all the electric damage taken. This can be easily achieved by using a new electric damage multiplier step that tweaks the damage amount whenever the type is electric. As the debuff wears off, the overriding strategy with the extra step is removed and the entity will restart using the default or its custom calculation strategy.</p>
+<p>Therefore, this feature not only allows you to tailor the default damage calculation pipeline to your own game, but also eases the implementation of more complex damage calculation related mechanics, allowing for a robust and flexible damage calculation system.</p>
+<p>Heal Sources
+Heal Sources are similar to Damage Sources but pertain to healing instead of damage. They represent the origin of the healing received by an entity. Examples of Heal Sources include: Potion, Skill, Regeneration, Lifesteal, Resurrection, Weapon Skill, etc. In some games, Heal Sources can also include Self and Ally. They can be used to implement specific game mechanics, such as bonuses to healing coming form or granted to allies or self, bonus to healing coming from passive HP regeneration, etc.</p>
+<p>Lifesteal
+Lifesteal is a widely used game mechanic that allows an entity to regain health based on the damage they deal to others. The package provides a highly customizable Lifesteal system that can be tailored to fit the specific needs of your game. You can configure the lifesteal statistic to associate to each damage type you may be interested in, and then also configure which step of the damage calculation pipeline it should apply to: before any step (raw damage), after all the steps (final net damage), before or after defensive statistic damage mitigation, before or damage modifiers mitigation, before or after barrier absorption, etc.</p>
+<p>Death
+By default, when an entity's health reaches zero, it is considered dead. The package allows also to set a custom death threshold, which can be useful for implementing mechanics such as &quot;down but not out&quot; or &quot;last stand&quot; where an entity can survive till a certain negative health value before dying. Additionally, when an entity dies, a death strategy can be executed, allowing for custom behavior upon death, such as triggering events, playing animations, or dropping loot. Beside game mechanics, death strategies to tailor the death behavior to your architecture. For example, if your game uses object pooling, you can implement a death strategy that returns the entity to the pool instead of destroying it. Alternatively, if an entity can resurrect, you could opt for the pre-defined &quot;disable game object&quot; death strategy, which simply disables the entity upon death, allowing for easy resurrection later on.
+A default death strategy can be set, and custom death strategies can be assigned to specific entities as needed.
+The package comes with the following pre-defined death strategies:
+Disable Game Object: Disables the entity's game object upon death. Useful for entities that can resurrect.
+Destroy Game Object: Destroys the entity's game object upon death. Suitable for entities that do not need to be resurrected or reused.
+Multiple Death Strategies: Allows combining multiple death strategies to be executed in sequence upon death.
+Resurrection
+Resurrection is the process of bringing a dead entity back to life. An entity can be resurrected via API, and providing the amount of health to restore, either as a flat value or as a percentage of its maximum health.
+Similarly to death strategies, resurrection strategies can be used to define custom behavior when an entity is resurrected. Out of the box, the package provides the following strategies:
+Enable Game Object: Enables the entity's game object upon resurrection. Useful for entities that were disabled upon death.
+Multiple Resurrection Strategies: Allows combining multiple resurrection strategies to be executed in sequence upon resurrection.
+A new Scaling Component: Health Scaling
+With the base framework you were able to define scaling formulas on the base of Stats and Attributes. This package extends the expressiveness of those formulas by introducing the Health Scaling Component. This component allows you to scale values based on the entity's health. You can use the maximum health, current health, or missing health as variables.
+For example, your Berserk abilities could scale based on how much health the entity is missing, becoming more powerful as the entity gets closer to death.</p>
+<p>More Game Events
+By relying on the powerful and flexible event system of the core package, this package introduces more game events related to health, damage, healing, death, and resurrection. These events can be used to trigger custom behavior in your game, such as applying complex passive abilities, playing sound effects, spawning particles, updating the UI, and much more.</p>
+
+</article>
+
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

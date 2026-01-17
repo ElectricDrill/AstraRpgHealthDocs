@@ -7,7 +7,7 @@
       <meta name="title" content=" | Astra RPG Health ">
       
       
-      <link rel="icon" href="images/astra-rpg-ico.ico">
+      <link rel="icon" href="images/astra-health-ico.ico">
       <link rel="stylesheet" href="public/docfx.min.css">
       <link rel="stylesheet" href="public/main.css">
       <meta name="docfx:navrel" content="toc.html">
@@ -44,7 +44,7 @@
       <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
         <div class="container-xxl flex-nowrap">
           <a class="navbar-brand" href="index.html">
-            <img id="logo" class="svg" src="images/logo-astra.svg" alt="Astra RPG Health">
+            <img id="logo" class="svg" src="images/logo-health.svg" alt="Astra RPG Health">
             Astra RPG Health
           </a>
           <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,70 +80,108 @@ There is now a dedicated <strong>Discord server</strong> for Astra RPG Framework
 Join to <strong>receive notifications</strong> about new extension releases and important updates, to <strong>ask for new features</strong>, <strong>report bugs</strong>, <strong>share ideas</strong>, and <strong>showcase your Astra creations</strong> with other developers.<br>
 <span style="font-size:1.18em; font-weight:600;">💬 Join the Discord Server: <a href="https://discord.gg/nJVRMkGrZg">https://discord.gg/nJVRMkGrZg</a></span></p>
 </div>
-<h2 id="-astra-rpg-framework">🛠️ Astra RPG Framework</h2>
+<h2 id="-astra-rpg-health">💚 Astra RPG Health</h2>
 <h3 id="-introduction">👉 Introduction</h3>
-<p><strong>Say goodbye to endless recompilations. Instantly balance your RPG's stats and formulas with a powerful data-driven system.</strong></p>
-<p>Astra RPG Framework provides a complete, data-driven backbone for your RPG, letting you define your game's foundations directly in the editor and iterate on <strong>balance during play mode</strong>.</p>
-<p>Simple, lightweight, and easy to learn. No configuration required: <strong>works out of the box with zero setup</strong>.</p>
+<p><strong>A complete health and damage system built on Astra RPG Framework's data-driven foundation.</strong></p>
+<p>Astra RPG Health adds robust health management to your entities. Handle damage, healing, death, and resurrection with a flexible pipeline that adapts to your game's mechanics.</p>
+<p>Simple to set up, powerful in action. Customize damage types, reduction formulas, and calculation pipelines without touching code.</p>
 <hr>
 <h3 id="-key-features">✨ Key Features</h3>
 <ul>
-<li>📊 <strong>Statistics &amp; Attributes:</strong> Define the core building blocks for your game</li>
-<li>⭐ <strong>Experience &amp; Levels:</strong> Build a robust progression system</li>
-<li>🧑‍🎓 <strong>Classes &amp; Progression:</strong> Design custom classes and unique progression paths</li>
-<li>📈 <strong>Scaling Formulas:</strong> Create complex formulas for damage, healing, and other values using entities' stats and attributes</li>
-<li>⚡ <strong>Event System:</strong> Enable dynamic game-object interactions with inspector-wired events and listeners</li>
-<li>🛠️ <strong>Utilities:</strong> Helpful tools to streamline development. Ever used Int and Long variables as ScriptableObjects? Discover new possibilities!</li>
+<li>❤️ <strong>Health Management:</strong> Complete system for HP, damage, healing, death, and resurrection</li>
+<li>🗡️ <strong>Damage Types &amp; Sources:</strong> Define custom damage types with defensive stats and armor penetration. Define Damage Sources for damage tracking, or advanced game mechanics</li>
+<li>🛡️ <strong>Damage Reduction:</strong> Multiple reduction functions—flat, percentage, logarithmic, or custom</li>
+<li>⚙️ <strong>Damage Pipeline:</strong> Fully customizable calculation pipeline with reorderable steps</li>
+<li>🩹 <strong>Healing System:</strong> Heal sources and mechanics that integrate seamlessly with your game</li>
+<li>🧛 <strong>Lifesteal:</strong> Configurable lifesteal that works with any damage type</li>
+<li>💀 <strong>Death &amp; Resurrection:</strong> Flexible strategies for death behavior and bringing entities back</li>
+<li>📈 <strong>Health Scaling:</strong> New scaling component for formulas based on current, max, or missing HP</li>
+<li>⚡ <strong>Health Events:</strong> Extended game events for damage, healing, death, and resurrection</li>
 </ul>
 <hr>
-<h3 id="-implemented-on-top-of-scriptableobjects-architecture">⚙️ Implemented on top of ScriptableObjects architecture</h3>
+<h3 id="-implemented-on-top-of-scriptableobjects-architecture">⚙️ Implemented on top of <code>ScriptableObjects</code> architecture</h3>
 <ul>
-<li>🎨 <strong>Designer-friendly:</strong> Most of the features are ScriptableObjects, easily created and wired in the Unity Inspector. Custom inspectors are available for everything.</li>
-<li>🧩 <strong>Reusable and modular:</strong> Objects can be reused across game objects and scenes. They are the building blocks for your game. <strong>Instantiate, compose, reuse</strong>. Changes instantly reflect on dependent objects. No duplication, no hassle.</li>
-<li>🧪 <strong>Easy testing:</strong> Swap objects, switch from class-based stats to fixed ones, or replace complex formulas—all without leaving play mode. Debugging and testing is effortless.</li>
+<li>🎨 <strong>Inspector-driven:</strong> Configure damage types, sources, and strategies directly in the Unity Inspector</li>
+<li>🧩 <strong>Modular and reusable:</strong> Share damage calculation strategies across entities or customize per-entity</li>
+<li>🧪 <strong>Test in play mode:</strong> Tweak damage formulas, reduction functions, and pipeline steps without recompiling and without restarting play mode</li>
 </ul>
 <hr>
 <h3 id="-features-breakdown">🔍 Features Breakdown</h3>
-<h4 id="-attributes">🕸️ Attributes</h4>
-<p>Attributes are the core numerical values that define an entity's capabilities. In most RPGs these include strength, dexterity, intelligence, constitution, etc. You define your own attributes, choosing their names and min/max values as needed.</p>
-<p>Group attributes into attribute sets—shareable objects reusable across entities.</p>
-<p>Supports both flat and percentage modifiers.</p>
-<h4 id="-statistics">📊 Statistics</h4>
-<p>Statistics are derived values that directly affect gameplay, such as Physical Attack, Armor, Crit Chance, and movement speed. Define custom statistics and organize them into sets tailored for each entity. Statistic sets can be modular—for example, create separate sets for movement, offense, and defense, then assign only what's relevant to each entity.</p>
-<p>Statistics can scale with attributes. Define how each statistic scales based on one or more attributes.</p>
-<p>Like attributes, statistics can have lower and upper bounds.</p>
-<p>Statistics support flat and percentage modifiers, plus powerful stat-to-stat modifiers. Create buffs/debuffs that change a statistic based on another statistic's value.</p>
-<h4 id="-experience--levels">⭐ Experience &amp; Levels</h4>
-<p>Define custom level progression curves and experience requirements for each level.</p>
-<p>If an entity doesn't level up, set fixed base stats and attributes. Set up simple entities in seconds.</p>
-<h4 id="-classes--progression">🧑‍🎓 Classes &amp; Progression</h4>
-<p>Classes (like warrior, mage, rogue, etc.) let you define unique progression paths for attributes and statistics. Assign progression curves for each attribute and statistic to each class for distinct play styles.</p>
-<p>Balance progression curves in real-time—<strong>test and iterate instantly during play mode</strong>.</p>
-<h4 id="-scaling-formulas">📈 Scaling Formulas</h4>
-<p>Easily build complex formulas for damage, healing, and other values using stats and attributes. Drag and drop scaling components to visually assemble formulas in the custom inspector.</p>
-<p>Formulas are fully customizable. Set a fixed base value or make it scale dynamically with levels. Add scaling components to adjust values based on the caster’s or target’s stats and attributes—or both.</p>
-<p>Add and remove temporary scaling components at runtime for advanced mechanics. For example, a potion might grant &quot;Your next base attack deals extra damage equal to 50% of your Constitution.&quot; Drinking it adds a temporary scaling component to the base attack formula; after the attack, the temporary scaling component is removed.</p>
-<p>Reuse formulas across entities and scenarios for consistency and reduced redundancy.</p>
-<p><strong>See the impact of changes instantly in play mode, enabling rapid iteration and fine-tuning of game balance.</strong></p>
-<h4 id="-game-events">⚡ Game Events</h4>
-<p>Game events are ScriptableObjects. Instantiate events in your assets, then drag &amp; drop them into scripts that raise them and into Game Event Listeners that define responses. Testing your game's logic from the inspector is easier than ever.</p>
-<p>The framework provides a set of predefined game events (and MonoBehaviour listeners) to get you started quickly:</p>
+<h4 id="-health-management">❤️ Health Management</h4>
+<p>A new MonoBehaviour component adds health management to any entity. Entities can take damage, heal, die, and resurrect.</p>
+<p>Set maximum health, track current health, and configure death thresholds. Everything integrates with the core framework's stats and attributes.</p>
+<h4 id="-damage-types">🗡️ Damage Types</h4>
+<p>Damage types represent categories of damage in your game—Physical, Magic, Fire, Poison, etc. Define your own types as <code>ScriptableObjects</code>.</p>
+<p>Optionally link each damage type to a defensive statistic. For example, &quot;Physical Damage&quot; reduced by &quot;Armor&quot;, or &quot;Magic Damage&quot; reduced by &quot;Magic Resistance&quot;.
+True damage can be implemented as a damage type with no associated defensive stat.</p>
+<p>Assign piercing statistics to ignore portions of defense. &quot;Armor Pierce&quot; could reduce the effectiveness of &quot;Armor&quot; when calculating net damage.</p>
+<h4 id="-damage-reduction-functions">🛡️ Damage Reduction Functions</h4>
+<p>Model how defensive stats reduce incoming damage using mathematical functions. The package includes three common functions:</p>
 <ul>
-<li><strong>GameEvent:</strong> No context parameters. For simple events like 'Player Jumped', 'Player Slept', etc.</li>
-<li><strong>IntGameEvent:</strong> One integer context parameter.</li>
-<li><strong>EntityLeveledUpGameEvent:</strong> An event that carries along an EntityCore and an int as context parameters, where the EntityCore is the entity that leveled up and the int is the new level reached.</li>
-<li><strong>StatChangedGameEvent:</strong> Notifies when a stat changes for a specific entity.</li>
-<li><strong>AttributeChangedGameEvent:</strong> Notifies when an attribute changes for a specific entity.</li>
+<li><strong>Flat reduction:</strong> Each point of defense reduces damage by a fixed amount. Predictable and easy to balance.</li>
+<li><strong>Percentage reduction:</strong> Defense directly expresses damage reduction percentage. Effective across varying damage ranges.</li>
+<li><strong>Logarithmic reduction:</strong> Diminishing returns as defense increases. Prevents complete damage negation.</li>
 </ul>
-<h4 id="-game-event-generators">🏭⚡ Game Event Generators</h4>
-<p>Game Event Generators are powerful tools for generating C# source code for custom game events. Use the custom inspector to create new event types with up to 4 context parameters—these can be native C# types or your own classes.</p>
-<p>Game Event Generators are also ScriptableObjects. Instantiate multiple generators to organize different sets of events for your project. Each generator can manage its own context-specific events.</p>
+<p>Implement custom reduction functions if the defaults don't fit your needs.</p>
+<h4 id="-defense-reduction-functions">🛡️ Defense Reduction Functions</h4>
+<p>Piercing stats use reduction functions too, determining how they bypass defense.</p>
+<p>The same flat, percentage, and logarithmic functions are available out of the box.</p>
+<h4 id="-damage-calculation-pipeline">⚙️ Damage Calculation Pipeline</h4>
+<p>The damage calculation pipeline transforms raw damage into net damage through customizable steps. Configure the order of operations to match your game's mechanics.</p>
+<p>Pre-defined steps include:</p>
+<ul>
+<li><strong>Defense mitigation:</strong> Apply defensive stats and piercing calculations</li>
+<li><strong>Damage modifiers:</strong> Apply percentage-based buffs/debuffs for weaknesses, resistances, immunities</li>
+<li><strong>Barrier absorption:</strong> Temporary hit points absorb damage before actual HP</li>
+<li><strong>Critical multiplier:</strong> Multiply damage for critical hits</li>
+</ul>
+<p>Set a default pipeline for all entities, or assign custom pipelines to specific entities. Override pipelines at runtime for temporary effects or boss mechanics.</p>
+<p>For example, add a damage limiter step to boss entities to cap incoming damage at 10% of max HP. Or implement a debuff that doubles electric damage by swapping in a custom pipeline with an extra electric damage multiplier step.</p>
+<p>This flexibility makes implementing complex damage mechanics straightforward.</p>
+<h4 id="-heal-sources">🩹 Heal Sources</h4>
+<p>Heal sources identify where healing comes from—Potion, Skill, Regeneration, Lifesteal, Ally, Self, etc.</p>
+<p>Use heal sources to implement mechanics like bonus healing from specific sources or reduced healing from enemies.</p>
+<h4 id="-lifesteal">🧛 Lifesteal</h4>
+<p>Lifesteal converts dealt damage into health for the attacker. The system is highly configurable.</p>
+<p>Link lifesteal stats to specific damage types and choose which pipeline step it applies to—raw damage, net damage, pre-mitigation, post-mitigation, before barrier, after barrier, etc.</p>
+<p>You can fine-tune lifesteal application timing to fit your game's design.</p>
+<h4 id="-death">💀 Death</h4>
+<p>Entities die when health reaches zero, or at a custom death threshold. Negative thresholds enable &quot;down but not out&quot; mechanics.</p>
+<p>Death strategies define what happens on death. Set a default strategy and override for specific entities.</p>
+<p>Pre-defined death strategies:</p>
+<ul>
+<li><strong>Disable Game Object:</strong> Disables the entity for later resurrection</li>
+<li><strong>Destroy Game Object:</strong> Removes the entity permanently</li>
+<li><strong>Multiple Death Strategies:</strong> Chain strategies together</li>
+</ul>
+<p>Use death strategies to integrate with your architecture—return to object pools, trigger events, play animations, drop loot, etc.</p>
+<h4 id="-resurrection">😇 Resurrection</h4>
+<p>Bring dead entities back to life through the API. Restore health as a flat value or percentage of maximum health.</p>
+<p>Resurrection strategies define behavior when resurrecting. Out of the box:</p>
+<ul>
+<li><strong>Enable Game Object:</strong> Re-enables disabled entities</li>
+<li><strong>Multiple Resurrection Strategies:</strong> Execute multiple strategies in sequence</li>
+</ul>
+<h4 id="-health-scaling-component">📈 Health Scaling Component</h4>
+<p>Extend scaling formulas to use health values. Scale based on maximum health, current health, or missing health.</p>
+<p>Build abilities that grow stronger as health decreases. Create healing that scales with max HP. Design berserker mechanics that reward risk. And more.</p>
+<h4 id="-health-game-events">⚡ Health Game Events</h4>
+<p>New game events for health-related actions:</p>
+<ul>
+<li>Damage taken</li>
+<li>Healing received and applied</li>
+<li>Death and resurrection</li>
+<li>And many more...</li>
+</ul>
+<p>Wire these events to your game logic for abilities, UI updates, sound effects, particles, etc.</p>
 <hr>
 <h3 id="-where-to-buy">🛒 Where to Buy</h3>
-<p>Unity Asset Store: <a href="https://assetstore.unity.com/packages/tools/game-toolkits/astra-rpg-framework-334926">Astra RPG</a></p>
+<p>Unity Asset Store: <a href="#">Astra RPG Health</a> <em>(coming soon)</em></p>
 <hr>
 <h3 id="-information--contact">📬 Information &amp; Contact</h3>
 <p>Questions, feedback, or bugs? Email us at <a href="mailto:electricdrill.info@gmail.com">electricdrill.info@gmail.com</a>.</p>
+<p>Unity Forum: <a href="#">Astra RPG Health Discussion</a> <em>(coming soon)</em></p>
+<p>Discord: <a href="https://discord.gg/nJVRMkGrZg">Astra RPG Discord Server</a></p>
 
 </article>
 
