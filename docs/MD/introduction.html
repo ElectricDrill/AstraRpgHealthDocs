@@ -90,13 +90,44 @@
 <h5>Note</h5>
 <p>Join the Astra RPG Discord server!<br>
 There is now a dedicated <strong>Discord server</strong> for Astra RPG Framework and its extensions.
-Join to <strong>receive notifications</strong> about new extension releases and important updates, to <strong>ask for new features</strong>, <strong>report bugs</strong>, <strong>share ideas</strong>, and <strong>showcase your Astra creations</strong> with other developers.<br>
+Join to <strong>receive notifications</strong> about new extension releases and important updates, <strong>ask for new features</strong>, <strong>report bugs</strong>, <strong>share ideas</strong>, and <strong>showcase your Astra creations</strong> with other developers.<br>
 <span style="font-size:1.18em; font-weight:600;">💬 Join the Discord Server: <a href="https://discord.gg/nJVRMkGrZg">https://discord.gg/nJVRMkGrZg</a></span></p>
 </div>
 <h1 id="introduction">Introduction</h1>
 <!--
-
+- Health Scaling Component
+- Health
+- Damage & Calculation pipeline
+- Tmp HP
+- Damage Reduction
+- Defense Piercing
+- Damage Types
+- Damage Sources
+- Heal Sources
+- Lifesteal
+- Death & Resurrection
 -->
+<p>Astra RPG Health extends the base framework, [](Astra RPG Framework), by adding functionality for managing health and calculating damage for entities.
+The package is designed with the same design philosophy as the base asset: a Scriptable Object-based architecture to encourage flexibility, modularity, and testability. If you're already familiar with the base package, you'll feel right at home with its features.</p>
+<p>You can define your own damage types, designate defensive statistics used to reduce each damage type, configure the damage calculation pipeline with the desired steps, configure lifesteal for certain damage types, define strategies to execute upon entity death, and much more.</p>
+<h2 id="astra-rpg-health-vocabulary">Astra RPG Health Vocabulary</h2>
+<h3 id="damage-type">Damage Type</h3>
+<p>Damage types represent the different categories of damage that can be inflicted on entities. Common examples include &quot;Physical&quot;, &quot;Magical&quot;, &quot;Bleeding&quot;, &quot;Drowning&quot;, etc. You can create custom damage types to suit your game's needs.</p>
+<h3 id="damage-source">Damage Source</h3>
+<p>Damage sources represent the origin of the damage inflicted. This is highly specific to your game's context. For example, one game might have damage sources such as &quot;Entity&quot;, &quot;Environment&quot;, &quot;Potion&quot;, etc., while another might want to define more specific damage sources like &quot;Attack&quot;, &quot;Spell&quot;, &quot;Equipment&quot;, &quot;Trap&quot;, &quot;Environment&quot;, &quot;Damage Over Time&quot;, etc.
+The main difference between damage source and damage type is that damage types categorize damage based on its nature, while damage sources identify where the damage originates. The distinction can be subtle, but it's important for game logic and mechanics. We'll return to these concepts later, where we'll see the practical differences between the two.</p>
+<h3 id="heal-source">Heal Source</h3>
+<p>Heal sources represent the origin of healing. Similar to damage sources, heal sources are specific to your game's context. Common examples include &quot;Potion&quot;, &quot;Spell&quot;, &quot;Lifesteal&quot;, &quot;Ability&quot;, &quot;Environment&quot;, etc. In some games, a classic Heal Source definition might include &quot;Self&quot; and &quot;Ally&quot;, as these enable mechanics for increasing healing provided/received based on the caster and target.</p>
+<h3 id="barrier">Barrier</h3>
+<p>The concept of temporary HP can take various names across different games, though the underlying mechanic remains the same: provide an amount of extra and ephemeral hit points that are deducted instead of health when damage is taken. In Astra, these temporary hit points are called &quot;Barrier&quot;.</p>
+<h3 id="raw-and-net-damage">Raw and Net Damage</h3>
+<p>Raw Damage refers to the damage that a certain attack or skill intends to inflict. This damage does not account for resistances, critical hits, modifiers, etc.
+Net Damage is the result of processing Raw Damage while accounting for damage modifiers, resistances, barriers, critical hits, etc.</p>
+<h3 id="damage-modifiers">Damage Modifiers</h3>
+<p>Damage modifiers are components that can alter calculated damage in various ways. They can be used to implement mechanics such as damage reduction, damage increase, resistances, vulnerabilities, and more. Damage modifiers are generally utilized by the damage calculation pipeline (which we'll see shortly).</p>
+<h2 id="how-is-astra-rpg-health-organized-and-how-does-it-work">How is Astra RPG Health organized and how does it work?</h2>
+<p><em>Coming soon...</em></p>
+<!--### <img src="../images/AstraRPG/astra-health_entity-health.png" alt="attribute" width="30" class="icon-background"/> EntityHealth-->
 
 </article>
 

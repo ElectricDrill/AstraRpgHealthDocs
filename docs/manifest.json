@@ -1188,170 +1188,160 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/AstraRPG/attribute-scaling-component.png",
+      "source_relative_path": "images/AstraRPG/astra-health_astra-rpg-health-config.png",
       "output": {
         "resource": {
-          "relative_path": "images/AstraRPG/attribute-scaling-component.png"
+          "relative_path": "images/AstraRPG/astra-health_astra-rpg-health-config.png"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/AstraRPG/attribute-set.png",
+      "source_relative_path": "images/AstraRPG/astra-health_daamge-calculation-strategy.png",
       "output": {
         "resource": {
-          "relative_path": "images/AstraRPG/attribute-set.png"
+          "relative_path": "images/AstraRPG/astra-health_daamge-calculation-strategy.png"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/AstraRPG/attribute.png",
+      "source_relative_path": "images/AstraRPG/astra-health_damage-type.png",
       "output": {
         "resource": {
-          "relative_path": "images/AstraRPG/attribute.png"
+          "relative_path": "images/AstraRPG/astra-health_damage-type.png"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/AstraRPG/class.png",
+      "source_relative_path": "images/AstraRPG/astra-health_death-strategy.png",
       "output": {
         "resource": {
-          "relative_path": "images/AstraRPG/class.png"
+          "relative_path": "images/AstraRPG/astra-health_death-strategy.png"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/AstraRPG/entity-attributes.png",
+      "source_relative_path": "images/AstraRPG/astra-health_dmg-source.png",
       "output": {
         "resource": {
-          "relative_path": "images/AstraRPG/entity-attributes.png"
+          "relative_path": "images/AstraRPG/astra-health_dmg-source.png"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/AstraRPG/entity-class.png",
+      "source_relative_path": "images/AstraRPG/astra-health_entity-health.png",
       "output": {
         "resource": {
-          "relative_path": "images/AstraRPG/entity-class.png"
+          "relative_path": "images/AstraRPG/astra-health_entity-health.png"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/AstraRPG/entity-core.png",
+      "source_relative_path": "images/AstraRPG/astra-health_flat-def-red-fo.png",
       "output": {
         "resource": {
-          "relative_path": "images/AstraRPG/entity-core.png"
+          "relative_path": "images/AstraRPG/astra-health_flat-def-red-fo.png"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/AstraRPG/entity-stats.png",
+      "source_relative_path": "images/AstraRPG/astra-health_flat-dmg-red-fo.png",
       "output": {
         "resource": {
-          "relative_path": "images/AstraRPG/entity-stats.png"
+          "relative_path": "images/AstraRPG/astra-health_flat-dmg-red-fo.png"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/AstraRPG/event-gen.png",
+      "source_relative_path": "images/AstraRPG/astra-health_heal-source.png",
       "output": {
         "resource": {
-          "relative_path": "images/AstraRPG/event-gen.png"
+          "relative_path": "images/AstraRPG/astra-health_heal-source.png"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/AstraRPG/event.png",
+      "source_relative_path": "images/AstraRPG/astra-health_health-scaling-component.png",
       "output": {
         "resource": {
-          "relative_path": "images/AstraRPG/event.png"
+          "relative_path": "images/AstraRPG/astra-health_health-scaling-component.png"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/AstraRPG/growth-fo.png",
+      "source_relative_path": "images/AstraRPG/astra-health_lifesteal-config.png",
       "output": {
         "resource": {
-          "relative_path": "images/AstraRPG/growth-fo.png"
+          "relative_path": "images/AstraRPG/astra-health_lifesteal-config.png"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/AstraRPG/int-var.png",
+      "source_relative_path": "images/AstraRPG/astra-health_log-def-red-fo.png",
       "output": {
         "resource": {
-          "relative_path": "images/AstraRPG/int-var.png"
+          "relative_path": "images/AstraRPG/astra-health_log-def-red-fo.png"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/AstraRPG/long-var.png",
+      "source_relative_path": "images/AstraRPG/astra-health_log-dmg-red-fo.png",
       "output": {
         "resource": {
-          "relative_path": "images/AstraRPG/long-var.png"
+          "relative_path": "images/AstraRPG/astra-health_log-dmg-red-fo.png"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/AstraRPG/scaling-fo.png",
+      "source_relative_path": "images/AstraRPG/astra-health_percentage-def-red-fo.png",
       "output": {
         "resource": {
-          "relative_path": "images/AstraRPG/scaling-fo.png"
+          "relative_path": "images/AstraRPG/astra-health_percentage-def-red-fo.png"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/AstraRPG/stat-scaling-component.png",
+      "source_relative_path": "images/AstraRPG/astra-health_percentage-dmg-red-fo.png",
       "output": {
         "resource": {
-          "relative_path": "images/AstraRPG/stat-scaling-component.png"
+          "relative_path": "images/AstraRPG/astra-health_percentage-dmg-red-fo.png"
         }
       },
       "version": ""
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/AstraRPG/stat-set.png",
+      "source_relative_path": "images/AstraRPG/astra-health_resurrection-strategy.png",
       "output": {
         "resource": {
-          "relative_path": "images/AstraRPG/stat-set.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "images/AstraRPG/stat.png",
-      "output": {
-        "resource": {
-          "relative_path": "images/AstraRPG/stat.png"
+          "relative_path": "images/AstraRPG/astra-health_resurrection-strategy.png"
         }
       },
       "version": ""
@@ -1412,26 +1402,6 @@
       "output": {
         ".html": {
           "relative_path": "index.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "indexCoreFramework.md",
-      "output": {
-        ".html": {
-          "relative_path": "indexCoreFramework.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "technicalDetailsAssetStore.md",
-      "output": {
-        ".html": {
-          "relative_path": "technicalDetailsAssetStore.html"
         }
       },
       "version": ""
