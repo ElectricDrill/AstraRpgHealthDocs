@@ -1,3 +1,4 @@
 # Requirements
 
-- Unity 2022.3.50f1 or later
+- Astra RPG Framework
+- Unity 6 or later
