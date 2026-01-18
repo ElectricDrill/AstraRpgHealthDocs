@@ -47,5 +47,6 @@ Il Net Damage è il risultato dell'elaborazione del Raw Damage tenendo conto di 
 ### Damage Modifiers
 I damage modifiers sono componenti che possono alterare il danno calcolato in vari modi. Possono essere usati per implementare meccaniche come riduzione del danno, aumento del danno, resistenze, vulnerabilità, e altro ancora. I damage modifiers sono generalmente utilizzati dalla pipeline del calcolo del danno effettivo (che vedremo a breve).
 
+## How is Astra RPG Health organized and how does it work?
 
-
+### <img src="../images/AstraRPG/astra-health_entity-health.png" alt="attribute" width="30" class="icon-background"/> EntityHealth
