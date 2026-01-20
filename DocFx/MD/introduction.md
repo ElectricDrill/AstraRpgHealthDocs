@@ -54,7 +54,7 @@ The `AstraRPGHealthConfig` is a `ScriptableObject` that serves as the central co
 
 With Astra RPG Framework, no configuration was needed. However, Astra RPG Health needs to be configured to work around the actual instances of the base framework's components defined for your game. For example, if you defined a certain statistic for general damage reduction in your game with Astra RPG Framework, you need to inform Astra RPG Health about it so that it can use it when calculating damage.
 The needed configuration is kept minimal, and convention-over-configuration is applied where possible to reduce the amount of setup required.  
-Configuration will be deeply discussed later in [Workflows](workflows.md).
+Configuration will be deeply discussed later in [Package Configuration](workflows/package-configuration.md).
 
 ### <img src="../images/AstraRPG/astra-health_entity-health.png" alt="attribute" width="30" class="icon-background"/> EntityHealth
 `EntityHealth` is a brand new `MonoBehaviour` that you can add to your entities to provide them with health management capabilities. Worth mentioning, it exposes the most important method of the package: `TakeDamage()`, which allows you to inflict damage on the entity.

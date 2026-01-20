@@ -115,10 +115,10 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "MD/workflows.md",
+      "source_relative_path": "MD/workflows/package-configuration.md",
       "output": {
         ".html": {
-          "relative_path": "MD/workflows.html"
+          "relative_path": "MD/workflows/package-configuration.html"
         }
       },
       "version": ""
@@ -1198,10 +1198,20 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/AstraRPG/astra-health_daamge-calculation-strategy.png",
+      "source_relative_path": "images/AstraRPG/astra-health_damage-calculation-strategy.png",
       "output": {
         "resource": {
-          "relative_path": "images/AstraRPG/astra-health_daamge-calculation-strategy.png"
+          "relative_path": "images/AstraRPG/astra-health_damage-calculation-strategy.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/AstraRPG/astra-health_damage-source.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/AstraRPG/astra-health_damage-source.png"
         }
       },
       "version": ""
@@ -1222,16 +1232,6 @@
       "output": {
         "resource": {
           "relative_path": "images/AstraRPG/astra-health_death-strategy.png"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "Resource",
-      "source_relative_path": "images/AstraRPG/astra-health_dmg-source.png",
-      "output": {
-        "resource": {
-          "relative_path": "images/AstraRPG/astra-health_dmg-source.png"
         }
       },
       "version": ""
@@ -1342,6 +1342,16 @@
       "output": {
         "resource": {
           "relative_path": "images/AstraRPG/astra-health_resurrection-strategy.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/AstraRPG/event.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/AstraRPG/event.png"
         }
       },
       "version": ""

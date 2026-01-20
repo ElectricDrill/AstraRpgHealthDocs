@@ -136,10 +136,13 @@ The `AstraRpgHealthConfig` asset contains all gameplay parameters for the health
 
 > **See Also:** [Astra RPG Framework Scaling documentation](https://electricdrill.github.io/AstraRpgFrameworkDocs/MD/workflows.html#create-scaling-formulas)
 
-#### Heal Amount Modifier Stat
+#### Generic Heal Amount Modifier Stat
 **Type:** `Stat`  
 **Required:** No  
 **Description:** The stat that modifies **all** healing received by an entity.
+
+**Stacking Behavior:**
+- Combines **additively** with Source modifications
 
 **How it works:**
 - The stat value represents a **percentage modifier**
@@ -148,8 +151,28 @@ The `AstraRpgHealthConfig` asset contains all gameplay parameters for the health
 
 **Example:**
 - Base Heal: 100 HP
-- Heal Amount Modifier: 25 (means +25%)
+- Generic Heal Amount Modifier: 25 (means +25%)
 - Final Heal: 100 * 1.25 = **125 HP**
+
+---
+
+#### Heal Source Modifications
+**Type:** `Dictionary<HealSource, Stat>`  
+**Required:** No  
+**Description:** Maps each healing source (e.g., Skill, Trap, Environment) to a modifier stat.
+
+**Use cases:**
+- Create specialized healing boosts or reductions (e.g., "Resurrection healing is 50% more effective", "Healing from potions is reduced by 20%")
+
+**Stacking Behavior:**
+- Stats stack additively with Generic modifications
+
+**Example:**
+
+- Incoming Heal: 100 from resurrection
+- Generic Heal Amount Modifier: +30% (means +30% healing received)
+- Resurrection Heal Amount Modifier: +20 (means +20% healing received)
+- **Total Heal Modification:** +30% +20% = +50% → Final Heal: **150**
 
 ---
 
@@ -313,7 +336,7 @@ entityHealth.ManualHealthRegenerationTick();
 
 #### Default On Death Strategy
 **Type:** `OnDeathStrategy`  
-**Required:** ✅ **Yes**  
+**Required:** Yes  
 **Description:** The strategy executed when an entity dies (if the entity doesn't have its own strategy).
 
 **Common Strategies Ideas:**
