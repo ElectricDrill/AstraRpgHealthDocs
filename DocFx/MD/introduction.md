@@ -126,4 +126,5 @@ Astra RPG Health comes with many new Game Events that you can use to react to he
 - `EntityDiedGameEvent`: Triggered when an entity dies.
 - `EntityHealedGameEvent`: Triggered when an entity is healed.
 - `EntityResurrectedGameEvent`: Triggered when an entity is resurrected.
+
 And many more events. We will discuss them in detail later in the [Workflows](workflows.md) section.

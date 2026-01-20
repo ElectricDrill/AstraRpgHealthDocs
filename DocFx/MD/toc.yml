@@ -1,7 +1,9 @@
 - name: Introduction
   href: introduction.md
 - name: Workflows
-  href: workflows.md
+  items:
+  - name: Package Configuration
+    href: workflows/package-configuration.md
 - name: Advanced Topics
   href: advanced-topics.md
 - name: Limitations
