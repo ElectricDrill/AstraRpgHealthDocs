@@ -90,5 +90,40 @@ The damage calculation pipeline is the component of the framework responsible fo
 Therefore, a `DamageCalculationStrategy` is a `ScriptableObject` that defines a sequence of `DamageStep`s to be executed in order when calculating damage.
 
 ### <img src="../images/AstraRPG/astra-health_death-strategy.png" alt="attribute" width="30" class="icon-background"/> Death Strategy
-When an entity's health reaches zero, a `DeathStrategy` is used to determine what actions should be taken. A `DeathStrategy` is a `ScriptableObject` that, by relying on the strategy programming pattern, allows you to define different behaviors upon entity death.  
+A `DeathStrategy` is a `ScriptableObject` that, by relying on the strategy programming pattern, allows you to define different behaviors upon entity death.  
+When an entity's health reaches zero, a `DeathStrategy` is used to determine what actions should be taken.  
+Strategies can be game-oriented, such as "Respawn", "Game Over", or "Drop Loot", or they can serve more technical purposes, like "Disable GameObject", "Play Death Animation", or "Return to Pool", etc.
 
+Astra RPG Health includes several predefined technical death strategies:
+- `DisableOnDeathStrategy`: Disables the entity's GameObject upon death. Useful if the entity can be resurrected or reused later.
+- `DestroyOnDeathStrategy`: Destroys the entity's GameObject upon death. Useful for entities that should not be reused. This is simpler and more immediate than using pooling when pooling is not needed.
+- `DoNothingOnDeathStrategy`: Performs no action upon death. Useful for testing or debugging.
+- `MultipleOnDeathStrategy`: Sometimes, you need to combine multiple strategies to achieve the desired behavior. For example, for enemies, you might want to drop loot, play a death animation, and destroy the GameObject (or return it to a pool if available). For this purpose, the framework includes a strategy that allows you to combine multiple death strategies in sequence.
+
+You can also create custom death strategies by extending the `OnDeathStrategy` class. This allows you to implement death behaviors specific to your game's architecture and combine them with the predefined strategies in a `Multiple Death Strategy` if needed to achieve the desired result.
+
+### <img src="../images/AstraRPG/astra-health_resurrection-strategy.png" alt="attribute" width="30" class="icon-background"/> Resurrection Strategy
+Similar to `DeathStrategy`, a `ResurrectionStrategy` is a `ScriptableObject` that allows you to define different behaviors upon entity resurrection.  
+When an entity is resurrected, a `ResurrectionStrategy` is used to determine what actions should be taken.  
+Astra RPG Health includes some predefined resurrection strategies:
+- `EnableOnResurrectionStrategy`: Enables the GameObject of the entity upon resurrection. Useful if the entity's GameObject was disabled upon death.
+- `DoNothingOnResurrectionStrategy`: Performs no action upon resurrection. Useful for testing or debugging.
+- `MultipleOnResurrectionStrategy`: Similar to the multiple death strategy, this strategy allows you to combine multiple resurrection strategies in sequence.
+
+Also in this case, you can create custom resurrection strategies by extending the `OnResurrectionStrategy` class to implement resurrection behaviors specific to your game's architecture.
+
+### <img src="../images/AstraRPG/astra-health_lifesteal-config.png" alt="attribute" width="30" class="icon-background"/> Lifesteal Configuration
+`LifestealConfig`, deriving from ScriptableObject, allows you to define how lifesteal mechanics work for specific damage types. This allows to bind a statistic to each damage type you want to have lifesteal for. That statistic will be used to calculate the amount of health to restore to the attacker when they deal damage of that type.  
+The configuration allows also to configure the damage pipeline timing of the lifesteal effect. For example, you might want lifesteal to occur before or after damage reduction is applied. We will see this in detail later in the [Workflows](workflows.md) section.
+
+### <img src="../images/AstraRPG/astra-health_health-scaling-component.png" alt="attribute" width="30" class="icon-background"/> Health Scaling Component
+Astra RPG Health provides a brand new `HealthScalingComponent` that you can use in your `ScalingFormula`s to have skills or abilities scale based on either the attacker or the target's health. You can choose to scale upon one or more among Maximum HP, Current HP, and Missing HP.
+
+### <img src="../images/AstraRPG/event.png" alt="attribute" width="30" class="icon-background"/> More Game Events
+Astra RPG Health comes with many new Game Events that you can use to react to health&damage-related events in your game. Some of the most important ones are:
+- `PreDamageGameEvent`: Triggered before damage is applied to an entity. Useful for modifying or canceling damage. Use this for implementing custom passives or effects that need to react before damage is taken.
+- `DamageResolutionGameEvent`: Triggered when an entity takes damage. Can be used to react to damage being applied.
+- `EntityDiedGameEvent`: Triggered when an entity dies.
+- `EntityHealedGameEvent`: Triggered when an entity is healed.
+- `EntityResurrectedGameEvent`: Triggered when an entity is resurrected.
+And many more events. We will discuss them in detail later in the [Workflows](workflows.md) section.
