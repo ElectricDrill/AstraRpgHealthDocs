@@ -334,12 +334,12 @@ entityHealth.ManualHealthRegenerationTick();
 
 ### Death
 
-#### Default On Death Strategy
-**Type:** `OnDeathStrategy`  
+#### Default On Death Game Action
+**Type:** `GameAction`  
 **Required:** Yes  
-**Description:** The strategy executed when an entity dies (if the entity doesn't have its own strategy).
+**Description:** The game action executed when an entity dies (if the entity doesn't have its own on-death game action). Use a composite game action to chain multiple effects.
 
-**Common Strategies Ideas:**
+**Common on-death Game Action Ideas:**
 - **Destroy GameObject** - Removes the entity from the scene
 - **Ragdoll** - Enables ragdoll physics
 - **Respawn** - Respawns the entity after a delay
@@ -347,22 +347,22 @@ entityHealth.ManualHealthRegenerationTick();
 
 **Example:**
 ```
-Death → Execute Strategy → Spawn Death VFX → Drop Loot → Destroy GameObject
+Death → Execute composite on-death Game Action → [Spawn Death VFX → Drop Loot → Destroy GameObject]
 ```
 
-#### Default On Resurrection Strategy
-**Type:** `OnResurrectionStrategy`  
+#### Default On Resurrection Game Action
+**Type:** `GameAction`  
 **Required:** No  
-**Description:** The strategy executed when an entity is resurrected (if the entity doesn't have its own strategy).
+**Description:** The game action executed when an entity is resurrected (if the entity doesn't have its own on-resurrection game action). Use a composite game action to chain multiple effects.
 
-**Common Strategies Ideas:**
+**Common on-resurrection Game Action Ideas:**
 - **Simple Resurrection** - Restores health and enables the entity
 - **Resurrection VFX** - Plays visual effects during resurrection
 - **Stat Penalties** - Applies temporary debuffs after resurrection
 
 #### Default Resurrection Source
 **Type:** `HealSource`  
-**Required:** ✅ **Yes**  
+**Required:** Yes  
 **Description:** The heal source used when an entity is resurrected.
 
 **Use cases:**

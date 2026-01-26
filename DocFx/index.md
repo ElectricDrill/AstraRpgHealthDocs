@@ -108,26 +108,25 @@ You can fine-tune lifesteal application timing to fit your game's design.
 
 #### 💀 Death
 
-Entities die when health reaches zero, or at a custom death threshold. Negative thresholds enable "down but not out" mechanics.
+By default, when an entity's health reaches zero, it is considered dead. The package also allows setting a custom death threshold, which can be useful for implementing mechanics such as "down but not out" or "last stand" where an entity can survive until a certain negative health value before dying.
 
-Death strategies define what happens on death. Set a default strategy and override for specific entities.
+When an entity dies, a Game Action can be executed, allowing for custom behavior upon death, such as triggering events, playing animations, or dropping loot. Beyond game mechanics, Game Actions can tailor the death behavior to your architecture. For example, if your game uses object pooling, you can implement a Game Action that returns the entity to the pool instead of destroying it. Alternatively, if an entity can resurrect, you could opt for the pre-defined "Toggle Active Game Object" Game Action, which simply disables the entity upon death, allowing for easy resurrection later on.
 
-Pre-defined death strategies:
+A default on-death Game Action for all entities can be set, and custom on-death Game Actions can be assigned to specific entities as needed.
 
-- **Disable Game Object:** Disables the entity for later resurrection
-- **Destroy Game Object:** Removes the entity permanently
-- **Multiple Death Strategies:** Chain strategies together
+The base package, Astra RPG Framework, comes with the following pre-defined Game Actions useful for reacting to death events:
 
-Use death strategies to integrate with your architecture—return to object pools, trigger events, play animations, drop loot, etc.
+- **Toggle Active Game Object:** Enables or disables the entity's game object upon death. Useful for disabling entities that can resurrect.
+- **Destroy Game Object:** Destroys the entity's game object upon death. Suitable for entities that do not need to be resurrected or reused.
+- **Toggle Renderers (and colliders):** Recursively enables/disables all renderers on the GameObject and its children. Useful to switch off the visuals of a dead entity awaiting possible resurrection.
+- **No-op action:** Does nothing on death.
+- **Composite action:** Combines multiple on-death Game Actions to be executed in sequence upon death.
 
 #### 😇 Resurrection
 
-Bring dead entities back to life through the API. Restore health as a flat value or percentage of maximum health.
+Resurrection is the process of bringing a dead entity back to life. An entity can be resurrected via API, providing the amount of health to restore, either as a flat value or as a percentage of its maximum health.
 
-Resurrection strategies define behavior when resurrecting. Out of the box:
-
-- **Enable Game Object:** Re-enables disabled entities
-- **Multiple Resurrection Strategies:** Execute multiple strategies in sequence
+Similarly to on-death Game Actions, on-resurrection Game Actions can be used to define custom behavior when an entity is resurrected. The same Game Actions mentioned in the previous Death section can be used in response to resurrections. You'll likely use the Toggle Active Game Action to enable a previously disabled object, and the Toggle Renderers to re-enable previously disabled visuals and (optionally) colliders.
 
 #### 📈 Health Scaling Component
 
