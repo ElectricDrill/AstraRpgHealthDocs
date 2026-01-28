@@ -101,6 +101,12 @@ The configuration allows also to configure the damage pipeline timing of the lif
 ### <img src="../images/AstraRPG/astra-health_health-scaling-component.png" alt="attribute" width="30" class="icon-background"/> Health Scaling Component
 Astra RPG Health provides a brand new `HealthScalingComponent` that you can use in your `ScalingFormula`s to have skills or abilities scale based on either the attacker or the target's health. You can choose to scale upon one or more among Maximum HP, Current HP, and Missing HP.
 
+### <img src="../images/AstraRPG/astra-health_experience-collector.png" alt="attribute" width="30" class="icon-background"/> Experience Collector
+An `ExpCollector` is a `MonoBehaviour` that you can add to your entities to allow them to collect experience points from entities that die and have an <img src="../images/AstraRPG/astra-health_experience-source.png" alt="attribute" width="17" class="icon-background"/> `ExpSource` component attached. The `ExpCollector` can be configured with different strategies (<img src="../images/AstraRPG/astra-health_experience-collection-strategy.png" alt="attribute" width="17" class="icon-background"/> `ExpCollectionStrategy`) to define under which conditions experience is collected from the dead entity.
+
+### <img src="../images/AstraRPG/astra-health_experience-collection-strategy.png" alt="attribute" width="30" class="icon-background"/> Experience Collection Strategy
+An `ExpCollectionStrategy` is a `ScriptableObject` that defines the logic for determining if an entity collects experience upon the death of another entity.
+
 ### <img src="../images/AstraRPG/event.png" alt="attribute" width="30" class="icon-background"/> More Game Events
 Astra RPG Health comes with many new Game Events that you can use to react to health&damage-related events in your game. Some of the most important ones are:
 - `PreDamageGameEvent`: Triggered before damage is applied to an entity. Useful for modifying or canceling damage. Use this for implementing custom passives or effects that need to react before damage is taken.
