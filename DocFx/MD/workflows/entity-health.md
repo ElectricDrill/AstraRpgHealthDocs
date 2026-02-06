@@ -1,0 +1,3 @@
+# `EntityHealth` component
+
+## 
