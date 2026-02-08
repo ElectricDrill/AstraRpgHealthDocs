@@ -1,0 +1,1 @@
+# Health Scaling Component
