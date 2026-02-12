@@ -253,14 +253,14 @@ The `AstraRpgHealthConfig` asset contains all gameplay parameters for the health
 
 ### Health Regeneration
 
-#### Passive Health Regeneration Source
+#### Health Regeneration Source
 **Type:** `HealSource`  
 **Required:** No  
 **Description:** The heal source used for passive regeneration effects.
 
 **Use cases:**
-- Allows tracking and modifying passive regeneration separately from active healing
-- Can be used for effects like "Increase Natural Regeneration by 50%"
+- Allows tracking and modifying regeneration separately from active healing
+- Can be used for effects like "Increase Regeneration by 50%"
 - Tracking passive healing in analytics or combat logs
 
 #### Passive Health Regeneration Stat (HP/10s)
@@ -296,7 +296,14 @@ Health Per Tick = (Stat Value / 10) * Interval In Seconds
 | 2.0s | 50 HP/10s | 10 HP every 2 seconds |
 
 > [!WARNING]
-> Smaller intervals increase CPU overhead. Recommended range: 0.5s - 2.0s
+> Smaller intervals increase CPU overhead. Recommended range: 0.5s - 2.0s.
+
+#### Suppress Passive Regeneration Events
+**Type:** `bool`  
+**Required:** No  
+**Description:** If enabled, prevents triggering any heal events during passive regeneration ticks. Keep it disabled if you need to track passive regeneration in a combat log or if you have effects that trigger on heal events and should also apply to passive regeneration.
+If your game doesn't require any of the above and you want to minimize overhead, you can enable this option and skip all heal-related logic during regeneration ticks. Useful if your game has a lot of entities with passive regeneration and you want to optimize performance.
+If you need both to keep sending regeneration events and to minimize overhead, I advise to increase the regeneration interval and to keep the "Suppress Passive Regeneration Events" option disabled. This way you can have less regeneration ticks and still trigger events for each tick.
 
 #### Manual Health Regeneration Stat
 **Type:** `Stat`  
