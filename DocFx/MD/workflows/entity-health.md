@@ -36,6 +36,21 @@ Si ricorda inoltre che una strategia di default può essere assegnata attraverso
 - **Override On Death Game Action**: [Game Action](https://electricdrill.github.io/AstraRpgFrameworkDocs/MD/workflows.html#game-actions) che viene automaticamente eseguita quando l'entità muore. Se definita, questa ha la precedenza su quella definita [nella configurazione](./package-configuration.md/#default-on-death-game-action). Utile per implementare comportamenti particolari alla morte di un'entità (per esempio, entita' che esplodono alla morte infliggendo danni ad area).
 - **Override On Resurrection Game Action**: [Game Action](https://electricdrill.github.io/AstraRpgFrameworkDocs/MD/workflows.html#game-actions) che viene automaticamente eseguita quando l'entità viene resuscitata. Se definita, questa ha la precedenza su quella definita [nella configurazione](./package-configuration.md/#default-on-resurrection-game-action). Utile per implementare comportamenti particolari alla resurrezione di un'entità.
 
+## Damage vs RemoveHealth and Heal vs AddHealth
+`EntityHealth` fornisce un paio di metodi pubblici per incrementare gli HP attuali e due per decrementarli:
+- `Heal` e `AddHealth` per incrementare gli HP attuali. 
+- `TakeDamage` e `RemoveHealth` per decrementare gli HP attuali.
+
+E' importante chiarire perche' esistono due metodi diversi per incrementare e decrementare gli HP attuali, e quando utilizzare l'uno o l'altro.
+
+`AddHealth` e `RemoveHealth` operano su un livello piu' basso di astrazione rispetto a `Heal` e `Damage`, in quanto modificano direttamente gli HP attuali dell'entità di un valore `long` specificato, senza passare attraverso la pipeline di calcolo del danno o senza tener conto di eventuali modificatori di guarigione o danno. Sono metodi molto prevedibili e diretti, e sono prevalentemente utilizzati internamente dal framework.  
+Questi metodi possono essere utili in situazioni specifiche dove il guadagno di HP non e' dovuto a una guarigione, o la perdita di HP non e' dovuta a un danno, ma piuttosto a meccaniche particolari che richiedono una modifica diretta degli HP attuali. Ad esempio, supponiamo che in seguito ad una cutscene vogliamo forzare gli HP del giocatore a 1. In questo caso, potremmo utilizzare `RemoveHealth` per rimuovere tutti gli HP tranne 1, senza doverci preoccupare di eventuali modificatori di danno o della strategia di calcolo del danno che altererebbero i danni subiti in base alle statistiche ed equipaggiamento del giocatore, oltre a sollevare eventi di danno che potrebbero attivare logica di gioco che non vogliamo attivare in questo caso specifico.
+
+`Heal` e `TakeDamage`, invece, sono metodi più complessi che tengono conto di vari fattori come la strategia di calcolo del danno, l'immunità ai danni, modificatori di guarigione, ecc. Questi metodi sono pensati per essere utilizzati principalmente dagli sviluppatori di gioco per applicare danni e guarigioni alle entità, in quanto garantiscono che tutte le meccaniche e le regole del sistema di salute vengano rispettate. Ad esempio, se si vuole infliggere danni a un'entità, è consigliabile utilizzare il metodo `TakeDamage`, in modo che il danno venga calcolato correttamente in base alla strategia di calcolo del danno configurata, e che eventuali immunità o modificatori vengano presi in considerazione.  
+Senza troppe sorprese, `Heal` e `TakeDamage` utilizzano internamente `AddHealth` e `RemoveHealth` per modificare effettivamente gli HP attuali dell'entità dopo aver calcolato il guadagno o la perdita di HP netti da applicare.
+
+Nel 99% dei casi, utilizzerete `Heal` e `TakeDamage` per applicare guarigioni e danni alle entità. `AddHealth` e `RemoveHealth` sono disponibili per coprire i casi d'uso piu' rari e particolari.
+
 ## Events
 Events are, by default, collapsed as there are many of them and they would expand excessively in the inspector. By opening them, we should see something like this:
 ![EntityHealth Events](../../images/AstraRPG/workflows/entity-health/entity-health-events-section.png)
@@ -54,3 +69,21 @@ Questi eventi vengono utilizzati dal framework per gestire funzionalità essenzi
 
 ### Extra Events
 Gli Extra Events, invece, sono pensati per trasmettere informazioni a componenti specifiche o a una cerchia ristretta di entità. Un esempio pratico è la comunicazione tra l'EntityHealth del giocatore e l'HUD che visualizza i suoi HP: solo il giocatore possiede un HUD dedicato, quindi è utile assegnare un evento esclusivo per questa interazione. In questo modo, il GameEvent associato all'EntityHealth del giocatore viene ascoltato solo dall'HUD, garantendo una netta compartimentazione e maggiore efficienza. Così, l'HUD non riceve eventi da tutte le entità, ma solo quelli rilevanti per il giocatore.
+
+### Events Breakdown
+Qui segue una descrizione dettagliata di ogni evento. Ogni tipo di evento ha sia l'evento globale che una lista di eventi extra, ma è sufficiente descrivere ogni evento una singola volta.
+
+#### Damage Related Events
+To better understand the first two events of this section, I recommend taking a look at the [Damage](./damage.md) documentation to get a better understanding of damage in Astra RPG Health.
+
+- **Pre Damage Info Event**: Evento sollevato prima che un'entita' subisca danni, e prima che la [pipeline del calcolo dei danni](./damage.md/#damage-calculation-pipeline) calcoli il net damage. Questo evento trasmette informazioni sul danno che l'entità sta per subire, come il tipo di danno, la fonte del danno (un'entità, `null` se non applicabile), la damage source (e.g., environmental, skill, trap, ecc.), il raw damage che si intende infliggere, e altre informazioni rilevanti. Per maggiori dettagli in merito al parametro di contesto e i suoi campi, si rimanda alla documentazione delle API [PreDamageInfo](xref:ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo).  
+Questo evento puo' risultare utile per implementare abilita' passive o, in generale, meccaniche avanzate che attivano effetti in risposta a specifiche condizioni legate al danno che un'entità sta per subire. Ad esempio, un debuff o status modifier che amplifica il danno critico subito dell 50% quando il damage type e' "Fire", o un'abilità passiva che nega tutte le istanze di danno che si stanno per subire qualora esse avessero raw damage inferiore a 50.
+- **Damage Resolution Event**: Evento sollevato dopo che un'entità ha subito o ignorato dei danni. Similarmente al parametro di contesto dell'evento precedente, questo evento trasmette informazioni dettagliate sul danno appena subito o ignorato. Per maggiori dettagli in merito al parametro di contesto e i suoi campi, si rimanda alla documentazione delle API [DamageResolutionInfo](xref:ElectricDrill.AstraRpgHealth.Damage.DamageResolutionInfo).
+
+#### Health Related Events
+- **Gained Health Event**: Evento sollevato quando un'entità guadagna HP, sia attraverso la guarigione che altri meccanismi (e.g., Max HP modifiers that caused a gain of health).  
+Fare riferimento alle API [GainedHealthInfo](xref:ElectricDrill.AstraRpgHealth.Events.EntityHealthChangedContext) per maggiori dettagli sul parametro di contesto.
+- **Lost Health Event**: Evento sollevato quando un'entità perde HP, sia attraverso il subire danni che altri meccanismi (e.g., Max HP modifiers that caused a loss of health).  
+Il parametro di contesto di questo evento e' lo stesso del precedente, quindi si rimanda alle API [LostHealthInfo](xref:ElectricDrill.AstraRpgHealth.Events.EntityHealthChangedContext) per maggiori dettagli.
+- **Max Health Changed Event**: Evento sollevato quando i punti vita massimi totali di un'entità cambiano. Questo evento viene sollevato sia quando i max hp massimi totali aumentano che quando diminuiscono.  
+Vedi API [EntityMaxHealthChangedContext](xref:ElectricDrill.AstraRpgHealth.Events.EntityMaxHealthChangedContext) per maggiori dettagli sul parametro di contesto.
