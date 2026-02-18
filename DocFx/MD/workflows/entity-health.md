@@ -62,6 +62,8 @@ if (target.TryGetComponent(out EntityHealth targetHealth)) {
 }
 ```
 
+Grazie al fluent builder di `PreDamageContext`, l'IDE vi suggerira' automaticamente i campi da compilare uno alla volta. Fintanto che ve ne presenta uno alla volta, vuol dire che sono campi richiesti. Se invece ve ne presenta piu' di uno alla volta, vuol dire che quei campi sono opzionali, e potete decidere se compilarli o buildare il contesto senza di essi. I campi opzionali sono, ad esempio, il flag del colpo critico e il moltiplicatore di critico. Nell'esempio, per semplicita', non ho compilato questi campi.
+
 Ora, sappiamo che colare il valore del danno direttamente nel codice non è una buona pratica. Vediamo quindi come avvalerci di una `ScalingFormula` per calcolare dinamicamente l'ammontare di danno da infliggere. La creazione dello step builder diventerebbe la seguente:
 ```csharp
 // Assuming that scalingFormula is a ScalingFormula that calculates the damage amount based on the skill caster's stats...
@@ -84,7 +86,33 @@ Un'entita' puo' venire curata in 4 maniere diverse:
 - Attraverso il lifesteal. Vedi [Lifesteal](./package-configuration.md) per maggiori dettagli su questa meccanica.
 - Tramite resurrezione con i due metodi `Resurrect`. Uno per resuscitare l'entita' con una percentuale di HP, e uno per resuscitarla con un ammontare fisso di punti vita. Applicabile solo se l'entità è morta.
 
-La rigenerazione (passiva o manuale), il lifesteal e la resurrezione, usano tutti e tre il metodo `Heal` per curare effettivamente l'entità.
+Sia la rigenerazione (sia passiva che manuale), che il lifesteal e la resurrezione usano usano, dietro le quinte, il metodo `Heal` per curare effettivamente l'entità.
+
+Siccome il metodo `Heal` verra' ampiamente utilizzato, mostro qui un esempio del suo utilizzo attraverso le API.
+Supponiamo di voler curare un'entità del 20% dei suoi HP massimi totali. Il codice potrebbe essere il seguente:
+
+```csharp
+// Assuming that:
+// - healSource is a HealSource representing the healing coming from a skill
+// - skillCaster is the EntityCore that casts the healing skill
+// - target is the EntityCore that we want to heal
+
+if (target.TryGetComponent(out EntityHealth targetHealth)) {
+    // in case the target has a EntityHealth component...
+    long healAmount = target.GetMaxHpPortion(0.2d);
+
+    target.Heal(PreHealContext.Builder
+        .WithAmount(healAmount)
+        .WithSource(healSource)
+        .WithHealer(skillCaster)
+        .WithTarget(target.EntityCore)
+        .Build());
+}
+```
+
+Ovviamente, anche in questo caso, sarebbe buona pratica quantomeno serializzare il valore di guarigione in un campo serializzato in modo fa poterlo modificare dall'inspector, anziche' averlo hardcoded nel codice. Per semplicita', pero', non ho aggiunto questo passaggio nell'esempio.
+
+Anche qui, come per il `PreDamageContext`, grazie al fluent builder di `PreHealContext`, l'IDE vi suggerira' automaticamente i campi da compilare uno alla volta, lasciando quelli opzionali per ultimi.
 
 ## Death
 - **Health Can Be Negative**: Boolean che indica se i punti vita dell'entità possono scendere al di sotto di 0 prima di morire. Se disabilitato, i punti vita dell'entità non scenderanno mai al di sotto di 0, e l'entità morirà non appena i suoi punti vita raggiungono 0. Se abilitato, i punti vita dell'entità possono scendere al di sotto di 0, e l'entità morirà solo quando i suoi punti vita raggiungono un valore negativo specificato (Death Threshold).
