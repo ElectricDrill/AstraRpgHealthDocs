@@ -10,6 +10,8 @@
 
 ## Damage Calculation Pipeline
 
+### PreDamageContext and DamageResolutionContext
+
 ### Damage Step
 
 ### Damage Calculation Strategy
