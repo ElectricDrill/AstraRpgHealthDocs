@@ -31,7 +31,7 @@ Also recall that a default strategy can be assigned via configuration. See [Defa
 - **Is Immune**: Boolean indicating whether the entity is immune to all damage or not. If enabled, the entity will take no damage, regardless of the damage calculation strategy used.
 
 ### The most important method of the package: `TakeDamage`
-The API method you will use most with this package is certainly `TakeDamage`, whose responsibility is to apply damage to the entity, taking into account modifiers, immunity, the damage calculation strategy, and other relevant mechanics. This method takes a `PreDamageContext` as input, which contains all relevant information about the damage you intend to inflict. For more details on this context, I recommend reading the documentation [PreDamageContext and DamageResolutionContext](damage.md#predamagecontext-and-damageresolutioncontext).
+The API method you will use most with this package is certainly `TakeDamage`, whose responsibility is to apply damage to the entity, taking into account modifiers, immunity, the damage calculation strategy, and other relevant mechanics. This method takes a `PreDamageContext` as input, which contains all relevant information about the damage you intend to inflict. For more details on this context, I recommend reading the documentation about [PreDamageContext and DamageResolutionContext](damage.md#predamagecontext-and-damageresolutioncontext).
 
 The recommended way via code to inflict damage on an entity is as follows:
 1. Construct an instance of `PreDamageContext` with all relevant information about the damage you intend to inflict through its fluent builder.
@@ -136,7 +136,7 @@ Unsurprisingly, `Heal` and `TakeDamage` internally use `AddHealth` and `RemoveHe
 In 99% of cases, you will use `Heal` and `TakeDamage` to apply healing and damage to entities. `AddHealth` and `RemoveHealth` are available to cover rarer and more particular use cases.
 
 ## Events
-Events are, by default, collapsed as there are many of them and they would expand excessively in the inspector. By opening them, we should see something like this:
+Events are, by default, collapsed as there are many of them and they would expand excessively in the inspector. By opening them, we should see something like this:  
 ![EntityHealth Events](../../images/AstraRPG/workflows/entity-health/entity-health-events-section.png)
 
 In the image, you see already assigned events, but when you first add the component, all events will be unassigned and empty.
@@ -171,6 +171,10 @@ In general, the thumb rule for deciding whether to use the Pre Damage Info Event
 Refer to the [EntityHealthChangedContext](xref:ElectricDrill.AstraRpgHealth.Events.EntityHealthChangedContext) API for more details on the context parameter.
 - **Lost Health Event**: Event raised when the entity loses HP, whether through taking damage or other mechanisms (e.g., Max HP modifiers that caused a loss of health).
 The context parameter of this event is the same as the previous one, so refer to the [EntityHealthChangedContext](xref:ElectricDrill.AstraRpgHealth.Events.EntityHealthChangedContext) API for more details.
+
+> [!NOTE]
+> Because `TakeDamage` and `Heal` internally invoke `RemoveHealth` and `AddHealth`, calling these methods will also raise the `EntityGainedHealth` and `EntityLostHealth` events respectively.
+
 - **Max Health Changed Event**: Event raised when an entity's total max health points change. This event is raised both when total max hp increase and when they decrease.
 See [EntityMaxHealthChangedContext](xref:ElectricDrill.AstraRpgHealth.Events.EntityMaxHealthChangedContext) API for more details on the context parameter.
 - **Entity Died Event**: Event raised when the entity dies. See [EntityDiedContext](xref:ElectricDrill.AstraRpgHealth.Events.EntityDiedContext) API for more details on the context parameter.
