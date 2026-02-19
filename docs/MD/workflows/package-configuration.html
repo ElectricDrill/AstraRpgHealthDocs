@@ -335,14 +335,14 @@ In the <code>AstraRpgHealthConfig</code> asset, you can hover over each field to
 </ul>
 <hr>
 <h3 id="health-regeneration">Health Regeneration</h3>
-<h4 id="passive-health-regeneration-source">Passive Health Regeneration Source</h4>
+<h4 id="health-regeneration-source">Health Regeneration Source</h4>
 <p><strong>Type:</strong> <code>HealSource</code><br>
 <strong>Required:</strong> No<br>
 <strong>Description:</strong> The heal source used for passive regeneration effects.</p>
 <p><strong>Use cases:</strong></p>
 <ul>
-<li>Allows tracking and modifying passive regeneration separately from active healing</li>
-<li>Can be used for effects like &quot;Increase Natural Regeneration by 50%&quot;</li>
+<li>Allows tracking and modifying regeneration separately from active healing</li>
+<li>Can be used for effects like &quot;Increase Regeneration by 50%&quot;</li>
 <li>Tracking passive healing in analytics or combat logs</li>
 </ul>
 <h4 id="passive-health-regeneration-stat-hp10s">Passive Health Regeneration Stat (HP/10s)</h4>
@@ -396,8 +396,14 @@ In the <code>AstraRpgHealthConfig</code> asset, you can hover over each field to
 </table>
 <div class="WARNING">
 <h5>Warning</h5>
-<p>Smaller intervals increase CPU overhead. Recommended range: 0.5s - 2.0s</p>
+<p>Smaller intervals increase CPU overhead. Recommended range: 0.5s - 2.0s.</p>
 </div>
+<h4 id="suppress-passive-regeneration-events">Suppress Passive Regeneration Events</h4>
+<p><strong>Type:</strong> <code>bool</code><br>
+<strong>Required:</strong> No<br>
+<strong>Description:</strong> If enabled, prevents triggering any heal events during passive regeneration ticks. Keep it disabled if you need to track passive regeneration in a combat log or if you have effects that trigger on heal events and should also apply to passive regeneration.
+If your game doesn't require any of the above and you want to minimize overhead, you can enable this option and skip all heal-related logic during regeneration ticks. Useful if your game has a lot of entities with passive regeneration and you want to optimize performance.
+If you need both to keep sending regeneration events and to minimize overhead, I advise to increase the regeneration interval and to keep the &quot;Suppress Passive Regeneration Events&quot; option disabled. This way you can have less regeneration ticks and still trigger events for each tick.</p>
 <h4 id="manual-health-regeneration-stat">Manual Health Regeneration Stat</h4>
 <p><strong>Type:</strong> <code>Stat</code><br>
 <strong>Required:</strong> No<br>
@@ -429,11 +435,11 @@ entityHealth.ManualHealthRegenerationTick();
 </blockquote>
 <hr>
 <h3 id="death">Death</h3>
-<h4 id="default-on-death-strategy">Default On Death Strategy</h4>
-<p><strong>Type:</strong> <code>OnDeathStrategy</code><br>
+<h4 id="default-on-death-game-action">Default On Death Game Action</h4>
+<p><strong>Type:</strong> <code>GameAction</code><br>
 <strong>Required:</strong> Yes<br>
-<strong>Description:</strong> The strategy executed when an entity dies (if the entity doesn't have its own strategy).</p>
-<p><strong>Common Strategies Ideas:</strong></p>
+<strong>Description:</strong> The game action executed when an entity dies (if the entity doesn't have its own on-death game action). Use a composite game action to chain multiple effects.</p>
+<p><strong>Common on-death Game Action Ideas:</strong></p>
 <ul>
 <li><strong>Destroy GameObject</strong> - Removes the entity from the scene</li>
 <li><strong>Ragdoll</strong> - Enables ragdoll physics</li>
@@ -441,13 +447,13 @@ entityHealth.ManualHealthRegenerationTick();
 <li><strong>Loot Drop</strong> - Spawns loot and destroys the entity</li>
 </ul>
 <p><strong>Example:</strong></p>
-<pre><code>Death → Execute Strategy → Spawn Death VFX → Drop Loot → Destroy GameObject
+<pre><code>Death → Execute composite on-death Game Action → [Spawn Death VFX → Drop Loot → Destroy GameObject]
 </code></pre>
-<h4 id="default-on-resurrection-strategy">Default On Resurrection Strategy</h4>
-<p><strong>Type:</strong> <code>OnResurrectionStrategy</code><br>
+<h4 id="default-on-resurrection-game-action">Default On Resurrection Game Action</h4>
+<p><strong>Type:</strong> <code>GameAction</code><br>
 <strong>Required:</strong> No<br>
-<strong>Description:</strong> The strategy executed when an entity is resurrected (if the entity doesn't have its own strategy).</p>
-<p><strong>Common Strategies Ideas:</strong></p>
+<strong>Description:</strong> The game action executed when an entity is resurrected (if the entity doesn't have its own on-resurrection game action). Use a composite game action to chain multiple effects.</p>
+<p><strong>Common on-resurrection Game Action Ideas:</strong></p>
 <ul>
 <li><strong>Simple Resurrection</strong> - Restores health and enables the entity</li>
 <li><strong>Resurrection VFX</strong> - Plays visual effects during resurrection</li>
@@ -455,7 +461,7 @@ entityHealth.ManualHealthRegenerationTick();
 </ul>
 <h4 id="default-resurrection-source">Default Resurrection Source</h4>
 <p><strong>Type:</strong> <code>HealSource</code><br>
-<strong>Required:</strong> ✅ <strong>Yes</strong><br>
+<strong>Required:</strong> Yes<br>
 <strong>Description:</strong> The heal source used when an entity is resurrected.</p>
 <p><strong>Use cases:</strong></p>
 <ul>

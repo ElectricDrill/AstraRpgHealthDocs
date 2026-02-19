@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class PreDamageGameEvent | Astra RPG Health ">
       
-      
+      <meta name="description" content="Event raised before damage is processed. Payload: .">
       <link rel="icon" href="../images/astra-health-ico.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/Cis8/AstraRPGHealth/new/main/apiSpec/new?filename=ElectricDrill_AstraRpgHealth_Events_PreDamageGameEvent.md&amp;value=---%0Auid%3A%20ElectricDrill.AstraRpgHealth.Events.PreDamageGameEvent%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/Cis8/SimpleRPGHealth/new/main/apiSpec/new?filename=ElectricDrill_AstraRpgHealth_Events_PreDamageGameEvent.md&amp;value=---%0Auid%3A%20ElectricDrill.AstraRpgHealth.Events.PreDamageGameEvent%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="ElectricDrill_AstraRpgHealth_Events_PreDamageGameEvent" data-uid="ElectricDrill.AstraRpgHealth.Events.PreDamageGameEvent" class="text-break">
-Class PreDamageGameEvent  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Events/GeneratedEvents/DamageEventsGenerator/GameEvents/1/PreDamageGameEvent.cs/#L10"><i class="bi bi-code-slash"></i></a>
+Class PreDamageGameEvent  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Events/GeneratedEvents/DamageEventsGenerator/GameEvents/1/PreDamageGameEvent.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,12 +97,14 @@ Class PreDamageGameEvent  <a class="header-action link-secondary" title="View so
   <dl><dt>Assembly</dt><dd>com.electricdrill.astra-rpg-health.Runtime.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>Event raised before damage is processed.
+Payload: <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.PreDamageContext.html">PreDamageContext</a>.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[CreateAssetMenu(fileName = &quot;PreDamage Game Event&quot;, menuName = &quot;Astra RPG Health/Events/Generated (Damage)/PreDamage&quot;)]
-public class PreDamageGameEvent : GameEventGeneric1&lt;PreDamageInfo&gt;, IRaisable&lt;PreDamageInfo&gt;</code></pre>
+public class PreDamageGameEvent : GameEventGeneric1&lt;PreDamageContext&gt;, IRaisable&lt;PreDamageContext&gt;</code></pre>
   </div>
 
 
@@ -114,7 +116,7 @@ public class PreDamageGameEvent : GameEventGeneric1&lt;PreDamageInfo&gt;, IRaisa
       <div><span class="xref">object</span></div>
       <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></div>
       <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html">ScriptableObject</a></div>
-      <div><span class="xref">GameEventGeneric1</span>&lt;<a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.html">PreDamageInfo</a>&gt;</div>
+      <div><span class="xref">GameEventGeneric1</span>&lt;<a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.PreDamageContext.html">PreDamageContext</a>&gt;</div>
       <div><span class="xref">PreDamageGameEvent</span></div>
     </dd>
   </dl>
@@ -122,7 +124,7 @@ public class PreDamageGameEvent : GameEventGeneric1&lt;PreDamageInfo&gt;, IRaisa
   <dl class="typelist implements">
     <dt>Implements</dt>
     <dd>
-      <div><span class="xref">IRaisable</span>&lt;<a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.html">PreDamageInfo</a>&gt;</div>
+      <div><span class="xref">IRaisable</span>&lt;<a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.PreDamageContext.html">PreDamageContext</a>&gt;</div>
     </dd>
   </dl>
 
@@ -131,16 +133,16 @@ public class PreDamageGameEvent : GameEventGeneric1&lt;PreDamageInfo&gt;, IRaisa
     <dt>Inherited Members</dt>
     <dd>
     <div>
-      <span class="xref">GameEventGeneric1&lt;PreDamageInfo&gt;.OnEventRaised</span>
+      <span class="xref">GameEventGeneric1&lt;PreDamageContext&gt;.OnEventRaised</span>
     </div>
     <div>
-      <span class="xref">GameEventGeneric1&lt;PreDamageInfo&gt;.Raise(PreDamageInfo)</span>
+      <span class="xref">GameEventGeneric1&lt;PreDamageContext&gt;.Raise(PreDamageContext)</span>
     </div>
     <div>
-      <span class="xref">GameEventGeneric1&lt;PreDamageInfo&gt;.RegisterListener(GameEventListenerGeneric1&lt;PreDamageInfo&gt;)</span>
+      <span class="xref">GameEventGeneric1&lt;PreDamageContext&gt;.RegisterListener(GameEventListenerGeneric1&lt;PreDamageContext&gt;)</span>
     </div>
     <div>
-      <span class="xref">GameEventGeneric1&lt;PreDamageInfo&gt;.UnregisterListener(GameEventListenerGeneric1&lt;PreDamageInfo&gt;)</span>
+      <span class="xref">GameEventGeneric1&lt;PreDamageContext&gt;.UnregisterListener(GameEventListenerGeneric1&lt;PreDamageContext&gt;)</span>
     </div>
   </dd></dl>
 

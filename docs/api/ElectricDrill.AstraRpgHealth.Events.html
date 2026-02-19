@@ -96,7 +96,8 @@ Classes
 </h3>
     <dl class="jumplist">
       <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Events.DamageResolutionGameEvent.html">DamageResolutionGameEvent</a></dt>
-      <dd><p>Used to notify whether a damage was applied or prevented.</p>
+      <dd><p>Event raised to notify the resolution of a damage attempt (applied or prevented).
+Payload: <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.html">DamageResolutionContext</a>.</p>
 </dd>
     </dl>
     <dl class="jumplist">
@@ -105,68 +106,94 @@ Classes
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityDiedContext.html">EntityDiedContext</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityDiedGameEvent.html">EntityDiedGameEvent</a></dt>
-      <dd><p>The entity died.</p>
+      <dd><p>Event raised when an entity dies.
+Payload: <a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityDiedContext.html">EntityDiedContext</a>.</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityDiedGameEventListener.html">EntityDiedGameEventListener</a></dt>
-      <dd><p>The entity died.</p>
+      <dd><p>Event raised when an entity dies.
+Payload: <a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityDiedContext.html">EntityDiedContext</a>.</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityGainedHealthGameEvent.html">EntityGainedHealthGameEvent</a></dt>
-      <dd><p>The entity gained some health.</p>
+      <dd><p>Event raised when an entity gains health.
+Payload: <a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityHealthChangedContext.html">EntityHealthChangedContext</a>.</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityGainedHealthGameEventListener.html">EntityGainedHealthGameEventListener</a></dt>
-      <dd><p>The entity gained some health.</p>
+      <dd><p>Event raised when an entity gains health.
+Payload: <a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityHealthChangedContext.html">EntityHealthChangedContext</a>.</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityHealedGameEvent.html">EntityHealedGameEvent</a></dt>
-      <dd><p>The entity received an healing.</p>
+      <dd><p>Event raised when an entity is about to be healed.
+Payload: <a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealContext.html">PreHealContext</a>.</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityHealedGameEventListener.html">EntityHealedGameEventListener</a></dt>
-      <dd><p>The entity received an healing.</p>
+      <dd><p>Event raised when an entity is about to be healed.
+Payload: <a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealContext.html">PreHealContext</a>.</p>
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityHealthChangedContext.html">EntityHealthChangedContext</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityLostHealthGameEvent.html">EntityLostHealthGameEvent</a></dt>
-      <dd><p>The entity lost some health.</p>
+      <dd><p>Event raised when an entity loses health.
+Payload: <a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityHealthChangedContext.html">EntityHealthChangedContext</a>.</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityLostHealthGameEventListener.html">EntityLostHealthGameEventListener</a></dt>
-      <dd><p>The entity lost some health.</p>
+      <dd><p>Event raised when an entity loses health.
+Payload: <a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityHealthChangedContext.html">EntityHealthChangedContext</a>.</p>
 </dd>
     </dl>
     <dl class="jumplist">
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityMaxHealthChangedContext.html">EntityMaxHealthChangedContext</a></dt>
+      <dd></dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityMaxHealthChangedGameEvent.html">EntityMaxHealthChangedGameEvent</a></dt>
-      <dd><p>The entity whose Max HP changed, the new Max HP, and the old Max HP.</p>
+      <dd><p>Event raised when an entity's maximum health changes.
+Payload: <a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityMaxHealthChangedContext.html">EntityMaxHealthChangedContext</a>.</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityMaxHealthChangedGameEventListener.html">EntityMaxHealthChangedGameEventListener</a></dt>
-      <dd><p>The entity whose Max HP changed, the new Max HP, and the old Max HP.</p>
+      <dd><p>Event raised when an entity's maximum health changes.
+Payload: <a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityMaxHealthChangedContext.html">EntityMaxHealthChangedContext</a>.</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityResurrectedGameEvent.html">EntityResurrectedGameEvent</a></dt>
-      <dd><p>The entity resurrected with the specified amount of health.</p>
+      <dd><p>Event raised when an entity is resurrected.
+Payload: <a class="xref" href="ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.html">ResurrectionContext</a>.</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityResurrectedGameEventListener.html">EntityResurrectedGameEventListener</a></dt>
-      <dd><p>The entity resurrected with the specified amount of health.</p>
+      <dd><p>Event raised when an entity is resurrected.
+Payload: <a class="xref" href="ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.html">ResurrectionContext</a>.</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Events.PreDamageGameEvent.html">PreDamageGameEvent</a></dt>
-      <dd></dd>
+      <dd><p>Event raised before damage is processed.
+Payload: <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.PreDamageContext.html">PreDamageContext</a>.</p>
+</dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Events.PreDamageGameEventListener.html">PreDamageGameEventListener</a></dt>
@@ -174,12 +201,12 @@ Classes
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Events.PreHealGameEvent.html">PreHealGameEvent</a></dt>
-      <dd><p>THe entity is about to be healed.</p>
+      <dd><p>The entity is about to be healed.</p>
 </dd>
     </dl>
     <dl class="jumplist">
       <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Events.PreHealGameEventListener.html">PreHealGameEventListener</a></dt>
-      <dd><p>THe entity is about to be healed.</p>
+      <dd><p>The entity is about to be healed.</p>
 </dd>
     </dl>
 

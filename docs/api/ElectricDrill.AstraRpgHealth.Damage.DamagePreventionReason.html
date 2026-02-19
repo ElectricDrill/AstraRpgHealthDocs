@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/Cis8/AstraRPGHealth/new/main/apiSpec/new?filename=ElectricDrill_AstraRpgHealth_Damage_DamagePreventionReason.md&amp;value=---%0Auid%3A%20ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReason%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/Cis8/SimpleRPGHealth/new/main/apiSpec/new?filename=ElectricDrill_AstraRpgHealth_Damage_DamagePreventionReason.md&amp;value=---%0Auid%3A%20ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReason%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -90,7 +90,7 @@
 
 
   <h1 id="ElectricDrill_AstraRpgHealth_Damage_DamagePreventionReason" data-uid="ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReason" class="text-break">
-Enum DamagePreventionReason  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Damage/DamagePreventionReason.cs/#L9"><i class="bi bi-code-slash"></i></a>
+Enum DamagePreventionReason  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Damage/DamagePreventionReason.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -99,7 +99,7 @@ Enum DamagePreventionReason  <a class="header-action link-secondary" title="View
   </div>
 
   <div class="markdown summary"><p>Flags that explain why a damage attempt was prevented. Multiple reasons may be combined.
-These flags are used in <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolution.html#ElectricDrill_AstraRpgHealth_Damage_DamageResolution_Reasons">Reasons</a> when an attempt is prevented.</p>
+These flags are used in <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.html#ElectricDrill_AstraRpgHealth_Damage_DamageResolutionContext_Reasons">Reasons</a> when an attempt is prevented.</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -133,10 +133,10 @@ public enum DamagePreventionReason</code></pre>
     <dd><p>The target's barrier fully absorbed the damage.</p>
 </dd>
     <dt id="ElectricDrill_AstraRpgHealth_Damage_DamagePreventionReason_DamageSourceImmune"><code>DamageSourceImmune = 8</code></dt>
-    <dd><p>The target is immune to the specific <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageSource.html">DamageSource</a> that originated the damage.</p>
+    <dd><p>The target is immune to the specific <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageSourceSO.html">DamageSourceSO</a> that originated the damage.</p>
 </dd>
     <dt id="ElectricDrill_AstraRpgHealth_Damage_DamagePreventionReason_DamageTypeImmune"><code>DamageTypeImmune = 4</code></dt>
-    <dd><p>The target is immune to this specific <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageType.html">DamageType</a>.</p>
+    <dd><p>The target is immune to this specific <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageTypeSO.html">DamageTypeSO</a>.</p>
 </dd>
     <dt id="ElectricDrill_AstraRpgHealth_Damage_DamagePreventionReason_DefenseAbsorbed"><code>DefenseAbsorbed = 32</code></dt>
     <dd><p>The target's stat defense for the damage type fully absorbed the damage.</p>
@@ -155,7 +155,7 @@ public enum DamagePreventionReason</code></pre>
 </dd>
     <dt id="ElectricDrill_AstraRpgHealth_Damage_DamagePreventionReason_PrePhaseIgnored"><code>PrePhaseIgnored = 64</code></dt>
     <dd><p>The pre-processing phase explicitly ignored the damage (for example by a passive ability that intercepted the PreDmgGameEvent and
-instructed the PreDamageInfo to ignore it).</p>
+instructed the PreDamageContext to ignore it).</p>
 </dd>
     <dt id="ElectricDrill_AstraRpgHealth_Damage_DamagePreventionReason_PrePhaseZeroAmount"><code>PrePhaseZeroAmount = 128</code></dt>
     <dd><p>The damage amount was zero in the pre-phase and therefore not applied.</p>

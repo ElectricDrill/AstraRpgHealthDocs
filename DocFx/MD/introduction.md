@@ -64,7 +64,7 @@ Configuration will be deeply discussed later in [Package Configuration](workflow
 Both for the defensive and piercing stat, you can select a `DamageReductionFormula` and a `DefenseReductionFormula` respectively, to define how the stats will affect damage reduction and defense piercing.
 
 ### <img src="../images/AstraRPG/astra-health_damage-source.png" alt="attribute" width="30" class="icon-background"/> Damage Source
-`DamageSource`, derived from `ScriptableObject`, represents the origin of the damage inflicted. They don't have any specific properties, but they can be assigned to other objects of the package to create specific behaviors based on the damage source. We will see for what and how in the [Workflows](workflows.md) section.
+`DamageSource`, derived from `ScriptableObject`, represents the origin of the damage inflicted. They don't have any specific properties, but they can be assigned to other objects of the package to create specific behaviors based on the damage source. We will see for what and how in the Workflows.
 
 ### <img src="../images/AstraRPG/astra-health_flat-dmg-red-fo.png" alt="attribute" width="30" class="icon-background"/> <img src="../images/AstraRPG/astra-health_percentage-dmg-red-fo.png" alt="attribute" width="30" class="icon-background"/> <img src="../images/AstraRPG/astra-health_log-dmg-red-fo.png" alt="attribute" width="30" class="icon-background"/> Damage Reduction Functions
 The package comes with three built-in `DamageReductionFunction`s that you can use to define how defensive stats reduce incoming damage:
@@ -83,7 +83,7 @@ As for damage reduction functions, the package comes with three built-in `Defens
 Also in this case, custom defense piercing functions can be created by extending the `DefensePiercingFn` class.
 
 ### <img src="../images/AstraRPG/astra-health_heal-source.png" alt="attribute" width="30" class="icon-background"/> Heal Source
-`HealSource`, derived from `ScriptableObject`, represents the origin of healing. Similar to `DamageSource`, they don't have any specific properties, but they can be assigned to other objects of the package to create specific behaviors based on the heal source. We will see for what and how in the [Workflows](workflows.md) section.
+`HealSource`, derived from `ScriptableObject`, represents the origin of healing. Similar to `DamageSource`, they don't have any specific properties, but they can be assigned to other objects of the package to create specific behaviors based on the heal source. We will see for what and how in the Workflows.
 
 ### <img src="../images/AstraRPG/astra-health_damage-calculation-strategy.png" alt="attribute" width="30" class="icon-background"/> Damage Calculation Strategy
 The damage calculation pipeline is the component of the framework responsible for processing raw damage and producing net damage. The pipeline will use a given `DamageCalculationStrategy` to determine the sequence of steps to apply when calculating damage.  
@@ -96,7 +96,7 @@ Astra RPG Health leverages Game Actions to define custom behaviors when an entit
 
 ### <img src="../images/AstraRPG/astra-health_lifesteal-config.png" alt="attribute" width="30" class="icon-background"/> Lifesteal Configuration
 `LifestealConfig`, deriving from ScriptableObject, allows you to define how lifesteal mechanics work for specific damage types. This allows to bind a statistic to each damage type you want to have lifesteal for. That statistic will be used to calculate the amount of health to restore to the attacker when they deal damage of that type.  
-The configuration allows also to configure the damage pipeline timing of the lifesteal effect. For example, you might want lifesteal to occur before or after damage reduction is applied. We will see this in detail later in the [Workflows](workflows.md) section.
+The configuration allows also to configure the damage pipeline timing of the lifesteal effect. For example, you might want lifesteal to occur before or after damage reduction is applied. We will see this in detail later in the Workflows.
 
 ### <img src="../images/AstraRPG/astra-health_health-scaling-component.png" alt="attribute" width="30" class="icon-background"/> Health Scaling Component
 Astra RPG Health provides a brand new `HealthScalingComponent` that you can use in your `ScalingFormula`s to have skills or abilities scale based on either the attacker or the target's health. You can choose to scale upon one or more among Maximum HP, Current HP, and Missing HP.
@@ -115,4 +115,4 @@ Astra RPG Health comes with many new Game Events that you can use to react to he
 - `EntityHealedGameEvent`: Triggered when an entity is healed.
 - `EntityResurrectedGameEvent`: Triggered when an entity is resurrected.
 
-And many more events. We will discuss them in detail later in the [Workflows](workflows.md) section.
+And many more events. We will discuss them in detail later in the Workflows.

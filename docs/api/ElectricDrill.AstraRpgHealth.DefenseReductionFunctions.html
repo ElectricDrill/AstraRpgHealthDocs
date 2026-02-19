@@ -95,9 +95,29 @@
 Classes
 </h3>
     <dl class="jumplist">
-      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.DefenseReductionFn.html">DefenseReductionFn</a></dt>
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.DefenseReductionFnSO.html">DefenseReductionFnSO</a></dt>
       <dd><p>Base type for defense reduction functions.
 Implementations compute a reduced defense value based on a piercing stat and the pierced defense stat.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.FlatDefenseReductionFnSO.html">FlatDefenseReductionFnSO</a></dt>
+      <dd><p>Reduces defense by subtracting a scaled amount of the piercing stat from the pierced defense.
+The result is clamped to the stat's min/max bounds.
+Create instances via Assets -&gt; Create -&gt; Astra RPG Health / Def Reduction Functions / Flat Def Reduction.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.LogDefenseReductionFnSO.html">LogDefenseReductionFnSO</a></dt>
+      <dd><p>Applies a logarithmic divisive reduction to defense to provide diminishing returns as piercing increases.
+Create instances via Assets -&gt; Create -&gt; Astra RPG Health / Def Reduction Functions / Log Def Reduction.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.PercentageDefenseReductionFnSO.html">PercentageDefenseReductionFnSO</a></dt>
+      <dd><p>Reduces defense by subtracting a percentage of the pierced defense equal to the piercing stat percentage.
+Example: piercingStatValue = 20 -&gt; reduces defense by 20%.
+Create isntances via Assets -&gt; Create -&gt; Astra RPG Health / Def Reduction Functions / Log Def Reduction.</p>
 </dd>
     </dl>
 

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class DamageResolutionContext | Astra RPG Health </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class DamageResolutionContext | Astra RPG Health ">
+      
+      <meta name="description" content="The result returned by damage application attempts. Encapsulates whether the damage was applied or prevented, the reasons for prevention, and the concrete damage information that was ultimately applied (if any).">
+      <link rel="icon" href="../images/astra-health-ico.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Cis8/SimpleRPGHealth/new/main/apiSpec/new?filename=ElectricDrill_AstraRpgHealth_Damage_DamageResolutionContext.md&amp;value=---%0Auid%3A%20ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/logo-health.svg" alt="Astra RPG Health">
+            Astra RPG Health
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext">
+
+
+
+  <h1 id="ElectricDrill_AstraRpgHealth_Damage_DamageResolutionContext" data-uid="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext" class="text-break">
+Class DamageResolutionContext  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Damage/DamageResolutionContext.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="ElectricDrill.html">ElectricDrill</a>.<a class="xref" href="ElectricDrill.AstraRpgHealth.html">AstraRpgHealth</a>.<a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.html">Damage</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>com.electricdrill.astra-rpg-health.Runtime.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>The result returned by damage application attempts.
+Encapsulates whether the damage was applied or prevented, the reasons for prevention,
+and the concrete damage information that was ultimately applied (if any).</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class DamageResolutionContext</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><span class="xref">object</span></div>
+      <div><span class="xref">DamageResolutionContext</span></div>
+    </dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="ElectricDrill_AstraRpgHealth_Damage_DamageResolutionContext_FinalDamageInfo_" data-uid="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.FinalDamageInfo*"></a>
+
+  <h3 id="ElectricDrill_AstraRpgHealth_Damage_DamageResolutionContext_FinalDamageInfo" data-uid="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.FinalDamageInfo">
+  FinalDamageInfo
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Damage/DamageResolutionContext.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The final computed damage information that was applied to the target. This is
+non-null only when <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.html#ElectricDrill_AstraRpgHealth_Damage_DamageResolutionContext_Outcome">Outcome</a> is <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageOutcome.html#ElectricDrill_AstraRpgHealth_Damage_DamageOutcome_Applied">Applied</a>.
+The contained <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageInfo.html">DamageInfo</a> includes applied amount, barrier/health split,
+termination step type and any additional diagnostics produced by the pipeline.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DamageInfo FinalDamageInfo { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageInfo.html">DamageInfo</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ElectricDrill_AstraRpgHealth_Damage_DamageResolutionContext_Outcome_" data-uid="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.Outcome*"></a>
+
+  <h3 id="ElectricDrill_AstraRpgHealth_Damage_DamageResolutionContext_Outcome" data-uid="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.Outcome">
+  Outcome
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Damage/DamageResolutionContext.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The high-level outcome of the attempt: either <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageOutcome.html#ElectricDrill_AstraRpgHealth_Damage_DamageOutcome_Applied">Applied</a>
+or <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageOutcome.html#ElectricDrill_AstraRpgHealth_Damage_DamageOutcome_Prevented">Prevented</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DamageOutcome Outcome { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageOutcome.html">DamageOutcome</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ElectricDrill_AstraRpgHealth_Damage_DamageResolutionContext_PreDamageContext_" data-uid="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.PreDamageContext*"></a>
+
+  <h3 id="ElectricDrill_AstraRpgHealth_Damage_DamageResolutionContext_PreDamageContext" data-uid="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.PreDamageContext">
+  PreDamageContext
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Damage/DamageResolutionContext.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The original <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.html#ElectricDrill_AstraRpgHealth_Damage_DamageResolutionContext_PreDamageContext">PreDamageContext</a> that triggered this resolution.
+Useful for logging and diagnostic correlation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PreDamageContext PreDamageContext { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.PreDamageContext.html">PreDamageContext</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ElectricDrill_AstraRpgHealth_Damage_DamageResolutionContext_Reasons_" data-uid="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.Reasons*"></a>
+
+  <h3 id="ElectricDrill_AstraRpgHealth_Damage_DamageResolutionContext_Reasons" data-uid="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.Reasons">
+  Reasons
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Damage/DamageResolutionContext.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>When <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.html#ElectricDrill_AstraRpgHealth_Damage_DamageResolutionContext_Outcome">Outcome</a> is <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageOutcome.html#ElectricDrill_AstraRpgHealth_Damage_DamageOutcome_Prevented">Prevented</a>, this
+contains the combined <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReason.html">DamagePreventionReason</a> flags explaining why.
+It will be <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReason.html#ElectricDrill_AstraRpgHealth_Damage_DamagePreventionReason_None">None</a> when <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.html#ElectricDrill_AstraRpgHealth_Damage_DamageResolutionContext_Outcome">Outcome</a>
+is <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageOutcome.html#ElectricDrill_AstraRpgHealth_Damage_DamageOutcome_Applied">Applied</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DamagePreventionReason Reasons { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReason.html">DamagePreventionReason</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ElectricDrill_AstraRpgHealth_Damage_DamageResolutionContext_TerminationStepType_" data-uid="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.TerminationStepType*"></a>
+
+  <h3 id="ElectricDrill_AstraRpgHealth_Damage_DamageResolutionContext_TerminationStepType" data-uid="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.TerminationStepType">
+  TerminationStepType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Damage/DamageResolutionContext.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>If the pipeline execution terminated early, this will contain the <span class="xref">System.Type</span>
+of the pipeline termination step that decided to stop processing. May be null
+when the pipeline completed normally.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Type TerminationStepType { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Type</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="ElectricDrill_AstraRpgHealth_Damage_DamageResolutionContext_Applied_" data-uid="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.Applied*"></a>
+
+  <h3 id="ElectricDrill_AstraRpgHealth_Damage_DamageResolutionContext_Applied_ElectricDrill_AstraRpgHealth_Damage_CalculationPipeline_DamageInfo_ElectricDrill_AstraRpgHealth_Damage_PreDamageContext_" data-uid="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.Applied(ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageInfo,ElectricDrill.AstraRpgHealth.Damage.PreDamageContext)">
+  Applied(DamageInfo, PreDamageContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Damage/DamageResolutionContext.cs/#L82"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Create a <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.html">DamageResolutionContext</a> representing an applied damage attempt.
+The <code class="paramref">info</code> parameter contains the concrete damage values applied.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DamageResolutionContext Applied(DamageInfo info, PreDamageContext pre)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>info</code> <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageInfo.html">DamageInfo</a></dt>
+    <dd><p>Final damage info that was applied.</p>
+</dd>
+    <dt><code>pre</code> <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.PreDamageContext.html">PreDamageContext</a></dt>
+    <dd><p>Original pre-damage request.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.html">DamageResolutionContext</a></dt>
+    <dd><p>A configured <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.html">DamageResolutionContext</a> with Outcome == Applied.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ElectricDrill_AstraRpgHealth_Damage_DamageResolutionContext_Prevented_" data-uid="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.Prevented*"></a>
+
+  <h3 id="ElectricDrill_AstraRpgHealth_Damage_DamageResolutionContext_Prevented_ElectricDrill_AstraRpgHealth_Damage_DamagePreventionReason_ElectricDrill_AstraRpgHealth_Damage_PreDamageContext_ElectricDrill_AstraRpgHealth_Damage_CalculationPipeline_DamageInfo_" data-uid="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.Prevented(ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReason,ElectricDrill.AstraRpgHealth.Damage.PreDamageContext,ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageInfo)">
+  Prevented(DamagePreventionReason, PreDamageContext, DamageInfo)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Damage/DamageResolutionContext.cs/#L72"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Create a <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.html">DamageResolutionContext</a> representing a prevented damage attempt.
+<code class="paramref">reasons</code> should explain why the attempt didn't apply. Optionally the
+<code class="paramref">info</code> parameter may contain a partial <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageInfo.html">DamageInfo</a>
+produced before prevention.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DamageResolutionContext Prevented(DamagePreventionReason reasons, PreDamageContext pre, DamageInfo info = null)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>reasons</code> <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReason.html">DamagePreventionReason</a></dt>
+    <dd><p>Flags explaining the prevention.</p>
+</dd>
+    <dt><code>pre</code> <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.PreDamageContext.html">PreDamageContext</a></dt>
+    <dd><p>Original pre-damage request.</p>
+</dd>
+    <dt><code>info</code> <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageInfo.html">DamageInfo</a></dt>
+    <dd><p>Optional partial damage info produced before prevention.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.html">DamageResolutionContext</a></dt>
+    <dd><p>A configured <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.html">DamageResolutionContext</a> with Outcome == Prevented.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

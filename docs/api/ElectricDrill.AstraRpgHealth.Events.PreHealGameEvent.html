@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class PreHealGameEvent | Astra RPG Health ">
       
-      <meta name="description" content="THe entity is about to be healed.">
+      <meta name="description" content="The entity is about to be healed.">
       <link rel="icon" href="../images/astra-health-ico.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/Cis8/AstraRPGHealth/new/main/apiSpec/new?filename=ElectricDrill_AstraRpgHealth_Events_PreHealGameEvent.md&amp;value=---%0Auid%3A%20ElectricDrill.AstraRpgHealth.Events.PreHealGameEvent%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/Cis8/SimpleRPGHealth/new/main/apiSpec/new?filename=ElectricDrill_AstraRpgHealth_Events_PreHealGameEvent.md&amp;value=---%0Auid%3A%20ElectricDrill.AstraRpgHealth.Events.PreHealGameEvent%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="ElectricDrill_AstraRpgHealth_Events_PreHealGameEvent" data-uid="ElectricDrill.AstraRpgHealth.Events.PreHealGameEvent" class="text-break">
-Class PreHealGameEvent  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Events/GeneratedEvents/HealthEventsGenerator/GameEvents/2/PreHealGameEvent.cs/#L11"><i class="bi bi-code-slash"></i></a>
+Class PreHealGameEvent  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Events/GeneratedEvents/HealthEventsGenerator/GameEvents/1/PreHealGameEvent.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,13 +97,13 @@ Class PreHealGameEvent  <a class="header-action link-secondary" title="View sour
   <dl><dt>Assembly</dt><dd>com.electricdrill.astra-rpg-health.Runtime.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>THe entity is about to be healed.</p>
+  <div class="markdown summary"><p>The entity is about to be healed.</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[CreateAssetMenu(fileName = &quot;PreHeal Game Event&quot;, menuName = &quot;Astra RPG Health/Events/Generated (Health)/PreHeal&quot;)]
-public class PreHealGameEvent : GameEventGeneric2&lt;PreHealInfo, EntityCore&gt;, IRaisable&lt;PreHealInfo, EntityCore&gt;</code></pre>
+public class PreHealGameEvent : GameEventGeneric1&lt;PreHealContext&gt;, IRaisable&lt;PreHealContext&gt;</code></pre>
   </div>
 
 
@@ -115,7 +115,7 @@ public class PreHealGameEvent : GameEventGeneric2&lt;PreHealInfo, EntityCore&gt;
       <div><span class="xref">object</span></div>
       <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></div>
       <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html">ScriptableObject</a></div>
-      <div><span class="xref">GameEventGeneric2</span>&lt;<a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.html">PreHealInfo</a>, <span class="xref">EntityCore</span>&gt;</div>
+      <div><span class="xref">GameEventGeneric1</span>&lt;<a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealContext.html">PreHealContext</a>&gt;</div>
       <div><span class="xref">PreHealGameEvent</span></div>
     </dd>
   </dl>
@@ -123,7 +123,7 @@ public class PreHealGameEvent : GameEventGeneric2&lt;PreHealInfo, EntityCore&gt;
   <dl class="typelist implements">
     <dt>Implements</dt>
     <dd>
-      <div><span class="xref">IRaisable</span>&lt;<a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.html">PreHealInfo</a>, <span class="xref">EntityCore</span>&gt;</div>
+      <div><span class="xref">IRaisable</span>&lt;<a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealContext.html">PreHealContext</a>&gt;</div>
     </dd>
   </dl>
 
@@ -132,16 +132,16 @@ public class PreHealGameEvent : GameEventGeneric2&lt;PreHealInfo, EntityCore&gt;
     <dt>Inherited Members</dt>
     <dd>
     <div>
-      <span class="xref">GameEventGeneric2&lt;PreHealInfo, EntityCore&gt;.OnEventRaised</span>
+      <span class="xref">GameEventGeneric1&lt;PreHealContext&gt;.OnEventRaised</span>
     </div>
     <div>
-      <span class="xref">GameEventGeneric2&lt;PreHealInfo, EntityCore&gt;.Raise(PreHealInfo, EntityCore)</span>
+      <span class="xref">GameEventGeneric1&lt;PreHealContext&gt;.Raise(PreHealContext)</span>
     </div>
     <div>
-      <span class="xref">GameEventGeneric2&lt;PreHealInfo, EntityCore&gt;.RegisterListener(GameEventListenerGeneric2&lt;PreHealInfo, EntityCore&gt;)</span>
+      <span class="xref">GameEventGeneric1&lt;PreHealContext&gt;.RegisterListener(GameEventListenerGeneric1&lt;PreHealContext&gt;)</span>
     </div>
     <div>
-      <span class="xref">GameEventGeneric2&lt;PreHealInfo, EntityCore&gt;.UnregisterListener(GameEventListenerGeneric2&lt;PreHealInfo, EntityCore&gt;)</span>
+      <span class="xref">GameEventGeneric1&lt;PreHealContext&gt;.UnregisterListener(GameEventListenerGeneric1&lt;PreHealContext&gt;)</span>
     </div>
   </dd></dl>
 

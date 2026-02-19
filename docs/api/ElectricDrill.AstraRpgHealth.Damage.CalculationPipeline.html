@@ -111,13 +111,20 @@ defensive and piercing stats and configured reduction functions.</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.ApplyDmgModifiersStep.html">ApplyDmgModifiersStep</a></dt>
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.ApplyFlatDmgModifiersStep.html">ApplyFlatDmgModifiersStep</a></dt>
+      <dd><p>Damage step that applies flat damage modifiers (both positive increments and negative reductions)
+based on configured generic flat damage modifiers &amp; source/type flat damage modifiers.
+This step should typically be applied AFTER percentage-based modifications.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.ApplyPercentageDmgModifiersStep.html">ApplyPercentageDmgModifiersStep</a></dt>
       <dd><p>Damage step that applies generic and configured damage source/type modifiers
 (for example weaknesses and resistances) to the current damage amount.</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageCalculationStrategy.html">DamageCalculationStrategy</a></dt>
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageCalculationStrategySO.html">DamageCalculationStrategySO</a></dt>
       <dd><p>ScriptableObject that defines a configurable damage calculation pipeline.
 The pipeline is composed of ordered <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageStep.html">DamageStep</a> instances executed sequentially.</p>
 </dd>

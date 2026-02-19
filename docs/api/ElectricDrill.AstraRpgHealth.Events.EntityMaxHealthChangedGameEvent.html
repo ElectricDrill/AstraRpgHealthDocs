@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class EntityMaxHealthChangedGameEvent | Astra RPG Health ">
       
-      <meta name="description" content="The entity whose Max HP changed, the new Max HP, and the old Max HP.">
+      <meta name="description" content="Event raised when an entity&#39;s maximum health changes. Payload: .">
       <link rel="icon" href="../images/astra-health-ico.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/Cis8/AstraRPGHealth/new/main/apiSpec/new?filename=ElectricDrill_AstraRpgHealth_Events_EntityMaxHealthChangedGameEvent.md&amp;value=---%0Auid%3A%20ElectricDrill.AstraRpgHealth.Events.EntityMaxHealthChangedGameEvent%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/Cis8/SimpleRPGHealth/new/main/apiSpec/new?filename=ElectricDrill_AstraRpgHealth_Events_EntityMaxHealthChangedGameEvent.md&amp;value=---%0Auid%3A%20ElectricDrill.AstraRpgHealth.Events.EntityMaxHealthChangedGameEvent%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="ElectricDrill_AstraRpgHealth_Events_EntityMaxHealthChangedGameEvent" data-uid="ElectricDrill.AstraRpgHealth.Events.EntityMaxHealthChangedGameEvent" class="text-break">
-Class EntityMaxHealthChangedGameEvent  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Events/GeneratedEvents/HealthEventsGenerator/GameEvents/3/EntityMaxHealthChangedGameEvent.cs/#L10"><i class="bi bi-code-slash"></i></a>
+Class EntityMaxHealthChangedGameEvent  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Events/GeneratedEvents/HealthEventsGenerator/GameEvents/1/EntityMaxHealthChangedGameEvent.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,13 +97,14 @@ Class EntityMaxHealthChangedGameEvent  <a class="header-action link-secondary" t
   <dl><dt>Assembly</dt><dd>com.electricdrill.astra-rpg-health.Runtime.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>The entity whose Max HP changed, the new Max HP, and the old Max HP.</p>
+  <div class="markdown summary"><p>Event raised when an entity's maximum health changes.
+Payload: <a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityMaxHealthChangedContext.html">EntityMaxHealthChangedContext</a>.</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[CreateAssetMenu(fileName = &quot;EntityMaxHealthChanged Game Event&quot;, menuName = &quot;Astra RPG Health/Events/Generated (Health)/EntityMaxHealthChanged&quot;)]
-public class EntityMaxHealthChangedGameEvent : GameEventGeneric3&lt;EntityHealth, long, long&gt;, IRaisable&lt;EntityHealth, long, long&gt;</code></pre>
+public class EntityMaxHealthChangedGameEvent : GameEventGeneric1&lt;EntityMaxHealthChangedContext&gt;, IRaisable&lt;EntityMaxHealthChangedContext&gt;</code></pre>
   </div>
 
 
@@ -115,7 +116,7 @@ public class EntityMaxHealthChangedGameEvent : GameEventGeneric3&lt;EntityHealth
       <div><span class="xref">object</span></div>
       <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></div>
       <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html">ScriptableObject</a></div>
-      <div><span class="xref">GameEventGeneric3</span>&lt;<a class="xref" href="ElectricDrill.AstraRpgHealth.EntityHealth.html">EntityHealth</a>, <span class="xref">long</span>, <span class="xref">long</span>&gt;</div>
+      <div><span class="xref">GameEventGeneric1</span>&lt;<a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityMaxHealthChangedContext.html">EntityMaxHealthChangedContext</a>&gt;</div>
       <div><span class="xref">EntityMaxHealthChangedGameEvent</span></div>
     </dd>
   </dl>
@@ -123,7 +124,7 @@ public class EntityMaxHealthChangedGameEvent : GameEventGeneric3&lt;EntityHealth
   <dl class="typelist implements">
     <dt>Implements</dt>
     <dd>
-      <div><span class="xref">IRaisable</span>&lt;<a class="xref" href="ElectricDrill.AstraRpgHealth.EntityHealth.html">EntityHealth</a>, <span class="xref">long</span>, <span class="xref">long</span>&gt;</div>
+      <div><span class="xref">IRaisable</span>&lt;<a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityMaxHealthChangedContext.html">EntityMaxHealthChangedContext</a>&gt;</div>
     </dd>
   </dl>
 
@@ -132,16 +133,16 @@ public class EntityMaxHealthChangedGameEvent : GameEventGeneric3&lt;EntityHealth
     <dt>Inherited Members</dt>
     <dd>
     <div>
-      <span class="xref">GameEventGeneric3&lt;EntityHealth, long, long&gt;.OnEventRaised</span>
+      <span class="xref">GameEventGeneric1&lt;EntityMaxHealthChangedContext&gt;.OnEventRaised</span>
     </div>
     <div>
-      <span class="xref">GameEventGeneric3&lt;EntityHealth, long, long&gt;.Raise(EntityHealth, long, long)</span>
+      <span class="xref">GameEventGeneric1&lt;EntityMaxHealthChangedContext&gt;.Raise(EntityMaxHealthChangedContext)</span>
     </div>
     <div>
-      <span class="xref">GameEventGeneric3&lt;EntityHealth, long, long&gt;.RegisterListener(GameEventListenerGeneric3&lt;EntityHealth, long, long&gt;)</span>
+      <span class="xref">GameEventGeneric1&lt;EntityMaxHealthChangedContext&gt;.RegisterListener(GameEventListenerGeneric1&lt;EntityMaxHealthChangedContext&gt;)</span>
     </div>
     <div>
-      <span class="xref">GameEventGeneric3&lt;EntityHealth, long, long&gt;.UnregisterListener(GameEventListenerGeneric3&lt;EntityHealth, long, long&gt;)</span>
+      <span class="xref">GameEventGeneric1&lt;EntityMaxHealthChangedContext&gt;.UnregisterListener(GameEventListenerGeneric1&lt;EntityMaxHealthChangedContext&gt;)</span>
     </div>
   </dd></dl>
 

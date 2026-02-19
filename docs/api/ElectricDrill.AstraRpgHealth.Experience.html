@@ -95,9 +95,18 @@
 Classes
 </h3>
     <dl class="jumplist">
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Experience.ExpCollectionStrategySO.html">ExpCollectionStrategySO</a></dt>
+      <dd><p>Abstract base class for experience collection strategies.
+Implements the Template Method pattern to define when and how experience should be collected.
+Derive from this class to create custom experience collection logic.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
       <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Experience.ExpCollector.html">ExpCollector</a></dt>
       <dd><p>Collects experience when this entity deals killing blows.
-Requires an <a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityDiedGameEventListener.html">EntityDiedGameEventListener</a> on the GameObject.</p>
+Requires an <a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityDiedGameEventListener.html">EntityDiedGameEventListener</a> on the GameObject.
+Uses a configurable <a class="xref" href="ElectricDrill.AstraRpgHealth.Experience.ExpCollectionStrategySO.html">ExpCollectionStrategySO</a> to determine when and how experience is collected.
+If no custom strategy is assigned, falls back to the default strategy from <a class="xref" href="ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.html">IAstraRpgHealthConfig</a>.</p>
 </dd>
     </dl>
 

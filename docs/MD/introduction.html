@@ -137,7 +137,7 @@ Configuration will be deeply discussed later in <a href="workflows/package-confi
 <p><code>DamageType</code> is a <code>ScriptableObject</code> that represents a specific type of damage. Each damage type can be optionally configured with a defensive <code>Stat</code> that will be used to reduce incoming damage of that type. If a defensive stat is assigned, also a piercing stat can be assigned to ignore a portion of the defense when calculating damage.<br>
 Both for the defensive and piercing stat, you can select a <code>DamageReductionFormula</code> and a <code>DefenseReductionFormula</code> respectively, to define how the stats will affect damage reduction and defense piercing.</p>
 <h3 id="-damage-source"><img src="../images/AstraRPG/astra-health_damage-source.png" alt="attribute" width="30" class="icon-background"> Damage Source</h3>
-<p><code>DamageSource</code>, derived from <code>ScriptableObject</code>, represents the origin of the damage inflicted. They don't have any specific properties, but they can be assigned to other objects of the package to create specific behaviors based on the damage source. We will see for what and how in the <a href="workflows.md">Workflows</a> section.</p>
+<p><code>DamageSource</code>, derived from <code>ScriptableObject</code>, represents the origin of the damage inflicted. They don't have any specific properties, but they can be assigned to other objects of the package to create specific behaviors based on the damage source. We will see for what and how in the Workflows.</p>
 <h3 id="---damage-reduction-functions"><img src="../images/AstraRPG/astra-health_flat-dmg-red-fo.png" alt="attribute" width="30" class="icon-background"> <img src="../images/AstraRPG/astra-health_percentage-dmg-red-fo.png" alt="attribute" width="30" class="icon-background"> <img src="../images/AstraRPG/astra-health_log-dmg-red-fo.png" alt="attribute" width="30" class="icon-background"> Damage Reduction Functions</h3>
 <p>The package comes with three built-in <code>DamageReductionFunction</code>s that you can use to define how defensive stats reduce incoming damage:</p>
 <ul>
@@ -155,37 +155,22 @@ Both for the defensive and piercing stat, you can select a <code>DamageReduction
 </ul>
 <p>Also in this case, custom defense piercing functions can be created by extending the <code>DefensePiercingFn</code> class.</p>
 <h3 id="-heal-source"><img src="../images/AstraRPG/astra-health_heal-source.png" alt="attribute" width="30" class="icon-background"> Heal Source</h3>
-<p><code>HealSource</code>, derived from <code>ScriptableObject</code>, represents the origin of healing. Similar to <code>DamageSource</code>, they don't have any specific properties, but they can be assigned to other objects of the package to create specific behaviors based on the heal source. We will see for what and how in the <a href="workflows.md">Workflows</a> section.</p>
+<p><code>HealSource</code>, derived from <code>ScriptableObject</code>, represents the origin of healing. Similar to <code>DamageSource</code>, they don't have any specific properties, but they can be assigned to other objects of the package to create specific behaviors based on the heal source. We will see for what and how in the Workflows.</p>
 <h3 id="-damage-calculation-strategy"><img src="../images/AstraRPG/astra-health_damage-calculation-strategy.png" alt="attribute" width="30" class="icon-background"> Damage Calculation Strategy</h3>
 <p>The damage calculation pipeline is the component of the framework responsible for processing raw damage and producing net damage. The pipeline will use a given <code>DamageCalculationStrategy</code> to determine the sequence of steps to apply when calculating damage.<br>
 Therefore, a <code>DamageCalculationStrategy</code> is a <code>ScriptableObject</code> that defines a sequence of <code>DamageStep</code>s to be executed in order when calculating damage.</p>
-<h3 id="-death-strategy"><img src="../images/AstraRPG/astra-health_death-strategy.png" alt="attribute" width="30" class="icon-background"> Death Strategy</h3>
-<p>A <code>DeathStrategy</code> is a <code>ScriptableObject</code> that, by relying on the strategy programming pattern, allows you to define different behaviors upon entity death.<br>
-When an entity's health reaches zero, a <code>DeathStrategy</code> is used to determine what actions should be taken.<br>
-Strategies can be game-oriented, such as &quot;Respawn&quot;, &quot;Game Over&quot;, or &quot;Drop Loot&quot;, or they can serve more technical purposes, like &quot;Disable GameObject&quot;, &quot;Play Death Animation&quot;, or &quot;Return to Pool&quot;, etc.</p>
-<p>Astra RPG Health includes several predefined technical death strategies:</p>
-<ul>
-<li><code>DisableOnDeathStrategy</code>: Disables the entity's GameObject upon death. Useful if the entity can be resurrected or reused later.</li>
-<li><code>DestroyOnDeathStrategy</code>: Destroys the entity's GameObject upon death. Useful for entities that should not be reused. This is simpler and more immediate than using pooling when pooling is not needed.</li>
-<li><code>DoNothingOnDeathStrategy</code>: Performs no action upon death. Useful for testing or debugging.</li>
-<li><code>MultipleOnDeathStrategy</code>: Sometimes, you need to combine multiple strategies to achieve the desired behavior. For example, for enemies, you might want to drop loot, play a death animation, and destroy the GameObject (or return it to a pool if available). For this purpose, the framework includes a strategy that allows you to combine multiple death strategies in sequence.</li>
-</ul>
-<p>You can also create custom death strategies by extending the <code>OnDeathStrategy</code> class. This allows you to implement death behaviors specific to your game's architecture and combine them with the predefined strategies in a <code>Multiple Death Strategy</code> if needed to achieve the desired result.</p>
-<h3 id="-resurrection-strategy"><img src="../images/AstraRPG/astra-health_resurrection-strategy.png" alt="attribute" width="30" class="icon-background"> Resurrection Strategy</h3>
-<p>Similar to <code>DeathStrategy</code>, a <code>ResurrectionStrategy</code> is a <code>ScriptableObject</code> that allows you to define different behaviors upon entity resurrection.<br>
-When an entity is resurrected, a <code>ResurrectionStrategy</code> is used to determine what actions should be taken.<br>
-Astra RPG Health includes some predefined resurrection strategies:</p>
-<ul>
-<li><code>EnableOnResurrectionStrategy</code>: Enables the GameObject of the entity upon resurrection. Useful if the entity's GameObject was disabled upon death.</li>
-<li><code>DoNothingOnResurrectionStrategy</code>: Performs no action upon resurrection. Useful for testing or debugging.</li>
-<li><code>MultipleOnResurrectionStrategy</code>: Similar to the multiple death strategy, this strategy allows you to combine multiple resurrection strategies in sequence.</li>
-</ul>
-<p>Also in this case, you can create custom resurrection strategies by extending the <code>OnResurrectionStrategy</code> class to implement resurrection behaviors specific to your game's architecture.</p>
+<h3 id="-on-death--on-resurrection-gameactions"><img src="../images/AstraRPG/astra-health_game-action.png" alt="attribute" width="30" class="icon-background"> On-death &amp; on-resurrection <code>GameAction</code>s</h3>
+<p>Astra RPG Framework v1.4.0 introduced the concept of <todo link here>GameAction: a modular and reusable unit of game logic that can be assigned via the inspector to various components to define custom behaviors.</todo></p>
+<p>Astra RPG Health leverages Game Actions to define custom behaviors when an entity dies or is resurrected. The framework allows you to assign a default on-death Game Action that will be executed when any entity dies, unless the entity has its own custom on-death Game Action assigned. Similarly, a default on-resurrection Game Action can be assigned to be executed when an entity is resurrected.</p>
 <h3 id="-lifesteal-configuration"><img src="../images/AstraRPG/astra-health_lifesteal-config.png" alt="attribute" width="30" class="icon-background"> Lifesteal Configuration</h3>
 <p><code>LifestealConfig</code>, deriving from ScriptableObject, allows you to define how lifesteal mechanics work for specific damage types. This allows to bind a statistic to each damage type you want to have lifesteal for. That statistic will be used to calculate the amount of health to restore to the attacker when they deal damage of that type.<br>
-The configuration allows also to configure the damage pipeline timing of the lifesteal effect. For example, you might want lifesteal to occur before or after damage reduction is applied. We will see this in detail later in the <a href="workflows.md">Workflows</a> section.</p>
+The configuration allows also to configure the damage pipeline timing of the lifesteal effect. For example, you might want lifesteal to occur before or after damage reduction is applied. We will see this in detail later in the Workflows.</p>
 <h3 id="-health-scaling-component"><img src="../images/AstraRPG/astra-health_health-scaling-component.png" alt="attribute" width="30" class="icon-background"> Health Scaling Component</h3>
 <p>Astra RPG Health provides a brand new <code>HealthScalingComponent</code> that you can use in your <code>ScalingFormula</code>s to have skills or abilities scale based on either the attacker or the target's health. You can choose to scale upon one or more among Maximum HP, Current HP, and Missing HP.</p>
+<h3 id="-experience-collector"><img src="../images/AstraRPG/astra-health_experience-collector.png" alt="attribute" width="30" class="icon-background"> Experience Collector</h3>
+<p>An <code>ExpCollector</code> is a <code>MonoBehaviour</code> that you can add to your entities to allow them to collect experience points from entities that die and have an <img src="../images/AstraRPG/astra-health_experience-source.png" alt="attribute" width="17" class="icon-background"> <code>ExpSource</code> component attached. The <code>ExpCollector</code> can be configured with different strategies (<img src="../images/AstraRPG/astra-health_experience-collection-strategy.png" alt="attribute" width="17" class="icon-background"> <code>ExpCollectionStrategy</code>) to define under which conditions experience is collected from the dead entity.</p>
+<h3 id="-experience-collection-strategy"><img src="../images/AstraRPG/astra-health_experience-collection-strategy.png" alt="attribute" width="30" class="icon-background"> Experience Collection Strategy</h3>
+<p>An <code>ExpCollectionStrategy</code> is a <code>ScriptableObject</code> that defines the logic for determining if an entity collects experience upon the death of another entity.</p>
 <h3 id="-more-game-events"><img src="../images/AstraRPG/event.png" alt="attribute" width="30" class="icon-background"> More Game Events</h3>
 <p>Astra RPG Health comes with many new Game Events that you can use to react to health&amp;damage-related events in your game. Some of the most important ones are:</p>
 <ul>
@@ -195,7 +180,7 @@ The configuration allows also to configure the damage pipeline timing of the lif
 <li><code>EntityHealedGameEvent</code>: Triggered when an entity is healed.</li>
 <li><code>EntityResurrectedGameEvent</code>: Triggered when an entity is resurrected.</li>
 </ul>
-<p>And many more events. We will discuss them in detail later in the <a href="workflows.md">Workflows</a> section.</p>
+<p>And many more events. We will discuss them in detail later in the Workflows.</p>
 
 </article>
 

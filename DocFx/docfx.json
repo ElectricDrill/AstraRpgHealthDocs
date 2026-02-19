@@ -3,7 +3,7 @@
       {
           "src": [
               {
-                  "src": "../../AstraRpgPublishing_6_3_2D",
+                  "src": "../../GeometricalInvaders",
                   "files": [
                       "com.electricdrill.astra-rpg-health.Runtime.csproj"
                   ],

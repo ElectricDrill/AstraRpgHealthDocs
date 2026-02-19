@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/Cis8/AstraRPGHealth/new/main/apiSpec/new?filename=ElectricDrill_AstraRpgHealth_Damage_CalculationPipeline_DamageStep.md&amp;value=---%0Auid%3A%20ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageStep%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/Cis8/SimpleRPGHealth/new/main/apiSpec/new?filename=ElectricDrill_AstraRpgHealth_Damage_CalculationPipeline_DamageStep.md&amp;value=---%0Auid%3A%20ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageStep%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="ElectricDrill_AstraRpgHealth_Damage_CalculationPipeline_DamageStep" data-uid="ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageStep" class="text-break">
-Class DamageStep  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Damage/CalculationPipeline/DamageStep.cs/#L10"><i class="bi bi-code-slash"></i></a>
+Class DamageStep  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Damage/CalculationPipeline/DamageStep.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -126,7 +126,8 @@ public abstract class DamageStep</code></pre>
       <div><a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.ApplyBarrierStep.html">ApplyBarrierStep</a></div>
       <div><a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.ApplyCriticalMultiplierStep.html">ApplyCriticalMultiplierStep</a></div>
       <div><a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.ApplyDefenseStep.html">ApplyDefenseStep</a></div>
-      <div><a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.ApplyDmgModifiersStep.html">ApplyDmgModifiersStep</a></div>
+      <div><a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.ApplyFlatDmgModifiersStep.html">ApplyFlatDmgModifiersStep</a></div>
+      <div><a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.ApplyPercentageDmgModifiersStep.html">ApplyPercentageDmgModifiersStep</a></div>
     </dd>
   </dl>
 
@@ -144,7 +145,7 @@ public abstract class DamageStep</code></pre>
 
   <h3 id="ElectricDrill_AstraRpgHealth_Damage_CalculationPipeline_DamageStep_DisplayName" data-uid="ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageStep.DisplayName">
   DisplayName
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Damage/CalculationPipeline/DamageStep.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Damage/CalculationPipeline/DamageStep.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Human-readable name shown in editors and logs for this step.
@@ -181,7 +182,7 @@ Implementations should return a short descriptive label.</p>
 
   <h3 id="ElectricDrill_AstraRpgHealth_Damage_CalculationPipeline_DamageStep_Process_ElectricDrill_AstraRpgHealth_Damage_CalculationPipeline_DamageInfo_" data-uid="ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageStep.Process(ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageInfo)">
   Process(DamageInfo)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Damage/CalculationPipeline/DamageStep.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Damage/CalculationPipeline/DamageStep.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Entry point executed by the pipeline runner. This method enforces common
@@ -224,7 +225,7 @@ reduces a positive amount to zero or less.</p>
 
   <h3 id="ElectricDrill_AstraRpgHealth_Damage_CalculationPipeline_DamageStep_ProcessStep_ElectricDrill_AstraRpgHealth_Damage_CalculationPipeline_DamageInfo_" data-uid="ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageStep.ProcessStep(ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageInfo)">
   ProcessStep(DamageInfo)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Damage/CalculationPipeline/DamageStep.cs/#L57"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Damage/CalculationPipeline/DamageStep.cs/#L57"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Implement this method in derived classes to perform the actual transformation of the pipeline state.</p>

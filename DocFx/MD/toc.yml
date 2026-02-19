@@ -4,7 +4,7 @@
   items:
   - name: Package Configuration
     href: workflows/package-configuration.md
-  - name: Entity Health component
+  - name: Entity Health Component
     href: workflows/entity-health.md
 - name: Advanced Topics
   href: advanced-topics.md

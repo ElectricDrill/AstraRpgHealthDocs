@@ -146,22 +146,20 @@ True damage can be implemented as a damage type with no associated defensive sta
 <p>Link lifesteal stats to specific damage types and choose which pipeline step it applies to—raw damage, net damage, pre-mitigation, post-mitigation, before barrier, after barrier, etc.</p>
 <p>You can fine-tune lifesteal application timing to fit your game's design.</p>
 <h4 id="-death">💀 Death</h4>
-<p>Entities die when health reaches zero, or at a custom death threshold. Negative thresholds enable &quot;down but not out&quot; mechanics.</p>
-<p>Death strategies define what happens on death. Set a default strategy and override for specific entities.</p>
-<p>Pre-defined death strategies:</p>
+<p>By default, when an entity's health reaches zero, it is considered dead. The package also allows setting a custom death threshold, which can be useful for implementing mechanics such as &quot;down but not out&quot; or &quot;last stand&quot; where an entity can survive until a certain negative health value before dying.</p>
+<p>When an entity dies, a Game Action can be executed, allowing for custom behavior upon death, such as triggering events, playing animations, or dropping loot. Beyond game mechanics, Game Actions can tailor the death behavior to your architecture. For example, if your game uses object pooling, you can implement a Game Action that returns the entity to the pool instead of destroying it. Alternatively, if an entity can resurrect, you could opt for the pre-defined &quot;Toggle Active Game Object&quot; Game Action, which simply disables the entity upon death, allowing for easy resurrection later on.</p>
+<p>A default on-death Game Action for all entities can be set, and custom on-death Game Actions can be assigned to specific entities as needed.</p>
+<p>The base package, Astra RPG Framework, comes with the following pre-defined Game Actions useful for reacting to death events:</p>
 <ul>
-<li><strong>Disable Game Object:</strong> Disables the entity for later resurrection</li>
-<li><strong>Destroy Game Object:</strong> Removes the entity permanently</li>
-<li><strong>Multiple Death Strategies:</strong> Chain strategies together</li>
+<li><strong>Toggle Active Game Object:</strong> Enables or disables the entity's game object upon death. Useful for disabling entities that can resurrect.</li>
+<li><strong>Destroy Game Object:</strong> Destroys the entity's game object upon death. Suitable for entities that do not need to be resurrected or reused.</li>
+<li><strong>Toggle Renderers (and colliders):</strong> Recursively enables/disables all renderers on the GameObject and its children. Useful to switch off the visuals of a dead entity awaiting possible resurrection.</li>
+<li><strong>No-op action:</strong> Does nothing on death.</li>
+<li><strong>Composite action:</strong> Combines multiple on-death Game Actions to be executed in sequence upon death.</li>
 </ul>
-<p>Use death strategies to integrate with your architecture—return to object pools, trigger events, play animations, drop loot, etc.</p>
 <h4 id="-resurrection">😇 Resurrection</h4>
-<p>Bring dead entities back to life through the API. Restore health as a flat value or percentage of maximum health.</p>
-<p>Resurrection strategies define behavior when resurrecting. Out of the box:</p>
-<ul>
-<li><strong>Enable Game Object:</strong> Re-enables disabled entities</li>
-<li><strong>Multiple Resurrection Strategies:</strong> Execute multiple strategies in sequence</li>
-</ul>
+<p>Resurrection is the process of bringing a dead entity back to life. An entity can be resurrected via API, providing the amount of health to restore, either as a flat value or as a percentage of its maximum health.</p>
+<p>Similarly to on-death Game Actions, on-resurrection Game Actions can be used to define custom behavior when an entity is resurrected. The same Game Actions mentioned in the previous Death section can be used in response to resurrections. You'll likely use the Toggle Active Game Action to enable a previously disabled object, and the Toggle Renderers to re-enable previously disabled visuals and (optionally) colliders.</p>
 <h4 id="-health-scaling-component">📈 Health Scaling Component</h4>
 <p>Extend scaling formulas to use health values. Scale based on maximum health, current health, or missing health.</p>
 <p>Build abilities that grow stronger as health decreases. Create healing that scales with max HP. Design berserker mechanics that reward risk. And more.</p>

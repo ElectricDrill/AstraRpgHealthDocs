@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/Cis8/AstraRPGHealth/new/main/apiSpec/new?filename=ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionInfo.md&amp;value=---%0Auid%3A%20ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionInfo%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/Cis8/SimpleRPGHealth/new/main/apiSpec/new?filename=ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionInfo.md&amp;value=---%0Auid%3A%20ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionInfo%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionInfo" data-uid="ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionInfo" class="text-break">
-Class ResurrectionInfo  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Resurrection/ResurrectionInfo.cs/#L8"><i class="bi bi-code-slash"></i></a>
+Class ResurrectionInfo  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Resurrection/ResurrectionInfo.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -102,7 +102,7 @@ Class ResurrectionInfo  <a class="header-action link-secondary" title="View sour
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ResurrectionInfo</code></pre>
+    <pre><code class="lang-csharp hljs">public class ResurrectionInfo : IHasTarget, IHasValueChange&lt;long&gt;</code></pre>
   </div>
 
 
@@ -116,6 +116,13 @@ Class ResurrectionInfo  <a class="header-action link-secondary" title="View sour
     </dd>
   </dl>
 
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><span class="xref">IHasTarget</span></div>
+      <div><span class="xref">IHasValueChange</span>&lt;<span class="xref">long</span>&gt;</div>
+    </dd>
+  </dl>
 
 
 
@@ -130,9 +137,9 @@ Class ResurrectionInfo  <a class="header-action link-secondary" title="View sour
 
   <a id="ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionInfo__ctor_" data-uid="ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionInfo.#ctor*"></a>
 
-  <h3 id="ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionInfo__ctor_System_Int64_System_Int64_ElectricDrill_AstraRpgHealth_Heal_HealSource_" data-uid="ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionInfo.#ctor(System.Int64,System.Int64,ElectricDrill.AstraRpgHealth.Heal.HealSource)">
-  ResurrectionInfo(long, long, HealSource)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Resurrection/ResurrectionInfo.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionInfo__ctor_ElectricDrill_AstraRpgFramework_EntityCore_System_Int64_System_Int64_ElectricDrill_AstraRpgHealth_Heal_HealSourceSO_" data-uid="ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionInfo.#ctor(ElectricDrill.AstraRpgFramework.EntityCore,System.Int64,System.Int64,ElectricDrill.AstraRpgHealth.Heal.HealSourceSO)">
+  ResurrectionInfo(EntityCore, long, long, HealSourceSO)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Resurrection/ResurrectionInfo.cs/#L39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Initializes a new instance of the ResurrectionInfo class.</p>
@@ -140,18 +147,21 @@ Class ResurrectionInfo  <a class="header-action link-secondary" title="View sour
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ResurrectionInfo(long previousHp, long newHp, HealSource healSource)</code></pre>
+    <pre><code class="lang-csharp hljs">public ResurrectionInfo(EntityCore target, long previousHp, long newHp, HealSourceSO healSource)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
+    <dt><code>target</code> <span class="xref">EntityCore</span></dt>
+    <dd><p>The entity being resurrected.</p>
+</dd>
     <dt><code>previousHp</code> <span class="xref">long</span></dt>
     <dd><p>The HP before resurrection.</p>
 </dd>
     <dt><code>newHp</code> <span class="xref">long</span></dt>
     <dd><p>The HP after resurrection.</p>
 </dd>
-    <dt><code>healSource</code> <a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.HealSource.html">HealSource</a></dt>
+    <dt><code>healSource</code> <a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.html">HealSourceSO</a></dt>
     <dd><p>The heal source associated with the resurrection.</p>
 </dd>
   </dl>
@@ -171,11 +181,43 @@ Class ResurrectionInfo  <a class="header-action link-secondary" title="View sour
 </h2>
 
 
+  <a id="ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionInfo_AbsAmount_" data-uid="ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionInfo.AbsAmount*"></a>
+
+  <h3 id="ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionInfo_AbsAmount" data-uid="ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionInfo.AbsAmount">
+  AbsAmount
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Resurrection/ResurrectionInfo.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The absolute amount of change between PreviousValue and NewValue.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long AbsAmount { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">long</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionInfo_HealSource_" data-uid="ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionInfo.HealSource*"></a>
 
   <h3 id="ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionInfo_HealSource" data-uid="ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionInfo.HealSource">
   HealSource
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Resurrection/ResurrectionInfo.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Resurrection/ResurrectionInfo.cs/#L30"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the heal source associated with the resurrection.
@@ -184,7 +226,7 @@ This can be used to categorize different types of resurrections (spell, item, ph
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public HealSource HealSource { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public HealSourceSO HealSource { get; }</code></pre>
   </div>
 
 
@@ -193,7 +235,7 @@ This can be used to categorize different types of resurrections (spell, item, ph
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.HealSource.html">HealSource</a></dt>
+    <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.html">HealSourceSO</a></dt>
     <dd></dd>
   </dl>
 
@@ -204,11 +246,11 @@ This can be used to categorize different types of resurrections (spell, item, ph
 
 
 
-  <a id="ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionInfo_NewHp_" data-uid="ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionInfo.NewHp*"></a>
+  <a id="ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionInfo_NewValue_" data-uid="ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionInfo.NewValue*"></a>
 
-  <h3 id="ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionInfo_NewHp" data-uid="ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionInfo.NewHp">
-  NewHp
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Resurrection/ResurrectionInfo.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionInfo_NewValue" data-uid="ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionInfo.NewValue">
+  NewValue
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Resurrection/ResurrectionInfo.cs/#L22"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the health points the entity was resurrected with.</p>
@@ -216,7 +258,7 @@ This can be used to categorize different types of resurrections (spell, item, ph
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public long NewHp { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public long NewValue { get; }</code></pre>
   </div>
 
 
@@ -236,11 +278,11 @@ This can be used to categorize different types of resurrections (spell, item, ph
 
 
 
-  <a id="ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionInfo_PreviousHp_" data-uid="ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionInfo.PreviousHp*"></a>
+  <a id="ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionInfo_PreviousValue_" data-uid="ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionInfo.PreviousValue*"></a>
 
-  <h3 id="ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionInfo_PreviousHp" data-uid="ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionInfo.PreviousHp">
-  PreviousHp
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Resurrection/ResurrectionInfo.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionInfo_PreviousValue" data-uid="ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionInfo.PreviousValue">
+  PreviousValue
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Resurrection/ResurrectionInfo.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets the health points the entity had before resurrection (typically at or below death threshold).</p>
@@ -248,7 +290,7 @@ This can be used to categorize different types of resurrections (spell, item, ph
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public long PreviousHp { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public long PreviousValue { get; }</code></pre>
   </div>
 
 
@@ -258,6 +300,37 @@ This can be used to categorize different types of resurrections (spell, item, ph
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
     <dt><span class="xref">long</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionInfo_Target_" data-uid="ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionInfo.Target*"></a>
+
+  <h3 id="ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionInfo_Target" data-uid="ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionInfo.Target">
+  Target
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Resurrection/ResurrectionInfo.cs/#L12"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EntityCore Target { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">EntityCore</span></dt>
     <dd></dd>
   </dl>
 

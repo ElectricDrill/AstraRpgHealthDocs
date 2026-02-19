@@ -95,13 +95,13 @@
 Classes
 </h3>
     <dl class="jumplist">
-      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.HealAmountInfo.html">HealAmountInfo</a></dt>
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.HealAmountContext.html">HealAmountContext</a></dt>
       <dd><p>Represents the different numeric stages of a heal amount as it is processed:
 the raw requested amount, the amount after applying a heal modifier, and the final net amount applied.</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.HealSource.html">HealSource</a></dt>
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.html">HealSourceSO</a></dt>
       <dd><p>Defines a heal source asset that identifies how a heal was produced (e.g. spell, potion, resurrection, system, ...).
 Create instances via Assets -&gt; Create -&gt; Astra RPG Health / Heal Source.</p>
 </dd>
@@ -112,7 +112,7 @@ Create instances via Assets -&gt; Create -&gt; Astra RPG Health / Heal Source.</
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.LifestealConfig.html">LifestealConfig</a></dt>
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.LifestealConfigSO.html">LifestealConfigSO</a></dt>
       <dd><p>ScriptableObject for configuring lifesteal mappings for different damage types.</p>
 </dd>
     </dl>
@@ -122,26 +122,26 @@ Create instances via Assets -&gt; Create -&gt; Astra RPG Health / Heal Source.</
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.html">PreHealInfo</a></dt>
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealContext.html">PreHealContext</a></dt>
       <dd><p>Immutable description of a pending heal operation that can be passed through
 heal processing logic before the actual health change is applied.</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.PreHealInfoStepBuilder.html">PreHealInfo.PreHealInfoStepBuilder</a></dt>
-      <dd><p>Concrete builder implementing the fluent step interfaces to construct a <a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.html">PreHealInfo</a>.</p>
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealContext.PreHealInfoStepBuilder.html">PreHealContext.PreHealInfoStepBuilder</a></dt>
+      <dd><p>Concrete builder implementing the fluent step interfaces to construct a <a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealContext.html">PreHealContext</a>.</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.html">ReceivedHealInfo</a></dt>
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.ReceivedHealContext.html">ReceivedHealContext</a></dt>
       <dd><p>Represents the result of a heal operation as actually received by the target.
 Contains the resolved heal amount, source, involved entities and whether it was critical.</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.ReceivedHealInfoStepBuilder.html">ReceivedHealInfo.ReceivedHealInfoStepBuilder</a></dt>
-      <dd><p>Concrete fluent builder used to assemble a <a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.html">ReceivedHealInfo</a>.
-Use <a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.html#ElectricDrill_AstraRpgHealth_Heal_ReceivedHealInfo_Builder">Builder</a> to start.</p>
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.ReceivedHealContext.ReceivedHealInfoStepBuilder.html">ReceivedHealContext.ReceivedHealInfoStepBuilder</a></dt>
+      <dd><p>Concrete fluent builder used to assemble a <a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.ReceivedHealContext.html">ReceivedHealContext</a>.
+Use <a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.ReceivedHealContext.html#ElectricDrill_AstraRpgHealth_Heal_ReceivedHealContext_Builder">Builder</a> to start.</p>
 </dd>
     </dl>
     <h3 id="interfaces">
@@ -150,41 +150,46 @@ Interfaces
     <dl class="jumplist">
       <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.IHealable.html">IHealable</a></dt>
       <dd><p>Interface for entities that can receive healing.
-Implementers apply healing based on the provided <a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.html">PreHealInfo</a>.</p>
+Implementers apply healing based on the provided <a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealContext.html">PreHealContext</a>.</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.HealInfoAmount.html">PreHealInfo.HealInfoAmount</a></dt>
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealContext.HealInfoAmount.html">PreHealContext.HealInfoAmount</a></dt>
       <dd><p>Builder step interface for specifying the heal amount.</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.HealInfoHealer.html">PreHealInfo.HealInfoHealer</a></dt>
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealContext.HealInfoHealer.html">PreHealContext.HealInfoHealer</a></dt>
       <dd><p>Builder step interface for specifying the healer entity and optional extras.</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.HealInfoSource.html">PreHealInfo.HealInfoSource</a></dt>
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealContext.HealInfoSource.html">PreHealContext.HealInfoSource</a></dt>
       <dd><p>Builder step interface for specifying the heal source.</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.HealInfoAmount.html">ReceivedHealInfo.HealInfoAmount</a></dt>
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealContext.HealInfoTarget.html">PreHealContext.HealInfoTarget</a></dt>
+      <dd><p>Builder step interface for specifying the target entity.</p>
+</dd>
+    </dl>
+    <dl class="jumplist">
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.ReceivedHealContext.HealInfoAmount.html">ReceivedHealContext.HealInfoAmount</a></dt>
       <dd><p>Builder step: provide the heal amount.</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.HealInfoHealer.html">ReceivedHealInfo.HealInfoHealer</a></dt>
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.ReceivedHealContext.HealInfoHealer.html">ReceivedHealContext.HealInfoHealer</a></dt>
       <dd><p>Builder step: provide the healer entity.</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.HealInfoSource.html">ReceivedHealInfo.HealInfoSource</a></dt>
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.ReceivedHealContext.HealInfoSource.html">ReceivedHealContext.HealInfoSource</a></dt>
       <dd><p>Builder step: provide the heal source.</p>
 </dd>
     </dl>
     <dl class="jumplist">
-      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.ReceivedHealInfo.HealInfoTarget.html">ReceivedHealInfo.HealInfoTarget</a></dt>
+      <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.ReceivedHealContext.HealInfoTarget.html">ReceivedHealContext.HealInfoTarget</a></dt>
       <dd><p>Builder step: provide the target entity and finalize options.</p>
 </dd>
     </dl>

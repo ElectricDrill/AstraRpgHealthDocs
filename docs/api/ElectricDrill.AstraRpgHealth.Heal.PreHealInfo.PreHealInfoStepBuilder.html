@@ -89,7 +89,7 @@
 
 
   <h1 id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_PreHealInfoStepBuilder" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.PreHealInfoStepBuilder" class="text-break">
-Class PreHealInfo.PreHealInfoStepBuilder  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L85"><i class="bi bi-code-slash"></i></a>
+Class PreHealInfo.PreHealInfoStepBuilder  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L104"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -102,7 +102,7 @@ Class PreHealInfo.PreHealInfoStepBuilder  <a class="header-action link-secondary
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class PreHealInfo.PreHealInfoStepBuilder : PreHealInfo.HealInfoAmount, PreHealInfo.HealInfoSource, PreHealInfo.HealInfoHealer</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class PreHealInfo.PreHealInfoStepBuilder : PreHealInfo.HealInfoAmount, PreHealInfo.HealInfoSource, PreHealInfo.HealInfoHealer, PreHealInfo.HealInfoTarget</code></pre>
   </div>
 
 
@@ -122,6 +122,7 @@ Class PreHealInfo.PreHealInfoStepBuilder  <a class="header-action link-secondary
       <div><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.html">PreHealInfo</a>.<a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.HealInfoAmount.html">HealInfoAmount</a></div>
       <div><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.html">PreHealInfo</a>.<a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.HealInfoSource.html">HealInfoSource</a></div>
       <div><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.html">PreHealInfo</a>.<a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.HealInfoHealer.html">HealInfoHealer</a></div>
+      <div><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.html">PreHealInfo</a>.<a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.HealInfoTarget.html">HealInfoTarget</a></div>
     </dd>
   </dl>
 
@@ -140,7 +141,7 @@ Class PreHealInfo.PreHealInfoStepBuilder  <a class="header-action link-secondary
 
   <h3 id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_PreHealInfoStepBuilder_Build" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.PreHealInfoStepBuilder.Build">
   Build()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L143"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L172"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Build and return the configured <a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.html">PreHealInfo</a>.</p>
@@ -172,7 +173,7 @@ Class PreHealInfo.PreHealInfoStepBuilder  <a class="header-action link-secondary
 
   <h3 id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_PreHealInfoStepBuilder_WithAmount_System_Int64_" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.PreHealInfoStepBuilder.WithAmount(System.Int64)">
   WithAmount(long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L98"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L118"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Set the base heal amount.</p>
@@ -209,7 +210,7 @@ Class PreHealInfo.PreHealInfoStepBuilder  <a class="header-action link-secondary
 
   <h3 id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_PreHealInfoStepBuilder_WithCriticalMultiplier_System_Double_" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.PreHealInfoStepBuilder.WithCriticalMultiplier(System.Double)">
   WithCriticalMultiplier(double)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L134"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L163"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Set the critical multiplier applied when <a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.html#ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_IsCritical">IsCritical</a> is true.</p>
@@ -246,7 +247,7 @@ Class PreHealInfo.PreHealInfoStepBuilder  <a class="header-action link-secondary
 
   <h3 id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_PreHealInfoStepBuilder_WithHealer_ElectricDrill_AstraRpgFramework_EntityCore_" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.PreHealInfoStepBuilder.WithHealer(ElectricDrill.AstraRpgFramework.EntityCore)">
   WithHealer(EntityCore)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L116"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L136"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Set the entity that performed the heal.</p>
@@ -254,7 +255,7 @@ Class PreHealInfo.PreHealInfoStepBuilder  <a class="header-action link-secondary
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PreHealInfo.PreHealInfoStepBuilder WithHealer(EntityCore healer)</code></pre>
+    <pre><code class="lang-csharp hljs">public PreHealInfo.HealInfoTarget WithHealer(EntityCore healer)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
@@ -265,7 +266,7 @@ Class PreHealInfo.PreHealInfoStepBuilder  <a class="header-action link-secondary
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.html">PreHealInfo</a>.<a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.PreHealInfoStepBuilder.html">PreHealInfoStepBuilder</a></dt>
+    <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.html">PreHealInfo</a>.<a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.HealInfoTarget.html">HealInfoTarget</a></dt>
     <dd></dd>
   </dl>
 
@@ -283,7 +284,7 @@ Class PreHealInfo.PreHealInfoStepBuilder  <a class="header-action link-secondary
 
   <h3 id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_PreHealInfoStepBuilder_WithIsCritical_System_Boolean_" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.PreHealInfoStepBuilder.WithIsCritical(System.Boolean)">
   WithIsCritical(bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L125"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L154"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Mark the built <a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.html">PreHealInfo</a> as critical or not.</p>
@@ -318,9 +319,9 @@ Class PreHealInfo.PreHealInfoStepBuilder  <a class="header-action link-secondary
 
   <a id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_PreHealInfoStepBuilder_WithSource_" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.PreHealInfoStepBuilder.WithSource*"></a>
 
-  <h3 id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_PreHealInfoStepBuilder_WithSource_ElectricDrill_AstraRpgHealth_Heal_HealSource_" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.PreHealInfoStepBuilder.WithSource(ElectricDrill.AstraRpgHealth.Heal.HealSource)">
-  WithSource(HealSource)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L107"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_PreHealInfoStepBuilder_WithSource_ElectricDrill_AstraRpgHealth_Heal_HealSourceSO_" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.PreHealInfoStepBuilder.WithSource(ElectricDrill.AstraRpgHealth.Heal.HealSourceSO)">
+  WithSource(HealSourceSO)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L127"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Set the heal source.</p>
@@ -328,18 +329,55 @@ Class PreHealInfo.PreHealInfoStepBuilder  <a class="header-action link-secondary
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PreHealInfo.HealInfoHealer WithSource(HealSource healSource)</code></pre>
+    <pre><code class="lang-csharp hljs">public PreHealInfo.HealInfoHealer WithSource(HealSourceSO healSource)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>healSource</code> <a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.HealSource.html">HealSource</a></dt>
+    <dt><code>healSource</code> <a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.html">HealSourceSO</a></dt>
     <dd></dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
     <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.html">PreHealInfo</a>.<a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.HealInfoHealer.html">HealInfoHealer</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_PreHealInfoStepBuilder_WithTarget_" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.PreHealInfoStepBuilder.WithTarget*"></a>
+
+  <h3 id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_PreHealInfoStepBuilder_WithTarget_ElectricDrill_AstraRpgFramework_EntityCore_" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.PreHealInfoStepBuilder.WithTarget(ElectricDrill.AstraRpgFramework.EntityCore)">
+  WithTarget(EntityCore)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L145"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Set the target entity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PreHealInfo.PreHealInfoStepBuilder WithTarget(EntityCore target)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>target</code> <span class="xref">EntityCore</span></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.html">PreHealInfo</a>.<a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.PreHealInfoStepBuilder.html">PreHealInfoStepBuilder</a></dt>
     <dd></dd>
   </dl>
 

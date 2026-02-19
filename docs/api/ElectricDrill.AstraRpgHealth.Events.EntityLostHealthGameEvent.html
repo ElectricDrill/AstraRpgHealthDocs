@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class EntityLostHealthGameEvent | Astra RPG Health ">
       
-      <meta name="description" content="The entity lost some health.">
+      <meta name="description" content="Event raised when an entity loses health. Payload: .">
       <link rel="icon" href="../images/astra-health-ico.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/Cis8/AstraRPGHealth/new/main/apiSpec/new?filename=ElectricDrill_AstraRpgHealth_Events_EntityLostHealthGameEvent.md&amp;value=---%0Auid%3A%20ElectricDrill.AstraRpgHealth.Events.EntityLostHealthGameEvent%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/Cis8/SimpleRPGHealth/new/main/apiSpec/new?filename=ElectricDrill_AstraRpgHealth_Events_EntityLostHealthGameEvent.md&amp;value=---%0Auid%3A%20ElectricDrill.AstraRpgHealth.Events.EntityLostHealthGameEvent%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="ElectricDrill_AstraRpgHealth_Events_EntityLostHealthGameEvent" data-uid="ElectricDrill.AstraRpgHealth.Events.EntityLostHealthGameEvent" class="text-break">
-Class EntityLostHealthGameEvent  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Events/GeneratedEvents/HealthEventsGenerator/GameEvents/2/EntityLostHealthGameEvent.cs/#L10"><i class="bi bi-code-slash"></i></a>
+Class EntityLostHealthGameEvent  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Events/GeneratedEvents/HealthEventsGenerator/GameEvents/1/EntityLostHealthGameEvent.cs/#L10"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,13 +97,14 @@ Class EntityLostHealthGameEvent  <a class="header-action link-secondary" title="
   <dl><dt>Assembly</dt><dd>com.electricdrill.astra-rpg-health.Runtime.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>The entity lost some health.</p>
+  <div class="markdown summary"><p>Event raised when an entity loses health.
+Payload: <a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityHealthChangedContext.html">EntityHealthChangedContext</a>.</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[CreateAssetMenu(fileName = &quot;EntityLostHealth Game Event&quot;, menuName = &quot;Astra RPG Health/Events/Generated (Health)/EntityLostHealth&quot;)]
-public class EntityLostHealthGameEvent : GameEventGeneric2&lt;EntityHealth, long&gt;, IRaisable&lt;EntityHealth, long&gt;</code></pre>
+public class EntityLostHealthGameEvent : GameEventGeneric1&lt;EntityHealthChangedContext&gt;, IRaisable&lt;EntityHealthChangedContext&gt;</code></pre>
   </div>
 
 
@@ -115,7 +116,7 @@ public class EntityLostHealthGameEvent : GameEventGeneric2&lt;EntityHealth, long
       <div><span class="xref">object</span></div>
       <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/Object.html">Object</a></div>
       <div><a class="xref" href="https://docs.unity3d.com/ScriptReference/ScriptableObject.html">ScriptableObject</a></div>
-      <div><span class="xref">GameEventGeneric2</span>&lt;<a class="xref" href="ElectricDrill.AstraRpgHealth.EntityHealth.html">EntityHealth</a>, <span class="xref">long</span>&gt;</div>
+      <div><span class="xref">GameEventGeneric1</span>&lt;<a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityHealthChangedContext.html">EntityHealthChangedContext</a>&gt;</div>
       <div><span class="xref">EntityLostHealthGameEvent</span></div>
     </dd>
   </dl>
@@ -123,7 +124,7 @@ public class EntityLostHealthGameEvent : GameEventGeneric2&lt;EntityHealth, long
   <dl class="typelist implements">
     <dt>Implements</dt>
     <dd>
-      <div><span class="xref">IRaisable</span>&lt;<a class="xref" href="ElectricDrill.AstraRpgHealth.EntityHealth.html">EntityHealth</a>, <span class="xref">long</span>&gt;</div>
+      <div><span class="xref">IRaisable</span>&lt;<a class="xref" href="ElectricDrill.AstraRpgHealth.Events.EntityHealthChangedContext.html">EntityHealthChangedContext</a>&gt;</div>
     </dd>
   </dl>
 
@@ -132,16 +133,16 @@ public class EntityLostHealthGameEvent : GameEventGeneric2&lt;EntityHealth, long
     <dt>Inherited Members</dt>
     <dd>
     <div>
-      <span class="xref">GameEventGeneric2&lt;EntityHealth, long&gt;.OnEventRaised</span>
+      <span class="xref">GameEventGeneric1&lt;EntityHealthChangedContext&gt;.OnEventRaised</span>
     </div>
     <div>
-      <span class="xref">GameEventGeneric2&lt;EntityHealth, long&gt;.Raise(EntityHealth, long)</span>
+      <span class="xref">GameEventGeneric1&lt;EntityHealthChangedContext&gt;.Raise(EntityHealthChangedContext)</span>
     </div>
     <div>
-      <span class="xref">GameEventGeneric2&lt;EntityHealth, long&gt;.RegisterListener(GameEventListenerGeneric2&lt;EntityHealth, long&gt;)</span>
+      <span class="xref">GameEventGeneric1&lt;EntityHealthChangedContext&gt;.RegisterListener(GameEventListenerGeneric1&lt;EntityHealthChangedContext&gt;)</span>
     </div>
     <div>
-      <span class="xref">GameEventGeneric2&lt;EntityHealth, long&gt;.UnregisterListener(GameEventListenerGeneric2&lt;EntityHealth, long&gt;)</span>
+      <span class="xref">GameEventGeneric1&lt;EntityHealthChangedContext&gt;.UnregisterListener(GameEventListenerGeneric1&lt;EntityHealthChangedContext&gt;)</span>
     </div>
   </dd></dl>
 

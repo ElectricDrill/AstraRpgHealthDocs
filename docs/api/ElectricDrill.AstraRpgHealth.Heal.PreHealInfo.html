@@ -89,7 +89,7 @@
 
 
   <h1 id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo" class="text-break">
-Class PreHealInfo  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L8"><i class="bi bi-code-slash"></i></a>
+Class PreHealInfo  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -103,7 +103,7 @@ heal processing logic before the actual health change is applied.</p>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class PreHealInfo</code></pre>
+    <pre><code class="lang-csharp hljs">public class PreHealInfo : IHasTarget, IHasSource</code></pre>
   </div>
 
 
@@ -117,6 +117,13 @@ heal processing logic before the actual health change is applied.</p>
     </dd>
   </dl>
 
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><span class="xref">IHasTarget</span></div>
+      <div><span class="xref">IHasSource</span></div>
+    </dd>
+  </dl>
 
 
 
@@ -133,7 +140,7 @@ heal processing logic before the actual health change is applied.</p>
 
   <h3 id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_Amount" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.Amount">
   Amount
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L14"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The requested heal amount (base value before modifiers).</p>
@@ -165,7 +172,7 @@ heal processing logic before the actual health change is applied.</p>
 
   <h3 id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_Builder" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.Builder">
   Builder
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L46"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Fluent builder entry point for creating a <a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.html">PreHealInfo</a>.
@@ -198,7 +205,7 @@ Use the returned builder to set amount, source and healer.</p>
 
   <h3 id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_CriticalMultiplier" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.CriticalMultiplier">
   CriticalMultiplier
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L33"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L40"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The multiplicative factor applied when <a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.html#ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_IsCritical">IsCritical</a> is true.</p>
@@ -230,7 +237,7 @@ Use the returned builder to set amount, source and healer.</p>
 
   <h3 id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_HealSource" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.HealSource">
   HealSource
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L19"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The <a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.html#ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_HealSource">HealSource</a> identifying the origin/type of the heal.</p>
@@ -238,7 +245,7 @@ Use the returned builder to set amount, source and healer.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public HealSource HealSource { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public HealSourceSO HealSource { get; }</code></pre>
   </div>
 
 
@@ -247,7 +254,7 @@ Use the returned builder to set amount, source and healer.</p>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.HealSource.html">HealSource</a></dt>
+    <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.html">HealSourceSO</a></dt>
     <dd></dd>
   </dl>
 
@@ -258,11 +265,43 @@ Use the returned builder to set amount, source and healer.</p>
 
 
 
-  <a id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_Healer_" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.Healer*"></a>
+  <a id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_IsCritical_" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.IsCritical*"></a>
 
-  <h3 id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_Healer" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.Healer">
-  Healer
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L23"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_IsCritical" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.IsCritical">
+  IsCritical
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether this heal is flagged as a critical heal.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsCritical { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">bool</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_Source_" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.Source*"></a>
+
+  <h3 id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_Source" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.Source">
+  Source
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L25"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>The entity that caused the heal (may be null for non-entity sources).</p>
@@ -270,7 +309,7 @@ Use the returned builder to set amount, source and healer.</p>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public EntityCore Healer { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public EntityCore Source { get; }</code></pre>
   </div>
 
 
@@ -290,19 +329,19 @@ Use the returned builder to set amount, source and healer.</p>
 
 
 
-  <a id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_IsCritical_" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.IsCritical*"></a>
+  <a id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_Target_" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.Target*"></a>
 
-  <h3 id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_IsCritical" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.IsCritical">
-  IsCritical
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L28"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ElectricDrill_AstraRpgHealth_Heal_PreHealInfo_Target" data-uid="ElectricDrill.AstraRpgHealth.Heal.PreHealInfo.Target">
+  Target
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Heal/PreHealInfo.cs/#L30"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Whether this heal is flagged as a critical heal.</p>
+  <div class="markdown level1 summary"><p>The target entity receiving the heal.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsCritical { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public EntityCore Target { get; }</code></pre>
   </div>
 
 
@@ -311,7 +350,7 @@ Use the returned builder to set amount, source and healer.</p>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><span class="xref">bool</span></dt>
+    <dt><span class="xref">EntityCore</span></dt>
     <dd></dd>
   </dl>
 

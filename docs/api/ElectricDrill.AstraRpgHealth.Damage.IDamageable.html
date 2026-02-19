@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/Cis8/AstraRPGHealth/new/main/apiSpec/new?filename=ElectricDrill_AstraRpgHealth_Damage_IDamageable.md&amp;value=---%0Auid%3A%20ElectricDrill.AstraRpgHealth.Damage.IDamageable%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/Cis8/SimpleRPGHealth/new/main/apiSpec/new?filename=ElectricDrill_AstraRpgHealth_Damage_IDamageable.md&amp;value=---%0Auid%3A%20ElectricDrill.AstraRpgHealth.Damage.IDamageable%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="ElectricDrill_AstraRpgHealth_Damage_IDamageable" data-uid="ElectricDrill.AstraRpgHealth.Damage.IDamageable" class="text-break">
-Interface IDamageable  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Damage/IDamageable.cs/#L9"><i class="bi bi-code-slash"></i></a>
+Interface IDamageable  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Damage/IDamageable.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -98,8 +98,8 @@ Interface IDamageable  <a class="header-action link-secondary" title="View sourc
   </div>
 
   <div class="markdown summary"><p>Implemented by entities that can receive damage.
-The <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.IDamageable.html#ElectricDrill_AstraRpgHealth_Damage_IDamageable_TakeDamage_ElectricDrill_AstraRpgHealth_Damage_PreDamageInfo_">TakeDamage(PreDamageInfo)</a> method accepts a <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.html">PreDamageInfo</a>
-record describing a pending damage attempt and returns a <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolution.html">DamageResolution</a>
+The <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.IDamageable.html#ElectricDrill_AstraRpgHealth_Damage_IDamageable_TakeDamage_ElectricDrill_AstraRpgHealth_Damage_PreDamageContext_">TakeDamage(PreDamageContext)</a> method accepts a <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.PreDamageContext.html">PreDamageContext</a>
+record describing a pending damage attempt and returns a <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.html">DamageResolutionContext</a>
 describing whether the damage was applied or prevented and additional details.</p>
 </div>
   <div class="markdown conceptual"></div>
@@ -126,9 +126,9 @@ describing whether the damage was applied or prevented and additional details.</
 
   <a id="ElectricDrill_AstraRpgHealth_Damage_IDamageable_TakeDamage_" data-uid="ElectricDrill.AstraRpgHealth.Damage.IDamageable.TakeDamage*"></a>
 
-  <h3 id="ElectricDrill_AstraRpgHealth_Damage_IDamageable_TakeDamage_ElectricDrill_AstraRpgHealth_Damage_PreDamageInfo_" data-uid="ElectricDrill.AstraRpgHealth.Damage.IDamageable.TakeDamage(ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo)">
-  TakeDamage(PreDamageInfo)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/Damage/IDamageable.cs/#L34"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ElectricDrill_AstraRpgHealth_Damage_IDamageable_TakeDamage_ElectricDrill_AstraRpgHealth_Damage_PreDamageContext_" data-uid="ElectricDrill.AstraRpgHealth.Damage.IDamageable.TakeDamage(ElectricDrill.AstraRpgHealth.Damage.PreDamageContext)">
+  TakeDamage(PreDamageContext)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Damage/IDamageable.cs/#L34"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Process an incoming damage request and return a resolution object.</p>
@@ -136,28 +136,28 @@ describing whether the damage was applied or prevented and additional details.</
 defensive checks, barriers, health application) or delegate to the centralized
 pipeline host used in the project. The provided <code class="paramref">preDamage</code>
 describes the intent (amount, type, source, critical flags, target/dealer).</p>
-<p>The returned <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolution.html">DamageResolution</a> must reflect the final outcome:</p>
-<ul><li>If damage was applied, an instance created with <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolution.html#ElectricDrill_AstraRpgHealth_Damage_DamageResolution_Applied_ElectricDrill_AstraRpgHealth_Damage_CalculationPipeline_DamageInfo_ElectricDrill_AstraRpgHealth_Damage_PreDamageInfo_">Applied(DamageInfo, PreDamageInfo)</a> is expected and <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolution.html#ElectricDrill_AstraRpgHealth_Damage_DamageResolution_FinalDamageInfo">FinalDamageInfo</a> will contain the concrete damage values that were actually applied to the target.</li><li>If the damage was prevented (for example due to immunity, zero amount after reductions, or an explicit ignore), an instance created with <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolution.html#ElectricDrill_AstraRpgHealth_Damage_DamageResolution_Prevented_ElectricDrill_AstraRpgHealth_Damage_DamagePreventionReason_ElectricDrill_AstraRpgHealth_Damage_PreDamageInfo_ElectricDrill_AstraRpgHealth_Damage_CalculationPipeline_DamageInfo_">Prevented(DamagePreventionReason, PreDamageInfo, DamageInfo)</a> is expected.</li></ul>
+<p>The returned <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.html">DamageResolutionContext</a> must reflect the final outcome:</p>
+<ul><li>If damage was applied, an instance created with <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.html#ElectricDrill_AstraRpgHealth_Damage_DamageResolutionContext_Applied_ElectricDrill_AstraRpgHealth_Damage_CalculationPipeline_DamageInfo_ElectricDrill_AstraRpgHealth_Damage_PreDamageContext_">Applied(DamageInfo, PreDamageContext)</a> is expected and <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.html#ElectricDrill_AstraRpgHealth_Damage_DamageResolutionContext_FinalDamageInfo">FinalDamageInfo</a> will contain the concrete damage values that were actually applied to the target.</li><li>If the damage was prevented (for example due to immunity, zero amount after reductions, or an explicit ignore), an instance created with <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.html#ElectricDrill_AstraRpgHealth_Damage_DamageResolutionContext_Prevented_ElectricDrill_AstraRpgHealth_Damage_DamagePreventionReason_ElectricDrill_AstraRpgHealth_Damage_PreDamageContext_ElectricDrill_AstraRpgHealth_Damage_CalculationPipeline_DamageInfo_">Prevented(DamagePreventionReason, PreDamageContext, DamageInfo)</a> is expected.</li></ul>
 <p>Implementations SHOULD NOT throw for normal prevention cases; use the prevention
 reasons and the returned resolution to communicate why the damage didn't apply.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">DamageResolution TakeDamage(PreDamageInfo preDamage)</code></pre>
+    <pre><code class="lang-csharp hljs">DamageResolutionContext TakeDamage(PreDamageContext preDamage)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><code>preDamage</code> <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.PreDamageInfo.html">PreDamageInfo</a></dt>
+    <dt><code>preDamage</code> <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.PreDamageContext.html">PreDamageContext</a></dt>
     <dd><p>Immutable description of the pending damage attempt.</p>
 </dd>
   </dl>
 
   <h4 class="section">Returns</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolution.html">DamageResolution</a></dt>
-    <dd><p>A <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolution.html">DamageResolution</a> describing the final outcome and details.</p>
+    <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.html">DamageResolutionContext</a></dt>
+    <dd><p>A <a class="xref" href="ElectricDrill.AstraRpgHealth.Damage.DamageResolutionContext.html">DamageResolutionContext</a> describing the final outcome and details.</p>
 </dd>
   </dl>
 
