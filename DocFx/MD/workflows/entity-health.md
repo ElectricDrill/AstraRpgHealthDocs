@@ -41,7 +41,7 @@ Also recall that a default strategy can be assigned via configuration. See [Defa
 - `Heal` and `AddHealth` to increase current HP.
 - `TakeDamage` and `RemoveHealth` to decrease current HP.
 
-`TakeDamage` and `Heal` are extensively documented in the [Dealing Damage to an Entity](damage.md#dealing-damage-to-an-entity) and [Healing an Entity](healing.md#healing-an-entity) sections respectively. However, this sounds like a good moment to introduce the difference between these two pairs of methods, and when to use one or the other.
+`TakeDamage` and `Heal` are extensively documented in the [Dealing Damage to an Entity](damage.md#dealing-damage-to-an-entity) and [Healing an Entity](healing.md#direct-healing) sections respectively. However, this sounds like a good moment to introduce the difference between these two pairs of methods, and when to use one or the other.
 
 It is important to clarify why two different methods exist to increase and decrease current HP, and when to use one or the other.
 

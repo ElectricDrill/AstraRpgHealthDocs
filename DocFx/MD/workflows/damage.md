@@ -18,7 +18,7 @@
 
 ## Dealing Damage to an Entity
 
-The API method you will use most with this package is certainly `TakeDamage`, whose responsibility is to apply damage to the entity, taking into account modifiers, immunity, the damage calculation strategy, and other relevant mechanics. This method takes a `PreDamageContext` as input, which contains all relevant information about the damage you intend to inflict. For more details on this context, I recommend reading the documentation about [PreDamageContext and DamageResolutionContext](damage.md#predamagecontext-and-damageresolutioncontext).
+The API method you will use the most with this package is certainly `TakeDamage`, whose responsibility is to apply damage to the entity, taking into account modifiers, immunity, the damage calculation strategy, and other relevant mechanics. This method takes a `PreDamageContext` as input.
 
 The recommended way via code to inflict damage on an entity is as follows:
 1. Construct an instance of `PreDamageContext` with all relevant information about the damage you intend to inflict through its fluent builder.
