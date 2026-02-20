@@ -6,6 +6,18 @@
     href: workflows/package-configuration.md
   - name: Entity Health Component
     href: workflows/entity-health.md
+  - name: Damage
+    href: workflows/damage.md
+  - name: Healing & Regeneration
+    href: workflows/healing.md
+  - name: Lifesteal
+    href: workflows/lifesteal.md
+  - name: Health Scaling Components
+    href: workflows/health-scaling-components.md
+  - name: Experience Collection
+    href: workflows/experience-collection.md
+  - name: Resurrection
+    href: workflows/resurrection.md
 - name: Advanced Topics
   href: advanced-topics.md
 - name: Limitations

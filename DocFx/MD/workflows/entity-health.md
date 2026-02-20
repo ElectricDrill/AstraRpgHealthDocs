@@ -30,90 +30,6 @@ Also recall that a default strategy can be assigned via configuration. See [Defa
 - **Override Damage Calculation Strategy**: Field of type `DamageCalculationStrategy`. If defined, it takes precedence over all other damage calculation strategies. Designed to be assigned at runtime to implement special effects or for testing/debug. For example, an entity is affected by a debuff that turns all physical damage into guaranteed critical hits. This debuff could therefore be implemented through a custom strategy assigned to the entity in this field.
 - **Is Immune**: Boolean indicating whether the entity is immune to all damage or not. If enabled, the entity will take no damage, regardless of the damage calculation strategy used.
 
-### The most important method of the package: `TakeDamage`
-The API method you will use most with this package is certainly `TakeDamage`, whose responsibility is to apply damage to the entity, taking into account modifiers, immunity, the damage calculation strategy, and other relevant mechanics. This method takes a `PreDamageContext` as input, which contains all relevant information about the damage you intend to inflict. For more details on this context, I recommend reading the documentation about [PreDamageContext and DamageResolutionContext](damage.md#predamagecontext-and-damageresolutioncontext).
-
-The recommended way via code to inflict damage on an entity is as follows:
-1. Construct an instance of `PreDamageContext` with all relevant information about the damage you intend to inflict through its fluent builder.
-2. Call `TakeDamage` passing the newly constructed context.
-
-Suppose we are implementing a skill that deals 50 fire damage to the target. The code to apply damage to the target could be the following:
-
-```csharp
-// Assuming that:
-// - dmgType is a DamageType representing fire damage
-// - dmgSource is a DamageSource representing the damage coming from a skill
-// - target is the EntityCore that we want to damage
-// - skillCaster is the EntityCore that casts the skill
-
-// first we ensure that the target has an EntityHealth component
-if (target.TryGetComponent(out EntityHealth targetHealth)) {
-    // then we build the PreDamageContext with all the relevant information
-    var preDamageContext = PreDamageContext.Builder
-            .WithAmount(50)
-            .WithType(dmgType)
-            .WithSource(dmgSource)
-            .WithTarget(target)
-            .WithDealer(skillCaster)
-            .Build();
-
-    // finally, we call TakeDamage to apply the damage to the target
-    targetHealth.TakeDamage(preDamageContext);
-}
-```
-
-Thanks to the `PreDamageContext` fluent builder, the IDE will automatically suggest the fields to fill in one at a time. As long as it presents them one at a time, it means they are required fields. If instead it presents more than one at a time, it means those fields are optional, and you can decide whether to fill them in or build the context without them. Optional fields are, for example, the critical hit flag and the critical multiplier. In the example, for simplicity, I did not fill in these fields.
-
-Now, we know that hardcoding the damage value directly in the code is not a good practice. Let's see how to use a `ScalingFormula` to dynamically calculate the amount of damage to inflict. The step builder creation would become the following:
-```csharp
-// Assuming that scalingFormula is a ScalingFormula that calculates the damage amount based on the skill caster's stats...
-
-// ...we calculate the damage amount by evaluating the scaling formula
-long damageAmount = scalingFormula.CalculateValue(skillCaster);
-var preDamageContext = PreDamageContext.Builder
-        .WithAmount(damageAmount)
-        .WithType(dmgType)
-        .WithSource(dmgSource)
-        .WithTarget(target)
-        .WithDealer(skillCaster)
-        .Build();
-```
-
-## Healing
-An entity can be healed in 4 different ways:
-- Direct healing through the `Heal` method.
-- Health regeneration. This can be passive, as defined in the [Health Regeneration](package-configuration.md#health-regeneration) configuration, so automatically triggered by the framework every so often, or it can be manually activated via the `ManualHealthRegenerationTick` method. Also for the latter, you must configure the statistic to consider for the calculation of healing through the configuration.
-- Through lifesteal. See [Lifesteal](package-configuration.md) for more details on this mechanic.
-- Via resurrection with the two `Resurrect` methods. One to resurrect the entity with a percentage of HP, and one to resurrect it with a fixed amount of health points. Applicable only if the entity is dead.
-
-Both regeneration (both passive and manual), lifesteal, and resurrection use, behind the scenes, the `Heal` method to effectively heal the entity.
-
-Since the `Heal` method will be widely used, I show here an example of its use via API.
-Suppose we want to heal an entity for 20% of its total max HP. The code could be the following:
-
-```csharp
-// Assuming that:
-// - healSource is a HealSource representing the healing coming from a skill
-// - skillCaster is the EntityCore that casts the healing skill
-// - target is the EntityCore that we want to heal
-
-if (target.TryGetComponent(out EntityHealth targetHealth)) {
-    // in case the target has a EntityHealth component...
-    long healAmount = target.GetMaxHpPortion(0.2d);
-
-    target.Heal(PreHealContext.Builder
-        .WithAmount(healAmount)
-        .WithSource(healSource)
-        .WithHealer(skillCaster)
-        .WithTarget(target.EntityCore)
-        .Build());
-}
-```
-
-Obviously, also in this case, it would be good practice to at least serialize the healing value in a serialized field so as to be able to modify it from the inspector, instead of having it hardcoded in the code. For simplicity, however, I did not add this step in the example.
-
-Here too, as for `PreDamageContext`, thanks to the `PreHealContext` fluent builder, the IDE will automatically suggest the fields to fill in one at a time, leaving the optional ones for last.
-
 ## Death
 - **Health Can Be Negative**: Boolean indicating whether the entity's health points can drop below 0 before dying. If disabled, the entity's health points will never drop below 0, and the entity will die as soon as its health points reach 0. If enabled, the entity's health points can drop below 0, and the entity will die only when its health points reach a specified negative value (Death Threshold).
 - **Death Threshold**: LongRef representing the entity's death threshold. Visible only if "Health Can Be Negative" is enabled. If the entity's health points reach this threshold, the entity dies.
@@ -124,6 +40,8 @@ Here too, as for `PreDamageContext`, thanks to the `PreHealContext` fluent build
 `EntityHealth` provides a couple of public methods to increase current HP and two to decrease them:
 - `Heal` and `AddHealth` to increase current HP.
 - `TakeDamage` and `RemoveHealth` to decrease current HP.
+
+`TakeDamage` and `Heal` are extensively documented in the [Dealing Damage to an Entity](damage.md#dealing-damage-to-an-entity) and [Healing an Entity](healing.md#healing-an-entity) sections respectively. However, this sounds like a good moment to introduce the difference between these two pairs of methods, and when to use one or the other.
 
 It is important to clarify why two different methods exist to increase and decrease current HP, and when to use one or the other.
 
