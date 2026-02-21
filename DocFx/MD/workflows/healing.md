@@ -12,7 +12,14 @@ An entity can be healed in 4 different ways:
 We will first introduce some concepts that are common to all the four healing methods, and then we will analyze direct healing and health regeneration. As aforesaid, lifesteal and resurrection are analyzed in their respective sections, [Lifesteal](lifesteal.md) and [Resurrection](resurrection.md).
 
 ## Heal Source
+*Relative path:* `Heal Source`  
 
+Una `HealSource` rappresenta la fonte di guarigione. Alcuni esempi di `HealSource` potrebbero essere: pozioni curative, abilita', rigenerazione passiva, lifesteal, sistema (ad esempio, il giocatore viene curato alla vita massima durante il tutorial da un macchinario di supporto), e cosi' via. La `HealSource` è un concetto importante in quanto permette di distinguere tra le diverse fonti di guarigione, e quindi di applicare modificatori di guarigione specifici per ogni fonte di guarigione, oltre ai modificatori di guarigione generici che si applicano a tutte le fonti di guarigione.
+Inoltre, le `HealSource` sono importanti anche perche' vengono comunicate nei contesti di guarigione, e quindi nei listener degli eventi di guarigione, permettendo a questi ultimi di reagire in modo specifico in base alla fonte di guarigione che ha scatenato l'evento. Grazie a questo si potrebbe, ad esempio, implementare un buff che aumenta la guarigione ricevuta dalle pozioni curative.
+Infine, le `HealSource` aprono la strada all'implementazione di un combat log che traccia non solo la quantità di guarigione ricevuta, ma anche la fonte di guarigione, permettendo al giocatore di avere una comprensione più profonda di cosa lo ha curato piu' efficacemente in una situazione di gioco specifica.
+
+Una istanza di `HealSource` non contiene alcuna proprieta', e nell'inspector appare cosi':  
+![](../../images\AstraRPG\workflows\healing\heal-source-resurrection.png)
 
 ## Heal Modifiers
 

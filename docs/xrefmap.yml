@@ -3845,6 +3845,19 @@ references:
   isSpec: "True"
   fullName: ElectricDrill.AstraRpgHealth.EntityHealth.OverrideOnDeathGameAction
   nameWithType: EntityHealth.OverrideOnDeathGameAction
+- uid: ElectricDrill.AstraRpgHealth.EntityHealth.PassiveHealthRegeneration
+  name: PassiveHealthRegeneration
+  href: api/ElectricDrill.AstraRpgHealth.EntityHealth.html#ElectricDrill_AstraRpgHealth_EntityHealth_PassiveHealthRegeneration
+  commentId: P:ElectricDrill.AstraRpgHealth.EntityHealth.PassiveHealthRegeneration
+  fullName: ElectricDrill.AstraRpgHealth.EntityHealth.PassiveHealthRegeneration
+  nameWithType: EntityHealth.PassiveHealthRegeneration
+- uid: ElectricDrill.AstraRpgHealth.EntityHealth.PassiveHealthRegeneration*
+  name: PassiveHealthRegeneration
+  href: api/ElectricDrill.AstraRpgHealth.EntityHealth.html#ElectricDrill_AstraRpgHealth_EntityHealth_PassiveHealthRegeneration_
+  commentId: Overload:ElectricDrill.AstraRpgHealth.EntityHealth.PassiveHealthRegeneration
+  isSpec: "True"
+  fullName: ElectricDrill.AstraRpgHealth.EntityHealth.PassiveHealthRegeneration
+  nameWithType: EntityHealth.PassiveHealthRegeneration
 - uid: ElectricDrill.AstraRpgHealth.EntityHealth.RemoveMaxHpScaling(ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.StatsScalingComponent,ElectricDrill.AstraRpgHealth.EntityHealth.HpBehaviourOnMaxHpIncrease,ElectricDrill.AstraRpgHealth.EntityHealth.HpBehaviourOnMaxHpDecrease)
   name: RemoveMaxHpScaling(StatsScalingComponent, HpBehaviourOnMaxHpIncrease, HpBehaviourOnMaxHpDecrease)
   href: api/ElectricDrill.AstraRpgHealth.EntityHealth.html#ElectricDrill_AstraRpgHealth_EntityHealth_RemoveMaxHpScaling_ElectricDrill_AstraRpgFramework_Scaling_ScalingComponents_StatsScalingComponent_ElectricDrill_AstraRpgHealth_EntityHealth_HpBehaviourOnMaxHpIncrease_ElectricDrill_AstraRpgHealth_EntityHealth_HpBehaviourOnMaxHpDecrease_
