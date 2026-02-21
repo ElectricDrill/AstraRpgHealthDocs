@@ -13,7 +13,7 @@
   - name: Lifesteal
     href: workflows/lifesteal.md
   - name: Health Scaling Components
-    href: workflows/health-scaling-components.md
+    href: workflows/health-scaling-component.md
   - name: Experience Collection
     href: workflows/experience-collection.md
   - name: Resurrection

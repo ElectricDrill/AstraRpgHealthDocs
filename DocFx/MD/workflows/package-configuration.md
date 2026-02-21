@@ -308,7 +308,7 @@ If you need both to keep sending regeneration events and to minimize overhead, I
 #### Manual Health Regeneration Stat
 **Type:** `Stat`  
 **Required:** No  
-**Description:** Determines health regenerated when triggering manual regeneration via API.
+**Description:** Determines health regenerated when triggering manual regeneration via API. The amount of health regenerated is equal to the value of this stat.
 
 **Use Cases:**
 - **Turn-based systems:** Regenerate health at the end of each turn

@@ -117,79 +117,6 @@ Also recall that a default strategy can be assigned via configuration. See <a hr
 <li><strong>Override Damage Calculation Strategy</strong>: Field of type <code>DamageCalculationStrategy</code>. If defined, it takes precedence over all other damage calculation strategies. Designed to be assigned at runtime to implement special effects or for testing/debug. For example, an entity is affected by a debuff that turns all physical damage into guaranteed critical hits. This debuff could therefore be implemented through a custom strategy assigned to the entity in this field.</li>
 <li><strong>Is Immune</strong>: Boolean indicating whether the entity is immune to all damage or not. If enabled, the entity will take no damage, regardless of the damage calculation strategy used.</li>
 </ul>
-<h3 id="the-most-important-method-of-the-package-takedamage">The most important method of the package: <code>TakeDamage</code></h3>
-<p>The API method you will use most with this package is certainly <code>TakeDamage</code>, whose responsibility is to apply damage to the entity, taking into account modifiers, immunity, the damage calculation strategy, and other relevant mechanics. This method takes a <code>PreDamageContext</code> as input, which contains all relevant information about the damage you intend to inflict. For more details on this context, I recommend reading the documentation <a href="damage.html#predamagecontext-and-damageresolutioncontext">PreDamageContext and DamageResolutionContext</a>.</p>
-<p>The recommended way via code to inflict damage on an entity is as follows:</p>
-<ol>
-<li>Construct an instance of <code>PreDamageContext</code> with all relevant information about the damage you intend to inflict through its fluent builder.</li>
-<li>Call <code>TakeDamage</code> passing the newly constructed context.</li>
-</ol>
-<p>Suppose we are implementing a skill that deals 50 fire damage to the target. The code to apply damage to the target could be the following:</p>
-<pre><code class="lang-csharp">// Assuming that:
-// - dmgType is a DamageType representing fire damage
-// - dmgSource is a DamageSource representing the damage coming from a skill
-// - target is the EntityCore that we want to damage
-// - skillCaster is the EntityCore that casts the skill
-
-// first we ensure that the target has an EntityHealth component
-if (target.TryGetComponent(out EntityHealth targetHealth)) {
-    // then we build the PreDamageContext with all the relevant information
-    var preDamageContext = PreDamageContext.Builder
-            .WithAmount(50)
-            .WithType(dmgType)
-            .WithSource(dmgSource)
-            .WithTarget(target)
-            .WithDealer(skillCaster)
-            .Build();
-
-    // finally, we call TakeDamage to apply the damage to the target
-    targetHealth.TakeDamage(preDamageContext);
-}
-</code></pre>
-<p>Thanks to the <code>PreDamageContext</code> fluent builder, the IDE will automatically suggest the fields to fill in one at a time. As long as it presents them one at a time, it means they are required fields. If instead it presents more than one at a time, it means those fields are optional, and you can decide whether to fill them in or build the context without them. Optional fields are, for example, the critical hit flag and the critical multiplier. In the example, for simplicity, I did not fill in these fields.</p>
-<p>Now, we know that hardcoding the damage value directly in the code is not a good practice. Let's see how to use a <code>ScalingFormula</code> to dynamically calculate the amount of damage to inflict. The step builder creation would become the following:</p>
-<pre><code class="lang-csharp">// Assuming that scalingFormula is a ScalingFormula that calculates the damage amount based on the skill caster's stats...
-
-// ...we calculate the damage amount by evaluating the scaling formula
-long damageAmount = scalingFormula.CalculateValue(skillCaster);
-var preDamageContext = PreDamageContext.Builder
-        .WithAmount(damageAmount)
-        .WithType(dmgType)
-        .WithSource(dmgSource)
-        .WithTarget(target)
-        .WithDealer(skillCaster)
-        .Build();
-</code></pre>
-<h2 id="healing">Healing</h2>
-<p>An entity can be healed in 4 different ways:</p>
-<ul>
-<li>Direct healing through the <code>Heal</code> method.</li>
-<li>Health regeneration. This can be passive, as defined in the <a href="package-configuration.html#health-regeneration">Health Regeneration</a> configuration, so automatically triggered by the framework every so often, or it can be manually activated via the <code>ManualHealthRegenerationTick</code> method. Also for the latter, you must configure the statistic to consider for the calculation of healing through the configuration.</li>
-<li>Through lifesteal. See <a href="package-configuration.html">Lifesteal</a> for more details on this mechanic.</li>
-<li>Via resurrection with the two <code>Resurrect</code> methods. One to resurrect the entity with a percentage of HP, and one to resurrect it with a fixed amount of health points. Applicable only if the entity is dead.</li>
-</ul>
-<p>Both regeneration (both passive and manual), lifesteal, and resurrection use, behind the scenes, the <code>Heal</code> method to effectively heal the entity.</p>
-<p>Since the <code>Heal</code> method will be widely used, I show here an example of its use via API.
-Suppose we want to heal an entity for 20% of its total max HP. The code could be the following:</p>
-<pre><code class="lang-csharp">// Assuming that:
-// - healSource is a HealSource representing the healing coming from a skill
-// - skillCaster is the EntityCore that casts the healing skill
-// - target is the EntityCore that we want to heal
-
-if (target.TryGetComponent(out EntityHealth targetHealth)) {
-    // in case the target has a EntityHealth component...
-    long healAmount = target.GetMaxHpPortion(0.2d);
-
-    target.Heal(PreHealContext.Builder
-        .WithAmount(healAmount)
-        .WithSource(healSource)
-        .WithHealer(skillCaster)
-        .WithTarget(target.EntityCore)
-        .Build());
-}
-</code></pre>
-<p>Obviously, also in this case, it would be good practice to at least serialize the healing value in a serialized field so as to be able to modify it from the inspector, instead of having it hardcoded in the code. For simplicity, however, I did not add this step in the example.</p>
-<p>Here too, as for <code>PreDamageContext</code>, thanks to the <code>PreHealContext</code> fluent builder, the IDE will automatically suggest the fields to fill in one at a time, leaving the optional ones for last.</p>
 <h2 id="death">Death</h2>
 <ul>
 <li><strong>Health Can Be Negative</strong>: Boolean indicating whether the entity's health points can drop below 0 before dying. If disabled, the entity's health points will never drop below 0, and the entity will die as soon as its health points reach 0. If enabled, the entity's health points can drop below 0, and the entity will die only when its health points reach a specified negative value (Death Threshold).</li>
@@ -203,6 +130,7 @@ if (target.TryGetComponent(out EntityHealth targetHealth)) {
 <li><code>Heal</code> and <code>AddHealth</code> to increase current HP.</li>
 <li><code>TakeDamage</code> and <code>RemoveHealth</code> to decrease current HP.</li>
 </ul>
+<p><code>TakeDamage</code> and <code>Heal</code> are extensively documented in the <a href="damage.html#dealing-damage-to-an-entity">Dealing Damage to an Entity</a> and <a href="healing.html#direct-healing">Healing an Entity</a> sections respectively. However, this sounds like a good moment to introduce the difference between these two pairs of methods, and when to use one or the other.</p>
 <p>It is important to clarify why two different methods exist to increase and decrease current HP, and when to use one or the other.</p>
 <p><code>AddHealth</code> and <code>RemoveHealth</code> operate at a lower level of abstraction than <code>Heal</code> and <code>Damage</code>, as they directly modify the entity's current HP by a specified <code>long</code> value, without passing through the damage calculation pipeline or without taking into account any healing or damage modifiers. They are very predictable and direct methods, and are mainly used internally by the framework.
 These methods can be useful in specific situations where the gain of HP is not due to healing, or the loss of HP is not due to damage, but rather to particular mechanics that require a direct modification of current HP. For example, suppose that following a cutscene we want to force the player's HP to 1. In this case, we could use <code>RemoveHealth</code> to remove all HP except 1, without having to worry about any damage modifiers or the damage calculation strategy that would alter the damage taken based on the player's stats and equipment, as well as raising damage events that could trigger game logic we don't want to activate in this specific case.</p>
@@ -210,7 +138,7 @@ These methods can be useful in specific situations where the gain of HP is not d
 Unsurprisingly, <code>Heal</code> and <code>TakeDamage</code> internally use <code>AddHealth</code> and <code>RemoveHealth</code> to effectively modify the entity's current HP after calculating the net HP gain or loss to apply.</p>
 <p>In 99% of cases, you will use <code>Heal</code> and <code>TakeDamage</code> to apply healing and damage to entities. <code>AddHealth</code> and <code>RemoveHealth</code> are available to cover rarer and more particular use cases.</p>
 <h2 id="events">Events</h2>
-<p>Events are, by default, collapsed as there are many of them and they would expand excessively in the inspector. By opening them, we should see something like this:
+<p>Events are, by default, collapsed as there are many of them and they would expand excessively in the inspector. By opening them, we should see something like this:<br>
 <img src="../../images/AstraRPG/workflows/entity-health/entity-health-events-section.png" alt="EntityHealth Events"></p>
 <p>In the image, you see already assigned events, but when you first add the component, all events will be unassigned and empty.</p>
 <p>Let's start by introducing the difference between <em>Global Events</em> and <em>Extra Events</em>.</p>
@@ -240,6 +168,12 @@ This event can be useful for implementing passive abilities or, in general, adva
 Refer to the <a class="xref" href="../../api/ElectricDrill.AstraRpgHealth.Events.EntityHealthChangedContext.html">EntityHealthChangedContext</a> API for more details on the context parameter.</li>
 <li><strong>Lost Health Event</strong>: Event raised when the entity loses HP, whether through taking damage or other mechanisms (e.g., Max HP modifiers that caused a loss of health).
 The context parameter of this event is the same as the previous one, so refer to the <a class="xref" href="../../api/ElectricDrill.AstraRpgHealth.Events.EntityHealthChangedContext.html">EntityHealthChangedContext</a> API for more details.</li>
+</ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Because <code>TakeDamage</code> and <code>Heal</code> internally invoke <code>RemoveHealth</code> and <code>AddHealth</code>, calling these methods will also raise the <code>EntityGainedHealth</code> and <code>EntityLostHealth</code> events respectively.</p>
+</div>
+<ul>
 <li><strong>Max Health Changed Event</strong>: Event raised when an entity's total max health points change. This event is raised both when total max hp increase and when they decrease.
 See <a class="xref" href="../../api/ElectricDrill.AstraRpgHealth.Events.EntityMaxHealthChangedContext.html">EntityMaxHealthChangedContext</a> API for more details on the context parameter.</li>
 <li><strong>Entity Died Event</strong>: Event raised when the entity dies. See <a class="xref" href="../../api/ElectricDrill.AstraRpgHealth.Events.EntityDiedContext.html">EntityDiedContext</a> API for more details on the context parameter.</li>
