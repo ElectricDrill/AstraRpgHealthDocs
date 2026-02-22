@@ -18,22 +18,29 @@ Una `HealSource` rappresenta la fonte di guarigione. Alcuni esempi di `HealSourc
 Inoltre, le `HealSource` sono importanti anche perche' vengono comunicate nei contesti di guarigione, e quindi nei listener degli eventi di guarigione, permettendo a questi ultimi di reagire in modo specifico in base alla fonte di guarigione che ha scatenato l'evento. Grazie a questo si potrebbe, ad esempio, implementare un buff che aumenta la guarigione ricevuta dalle pozioni curative.
 Infine, le `HealSource` aprono la strada all'implementazione di un combat log che traccia non solo la quantità di guarigione ricevuta, ma anche la fonte di guarigione, permettendo al giocatore di avere una comprensione più profonda di cosa lo ha curato piu' efficacemente in una situazione di gioco specifica.
 
-Una istanza di `HealSource` non contiene alcuna proprieta', e nell'inspector appare cosi':  
+Una istanza di `HealSource` nell'inspector appare cosi':  
 ![](../../images\AstraRPG\workflows\healing\heal-source-resurrection.png)
 
+Potete notare che vi sono due proprieta' da configurare per ogni `HealSource`:
+- **Flat Heal Modification Stat**: la statistica da considerare in un'entita' per applicare modificatori di guarigione flat specifici per questa fonte di guarigione. Valori positivi di questa statistica aumentano la guarigione ricevuta da questa fonte, mentre valori negativi la diminuiscono. Se l'entità non ha questa statistica, verrà considerato un valore di 0 per questa statistica, e quindi non verrà applicato alcun modificatore di guarigione flat specifico per questa fonte di guarigione.
+- **Percentage Heal Modification Stat**: la statistica da considerare in un'entita' per applicare modificatori di guarigione percentuali specifici per questa fonte di guarigione. Valori positivi di questa statistica aumentano la guarigione ricevuta da questa fonte, mentre valori negativi la diminuiscono. Se l'entità non ha questa statistica, verrà considerato un valore di 0 per questa statistica, e quindi non verrà applicato alcun modificatore di guarigione percentuale specifico per questa fonte di guarigione.
+
 ## Heal Modifiers
+I modificatori di guarigione sono modificatori che influenzano la quantità di guarigione ricevuta da un'entità. Essi possono influenzarla positivamente o negativamente, a seconda del valore. Ci sono due modificatori di guarigione: i modificatori di guarigione generici, che si applicano a tutte le fonti di guarigione, e i modificatori di guarigione specifici per la fonte di guarigione, che si applicano solo a una specifica fonte di guarigione.
+
 
 
 ## Direct Healing
 The `Heal` method is the most straightforward way to heal an entity. It takes a `PreHealContext` as input, which contains all relevant information about the healing you intend to apply and operates as follows:
 1. It checks if the entity is dead. If the entity is dead, will rais an exception, as you cannot heal a dead entity. If you want to resurrect a dead entity, check the [Resurrection](resurrection.md) section.
 2. It checks if the healing to be applied is marked as a critical hit and, if so it applies the critical multiplier to the healing amount.
-3. It retrieves the generic heal modifiers for the entity.
-4. It retrieves the heal modifiers specific to the heal source.
-5. It sums the retrieved modifiers and applies them to the healing amount.
-6. It increases the entity's current HP by the final healing amount.
-7. It raises the _Entity Healed Event_ with a `HealResolutionContext` containing all relevant information about the healing that was just applied.
-8. It returns the `HealResolutionContext` created in the previous step so that the caller can use it for further processing if needed.
+3. It retrieves and applies the generic and `HealSource`-specific **flat** heal modifiers for the entity.
+4. It retrieves and applies the generic and `HealSource`-specific **percentage** heal modifiers for the entity.
+5. It retrieves the heal modifiers specific to the heal source.
+6. It sums the retrieved modifiers and applies them to the healing amount.
+7. It increases the entity's current HP by the final healing amount.
+8. It raises the _Entity Healed Event_ with a `HealResolutionContext` containing all relevant information about the healing that was just applied.
+9. It returns the `HealResolutionContext` created in the previous step so that the caller can use it for further processing if needed.
 
 The `Heal` method, differently from the `TakeDamage` method, cannot be configured to reorder the steps of the healing pipeline. This choice was made as healing is generally more straightforward than damage, and there are usually no mechanics that require reordering the steps of the healing pipeline. Therefore, I evaluated simplicity and ease of use more important than flexibility for this method.
 

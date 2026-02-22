@@ -136,43 +136,45 @@ The `AstraRpgHealthConfig` asset contains all gameplay parameters for the health
 
 > **See Also:** [Astra RPG Framework Scaling documentation](https://electricdrill.github.io/AstraRpgFrameworkDocs/MD/workflows.html#create-scaling-formulas)
 
-#### Generic Heal Amount Modifier Stat
+#### Generic Flat Heal Amount Modifier Stat
 **Type:** `Stat`  
 **Required:** No  
-**Description:** The stat that modifies **all** healing received by an entity.
+**Description:** The stat that modifies **all** healing received by an entity as a flat amount.
 
 **Stacking Behavior:**
-- Combines **additively** with Source modifications
+- Combines **additively** with source-based flat amount modifications
+
+**How it works:**
+- The stat value represents a **flat amount modifier**
+- Positive values increase healing, negative values decrease it
+- Example: A value of `25` means +25 extra HP healing received
+
+**Example:**
+- Base Heal: 100 HP
+- Generic Heal Amount Modifier: 25 (means +25 HP healing received)
+- Final Heal: 100 + 25 = **125 HP**
+
+### Generic Percentage Heal Amount Modifier Stat
+**Type:** `Stat`
+**Required:** No
+**Description:** The stat that modifies **all** healing received by an entity as a percentage. It is applied on top of the flat heal amount modifiers.
+
+**Stacking Behavior:**
+- Combines **additively** with source-based percentage modifications
 
 **How it works:**
 - The stat value represents a **percentage modifier**
 - Positive values increase healing, negative values decrease it
-- Example: A value of `25` means +25% healing received
+- Example: A value of `20` means +20% extra healing received
 
 **Example:**
 - Base Heal: 100 HP
-- Generic Heal Amount Modifier: 25 (means +25%)
-- Final Heal: 100 * 1.25 = **125 HP**
+- Generic Flat Heal Amount Modifier: 20 (means +20 extra HP healing received)
+- Generic Percentage Heal Amount Modifier: 20 (means +20% healing received)
+- Final Heal: (100 + 20) * 1.20 = **144 HP**
 
----
-
-#### Heal Source Modifications
-**Type:** `Dictionary<HealSource, Stat>`  
-**Required:** No  
-**Description:** Maps each healing source (e.g., Skill, Trap, Environment) to a modifier stat.
-
-**Use cases:**
-- Create specialized healing boosts or reductions (e.g., "Resurrection healing is 50% more effective", "Healing from potions is reduced by 20%")
-
-**Stacking Behavior:**
-- Stats stack additively with Generic modifications
-
-**Example:**
-
-- Incoming Heal: 100 from resurrection
-- Generic Heal Amount Modifier: +30% (means +30% healing received)
-- Resurrection Heal Amount Modifier: +20 (means +20% healing received)
-- **Total Heal Modification:** +30% +20% = +50% → Final Heal: **150**
+> [!WARNING]
+> Remember to remove the default lower bound of 0 from your flat and percentage heal modifiers if you want to allow negative values for healing reduction effects. By default, the base framework sets a lower bound of 0 on all stats.
 
 ---
 
@@ -189,65 +191,40 @@ The `AstraRpgHealthConfig` asset contains all gameplay parameters for the health
 
 > **See Also:** Damage Calculation Pipeline documentation
 
-#### Generic Damage Modification Stat
+#### Generic Flat Damage Modification Stat
 **Type:** `Stat`  
 **Required:** No  
-**Description:** A universal damage modifier that applies to **all damage received**, regardless of type or source.
+**Description:** A universal flat damage modifier that applies to **all damage received**, regardless of type or source.
 
 **Usage:**
-- Applied in the damage calculation pipeline if `ApplyDmgModifiersStep` is included in the used strategy
+- Applied in the damage calculation pipeline if `ApplyFlatDmgModifiersStep` is included in the used strategy
 
 **Stacking Behavior:**
-- Combines **additively** with Type and Source modifications
+- Combines **additively** with Type and Source **flat** modifications
 
 **Example:**
-- Incoming Damage: 100
-- Generic Damage Modification: -20 (means -20% damage taken)
-- **Damage Reduction:** -20% → Final Damage: **80**
+- Incoming Damage: 150
+- Generic Flat Damage Modification: -20 (means -20 HP of damage taken)
+- **Damage Reduction:** -20 → Final Damage: **130**
 
-#### Damage Type Modifications
-**Type:** `Dictionary<DamageType, Stat>`  
-**Required:** No  
-**Description:** Maps each damage type (e.g., Fire, Ice, Physical) to a modifier stat.
-
-**Usage:**
-- Applied in the damage calculation pipeline if `ApplyDmgModifiersStep` is included in the used strategy
-
-**Use cases:**
-- Configure different resistances/vulnerabilities per damage type
-  **Stacking Behavior:**
-- Stats stack additively with Generic and Source modifications
-
-**Example:**
-
-- Incoming Damage: 100 Fire damage
-- Generic Damage Modification: +10 (means +10% damage taken)
-- Fire Damage Modification: -30 (means -30% damage taken)
-- **Total Damage Modification:** +10% - 20% = -10% → Final Damage: **90**
-
-
-#### Damage Source Modifications
-**Type:** `Dictionary<DamageSource, Stat>`  
-**Required:** No  
-**Description:** Maps each damage source (e.g., Skill, Trap, Environment) to a modifier stat.
+#### Generic Percentage Damage Modification Stat
+**Type:** `Stat`
+**Required:** No
+**Description:** A universal percentage damage modifier that applies to **all damage received**, regardless of type or source.
 
 **Usage:**
-- Applied in the damage calculation pipeline if `ApplyDmgModifiersStep` is included in the used strategy
-
-**Use cases:**
-- Create specialized defenses (e.g., "Traps deal 50% less damage")
-- For keeping track of damage origins for a combat log or analytics
+- Applied in the damage calculation pipeline if `ApplyPercentageDmgModifiersStep` is included in the used strategy
 
 **Stacking Behavior:**
-- Stats stack additively with Generic and Type modifications
+- Combines **additively** with Type and Source **percentage** modifications
 
 **Example:**
+- Incoming Damage: 150
+- Generic Percentage Damage Modification: -20 (means -20% damage taken)
+- **Damage Reduction:** -20% → Final Damage: 150 * 0.80 = **120**
 
-- Incoming Damage: 100 Physical damage from a Trap
-- Generic Damage Modification: +30% (means +30% damage taken)
-- Physical Damage Modification: -10 (means -10% damage taken)
-- Trap Damage Modification: -50 (means -50% damage taken)
-- **Total Damage Modification:** +30% -10% -50% = -30% → Final Damage: **70**
+> [!NOTE]
+> If the entity to be healed doesn't have the specified flat/percentage heal modification stats, they will be considered as having a value of 0 for those stats, and therefore no modification will be applied to the healing amount for that entity.
 
 ---
 
