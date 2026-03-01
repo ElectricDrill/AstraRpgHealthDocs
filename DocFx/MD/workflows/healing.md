@@ -26,7 +26,35 @@ Potete notare che vi sono due proprieta' da configurare per ogni `HealSource`:
 - **Percentage Heal Modification Stat**: la statistica da considerare in un'entita' per applicare modificatori di guarigione percentuali specifici per questa fonte di guarigione. Valori positivi di questa statistica aumentano la guarigione ricevuta da questa fonte, mentre valori negativi la diminuiscono. Se l'entità non ha questa statistica, verrà considerato un valore di 0 per questa statistica, e quindi non verrà applicato alcun modificatore di guarigione percentuale specifico per questa fonte di guarigione.
 
 ## Heal Modifiers
-I modificatori di guarigione sono modificatori che influenzano la quantità di guarigione ricevuta da un'entità. Essi possono influenzarla positivamente o negativamente, a seconda del valore. Ci sono due modificatori di guarigione: i modificatori di guarigione generici, che si applicano a tutte le fonti di guarigione, e i modificatori di guarigione specifici per la fonte di guarigione, che si applicano solo a una specifica fonte di guarigione.
+I modificatori di guarigione sono statistiche che influenzano la quantità di guarigione ricevuta da un'entità. Essi possono influenzarla positivamente o negativamente, a seconda del valore. Ci sono due modificatori di guarigione: i modificatori di guarigione generici, che si applicano a tutte le fonti di guarigione, e i modificatori di guarigione specifici per la fonte di guarigione, che si applicano solo a una specifica fonte di guarigione.
+Inoltre, i modificatori di guarigione possono essere flat o percentuali. I modificatori di guarigione flat influenzano la quantità di guarigione ricevuta aggiungendo o sottraendo una quantità fissa di HP alla guarigione, mentre i modificatori di guarigione percentuali influenzano la quantità di guarigione ricevuta moltiplicando la guarigione per un certo fattore. E' importante notare che i modificatori di guarigione flat vengono applicati prima dei modificatori di guarigione percentuali. Pertanto, le modifiche percentuali influenzeranno anche l'effetto dei modificatori di guarigione flat.  
+Per i modificatori percentuali, una statisica con valore 120 aumenta la guarigione del 120%, mentre una statistica con valore -25 diminuisce la guarigione del 25%.
+
+I modificatori di guarigione generici si sommano con quelli specifici della fonte di guarigione: i modificatori flat vengono sommati tra loro, così come quelli percentuali.
+
+Infine, se un'entità non possiede nel suo Stat Set la statistica associata a un modificatore di guarigione, verrà considerato un valore di 0 per quella statistica, e quindi non verrà applicato alcun modificatore di guarigione per quella statistica.
+
+Chiaramente, per fornire modificatori di guarigione alle entità, essendo loro delle statistiche, bisogna procedere attraverso le API degli Stat Modifiers, come descritto nella sezione [Understanding Stat Modifier Types](https://electricdrill.github.io/AstraRpgFrameworkDocs/MD/workflows.html#understanding-stat-modifier-types) della documentazione del framework di base.
+
+### Example of Heal Modifiers
+
+Supponiamo di voler calcolare la guarigione ricevuta da un'entità che usa una pozione curativa. Ecco i valori di esempio:
+
+**Definizione delle statistiche usate nell'esempio:**
+- **Potion Heal Flat Modifier**: Statistica specifica della fonte di guarigione (la pozione) che aggiunge o sottrae un valore fisso agli HP curati dalla pozione.
+- **Potion Heal Percentage Modifier**: Statistica specifica della fonte di guarigione (la pozione) che aumenta o diminuisce la guarigione della pozione in percentuale.
+- **Generic Flat Heal Modifier**: Statistica generica che si applica a tutte le fonti di guarigione, aggiungendo o sottraendo un valore fisso agli HP curati.
+- **Generic Percentage Heal Modifier**: Statistica generica che si applica a tutte le fonti di guarigione, aumentando o diminuendo la guarigione in percentuale.
+
+| Fase | Valore | Calcolo | Risultato |
+|------|--------|---------|-----------|
+| Guarigione base | 80 HP | - | 80 HP |
+| Modificatori flat | Potion Heal Flat Modifier: 50<br>Generic Flat Heal Modifier: -10 | 50 - 10 = 40 HP<br>80 + 40 | 120 HP |
+| Modificatori percentuali | Potion Heal Percentage Modifier: 20%<br>Generic Percentage Heal Modifier: 10% | 20% + 10% = 30%<br>120 × 1.3 | 156 HP |
+
+**Guarigione finale ricevuta: 156 HP**
+
+Questa tabella mostra chiaramente come vengono sommati i modificatori flat e percentuali, e come si arriva al risultato finale.
 
 
 
