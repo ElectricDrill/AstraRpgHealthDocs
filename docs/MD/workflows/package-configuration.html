@@ -215,46 +215,51 @@ In the <code>AstraRpgHealthConfig</code> asset, you can hover over each field to
 <blockquote>
 <p><strong>See Also:</strong> <a href="https://electricdrill.github.io/AstraRpgFrameworkDocs/MD/workflows.html#create-scaling-formulas">Astra RPG Framework Scaling documentation</a></p>
 </blockquote>
-<h4 id="generic-heal-amount-modifier-stat">Generic Heal Amount Modifier Stat</h4>
+<h4 id="generic-flat-heal-amount-modifier-stat">Generic Flat Heal Amount Modifier Stat</h4>
 <p><strong>Type:</strong> <code>Stat</code><br>
 <strong>Required:</strong> No<br>
-<strong>Description:</strong> The stat that modifies <strong>all</strong> healing received by an entity.</p>
+<strong>Description:</strong> The stat that modifies <strong>all</strong> healing received by an entity as a flat amount.</p>
 <p><strong>Stacking Behavior:</strong></p>
 <ul>
-<li>Combines <strong>additively</strong> with Source modifications</li>
+<li>Combines <strong>additively</strong> with source-based flat amount modifications</li>
+</ul>
+<p><strong>How it works:</strong></p>
+<ul>
+<li>The stat value represents a <strong>flat amount modifier</strong></li>
+<li>Positive values increase healing, negative values decrease it</li>
+<li>Example: A value of <code>25</code> means +25 extra HP healing received</li>
+</ul>
+<p><strong>Example:</strong></p>
+<ul>
+<li>Base Heal: 100 HP</li>
+<li>Generic Heal Amount Modifier: 25 (means +25 HP healing received)</li>
+<li>Final Heal: 100 + 25 = <strong>125 HP</strong></li>
+</ul>
+<h3 id="generic-percentage-heal-amount-modifier-stat">Generic Percentage Heal Amount Modifier Stat</h3>
+<p><strong>Type:</strong> <code>Stat</code>
+<strong>Required:</strong> No
+<strong>Description:</strong> The stat that modifies <strong>all</strong> healing received by an entity as a percentage. It is applied on top of the flat heal amount modifiers.</p>
+<p><strong>Stacking Behavior:</strong></p>
+<ul>
+<li>Combines <strong>additively</strong> with source-based percentage modifications</li>
 </ul>
 <p><strong>How it works:</strong></p>
 <ul>
 <li>The stat value represents a <strong>percentage modifier</strong></li>
 <li>Positive values increase healing, negative values decrease it</li>
-<li>Example: A value of <code>25</code> means +25% healing received</li>
+<li>Example: A value of <code>20</code> means +20% extra healing received</li>
 </ul>
 <p><strong>Example:</strong></p>
 <ul>
 <li>Base Heal: 100 HP</li>
-<li>Generic Heal Amount Modifier: 25 (means +25%)</li>
-<li>Final Heal: 100 * 1.25 = <strong>125 HP</strong></li>
+<li>Generic Flat Heal Amount Modifier: 20 (means +20 extra HP healing received)</li>
+<li>Generic Percentage Heal Amount Modifier: 20 (means +20% healing received)</li>
+<li>Final Heal: (100 + 20) * 1.20 = <strong>144 HP</strong></li>
 </ul>
-<hr>
-<h4 id="heal-source-modifications">Heal Source Modifications</h4>
-<p><strong>Type:</strong> <code>Dictionary&lt;HealSource, Stat&gt;</code><br>
-<strong>Required:</strong> No<br>
-<strong>Description:</strong> Maps each healing source (e.g., Skill, Trap, Environment) to a modifier stat.</p>
-<p><strong>Use cases:</strong></p>
-<ul>
-<li>Create specialized healing boosts or reductions (e.g., &quot;Resurrection healing is 50% more effective&quot;, &quot;Healing from potions is reduced by 20%&quot;)</li>
-</ul>
-<p><strong>Stacking Behavior:</strong></p>
-<ul>
-<li>Stats stack additively with Generic modifications</li>
-</ul>
-<p><strong>Example:</strong></p>
-<ul>
-<li>Incoming Heal: 100 from resurrection</li>
-<li>Generic Heal Amount Modifier: +30% (means +30% healing received)</li>
-<li>Resurrection Heal Amount Modifier: +20 (means +20% healing received)</li>
-<li><strong>Total Heal Modification:</strong> +30% +20% = +50% → Final Heal: <strong>150</strong></li>
-</ul>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>Remember to remove the default lower bound of 0 from your flat and percentage heal modifiers if you want to allow negative values for healing reduction effects. By default, the base framework sets a lower bound of 0 on all stats.</p>
+</div>
 <hr>
 <h3 id="damage">Damage</h3>
 <h4 id="default-damage-calculation-strategy">Default Damage Calculation Strategy</h4>
@@ -269,70 +274,46 @@ In the <code>AstraRpgHealthConfig</code> asset, you can hover over each field to
 <blockquote>
 <p><strong>See Also:</strong> Damage Calculation Pipeline documentation</p>
 </blockquote>
-<h4 id="generic-damage-modification-stat">Generic Damage Modification Stat</h4>
+<h4 id="generic-flat-damage-modification-stat">Generic Flat Damage Modification Stat</h4>
 <p><strong>Type:</strong> <code>Stat</code><br>
 <strong>Required:</strong> No<br>
-<strong>Description:</strong> A universal damage modifier that applies to <strong>all damage received</strong>, regardless of type or source.</p>
+<strong>Description:</strong> A universal flat damage modifier that applies to <strong>all damage received</strong>, regardless of type or source.</p>
 <p><strong>Usage:</strong></p>
 <ul>
-<li>Applied in the damage calculation pipeline if <code>ApplyDmgModifiersStep</code> is included in the used strategy</li>
+<li>Applied in the damage calculation pipeline if <code>ApplyFlatDmgModifiersStep</code> is included in the used strategy</li>
 </ul>
 <p><strong>Stacking Behavior:</strong></p>
 <ul>
-<li>Combines <strong>additively</strong> with Type and Source modifications</li>
+<li>Combines <strong>additively</strong> with Type and Source <strong>flat</strong> modifications</li>
 </ul>
 <p><strong>Example:</strong></p>
 <ul>
-<li>Incoming Damage: 100</li>
-<li>Generic Damage Modification: -20 (means -20% damage taken)</li>
-<li><strong>Damage Reduction:</strong> -20% → Final Damage: <strong>80</strong></li>
+<li>Incoming Damage: 150</li>
+<li>Generic Flat Damage Modification: -20 (means -20 HP of damage taken)</li>
+<li><strong>Damage Reduction:</strong> -20 → Final Damage: <strong>130</strong></li>
 </ul>
-<h4 id="damage-type-modifications">Damage Type Modifications</h4>
-<p><strong>Type:</strong> <code>Dictionary&lt;DamageType, Stat&gt;</code><br>
-<strong>Required:</strong> No<br>
-<strong>Description:</strong> Maps each damage type (e.g., Fire, Ice, Physical) to a modifier stat.</p>
+<h4 id="generic-percentage-damage-modification-stat">Generic Percentage Damage Modification Stat</h4>
+<p><strong>Type:</strong> <code>Stat</code>
+<strong>Required:</strong> No
+<strong>Description:</strong> A universal percentage damage modifier that applies to <strong>all damage received</strong>, regardless of type or source.</p>
 <p><strong>Usage:</strong></p>
 <ul>
-<li>Applied in the damage calculation pipeline if <code>ApplyDmgModifiersStep</code> is included in the used strategy</li>
-</ul>
-<p><strong>Use cases:</strong></p>
-<ul>
-<li>Configure different resistances/vulnerabilities per damage type
-<strong>Stacking Behavior:</strong></li>
-<li>Stats stack additively with Generic and Source modifications</li>
-</ul>
-<p><strong>Example:</strong></p>
-<ul>
-<li>Incoming Damage: 100 Fire damage</li>
-<li>Generic Damage Modification: +10 (means +10% damage taken)</li>
-<li>Fire Damage Modification: -30 (means -30% damage taken)</li>
-<li><strong>Total Damage Modification:</strong> +10% - 20% = -10% → Final Damage: <strong>90</strong></li>
-</ul>
-<h4 id="damage-source-modifications">Damage Source Modifications</h4>
-<p><strong>Type:</strong> <code>Dictionary&lt;DamageSource, Stat&gt;</code><br>
-<strong>Required:</strong> No<br>
-<strong>Description:</strong> Maps each damage source (e.g., Skill, Trap, Environment) to a modifier stat.</p>
-<p><strong>Usage:</strong></p>
-<ul>
-<li>Applied in the damage calculation pipeline if <code>ApplyDmgModifiersStep</code> is included in the used strategy</li>
-</ul>
-<p><strong>Use cases:</strong></p>
-<ul>
-<li>Create specialized defenses (e.g., &quot;Traps deal 50% less damage&quot;)</li>
-<li>For keeping track of damage origins for a combat log or analytics</li>
+<li>Applied in the damage calculation pipeline if <code>ApplyPercentageDmgModifiersStep</code> is included in the used strategy</li>
 </ul>
 <p><strong>Stacking Behavior:</strong></p>
 <ul>
-<li>Stats stack additively with Generic and Type modifications</li>
+<li>Combines <strong>additively</strong> with Type and Source <strong>percentage</strong> modifications</li>
 </ul>
 <p><strong>Example:</strong></p>
 <ul>
-<li>Incoming Damage: 100 Physical damage from a Trap</li>
-<li>Generic Damage Modification: +30% (means +30% damage taken)</li>
-<li>Physical Damage Modification: -10 (means -10% damage taken)</li>
-<li>Trap Damage Modification: -50 (means -50% damage taken)</li>
-<li><strong>Total Damage Modification:</strong> +30% -10% -50% = -30% → Final Damage: <strong>70</strong></li>
+<li>Incoming Damage: 150</li>
+<li>Generic Percentage Damage Modification: -20 (means -20% damage taken)</li>
+<li><strong>Damage Reduction:</strong> -20% → Final Damage: 150 * 0.80 = <strong>120</strong></li>
 </ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If the entity to be healed doesn't have the specified flat/percentage heal modification stats, they will be considered as having a value of 0 for those stats, and therefore no modification will be applied to the healing amount for that entity.</p>
+</div>
 <hr>
 <h3 id="health-regeneration">Health Regeneration</h3>
 <h4 id="health-regeneration-source">Health Regeneration Source</h4>

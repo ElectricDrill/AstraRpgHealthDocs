@@ -14,53 +14,53 @@ We will first introduce some concepts that are common to all the four healing me
 ## Heal Source
 *Relative path:* `Heal Source`  
 
-Una `HealSource` rappresenta la fonte di guarigione. Alcuni esempi di `HealSource` potrebbero essere: pozioni curative, abilita', rigenerazione passiva, lifesteal, sistema (ad esempio, il giocatore viene curato alla vita massima durante il tutorial da un macchinario di supporto), e cosi' via. La `HealSource` è un concetto importante in quanto permette di distinguere tra le diverse fonti di guarigione, e quindi di applicare modificatori di guarigione specifici per ogni fonte di guarigione, oltre ai modificatori di guarigione generici che si applicano a tutte le fonti di guarigione.
-Inoltre, le `HealSource` sono importanti anche perche' vengono comunicate nei contesti di guarigione, e quindi nei listener degli eventi di guarigione, permettendo a questi ultimi di reagire in modo specifico in base alla fonte di guarigione che ha scatenato l'evento. Grazie a questo si potrebbe, ad esempio, implementare un buff che aumenta la guarigione ricevuta dalle pozioni curative.
-Infine, le `HealSource` aprono la strada all'implementazione di un combat log che traccia non solo la quantità di guarigione ricevuta, ma anche la fonte di guarigione, permettendo al giocatore di avere una comprensione più profonda di cosa lo ha curato piu' efficacemente in una situazione di gioco specifica.
+A `HealSource` represents the source of healing. Some examples of `HealSource` could be: healing potions, skills, passive regeneration, lifesteal, system (e.g., the player is healed to max health during the tutorial by a support machine), and so on. The `HealSource` is an important concept as it allows distinguishing between different sources of healing, and thus applying specific healing modifiers for each healing source, in addition to the generic healing modifiers that apply to all healing sources.
+Furthermore, `HealSources` are important because they are communicated in healing contexts, and therefore in the listeners of healing events, allowing the latter to react specifically based on the healing source that triggered the event. Thanks to this, you could, for example, implement a buff that increases the healing received from healing potions.
+Finally, `HealSources` pave the way for the implementation of a combat log that tracks not only the amount of healing received but also the healing source, allowing the player to have a deeper understanding of what healed them most effectively in a specific game situation.
 
-Una istanza di `HealSource` nell'inspector appare cosi':  
+An instance of `HealSource` in the inspector looks like this:  
 ![](../../images\AstraRPG\workflows\healing\heal-source-resurrection.png)
 
-Potete notare che vi sono due proprieta' da configurare per ogni `HealSource`:
-- **Flat Heal Modification Stat**: la statistica da considerare in un'entita' per applicare modificatori di guarigione flat specifici per questa fonte di guarigione. Valori positivi di questa statistica aumentano la guarigione ricevuta da questa fonte, mentre valori negativi la diminuiscono. Se l'entità non ha questa statistica, verrà considerato un valore di 0 per questa statistica, e quindi non verrà applicato alcun modificatore di guarigione flat specifico per questa fonte di guarigione.
-- **Percentage Heal Modification Stat**: la statistica da considerare in un'entita' per applicare modificatori di guarigione percentuali specifici per questa fonte di guarigione. Valori positivi di questa statistica aumentano la guarigione ricevuta da questa fonte, mentre valori negativi la diminuiscono. Se l'entità non ha questa statistica, verrà considerato un valore di 0 per questa statistica, e quindi non verrà applicato alcun modificatore di guarigione percentuale specifico per questa fonte di guarigione.
+You can notice that there are two properties to configure for each `HealSource`:
+- **Flat Heal Modification Stat**: the statistic to consider in an entity to apply flat, specific healing modifiers for this healing source. Positive values of this statistic increase the healing received from this source, while negative values decrease it. If the entity does not have this statistic, a value of 0 will be considered for this statistic, and therefore no specific flat healing modifier will be applied for this healing source.
+- **Percentage Heal Modification Stat**: the statistic to consider in an entity to apply percentage, specific healing modifiers for this healing source. Positive values of this statistic increase the healing received from this source, while negative values decrease it. If the entity does not have this statistic, a value of 0 will be considered for this statistic, and therefore no specific percentage healing modifier will be applied for this healing source.
 
 ## Heal Modifiers
-I modificatori di guarigione sono statistiche che influenzano la quantità di guarigione ricevuta da un'entità. Essi possono influenzarla positivamente o negativamente, a seconda del valore. Ci sono due modificatori di guarigione: i modificatori di guarigione generici, che si applicano a tutte le fonti di guarigione, e i modificatori di guarigione specifici per la fonte di guarigione, che si applicano solo a una specifica fonte di guarigione.
-Inoltre, i modificatori di guarigione possono essere flat o percentuali. I modificatori di guarigione flat influenzano la quantità di guarigione ricevuta aggiungendo o sottraendo una quantità fissa di HP alla guarigione, mentre i modificatori di guarigione percentuali influenzano la quantità di guarigione ricevuta moltiplicando la guarigione per un certo fattore. E' importante notare che i modificatori di guarigione flat vengono applicati prima dei modificatori di guarigione percentuali. Pertanto, le modifiche percentuali influenzeranno anche l'effetto dei modificatori di guarigione flat.  
-Per i modificatori percentuali, una statisica con valore 120 aumenta la guarigione del 120%, mentre una statistica con valore -25 diminuisce la guarigione del 25%.
+Heal modifiers are statistics that influence the amount of healing received by an entity. They can influence it positively or negatively, depending on the value. There are two types of healing modifiers: generic heal modifiers, which apply to all healing sources, and source-specific heal modifiers, which apply only to a specific healing source.
+Furthermore, healing modifiers can be flat or percentage-based. Flat healing modifiers influence the amount of healing received by adding or subtracting a fixed amount of HP to the healing, while percentage healing modifiers influence the amount of healing received by multiplying the healing by a certain factor. It is important to note that flat healing modifiers are applied before percentage healing modifiers. Therefore, percentage modifications will also affect the impact of flat healing modifiers.  
+For percentage modifiers, a statistic with a value of 120 increases the healing by 120%, while a statistic with a value of -25 decreases the healing by 25%.
 
-I modificatori di guarigione generici si sommano con quelli specifici della fonte di guarigione: i modificatori flat vengono sommati tra loro, così come quelli percentuali.
+Generic healing modifiers are summed with the source-specific ones: flat modifiers are added together, as are the percentage ones.
 
-Infine, se un'entità non possiede nel suo Stat Set la statistica associata a un modificatore di guarigione, verrà considerato un valore di 0 per quella statistica, e quindi non verrà applicato alcun modificatore di guarigione per quella statistica.
+Finally, if an entity does not possess the statistic associated with a healing modifier in its Stat Set, a value of 0 will be considered for that statistic, and therefore no healing modifier will be applied for that statistic.
 
-Chiaramente, per fornire modificatori di guarigione alle entità, essendo loro delle statistiche, bisogna procedere attraverso le API degli Stat Modifiers, come descritto nella sezione [Understanding Stat Modifier Types](https://electricdrill.github.io/AstraRpgFrameworkDocs/MD/workflows.html#understanding-stat-modifier-types) della documentazione del framework di base.
+Clearly, to provide healing modifiers to entities, since they are statistics, you must proceed through the Stat Modifiers APIs, as described in the [Understanding Stat Modifier Types](https://electricdrill.github.io/AstraRpgFrameworkDocs/MD/workflows.html#understanding-stat-modifier-types) section of the base framework documentation.
 
 ### Example of Heal Modifiers
 
-Supponiamo di voler calcolare la guarigione ricevuta da un'entità che usa una pozione curativa. Ecco i valori di esempio:
+Suppose we want to calculate the healing received by an entity using a healing potion. Here are the example values:
 
-**Definizione delle statistiche usate nell'esempio:**
-- **Potion Heal Flat Modifier**: Statistica specifica della fonte di guarigione (la pozione) che aggiunge o sottrae un valore fisso agli HP curati dalla pozione.
-- **Potion Heal Percentage Modifier**: Statistica specifica della fonte di guarigione (la pozione) che aumenta o diminuisce la guarigione della pozione in percentuale.
-- **Generic Flat Heal Modifier**: Statistica generica che si applica a tutte le fonti di guarigione, aggiungendo o sottraendo un valore fisso agli HP curati.
-- **Generic Percentage Heal Modifier**: Statistica generica che si applica a tutte le fonti di guarigione, aumentando o diminuendo la guarigione in percentuale.
+**Definition of the statistics used in the example:**
+- **Potion Heal Flat Modifier**: Source-specific statistic (the potion) that adds or subtracts a fixed value to the HP healed by the potion.
+- **Potion Heal Percentage Modifier**: Source-specific statistic (the potion) that increases or decreases the potion's healing by a percentage.
+- **Generic Flat Heal Modifier**: Generic statistic that applies to all healing sources, adding or subtracting a fixed value to the HP healed.
+- **Generic Percentage Heal Modifier**: Generic statistic that applies to all healing sources, increasing or decreasing the healing by a percentage.
 
-| Fase | Valore | Calcolo | Risultato |
+| Phase | Value | Calculation | Result |
 |------|--------|---------|-----------|
-| Guarigione base | 80 HP | - | 80 HP |
-| Modificatori flat | Potion Heal Flat Modifier: 50<br>Generic Flat Heal Modifier: -10 | 50 - 10 = 40 HP<br>80 + 40 | 120 HP |
-| Modificatori percentuali | Potion Heal Percentage Modifier: 20%<br>Generic Percentage Heal Modifier: 10% | 20% + 10% = 30%<br>120 × 1.3 | 156 HP |
+| Base healing | 80 HP | - | 80 HP |
+| Flat modifiers | Potion Heal Flat Modifier: 50<br>Generic Flat Heal Modifier: -10 | 50 - 10 = 40 HP<br>80 + 40 | 120 HP |
+| Percentage modifiers | Potion Heal Percentage Modifier: 20%<br>Generic Percentage Heal Modifier: 10% | 20% + 10% = 30%<br>120 × 1.3 | 156 HP |
 
-**Guarigione finale ricevuta: 156 HP**
+**Final healing received: 156 HP**
 
-Questa tabella mostra chiaramente come vengono sommati i modificatori flat e percentuali, e come si arriva al risultato finale.
+This table clearly shows how flat and percentage modifiers are summed, and how the final result is reached.
 
 
 
 ## Direct Healing
 The `Heal` method is the most straightforward way to heal an entity. It takes a `PreHealContext` as input, which contains all relevant information about the healing you intend to apply and operates as follows:
-1. It checks if the entity is dead. If the entity is dead, will rais an exception, as you cannot heal a dead entity. If you want to resurrect a dead entity, check the [Resurrection](resurrection.md) section.
+1. It checks if the entity is dead. If the entity is dead, will raise an exception, as you cannot heal a dead entity. If you want to resurrect a dead entity, check the [Resurrection](resurrection.md) section.
 2. It checks if the healing to be applied is marked as a critical hit and, if so it applies the critical multiplier to the healing amount.
 3. It retrieves and applies the generic and `HealSource`-specific **flat** heal modifiers for the entity.
 4. It retrieves and applies the generic and `HealSource`-specific **percentage** heal modifiers for the entity.
@@ -125,41 +125,41 @@ Recommended pattern when healing programmatically:
 The `PreHealContext` fluent builder is helpful because it guides you through required inputs first — the IDE will typically present required builder steps one at a time. When the builder presents multiple fields together, those fields are optional and can be omitted.
 
 ## Health Regeneration
-La rigenerazione della vita è un meccanismo che permette a un'entità di rigenerare la propria vita passivamente nel tempo. Nei giochi in generale, questa meccanica e' implementata attraverso tick discreti di rigenerazione. I tick, in base al gioco, possono essere scanditi dal tempo che passa, o da certi eventi, come il finire di un turno in un gioco a turni.  
-Questo package supporta sia la rigenerazione passiva che quella manuale.
+Health regeneration is a mechanism that allows an entity to passively regenerate its health over time. In games generally, this mechanic is implemented through discrete regeneration ticks. Ticks, depending on the game, can be marked by the passage of time, or by certain events, like the end of a turn in a turn-based game.  
+This package supports both passive and manual regeneration.
 
 ### Passive Health Regeneration
-La rigenerazione passiva, per funzionare, necessita di essere configurata attraverso la sezione [Health Regeneration](package-configuration.md#health-regeneration) della configurazione del package. Li' vanno configurati i seguenti parametri:
-- **Health Regeneration Source**: la `HealSource` da associare alla rigenerazione (passiva e manuale). Il package userà questa `HealSource` per creare i contesti di guarigione da passare al metodo `Heal` quando è il momento di rigenerare la vita.
-- **Passive Health Regeneration Stat (HP/10s)**: la quantità di HP che l'entità rigenera ogni 10 secondi. Il package si occuperà di scalare questa quantità in base al tempo che passa tra un tick e l'altro, in modo da garantire una rigenerazione fluida e coerente.
-- **Passive Health Regeneration Interval**: l'intervallo di tempo, in secondi, tra un tick di rigenerazione e l'altro.
+Passive regeneration, to work, needs to be configured through the [Health Regeneration](package-configuration.md#health-regeneration) section of the package configuration. The following parameters should be configured there:
+- **Health Regeneration Source**: the `HealSource` to associate with regeneration (passive and manual). The package will use this `HealSource` to create the healing contexts to pass to the `Heal` method when it's time to regenerate health.
+- **Passive Health Regeneration Stat (HP/10s)**: the amount of HP the entity regenerates every 10 seconds. The package will take care of scaling this amount based on the time that passes between consecutive ticks, to ensure smooth and consistent regeneration.
+- **Passive Health Regeneration Interval**: the time interval, in seconds, between one regeneration tick and the next.
 
-Inoltre, e' importante ricordarsi di attivare nell'`EntityHealth` dell'entita' la rigenerazione passiva.
+Additionally, it is important to remember to enable passive regeneration on the entity's `EntityHealth`.
 
-Per fare un esempio, se vogliamo che un'entità rigeneri 5HP ogni 0.5 secondi, dobbiamo configurare il parametro "Passive Health Regeneration Interval" a 0.5 e l'entita' deve avere la statistica associata a "Passive Health Regeneration Stat (HP/10s)" con un valore di 100 (5 HP ogni 0.5 secondi corrispondono a 10HP al secondo, che corrispondono a **100 HP ogni 10 secondi**).
+To give an example, if we want an entity to regenerate 5 HP every 0.5 seconds, we must configure the "Passive Health Regeneration Interval" parameter to 0.5, and the entity must have the statistic associated with "Passive Health Regeneration Stat (HP/10s)" set to a value of 100 (5 HP every 0.5 seconds correspond to 10 HP per second, which correspond to **100 HP every 10 seconds**).
 
 #### Performance Considerations
-Prima di fare alcuna considerazione sulle performance, ci tengo a ricordare che l'ottimizzazione prematura è la radice di tutti i mali. Prima di intraprendere azioni per ottimizzare le performance, andrebbe identificato un reale problema di performance attraverso il profiling.
-Detto questo, dal momento che di default la rigenerazione passiva innalza gli Entity Healed Events (global ed extra), è importante considerare l'impatto sulle performance qualora si abbiano un gran numero di entità che rigenerano vita contemporaneamente con un intervallo di rigenerazione molto breve. Se ci dovessero essere anche svariati listener sottoscritti al global Entity Healed Event, si otterrebbero svariate chiamate di funzione ad ogni tick di rigenerazione X ogni entita'.
-Se questo dovesse diventare un problema per le performance del vostro gioco, avete a disposizione diverse leve per ottimizzare le performance:
-- **Aumentare l'intervallo di rigenerazione**: aumentando l'intervallo di rigenerazione, si riduce il numero di tick di rigenerazione per unità di tempo, e quindi il numero di Entity Healed Events innalzati.
-- **Disabilitare l'innalzamento di Entity Healed Events per la rigenerazione passiva**: se non avete bisogno di reagire alla rigenerazione passiva attraverso i listener degli Entity Healed Events, potete disabilitare l'innalzamento di questi eventi per la rigenerazione passiva attraverso la configurazione. In questo modo, anche se avrete un gran numero di entità che rigenerano vita contemporaneamente con un intervallo di rigenerazione molto breve, non avrete un impatto significativo sulle performance dovuto all'innalzamento di eventi e alle chiamate di funzione associate.
-- **Utilizzare gli Extra Entity Healed Event**: se avete bisogno di reagiere solo alla rigenerazione passiva di una o alcune specifiche entita', potete configurare queste entità per innalzare un Extra Entity Healed Event specifico per la rigenerazione passiva, e sottoscrivere i vostri listener a questo evento invece che al global Entity Healed Event. In questo modo, le uniche chiamate di funzione che avrete ad ogni tick, saranno quelle dei listener sottoscritti all'Extra Entity Healed Event specifico delle entita' configurate per innalzare questo evento, riducendo cosi' l'impatto sulle performance.
+Before making any considerations about performance, I want to remind you that premature optimization is the root of all evil. Before taking actions to optimize performance, a real performance problem should be identified through profiling.
+That said, since by default passive regeneration raises Entity Healed Events (global and extra), it's important to consider the performance impact if you have a large number of entities regenerating health simultaneously with a very short regeneration interval. If there were also several listeners subscribed to the global Entity Healed Event, you would get several function calls at each regeneration tick X each entity.
+If this becomes a performance issue for your game, you have several levers available to optimize performance:
+- **Increase the regeneration interval**: by increasing the regeneration interval, the number of regeneration ticks per time unit is reduced, and therefore the number of Entity Healed Events raised.
+- **Disable the raising of Entity Healed Events for passive regeneration**: if you don't need to react to passive regeneration through the listeners of Entity Healed Events, you can disable the raising of these events for passive regeneration through the configuration. This way, even if you have a large number of entities regenerating health simultaneously with a very short regeneration interval, you won't have a significant performance impact due to raised events and associated function calls.
+- **Use Extra Entity Healed Events**: if you only need to react to the passive regeneration of one or some specific entities, you can configure these entities to raise an Extra Entity Healed Event specifically for passive regeneration, and subscribe your listeners to this event instead of the global Entity Healed Event. This way, the only function calls you'll have at each tick will be those of the listeners subscribed to the specific Extra Entity Healed Event of the entities configured to raise it, thus reducing the performance impact.
 
-Ci tengo a ribadire che, a meno che non abbiate identificato un reale problema di performance attraverso il profiling, non è necessario intraprendere nessuna di queste azioni per ottimizzare le performance. Probabilmente non avrete alcun problema di performance anche con un migliaio di entita' e decine di listener sottoscritti al global Entity Healed Event.
+I would like to reiterate that, unless you have identified a real performance problem through profiling, it is not necessary to take any of these actions to optimize performance. You probably won't have any performance issues even with a thousand entities and dozens of listeners subscribed to the global Entity Healed Event.
 
 ### Manual Health Regeneration
-La rigenerazione manuale è invece triggerata manualmente attraverso il metodo [`ManualHealthRegenerationTick()`](xref:ElectricDrill.AstraRpgHealth.EntityHealth.ManualHealthRegenerationTick) delle API.
+Manual regeneration is instead triggered manually through the [`ManualHealthRegenerationTick()`](xref:ElectricDrill.AstraRpgHealth.EntityHealth.ManualHealthRegenerationTick) API method.
 
-Questo metodo, quando chiamato, fa scattare un tick di rigenerazione per l'entità. Attenzione che la statistica considerata per il calcolo della vita NON coincide con quella configurata per la rigenerazione passiva, ma è una statistica a parte, sempre configurata attraverso la configurazione del package, per la precisione: [Manual Health Regeneration Stat](package-configuration.md#manual-health-regeneration-stat).
-Il valore di questa statistica determina la quantità di HP rigenerati ad ogni tick di rigenerazione manuale. Ovviamente, i modificatori di guarigione, sia generici che specifici per la heal source configurata per la rigenerazione, influenzeranno anche la rigenerazione manuale, proprio come per la rigenerazione passiva.
+This method, when called, triggers a regeneration tick for the entity. Note that the statistic considered for the health calculation does NOT coincide with the one configured for passive regeneration, but is a separate statistic, also set via the package configuration, specifically: [Manual Health Regeneration Stat](package-configuration.md#manual-health-regeneration-stat).
+The value of this statistic determines the amount of HP regenerated at each manual regeneration tick. Obviously, healing modifiers, both generic and those specific to the heal source configured for regeneration, will also affect manual regeneration, just like passive regeneration.
 
 ### Passive vs Manual Health Regeneration: Which One Should I Use?
-Se avete dubbi su quale tipo di rigenerazione utilizzare, ecco alcune linee guida che potrebbero aiutarvi nella scelta:
-- **Real Time**: se il vostro gioco è in tempo reale, la rigenerazione passiva è generalmente più adatta, in quanto si integra meglio con il flusso di gioco continuo.
-- **Turn-Based**: se il vostro gioco è a turni, la rigenerazione manuale è generalmente più adatta, in quanto potete farla scattare alla fine di ogni turno, garantendo un controllo più preciso sul flusso di gioco.
-- **Regeneration in the base**: se il vostro gioco prevede una meccanica di rigenerazione che avviene solo quando il personaggio è in un luogo specifico (es. una base), potete utilizzare la rigenerazione passiva, ma attivarla solo quando il personaggio si trova in quel luogo specifico, e disattivarla quando esce da quel luogo. Se invece vi interessa averla attiva anche quando il personaggio è fuori dalla base, ma volete comunque che sia più forte quando è in base, potete conferire un Heal Modifier specifico per la Heal Source della rigenerazione quando il personaggio è in base, in modo da aumentare la quantità di HP rigenerati quando il personaggio si trova in base. All'uscita dalla base, potete rimuovere questo Heal Modifier, in modo da ridurre la quantità di HP rigenerati quando il personaggio è fuori dalla base.
-- **Regeneration out of combat**: se il vostro gioco prevede una meccanica di rigenerazione che avviene solo quando il personaggio è fuori dal combattimento, potete utilizzare la rigenerazione passiva, ma attivarla solo quando il personaggio è fuori dal combattimento, e disattivarla quando entra in combattimento. Se invece vi interessa averla attiva anche durante il combattimento, ma volete comunque che sia più forte quando il personaggio è fuori dal combattimento, potete, come per la rigenerazione in base, conferire un Heal Modifier specifico per la Heal Source della rigenerazione quando il personaggio è fuori dal combattimento.
-- **Regeneration as a buff**: se l'entita' riceve un buff che fornisce rigenerazione HP secondo un timing particolare, potete utilizzare la rigenerazione manuale, in modo da far scattare i tick di rigenerazione in corrispondenza del timing particolare previsto dal buff.
+If you have doubts about which type of regeneration to use, here are some guidelines that might help you choose:
+- **Real Time**: if your game is in real-time, passive regeneration is generally more suitable, as it integrates better with continuous gameplay flow.
+- **Turn-Based**: if your game is turn-based, manual regeneration is generally more suitable, as you can trigger it at the end of each turn, ensuring more precise control over the game flow.
+- **Regeneration in the base**: if your game involves a regeneration mechanic that only happens when the character is in a specific location (e.g., a base), you can use passive regeneration, but activate it only when the character is in that location, and deactivate it when they leave. If, on the other hand, you want it to be active even when the character is outside the base, but still want it to be stronger when in the base, you can assign a specific Heal Modifier for the regeneration's Heal Source when the character is in the base, to increase the amount of HP regenerated when the character is at the base. Upon leaving the base, you can remove this Heal Modifier to reduce the amount of HP regenerated.
+- **Regeneration out of combat**: if your game features regeneration that only happens when the character is out of combat, you can use passive regeneration, turning it on when out of combat, and turning it off when entering combat. Or, if you want it to be active during combat as well, but stronger out of combat, you can (as with base regeneration) add a specific Heal Modifier for the regeneration's Heal Source when the character is out of combat.
+- **Regeneration as a buff**: if the entity receives a buff providing HP regeneration according to a specific timing, you can use manual regeneration to trigger regeneration ticks perfectly aligned with the timing intended by the buff.
 
-Chiaramente queste sono solo delle linee guida e non delle regole rigide. Per ogni problema ci sono sempre svariate soluzioni possibili, e la scelta della soluzione migliore dipende sempre dal contesto specifico del vostro gioco e dalle meccaniche che volete implementare. Quindi, se ritenete che una soluzione diversa da quelle suggerite sia più adatta al vostro gioco, sentitevi liberi di utilizzarla.
+Clearly, these are just guidelines, not strict rules. For every problem, there are always several possible solutions, and choosing the best one always depends on the specific context of your game and the mechanics you want to implement. So, if you feel a solution different from the suggested ones fits your game better, feel free to use it.

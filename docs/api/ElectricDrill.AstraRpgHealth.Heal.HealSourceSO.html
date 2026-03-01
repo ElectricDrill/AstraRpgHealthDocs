@@ -89,7 +89,7 @@
 
 
   <h1 id="ElectricDrill_AstraRpgHealth_Heal_HealSourceSO" data-uid="ElectricDrill.AstraRpgHealth.Heal.HealSourceSO" class="text-break">
-Class HealSourceSO  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Heal/HealSourceSO.cs/#L8"><i class="bi bi-code-slash"></i></a>
+Class HealSourceSO  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Heal/HealSourceSO.cs/#L9"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -103,8 +103,7 @@ Create instances via Assets -&gt; Create -&gt; Astra RPG Health / Heal Source.</
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[CreateAssetMenu(fileName = &quot;New Heal Source&quot;, menuName = &quot;Astra RPG Health/Heal Source&quot;)]
-public class HealSourceSO : ScriptableObject</code></pre>
+    <pre><code class="lang-csharp hljs">public class HealSourceSO : ScriptableObject</code></pre>
   </div>
 
 
@@ -128,6 +127,79 @@ public class HealSourceSO : ScriptableObject</code></pre>
 
 
 
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="ElectricDrill_AstraRpgHealth_Heal_HealSourceSO_FlatHealModificationStat_" data-uid="ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.FlatHealModificationStat*"></a>
+
+  <h3 id="ElectricDrill_AstraRpgHealth_Heal_HealSourceSO_FlatHealModificationStat" data-uid="ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.FlatHealModificationStat">
+  FlatHealModificationStat
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Heal/HealSourceSO.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The stat representing the flat heal modifier for this source.
+This stat serves as an accumulator for multiple flat modifiers (positive or negative)
+that affect healing from this source linearly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Stat FlatHealModificationStat { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Stat</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ElectricDrill_AstraRpgHealth_Heal_HealSourceSO_PercentageHealModificationStat_" data-uid="ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.PercentageHealModificationStat*"></a>
+
+  <h3 id="ElectricDrill_AstraRpgHealth_Heal_HealSourceSO_PercentageHealModificationStat" data-uid="ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.PercentageHealModificationStat">
+  PercentageHealModificationStat
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Heal/HealSourceSO.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The stat representing the percentage heal modifier for this source.
+This stat serves as an accumulator for multiple percentage modifiers (positive or negative)
+that affect healing from this source.
+Percentage heal modifiers are applied after flat modifiers.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Stat PercentageHealModificationStat { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">Stat</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <h2 class="section" id="methods">Methods
 </h2>
 
@@ -136,7 +208,7 @@ public class HealSourceSO : ScriptableObject</code></pre>
 
   <h3 id="ElectricDrill_AstraRpgHealth_Heal_HealSourceSO_ToString" data-uid="ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.ToString">
   ToString()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Heal/HealSourceSO.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Heal/HealSourceSO.cs/#L38"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Returns the asset name of this heal source.</p>

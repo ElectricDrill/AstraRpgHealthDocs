@@ -342,19 +342,19 @@ references:
   isSpec: "True"
   fullName: ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.GenericFlatDamageModificationStat
   nameWithType: AstraRpgHealthConfigSO.GenericFlatDamageModificationStat
-- uid: ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.GenericHealAmountModifierStat
-  name: GenericHealAmountModifierStat
-  href: api/ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.html#ElectricDrill_AstraRpgHealth_Config_AstraRpgHealthConfigSO_GenericHealAmountModifierStat
-  commentId: P:ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.GenericHealAmountModifierStat
-  fullName: ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.GenericHealAmountModifierStat
-  nameWithType: AstraRpgHealthConfigSO.GenericHealAmountModifierStat
-- uid: ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.GenericHealAmountModifierStat*
-  name: GenericHealAmountModifierStat
-  href: api/ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.html#ElectricDrill_AstraRpgHealth_Config_AstraRpgHealthConfigSO_GenericHealAmountModifierStat_
-  commentId: Overload:ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.GenericHealAmountModifierStat
+- uid: ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.GenericFlatHealAmountModifierStat
+  name: GenericFlatHealAmountModifierStat
+  href: api/ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.html#ElectricDrill_AstraRpgHealth_Config_AstraRpgHealthConfigSO_GenericFlatHealAmountModifierStat
+  commentId: P:ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.GenericFlatHealAmountModifierStat
+  fullName: ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.GenericFlatHealAmountModifierStat
+  nameWithType: AstraRpgHealthConfigSO.GenericFlatHealAmountModifierStat
+- uid: ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.GenericFlatHealAmountModifierStat*
+  name: GenericFlatHealAmountModifierStat
+  href: api/ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.html#ElectricDrill_AstraRpgHealth_Config_AstraRpgHealthConfigSO_GenericFlatHealAmountModifierStat_
+  commentId: Overload:ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.GenericFlatHealAmountModifierStat
   isSpec: "True"
-  fullName: ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.GenericHealAmountModifierStat
-  nameWithType: AstraRpgHealthConfigSO.GenericHealAmountModifierStat
+  fullName: ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.GenericFlatHealAmountModifierStat
+  nameWithType: AstraRpgHealthConfigSO.GenericFlatHealAmountModifierStat
 - uid: ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.GenericPercentageDamageModificationStat
   name: GenericPercentageDamageModificationStat
   href: api/ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.html#ElectricDrill_AstraRpgHealth_Config_AstraRpgHealthConfigSO_GenericPercentageDamageModificationStat
@@ -368,19 +368,19 @@ references:
   isSpec: "True"
   fullName: ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.GenericPercentageDamageModificationStat
   nameWithType: AstraRpgHealthConfigSO.GenericPercentageDamageModificationStat
-- uid: ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.HealSourceModifications
-  name: HealSourceModifications
-  href: api/ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.html#ElectricDrill_AstraRpgHealth_Config_AstraRpgHealthConfigSO_HealSourceModifications
-  commentId: P:ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.HealSourceModifications
-  fullName: ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.HealSourceModifications
-  nameWithType: AstraRpgHealthConfigSO.HealSourceModifications
-- uid: ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.HealSourceModifications*
-  name: HealSourceModifications
-  href: api/ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.html#ElectricDrill_AstraRpgHealth_Config_AstraRpgHealthConfigSO_HealSourceModifications_
-  commentId: Overload:ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.HealSourceModifications
+- uid: ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.GenericPercentageHealAmountModifierStat
+  name: GenericPercentageHealAmountModifierStat
+  href: api/ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.html#ElectricDrill_AstraRpgHealth_Config_AstraRpgHealthConfigSO_GenericPercentageHealAmountModifierStat
+  commentId: P:ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.GenericPercentageHealAmountModifierStat
+  fullName: ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.GenericPercentageHealAmountModifierStat
+  nameWithType: AstraRpgHealthConfigSO.GenericPercentageHealAmountModifierStat
+- uid: ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.GenericPercentageHealAmountModifierStat*
+  name: GenericPercentageHealAmountModifierStat
+  href: api/ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.html#ElectricDrill_AstraRpgHealth_Config_AstraRpgHealthConfigSO_GenericPercentageHealAmountModifierStat_
+  commentId: Overload:ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.GenericPercentageHealAmountModifierStat
   isSpec: "True"
-  fullName: ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.HealSourceModifications
-  nameWithType: AstraRpgHealthConfigSO.HealSourceModifications
+  fullName: ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.GenericPercentageHealAmountModifierStat
+  nameWithType: AstraRpgHealthConfigSO.GenericPercentageHealAmountModifierStat
 - uid: ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.HealthAttributesScaling
   name: HealthAttributesScaling
   href: api/ElectricDrill.AstraRpgHealth.Config.AstraRpgHealthConfigSO.html#ElectricDrill_AstraRpgHealth_Config_AstraRpgHealthConfigSO_HealthAttributesScaling
@@ -638,19 +638,19 @@ references:
   isSpec: "True"
   fullName: ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericFlatDamageModificationStat
   nameWithType: IAstraRpgHealthConfig.GenericFlatDamageModificationStat
-- uid: ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericHealAmountModifierStat
-  name: GenericHealAmountModifierStat
-  href: api/ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.html#ElectricDrill_AstraRpgHealth_Config_IAstraRpgHealthConfig_GenericHealAmountModifierStat
-  commentId: P:ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericHealAmountModifierStat
-  fullName: ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericHealAmountModifierStat
-  nameWithType: IAstraRpgHealthConfig.GenericHealAmountModifierStat
-- uid: ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericHealAmountModifierStat*
-  name: GenericHealAmountModifierStat
-  href: api/ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.html#ElectricDrill_AstraRpgHealth_Config_IAstraRpgHealthConfig_GenericHealAmountModifierStat_
-  commentId: Overload:ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericHealAmountModifierStat
+- uid: ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericFlatHealAmountModifierStat
+  name: GenericFlatHealAmountModifierStat
+  href: api/ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.html#ElectricDrill_AstraRpgHealth_Config_IAstraRpgHealthConfig_GenericFlatHealAmountModifierStat
+  commentId: P:ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericFlatHealAmountModifierStat
+  fullName: ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericFlatHealAmountModifierStat
+  nameWithType: IAstraRpgHealthConfig.GenericFlatHealAmountModifierStat
+- uid: ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericFlatHealAmountModifierStat*
+  name: GenericFlatHealAmountModifierStat
+  href: api/ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.html#ElectricDrill_AstraRpgHealth_Config_IAstraRpgHealthConfig_GenericFlatHealAmountModifierStat_
+  commentId: Overload:ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericFlatHealAmountModifierStat
   isSpec: "True"
-  fullName: ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericHealAmountModifierStat
-  nameWithType: IAstraRpgHealthConfig.GenericHealAmountModifierStat
+  fullName: ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericFlatHealAmountModifierStat
+  nameWithType: IAstraRpgHealthConfig.GenericFlatHealAmountModifierStat
 - uid: ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericPercentageDamageModificationStat
   name: GenericPercentageDamageModificationStat
   href: api/ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.html#ElectricDrill_AstraRpgHealth_Config_IAstraRpgHealthConfig_GenericPercentageDamageModificationStat
@@ -664,19 +664,19 @@ references:
   isSpec: "True"
   fullName: ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericPercentageDamageModificationStat
   nameWithType: IAstraRpgHealthConfig.GenericPercentageDamageModificationStat
-- uid: ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.HealSourceModifications
-  name: HealSourceModifications
-  href: api/ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.html#ElectricDrill_AstraRpgHealth_Config_IAstraRpgHealthConfig_HealSourceModifications
-  commentId: P:ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.HealSourceModifications
-  fullName: ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.HealSourceModifications
-  nameWithType: IAstraRpgHealthConfig.HealSourceModifications
-- uid: ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.HealSourceModifications*
-  name: HealSourceModifications
-  href: api/ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.html#ElectricDrill_AstraRpgHealth_Config_IAstraRpgHealthConfig_HealSourceModifications_
-  commentId: Overload:ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.HealSourceModifications
+- uid: ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericPercentageHealAmountModifierStat
+  name: GenericPercentageHealAmountModifierStat
+  href: api/ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.html#ElectricDrill_AstraRpgHealth_Config_IAstraRpgHealthConfig_GenericPercentageHealAmountModifierStat
+  commentId: P:ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericPercentageHealAmountModifierStat
+  fullName: ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericPercentageHealAmountModifierStat
+  nameWithType: IAstraRpgHealthConfig.GenericPercentageHealAmountModifierStat
+- uid: ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericPercentageHealAmountModifierStat*
+  name: GenericPercentageHealAmountModifierStat
+  href: api/ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.html#ElectricDrill_AstraRpgHealth_Config_IAstraRpgHealthConfig_GenericPercentageHealAmountModifierStat_
+  commentId: Overload:ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericPercentageHealAmountModifierStat
   isSpec: "True"
-  fullName: ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.HealSourceModifications
-  nameWithType: IAstraRpgHealthConfig.HealSourceModifications
+  fullName: ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericPercentageHealAmountModifierStat
+  nameWithType: IAstraRpgHealthConfig.GenericPercentageHealAmountModifierStat
 - uid: ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.HealthAttributesScaling
   name: HealthAttributesScaling
   href: api/ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.html#ElectricDrill_AstraRpgHealth_Config_IAstraRpgHealthConfig_HealthAttributesScaling
@@ -1713,6 +1713,19 @@ references:
   isSpec: "True"
   fullName: ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReasonExtensions.IsTerminal
   nameWithType: DamagePreventionReasonExtensions.IsTerminal
+- uid: ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReasonExtensions.ToDetailedString(ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReason)
+  name: ToDetailedString(DamagePreventionReason)
+  href: api/ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReasonExtensions.html#ElectricDrill_AstraRpgHealth_Damage_DamagePreventionReasonExtensions_ToDetailedString_ElectricDrill_AstraRpgHealth_Damage_DamagePreventionReason_
+  commentId: M:ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReasonExtensions.ToDetailedString(ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReason)
+  fullName: ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReasonExtensions.ToDetailedString(ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReason)
+  nameWithType: DamagePreventionReasonExtensions.ToDetailedString(DamagePreventionReason)
+- uid: ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReasonExtensions.ToDetailedString*
+  name: ToDetailedString
+  href: api/ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReasonExtensions.html#ElectricDrill_AstraRpgHealth_Damage_DamagePreventionReasonExtensions_ToDetailedString_
+  commentId: Overload:ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReasonExtensions.ToDetailedString
+  isSpec: "True"
+  fullName: ElectricDrill.AstraRpgHealth.Damage.DamagePreventionReasonExtensions.ToDetailedString
+  nameWithType: DamagePreventionReasonExtensions.ToDetailedString
 - uid: ElectricDrill.AstraRpgHealth.Damage.DamageResolution
   name: DamageResolution
   href: api/ElectricDrill.AstraRpgHealth.Damage.DamageResolution.html
@@ -4816,6 +4829,32 @@ references:
   commentId: T:ElectricDrill.AstraRpgHealth.Heal.HealSourceSO
   fullName: ElectricDrill.AstraRpgHealth.Heal.HealSourceSO
   nameWithType: HealSourceSO
+- uid: ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.FlatHealModificationStat
+  name: FlatHealModificationStat
+  href: api/ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.html#ElectricDrill_AstraRpgHealth_Heal_HealSourceSO_FlatHealModificationStat
+  commentId: P:ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.FlatHealModificationStat
+  fullName: ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.FlatHealModificationStat
+  nameWithType: HealSourceSO.FlatHealModificationStat
+- uid: ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.FlatHealModificationStat*
+  name: FlatHealModificationStat
+  href: api/ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.html#ElectricDrill_AstraRpgHealth_Heal_HealSourceSO_FlatHealModificationStat_
+  commentId: Overload:ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.FlatHealModificationStat
+  isSpec: "True"
+  fullName: ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.FlatHealModificationStat
+  nameWithType: HealSourceSO.FlatHealModificationStat
+- uid: ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.PercentageHealModificationStat
+  name: PercentageHealModificationStat
+  href: api/ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.html#ElectricDrill_AstraRpgHealth_Heal_HealSourceSO_PercentageHealModificationStat
+  commentId: P:ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.PercentageHealModificationStat
+  fullName: ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.PercentageHealModificationStat
+  nameWithType: HealSourceSO.PercentageHealModificationStat
+- uid: ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.PercentageHealModificationStat*
+  name: PercentageHealModificationStat
+  href: api/ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.html#ElectricDrill_AstraRpgHealth_Heal_HealSourceSO_PercentageHealModificationStat_
+  commentId: Overload:ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.PercentageHealModificationStat
+  isSpec: "True"
+  fullName: ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.PercentageHealModificationStat
+  nameWithType: HealSourceSO.PercentageHealModificationStat
 - uid: ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.ToString
   name: ToString()
   href: api/ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.html#ElectricDrill_AstraRpgHealth_Heal_HealSourceSO_ToString

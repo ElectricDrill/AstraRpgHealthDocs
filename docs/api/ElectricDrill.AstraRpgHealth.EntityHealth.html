@@ -282,7 +282,7 @@ public class EntityHealth : MonoBehaviour, IDamageable, IHealable, IResurrectabl
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public EntityStats EntityStats { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual EntityStats EntityStats { get; set; }</code></pre>
   </div>
 
 
@@ -795,7 +795,7 @@ passive health regeneration stat and the regeneration interval defined in the co
 
   <h3 id="ElectricDrill_AstraRpgHealth_EntityHealth_AddMaxHpFlatModifier_System_Int64_ElectricDrill_AstraRpgHealth_EntityHealth_HpBehaviourOnMaxHpIncrease_ElectricDrill_AstraRpgHealth_EntityHealth_HpBehaviourOnMaxHpDecrease_" data-uid="ElectricDrill.AstraRpgHealth.EntityHealth.AddMaxHpFlatModifier(System.Int64,ElectricDrill.AstraRpgHealth.EntityHealth.HpBehaviourOnMaxHpIncrease,ElectricDrill.AstraRpgHealth.EntityHealth.HpBehaviourOnMaxHpDecrease)">
   AddMaxHpFlatModifier(long, HpBehaviourOnMaxHpIncrease, HpBehaviourOnMaxHpDecrease)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L440"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L441"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Adds a flat modifier to the entity's maximum health.</p>
@@ -834,7 +834,7 @@ passive health regeneration stat and the regeneration interval defined in the co
 
   <h3 id="ElectricDrill_AstraRpgHealth_EntityHealth_AddMaxHpPercentageModifier_ElectricDrill_AstraRpgFramework_Utils_Percentage_ElectricDrill_AstraRpgHealth_EntityHealth_HpBehaviourOnMaxHpIncrease_ElectricDrill_AstraRpgHealth_EntityHealth_HpBehaviourOnMaxHpDecrease_" data-uid="ElectricDrill.AstraRpgHealth.EntityHealth.AddMaxHpPercentageModifier(ElectricDrill.AstraRpgFramework.Utils.Percentage,ElectricDrill.AstraRpgHealth.EntityHealth.HpBehaviourOnMaxHpIncrease,ElectricDrill.AstraRpgHealth.EntityHealth.HpBehaviourOnMaxHpDecrease)">
   AddMaxHpPercentageModifier(Percentage, HpBehaviourOnMaxHpIncrease, HpBehaviourOnMaxHpDecrease)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L453"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L454"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Adds a percentage modifier to the entity's maximum health.</p>
@@ -873,7 +873,7 @@ passive health regeneration stat and the regeneration interval defined in the co
 
   <h3 id="ElectricDrill_AstraRpgHealth_EntityHealth_AddMaxHpScaling_ElectricDrill_AstraRpgFramework_Scaling_ScalingComponents_StatsScalingComponent_ElectricDrill_AstraRpgHealth_EntityHealth_HpBehaviourOnMaxHpIncrease_ElectricDrill_AstraRpgHealth_EntityHealth_HpBehaviourOnMaxHpDecrease_" data-uid="ElectricDrill.AstraRpgHealth.EntityHealth.AddMaxHpScaling(ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.StatsScalingComponent,ElectricDrill.AstraRpgHealth.EntityHealth.HpBehaviourOnMaxHpIncrease,ElectricDrill.AstraRpgHealth.EntityHealth.HpBehaviourOnMaxHpDecrease)">
   AddMaxHpScaling(StatsScalingComponent, HpBehaviourOnMaxHpIncrease, HpBehaviourOnMaxHpDecrease)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L465"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L466"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Adds a stats-based scaling component that dynamically affects maximum health.
@@ -913,7 +913,7 @@ Subscribes to stat changes if this is the first scaling added.</p>
 
   <h3 id="ElectricDrill_AstraRpgHealth_EntityHealth_CalculateReducedDmg_System_Int64_System_Int64_ElectricDrill_AstraRpgHealth_DefenseReductionFunctions_DefenseReductionFnSO_System_Int64_ElectricDrill_AstraRpgFramework_Stats_Stat_ElectricDrill_AstraRpgHealth_DamageReductionFunctions_DamageReductionFnSO_System_Boolean_" data-uid="ElectricDrill.AstraRpgHealth.EntityHealth.CalculateReducedDmg(System.Int64,System.Int64,ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.DefenseReductionFnSO,System.Int64,ElectricDrill.AstraRpgFramework.Stats.Stat,ElectricDrill.AstraRpgHealth.DamageReductionFunctions.DamageReductionFnSO,System.Boolean)">
   CalculateReducedDmg(long, long, DefenseReductionFnSO, long, Stat, DamageReductionFnSO, bool)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L967"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L983"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Calculates reduced damage based on piercing and defensive stats using reduction functions.</p>
@@ -970,7 +970,7 @@ Subscribes to stat changes if this is the first scaling added.</p>
 
   <h3 id="ElectricDrill_AstraRpgHealth_EntityHealth_ClearMaxHpScalings_ElectricDrill_AstraRpgHealth_EntityHealth_HpBehaviourOnMaxHpIncrease_ElectricDrill_AstraRpgHealth_EntityHealth_HpBehaviourOnMaxHpDecrease_" data-uid="ElectricDrill.AstraRpgHealth.EntityHealth.ClearMaxHpScalings(ElectricDrill.AstraRpgHealth.EntityHealth.HpBehaviourOnMaxHpIncrease,ElectricDrill.AstraRpgHealth.EntityHealth.HpBehaviourOnMaxHpDecrease)">
   ClearMaxHpScalings(HpBehaviourOnMaxHpIncrease, HpBehaviourOnMaxHpDecrease)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L501"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L502"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Removes all stats-based scaling components from maximum health calculations.</p>
@@ -1118,7 +1118,7 @@ Subscribes to stat changes if this is the first scaling added.</p>
 
   <h3 id="ElectricDrill_AstraRpgHealth_EntityHealth_Heal_ElectricDrill_AstraRpgHealth_Heal_PreHealContext_" data-uid="ElectricDrill.AstraRpgHealth.EntityHealth.Heal(ElectricDrill.AstraRpgHealth.Heal.PreHealContext)">
   Heal(PreHealContext)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L750"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L751"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Heals the entity by the specified amount, applying critical multipliers and heal modifiers.
@@ -1167,7 +1167,7 @@ Throws DeadEntityException if the entity is dead.</p>
 
   <h3 id="ElectricDrill_AstraRpgHealth_EntityHealth_IsAlive" data-uid="ElectricDrill.AstraRpgHealth.EntityHealth.IsAlive">
   IsAlive()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L860"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L876"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Checks if the entity's current health is above the death threshold.</p>
@@ -1200,7 +1200,7 @@ Throws DeadEntityException if the entity is dead.</p>
 
   <h3 id="ElectricDrill_AstraRpgHealth_EntityHealth_IsDead" data-uid="ElectricDrill.AstraRpgHealth.EntityHealth.IsDead">
   IsDead()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L852"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L868"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Checks if the entity's current health is at or below the death threshold.
@@ -1234,7 +1234,7 @@ Returns the cached death state for performance.</p>
 
   <h3 id="ElectricDrill_AstraRpgHealth_EntityHealth_ManualHealthRegenerationTick" data-uid="ElectricDrill.AstraRpgHealth.EntityHealth.ManualHealthRegenerationTick">
   ManualHealthRegenerationTick()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L334"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L335"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Method to be called to trigger manual health regeneration (e.g., if you are using a turn-based system, call this
@@ -1262,7 +1262,7 @@ method at the start/end of each turn).</p>
 
   <h3 id="ElectricDrill_AstraRpgHealth_EntityHealth_RemoveMaxHpScaling_ElectricDrill_AstraRpgFramework_Scaling_ScalingComponents_StatsScalingComponent_ElectricDrill_AstraRpgHealth_EntityHealth_HpBehaviourOnMaxHpIncrease_ElectricDrill_AstraRpgHealth_EntityHealth_HpBehaviourOnMaxHpDecrease_" data-uid="ElectricDrill.AstraRpgHealth.EntityHealth.RemoveMaxHpScaling(ElectricDrill.AstraRpgFramework.Scaling.ScalingComponents.StatsScalingComponent,ElectricDrill.AstraRpgHealth.EntityHealth.HpBehaviourOnMaxHpIncrease,ElectricDrill.AstraRpgHealth.EntityHealth.HpBehaviourOnMaxHpDecrease)">
   RemoveMaxHpScaling(StatsScalingComponent, HpBehaviourOnMaxHpIncrease, HpBehaviourOnMaxHpDecrease)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L485"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L486"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Removes a previously added stats-based scaling component from maximum health calculations.
@@ -1302,7 +1302,7 @@ Unsubscribes from stat changes if no scalings remain.</p>
 
   <h3 id="ElectricDrill_AstraRpgHealth_EntityHealth_Resurrect_ElectricDrill_AstraRpgFramework_Utils_Percentage_" data-uid="ElectricDrill.AstraRpgHealth.EntityHealth.Resurrect(ElectricDrill.AstraRpgFramework.Utils.Percentage)">
   Resurrect(Percentage)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L934"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L950"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Resurrects the entity with a percentage of maximum health using the default resurrection source from config.
@@ -1342,7 +1342,7 @@ Throws InvalidOperationException if the entity is already alive.</p>
 
   <h3 id="ElectricDrill_AstraRpgHealth_EntityHealth_Resurrect_ElectricDrill_AstraRpgFramework_Utils_Percentage_ElectricDrill_AstraRpgHealth_Heal_HealSourceSO_" data-uid="ElectricDrill.AstraRpgHealth.EntityHealth.Resurrect(ElectricDrill.AstraRpgFramework.Utils.Percentage,ElectricDrill.AstraRpgHealth.Heal.HealSourceSO)">
   Resurrect(Percentage, HealSourceSO)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L912"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L928"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Resurrects the entity with a percentage of maximum health.
@@ -1385,7 +1385,7 @@ Throws InvalidOperationException if the entity is already alive.</p>
 
   <h3 id="ElectricDrill_AstraRpgHealth_EntityHealth_Resurrect_System_Int64_" data-uid="ElectricDrill.AstraRpgHealth.EntityHealth.Resurrect(System.Int64)">
   Resurrect(long)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L923"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L939"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Resurrects the entity with a specific amount of health using the default resurrection source from config.
@@ -1425,7 +1425,7 @@ Throws InvalidOperationException if the entity is already alive.</p>
 
   <h3 id="ElectricDrill_AstraRpgHealth_EntityHealth_Resurrect_System_Int64_ElectricDrill_AstraRpgHealth_Heal_HealSourceSO_" data-uid="ElectricDrill.AstraRpgHealth.EntityHealth.Resurrect(System.Int64,ElectricDrill.AstraRpgHealth.Heal.HealSourceSO)">
   Resurrect(long, HealSourceSO)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L871"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L887"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Resurrects the entity with a specific amount of health.
@@ -1468,7 +1468,7 @@ Throws InvalidOperationException if the entity is already alive.</p>
 
   <h3 id="ElectricDrill_AstraRpgHealth_EntityHealth_SetHpToMax" data-uid="ElectricDrill.AstraRpgHealth.EntityHealth.SetHpToMax">
   SetHpToMax()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L653"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L654"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Sets the entity's current health to its maximum health value.
@@ -1502,7 +1502,7 @@ Throws DeadEntityException if the entity is dead.</p>
 
   <h3 id="ElectricDrill_AstraRpgHealth_EntityHealth_SetupMaxHp_ElectricDrill_AstraRpgHealth_EntityHealth_HpBehaviourOnMaxHpIncrease_ElectricDrill_AstraRpgHealth_EntityHealth_HpBehaviourOnMaxHpDecrease_" data-uid="ElectricDrill.AstraRpgHealth.EntityHealth.SetupMaxHp(ElectricDrill.AstraRpgHealth.EntityHealth.HpBehaviourOnMaxHpIncrease,ElectricDrill.AstraRpgHealth.EntityHealth.HpBehaviourOnMaxHpDecrease)">
   SetupMaxHp(HpBehaviourOnMaxHpIncrease, HpBehaviourOnMaxHpDecrease)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L360"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L361"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Recalculates and updates the entity's maximum health based on base value, modifiers, and scaling.
@@ -1539,7 +1539,7 @@ If the entity is dead, only recalculates max HP and raises events without adjust
 
   <h3 id="ElectricDrill_AstraRpgHealth_EntityHealth_TakeDamage_ElectricDrill_AstraRpgHealth_Damage_PreDamageContext_" data-uid="ElectricDrill.AstraRpgHealth.EntityHealth.TakeDamage(ElectricDrill.AstraRpgHealth.Damage.PreDamageContext)">
   TakeDamage(PreDamageContext)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L586"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/EntityHealth.cs/#L587"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Applies damage to the entity through the damage calculation pipeline. This is the primary method for dealing

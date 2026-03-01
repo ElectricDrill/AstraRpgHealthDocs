@@ -89,7 +89,7 @@
 
 
   <h1 id="ElectricDrill_AstraRpgHealth_Config_IAstraRpgHealthConfig" data-uid="ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig" class="text-break">
-Interface IAstraRpgHealthConfig  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Config/IAstraRpgHealthConfig.cs/#L16"><i class="bi bi-code-slash"></i></a>
+Interface IAstraRpgHealthConfig  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Config/IAstraRpgHealthConfig.cs/#L15"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -287,7 +287,7 @@ Individual ExpCollector components can override this with a custom strategy.</p>
 
   <h3 id="ElectricDrill_AstraRpgHealth_Config_IAstraRpgHealthConfig_GenericFlatDamageModificationStat" data-uid="ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericFlatDamageModificationStat">
   GenericFlatDamageModificationStat
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Config/IAstraRpgHealthConfig.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Config/IAstraRpgHealthConfig.cs/#L38"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets or sets the stat that provides flat damage modification, regardless of type or source.
@@ -316,19 +316,19 @@ Applied after percentage modifications. Stacks additively with other flat modifi
 
 
 
-  <a id="ElectricDrill_AstraRpgHealth_Config_IAstraRpgHealthConfig_GenericHealAmountModifierStat_" data-uid="ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericHealAmountModifierStat*"></a>
+  <a id="ElectricDrill_AstraRpgHealth_Config_IAstraRpgHealthConfig_GenericFlatHealAmountModifierStat_" data-uid="ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericFlatHealAmountModifierStat*"></a>
 
-  <h3 id="ElectricDrill_AstraRpgHealth_Config_IAstraRpgHealthConfig_GenericHealAmountModifierStat" data-uid="ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericHealAmountModifierStat">
-  GenericHealAmountModifierStat
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Config/IAstraRpgHealthConfig.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  <h3 id="ElectricDrill_AstraRpgHealth_Config_IAstraRpgHealthConfig_GenericFlatHealAmountModifierStat" data-uid="ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericFlatHealAmountModifierStat">
+  GenericFlatHealAmountModifierStat
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Config/IAstraRpgHealthConfig.cs/#L26"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets or sets the stat that modifies the amount of health healed. The stat value must be a percentage (e.g., 25 for +25% healing).</p>
+  <div class="markdown level1 summary"><p>Gets or sets the stat that provides a flat heal amount modification, applied before percentage modifiers.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">Stat GenericHealAmountModifierStat { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">Stat GenericFlatHealAmountModifierStat { get; set; }</code></pre>
   </div>
 
 
@@ -352,7 +352,7 @@ Applied after percentage modifications. Stacks additively with other flat modifi
 
   <h3 id="ElectricDrill_AstraRpgHealth_Config_IAstraRpgHealthConfig_GenericPercentageDamageModificationStat" data-uid="ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericPercentageDamageModificationStat">
   GenericPercentageDamageModificationStat
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Config/IAstraRpgHealthConfig.cs/#L39"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Config/IAstraRpgHealthConfig.cs/#L45"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets or sets the stat that modifies any damage received with percentage, regardless of type or source.
@@ -381,19 +381,20 @@ Stacks additively with other percentage damage modifications.</p>
 
 
 
-  <a id="ElectricDrill_AstraRpgHealth_Config_IAstraRpgHealthConfig_HealSourceModifications_" data-uid="ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.HealSourceModifications*"></a>
+  <a id="ElectricDrill_AstraRpgHealth_Config_IAstraRpgHealthConfig_GenericPercentageHealAmountModifierStat_" data-uid="ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericPercentageHealAmountModifierStat*"></a>
 
-  <h3 id="ElectricDrill_AstraRpgHealth_Config_IAstraRpgHealthConfig_HealSourceModifications" data-uid="ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.HealSourceModifications">
-  HealSourceModifications
+  <h3 id="ElectricDrill_AstraRpgHealth_Config_IAstraRpgHealthConfig_GenericPercentageHealAmountModifierStat" data-uid="ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.GenericPercentageHealAmountModifierStat">
+  GenericPercentageHealAmountModifierStat
   <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Config/IAstraRpgHealthConfig.cs/#L32"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Gets or sets the dictionary mapping heal sources to their corresponding heal modifier stats. Stacks additively with other heal modifications.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the stat that modifies the amount of health healed with a percentage (e.g., 25 for +25% healing).
+Percentage heal modifiers are applied after flat heal modifications.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">SerializableDictionary&lt;HealSourceSO, Stat&gt; HealSourceModifications { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">Stat GenericPercentageHealAmountModifierStat { get; set; }</code></pre>
   </div>
 
 
@@ -402,7 +403,7 @@ Stacks additively with other percentage damage modifications.</p>
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><span class="xref">SerializableDictionary</span>&lt;<a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.html">HealSourceSO</a>, <span class="xref">Stat</span>&gt;</dt>
+    <dt><span class="xref">Stat</span></dt>
     <dd></dd>
   </dl>
 
@@ -417,7 +418,7 @@ Stacks additively with other percentage damage modifications.</p>
 
   <h3 id="ElectricDrill_AstraRpgHealth_Config_IAstraRpgHealthConfig_HealthAttributesScaling" data-uid="ElectricDrill.AstraRpgHealth.Config.IAstraRpgHealthConfig.HealthAttributesScaling">
   HealthAttributesScaling
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Config/IAstraRpgHealthConfig.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/Config/IAstraRpgHealthConfig.cs/#L21"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Gets or sets the attributes scaling component that determines how health scales based on attributes.</p>
