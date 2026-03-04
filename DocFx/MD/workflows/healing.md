@@ -19,7 +19,7 @@ Furthermore, `HealSources` are important because they are communicated in healin
 Finally, `HealSources` pave the way for the implementation of a combat log that tracks not only the amount of healing received but also the healing source, allowing the player to have a deeper understanding of what healed them most effectively in a specific game situation.
 
 An instance of `HealSource` in the inspector looks like this:  
-![](../../images\AstraRPG\workflows\healing\heal-source-resurrection.png)
+![](../../images/AstraRPG/workflows/healing/heal-source-resurrection.png)
 
 You can notice that there are two properties to configure for each `HealSource`:
 - **Flat Heal Modification Stat**: the statistic to consider in an entity to apply flat, specific healing modifiers for this healing source. Positive values of this statistic increase the healing received from this source, while negative values decrease it. If the entity does not have this statistic, a value of 0 will be considered for this statistic, and therefore no specific flat healing modifier will be applied for this healing source.
