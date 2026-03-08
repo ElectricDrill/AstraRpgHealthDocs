@@ -132,10 +132,10 @@ Create instances via Assets -&gt; Create -&gt; Astra RPG Health / Def Reduction 
 </h2>
 
 
-  <a id="ElectricDrill_AstraRpgHealth_DefenseReductionFunctions_LogDefenseReductionFnSO_ReducedDef_" data-uid="ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.LogDefenseReductionFnSO.ReducedDef*"></a>
+  <a id="ElectricDrill_AstraRpgHealth_DefenseReductionFunctions_LogDefenseReductionFnSO_CalculateReducedDefense_" data-uid="ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.LogDefenseReductionFnSO.CalculateReducedDefense*"></a>
 
-  <h3 id="ElectricDrill_AstraRpgHealth_DefenseReductionFunctions_LogDefenseReductionFnSO_ReducedDef_System_Int64_System_Int64_ElectricDrill_AstraRpgFramework_Stats_Stat_System_Boolean_" data-uid="ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.LogDefenseReductionFnSO.ReducedDef(System.Int64,System.Int64,ElectricDrill.AstraRpgFramework.Stats.Stat,System.Boolean)">
-  ReducedDef(long, long, Stat, bool)
+  <h3 id="ElectricDrill_AstraRpgHealth_DefenseReductionFunctions_LogDefenseReductionFnSO_CalculateReducedDefense_System_Int64_System_Int64_ElectricDrill_AstraRpgFramework_Stats_Stat_System_Boolean_" data-uid="ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.LogDefenseReductionFnSO.CalculateReducedDefense(System.Int64,System.Int64,ElectricDrill.AstraRpgFramework.Stats.Stat,System.Boolean)">
+  CalculateReducedDefense(long, long, Stat, bool)
   <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/DefenseReductionFunctions/LogDefenseReductionFnSO.cs/#L25"><i class="bi bi-code-slash"></i></a>
   </h3>
 
@@ -145,7 +145,7 @@ Formula: Reduced Defense = Defense * (BaseValue / (BaseValue + Log(1 + PiercingS
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override double ReducedDef(long piercingStatValue, long defensiveStatValue, Stat defensiveStat, bool applyClamp = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public override double CalculateReducedDefense(long piercingStatValue, long defensiveStatValue, Stat defensiveStat, bool applyClamp = true)</code></pre>
   </div>
 
   <h4 class="section">Parameters</h4>

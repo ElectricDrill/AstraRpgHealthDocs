@@ -232,7 +232,7 @@ Because the non-linear nature of the formula makes it difficult to reason about 
 <li>More complex to debug and tune: the non-linear relationship between the stat and the reduction requires more careful analysis and testing during development.</li>
 </ul>
 <h4 id="damage-reduction-functions---custom-dmg-reduction-functions">Damage Reduction Functions - Custom Dmg Reduction Functions</h4>
-<p>If you want to provide your own custom damage reduction function, you can create a new class that inherits from <a href="xref:ElctricDrill.AstraRpgHealth.DamageReductionFunctions.DamageReductionFnSO">DamageReductionFnSO</a> and implement the <code>CalculateReducedDamage</code> method. Remember to use the <code>CreateAssetMenu</code> attribute (or the <code>MenuItem</code> attribute) to make it creatable from the Unity editor.<br>
+<p>If you want to provide your own custom damage reduction function, you can create a new class that inherits from <a class="xref" href="../../api/ElectricDrill.AstraRpgHealth.DamageReductionFunctions.DamageReductionFnSO.html">DamageReductionFnSO</a> and implement the <code>CalculateReducedDamage</code> method. Remember to use the <code>CreateAssetMenu</code> attribute (or the <code>MenuItem</code> attribute) to make it creatable from the Unity editor.<br>
 You can take a look at the existing damage reduction functions implementations for reference.</p>
 <h4 id="defense-penetration">Defense Penetration</h4>
 <p>Defense penetration allows the damage dealer to partially bypass the target's defensive stat before damage reduction is calculated. This mechanism is useful for implementing mechanics such as armor penetration or magic penetration, where an attacker can reduce the effective defenses of the target.</p>

@@ -146,7 +146,7 @@ In both graphs the legend labels each curve with its exact parameter value, and 
 - More complex to debug and tune: the non-linear relationship between the stat and the reduction requires more careful analysis and testing during development.
 
 #### Damage Reduction Functions - Custom Dmg Reduction Functions
-If you want to provide your own custom damage reduction function, you can create a new class that inherits from [DamageReductionFnSO](xref:ElctricDrill.AstraRpgHealth.DamageReductionFunctions.DamageReductionFnSO) and implement the `CalculateReducedDamage` method. Remember to use the `CreateAssetMenu` attribute (or the `MenuItem` attribute) to make it creatable from the Unity editor.  
+If you want to provide your own custom damage reduction function, you can create a new class that inherits from [DamageReductionFnSO](xref:ElectricDrill.AstraRpgHealth.DamageReductionFunctions.DamageReductionFnSO) and implement the `CalculateReducedDamage` method. Remember to use the `CreateAssetMenu` attribute (or the `MenuItem` attribute) to make it creatable from the Unity editor.  
 You can take a look at the existing damage reduction functions implementations for reference.
 
 #### Defense Penetration
