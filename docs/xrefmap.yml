@@ -2100,6 +2100,19 @@ references:
   isSpec: "True"
   fullName: ElectricDrill.AstraRpgHealth.Damage.DamageTypeSO.DefenseReductionFn
   nameWithType: DamageTypeSO.DefenseReductionFn
+- uid: ElectricDrill.AstraRpgHealth.Damage.DamageTypeSO.DefensiveStat
+  name: DefensiveStat
+  href: api/ElectricDrill.AstraRpgHealth.Damage.DamageTypeSO.html#ElectricDrill_AstraRpgHealth_Damage_DamageTypeSO_DefensiveStat
+  commentId: P:ElectricDrill.AstraRpgHealth.Damage.DamageTypeSO.DefensiveStat
+  fullName: ElectricDrill.AstraRpgHealth.Damage.DamageTypeSO.DefensiveStat
+  nameWithType: DamageTypeSO.DefensiveStat
+- uid: ElectricDrill.AstraRpgHealth.Damage.DamageTypeSO.DefensiveStat*
+  name: DefensiveStat
+  href: api/ElectricDrill.AstraRpgHealth.Damage.DamageTypeSO.html#ElectricDrill_AstraRpgHealth_Damage_DamageTypeSO_DefensiveStat_
+  commentId: Overload:ElectricDrill.AstraRpgHealth.Damage.DamageTypeSO.DefensiveStat
+  isSpec: "True"
+  fullName: ElectricDrill.AstraRpgHealth.Damage.DamageTypeSO.DefensiveStat
+  nameWithType: DamageTypeSO.DefensiveStat
 - uid: ElectricDrill.AstraRpgHealth.Damage.DamageTypeSO.DefensiveStatPiercedBy
   name: DefensiveStatPiercedBy
   href: api/ElectricDrill.AstraRpgHealth.Damage.DamageTypeSO.html#ElectricDrill_AstraRpgHealth_Damage_DamageTypeSO_DefensiveStatPiercedBy
@@ -2178,19 +2191,6 @@ references:
   isSpec: "True"
   fullName: ElectricDrill.AstraRpgHealth.Damage.DamageTypeSO.PercentageDamageModificationStat
   nameWithType: DamageTypeSO.PercentageDamageModificationStat
-- uid: ElectricDrill.AstraRpgHealth.Damage.DamageTypeSO.ReducedBy
-  name: ReducedBy
-  href: api/ElectricDrill.AstraRpgHealth.Damage.DamageTypeSO.html#ElectricDrill_AstraRpgHealth_Damage_DamageTypeSO_ReducedBy
-  commentId: P:ElectricDrill.AstraRpgHealth.Damage.DamageTypeSO.ReducedBy
-  fullName: ElectricDrill.AstraRpgHealth.Damage.DamageTypeSO.ReducedBy
-  nameWithType: DamageTypeSO.ReducedBy
-- uid: ElectricDrill.AstraRpgHealth.Damage.DamageTypeSO.ReducedBy*
-  name: ReducedBy
-  href: api/ElectricDrill.AstraRpgHealth.Damage.DamageTypeSO.html#ElectricDrill_AstraRpgHealth_Damage_DamageTypeSO_ReducedBy_
-  commentId: Overload:ElectricDrill.AstraRpgHealth.Damage.DamageTypeSO.ReducedBy
-  isSpec: "True"
-  fullName: ElectricDrill.AstraRpgHealth.Damage.DamageTypeSO.ReducedBy
-  nameWithType: DamageTypeSO.ReducedBy
 - uid: ElectricDrill.AstraRpgHealth.Damage.DamageTypeSO.ToString
   name: ToString()
   href: api/ElectricDrill.AstraRpgHealth.Damage.DamageTypeSO.html#ElectricDrill_AstraRpgHealth_Damage_DamageTypeSO_ToString

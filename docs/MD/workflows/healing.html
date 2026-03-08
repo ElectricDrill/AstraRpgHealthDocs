@@ -105,7 +105,7 @@
 Furthermore, <code>HealSources</code> are important because they are communicated in healing contexts, and therefore in the listeners of healing events, allowing the latter to react specifically based on the healing source that triggered the event. Thanks to this, you could, for example, implement a buff that increases the healing received from healing potions.
 Finally, <code>HealSources</code> pave the way for the implementation of a combat log that tracks not only the amount of healing received but also the healing source, allowing the player to have a deeper understanding of what healed them most effectively in a specific game situation.</p>
 <p>An instance of <code>HealSource</code> in the inspector looks like this:<br>
-<img src="../../images%5CAstraRPG%5Cworkflows%5Chealing%5Cheal-source-resurrection.png" alt=""></p>
+<img src="../../images/AstraRPG/workflows/healing/heal-source-resurrection.png" alt=""></p>
 <p>You can notice that there are two properties to configure for each <code>HealSource</code>:</p>
 <ul>
 <li><strong>Flat Heal Modification Stat</strong>: the statistic to consider in an entity to apply flat, specific healing modifiers for this healing source. Positive values of this statistic increase the healing received from this source, while negative values decrease it. If the entity does not have this statistic, a value of 0 will be considered for this statistic, and therefore no specific flat healing modifier will be applied for this healing source.</li>
@@ -162,7 +162,7 @@ For percentage modifiers, a statistic with a value of 120 increases the healing 
 <h2 id="direct-healing">Direct Healing</h2>
 <p>The <code>Heal</code> method is the most straightforward way to heal an entity. It takes a <code>PreHealContext</code> as input, which contains all relevant information about the healing you intend to apply and operates as follows:</p>
 <ol>
-<li>It checks if the entity is dead. If the entity is dead, will rais an exception, as you cannot heal a dead entity. If you want to resurrect a dead entity, check the <a href="resurrection.html">Resurrection</a> section.</li>
+<li>It checks if the entity is dead. If the entity is dead, will raise an exception, as you cannot heal a dead entity. If you want to resurrect a dead entity, check the <a href="resurrection.html">Resurrection</a> section.</li>
 <li>It checks if the healing to be applied is marked as a critical hit and, if so it applies the critical multiplier to the healing amount.</li>
 <li>It retrieves and applies the generic and <code>HealSource</code>-specific <strong>flat</strong> heal modifiers for the entity.</li>
 <li>It retrieves and applies the generic and <code>HealSource</code>-specific <strong>percentage</strong> heal modifiers for the entity.</li>

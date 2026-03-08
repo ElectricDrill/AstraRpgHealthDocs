@@ -18,12 +18,97 @@ A possible way to simplify the management of all the `DamageSource` modifier sta
 
 ## Damage Types
 
-A `DamageType` represents the type of damage—such as physical, fire, ice, lightning, or damage-over-time (DoT) effects like bleeding. The primary use case for `DamageType` is implementing entities with varying resistances to specific damage types. For each `DamageType`, you can define a defensive statistic that reduces incoming damage of that type. For example, an `Armor` stat might reduce `Physical` damage, while a `Fire Resistance` stat reduces `Fire` damage.
+A `DamageType` represents the type of damage—such as physical, fire, ice, lightning, or damage-over-time (DoT) effects like bleeding. In the following image you cane see an example of a `DamageType` instance in the inspector:  
+![DamageType](../../images/AstraRPG/workflows/damage/damage-type/magic-damage-type-inspector.png)
 
+You can notice that the parameters are divided in three sections:
+1. **Damage Reduction**: parameters related to the damage and defense reduction mechanics for this damage type.
+2. **Damage Modifiers**: parameters related to flat and percentage damage modifiers for this damage type.
+3. **True Damage Options**: parameters related to the true damage options for this damage type.
 
-## Defensive Stats
+> [!NOTE]
+> I recall the [Damage Modifiers vs. Stat-Based Damage Reduction](../introduction.md#damage-modifiers-vs-stat-based-damage-reduction) section of the introduction documentation, where I explained the difference between damage reduction and damage modifiers.
 
-## Defense Penetration
+We will now see each of these sections in detail.
+
+### Damage Reduction
+The primary use case for `DamageType` is implementing entities with varying resistances to specific damage types. This is primarily achieved via **Defensive Stats**.
+For each `DamageType`, you can define a defensive statistic that reduces incoming damage of that type. For example, an `Armor` stat might reduce `Physical` damage, while a `Magic Resistance` stat reduces `Magic` damage.  
+The value of the defensive stat is fed into the associated **Damage Reduction Fn** (function) and used to calculate the actual damage reduction. The package provides some built-in damage reduction functions, such as:
+- **Flat Dmg Reduction**: Reduces damage by a flat amount equal to the defensive stat value multiplied by a constant.
+- **Percent Dmg Reduction**: Reduces damage by a percentage equal to the defensive stat value.
+- **Log Dmg Reduction**: Reduces damage in a logarithmic way based on the defensive stat value, providing diminishing returns as the stat increases.
+
+Let's see all of them in detail.
+
+#### Flat Dmg Reduction
+*Relative path:* `Dmg Reduction Functions -> Flat Dmg Reduction`  
+
+![Flat Dmg Reduction](../../images/AstraRPG/workflows/damage/damage-type/damage-reduction-functions-flat.png)  
+The flat damage reduction function is the most simple and straightforward one. It reduces damage by a flat amount equal to the defensive stat value multiplied by the **Factor** specified via the Inspector.  
+
+For example:
+- **Damage Type**: Magic damage.
+- **Defensive Stat for the Magic Damage Type**: Magic Resistance.
+- **Damage Reduction Function for the Magic Damage Type**: Flat Dmg Reduction with a scaling factor of 2.
+
+In this case, if an entity has Magic Resistance equal to 10, and is about to take 50 Magic damage, the damage reduction will be equal to 10 (Magic Resistance) * 2 (scaling factor) = 20. So the final damage taken by the entity will be 50 (initial damage) - 20 (damage reduction) = 30 Magic damage. Clearly, this example assumes that there are no other damage modifications (e.g., neutral damage modifiers).
+
+**Use Cases**:
+This function is best suited for games where offensive and defensive stat values are low — close to single digits or tens at most. In these scenarios, the linear relationship between the defensive stat and the damage reduction makes it trivial to ensure that no entity can completely negate incoming damage, as long as the stat values remain within a controlled range. Percentage or logarithmic reduction functions may yield imprecise or unintuitive results at such coarse-grained stat scales.
+
+**Pros**:
+- Damage reduction is highly predictable: knowing the defensive stat value and the factor, anyone can instantly calculate the resulting reduction.
+- Simple to debug: the math is entirely transparent, making it straightforward to verify that the damage pipeline is working as expected at every step.
+- Easy to balance: the linear relationship between the stat and the reduction makes it trivial to tune the factor to achieve the desired game feel.
+
+**Cons**:
+- Simplistic system: this function may not suit games that require nuanced or complex defensive mechanics.
+- Risk of complete damage negation: if defensive stat values grow too high relative to typical damage values, entities can become entirely immune to certain damage types. This can happen, for example, if the level difference between attacker and defender is too high.
+
+#### Percent Dmg Reduction
+*Relative path:* `Dmg Reduction Functions -> Percentage Dmg Reduction`  
+
+![Percent Dmg Reduction](../../images/AstraRPG/workflows/damage/damage-type/damage-reduction-functions-percentage.png)  
+The percentage damage reduction function reduces incoming damage by a percentage equal to the defensive stat value. For example, if an entity has a defensive stat of 30, it will receive 30% less damage of the associated type.
+
+**Use Cases**:
+- Games where players can face enemies with notable level or power differences. Because the reduction is percentage-based, even a low-level entity with a small but non-zero defensive stat will always receive a proportional reduction, preventing extreme damage scenarios that would arise from large stat disparities between the attacker and the defender.
+- Systems that need to be less sensitive than the Flat Dmg Reduction to the exact magnitude of offensive and defensive stats, while still remaining predictable and easy to balance.
+
+**Pros**:
+- Predictable and straightforward to reason about: a stat value of X directly translates to X% less damage.
+- Remains effective regardless of the magnitude of incoming damage: even against a significantly stronger attacker, the same proportional reduction applies, guaranteeing that defense always has a meaningful impact.
+
+**Cons**:
+- High risk of damage immunity at extreme values: once the defensive stat reaches 100, the entity becomes completely immune to that damage type. This can be especially problematic for tank-oriented entities or builds designed to stack defensive stats.
+- Can make late-game balancing challenging if stat values are not tightly bounded.
+
+#### Log Dmg Reduction
+*Relative path:* `Dmg Reduction Functions -> Log Dmg Reduction`  
+
+![Log Dmg Reduction](../../images/AstraRPG/workflows/damage/damage-type/damage-reduction-functions-log.png)  
+The logarithmic damage reduction function reduces damage using a logarithmic curve, providing diminishing returns as the defensive stat value increases. A small initial investment in the defensive stat yields a substantial reduction, while further investment produces progressively smaller gains. This makes it theoretically impossible to reach 100% reduction regardless of how high the stat grows.
+
+**Use Cases**:
+- RPGs with wide stat ranges and long progression curves — for example, games with levels 1 through 100 or beyond — where both offensive and defensive stats grow substantially over time. The diminishing returns ensure that no entity can become completely immune to a damage type simply by stacking the defensive stat.
+- Games where investing in defense should always be viable, but never dominant: players are rewarded for defensive investment, yet the diminishing returns naturally discourage over-specialization and keep combat meaningful at all stages.
+- Projects that need a self-capping damage reduction formula without enforcing a hard maximum: the logarithmic curve naturally prevents extreme values from causing damage immunity, reducing the need for manual clamping or caps in the game design.
+
+**Pros**:
+- Inherently prevents complete damage immunity: the logarithmic curve approaches but never actually reaches 100% reduction, no matter how high the defensive stat grows.
+- Scales gracefully across wide stat ranges, remaining meaningful at every stage of the game without requiring constant rebalancing.
+- Discourages over-specialization in defense: the diminishing returns act as a natural soft cap, making it progressively less efficient to stack defensive stats beyond a certain point.
+
+**Cons**:
+- Less intuitive than flat or percentage reduction: players and designers cannot easily predict the exact damage reduction for a given stat value at a glance — the log graph window tool is typically needed.
+- More complex to debug and tune: the non-linear relationship between the stat and the reduction requires more careful analysis and testing during development.
+
+#### Custom Dmg Reduction Functions
+If you want to provide your own custom damage reduction function, you can create a new class that inherits from [DamageReductionFnSO](xref:ElctricDrill.AstraRpgHealth.DamageReductionFunctions.DamageReductionFnSO) and implement the `CalculateReducedDamage` method. Remember to use the `CreateAssetMenu` attribute (or the `MenuItem` attribute) to make it creatable from the Unity editor.  
+You can take a look at the existing damage reduction functions implementations for reference.
+
+### Defense Penetration
 
 ## Damage Calculation Pipeline
 

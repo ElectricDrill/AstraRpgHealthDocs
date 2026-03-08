@@ -2108,6 +2108,16 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "images/AstraRPG/workflows/damage/damage-type/magic-damage-type-inspector.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/AstraRPG/workflows/damage/damage-type/magic-damage-type-inspector.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "images/AstraRPG/workflows/entity-health/entity-health-events-section.png",
       "output": {
         "resource": {

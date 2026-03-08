@@ -121,10 +121,59 @@ The main difference between damage source and damage type is that damage types c
 <h3 id="barrier">Barrier</h3>
 <p>The concept of temporary HP can take various names across different games, though the underlying mechanic remains the same: provide an amount of extra and ephemeral hit points that are deducted instead of health when damage is taken. In Astra, these temporary hit points are called &quot;Barrier&quot;.</p>
 <h3 id="raw-and-net-damage">Raw and Net Damage</h3>
-<p>Raw Damage refers to the damage that a certain attack or skill intends to inflict. This damage does not account for resistances, critical hits, modifiers, etc.
-Net Damage is the result of processing Raw Damage while accounting for damage modifiers, resistances, barriers, critical hits, etc.</p>
+<p>Raw Damage refers to the damage that a certain attack or skill intends to inflict. This damage does not account for defense, critical hits, modifiers, etc.
+Net Damage is the result of processing Raw Damage while accounting for damage modifiers, damage reduction, barriers, critical hits, etc.</p>
+<h3 id="damage-reduction-and-defense-piercing">Damage Reduction and Defense Piercing</h3>
+<p>Primary damage reduction occurs through defensive statistics, which reduce damage based on their value and the assigned damage reduction formula. Each Damage Type can be configured with a specific defensive statistic that will be used to reduce damage of that type. For example, a <code>Physical Damage</code> Damage Type could be configured to be reduced by an <code>Armor</code> statistic.</p>
+<p>Defense Piercing, instead, represents the ability to ignore part or all of the defensive statistic assigned to a Damage Type. Each Damage Type can be configured with a specific piercing statistic that will be used to ignore a portion of the defense when calculating damage. For example, the <code>Armor Penetration</code> statistic could be used to determine how much of the <code>Armor</code> to ignore when calculating the net damage of an attack that inflicts <code>Physical Damage</code>.</p>
 <h3 id="damage-modifiers">Damage Modifiers</h3>
-<p>Damage modifiers are components that can alter calculated damage in various ways. They can be used to implement mechanics such as damage reduction, damage increase, resistances, vulnerabilities, and more. Damage modifiers are generally utilized by the damage calculation pipeline (which we'll see shortly).</p>
+<p>Damage modifiers are a low-level abstraction that can alter net damage. They represent either flat or percentage-based modifications to the damage an entity receives. They can be general, applying to all damage received by the entity, or specific to a certain damage type or source.<br>
+They are the foundation for implementing a wide range of mechanics — such as elemental resistances and vulnerabilities, status effects, buffs, and debuffs — that affect the damage received based on varying conditions and contexts. Whether a modifier is temporary or permanent depends entirely on the higher-level logic built on top of them. Damage modifiers are generally utilized by the damage calculation pipeline (which we'll see shortly).</p>
+<h3 id="damage-modifiers-vs-stat-based-damage-reduction">Damage Modifiers vs. Stat-Based Damage Reduction</h3>
+<p>These are distinct concepts. Stat-based damage reduction (via defensive stats) is the <strong>baseline</strong>: entities are always expected to carry a meaningful value for each defensive stat, and that value <strong>always reduces</strong> incoming damage of the associated type. Damage Modifiers, on the other hand, are backed by stats that <strong>default to zero</strong> — meaning they have no effect unless a higher-level system (e.g. a resistance, a weakness, a status effect) changes their value. Additionally, while defensive stats can only ever reduce damage, damage modifiers can go in either direction: <strong>reducing or amplifying</strong> the damage received. Finally, defensive stats often also carry an explicit semantic meaning in the game world. For example, an <code>Armor</code> stat clearly indicates a defensive capability that reduces physical damage, and an heavier equipped armor values grants a greater <code>Armor</code> value.</p>
+<p>Damage modifiers are a more abstract, low-level tool that can be used to implement many different mechanics; they do not carry an inherent, universal meaning. They act as a shared container for damage modifiers coming from various game mechanics. For example, a <code>Stone Skin</code> buff, a <code>Iron Elixir</code> potion, and a <code>Barbarian Temper</code> passive ability, could all rely on the same <code>Flat Physical Damage Modifier</code> stat to reduce physical damage. In this case, the <code>Flat Physical Damage Modifier</code> stat would be a shared resource that all these mechanics modify to achieve their effect on damage reduction.</p>
+<p>The <strong>origin of val values</strong> also differs between the two. Defensive stat values are typically set either as a fixed base value on the entity, or derived from its Class's <code>GrowthFormula</code> if classes are used — meaning they scale naturally with the entity's progression. Damage modifier stats, by contrast, usually rely on <strong>flat stat modifiers</strong>: each game mechanic (potion, passive, buff, debuff, etc.) contributes its effect by adding or removing a stat modifier on the underlying stat, temporarily or permanently altering the total modifier applied to incoming damage.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>Defensive Stat Damage Reduction</strong></th>
+<th><strong>Damage Modifiers</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Default effect</strong></td>
+<td>Always active — entities carry a (usually) non-zero defensive stat that continuously reduces incoming damage</td>
+<td>Neutral by default — the underlying stat starts at zero and has no effect until explicitly changed</td>
+</tr>
+<tr>
+<td><strong>Direction</strong></td>
+<td>Can only <strong>reduce</strong> damage</td>
+<td>Can <strong>reduce or increase</strong> damage</td>
+</tr>
+<tr>
+<td><strong>Scope</strong></td>
+<td>Specific to a <strong>Damage Type</strong> — each type can have at most one defensive stat assigned. No reduction exists for Damage Sources</td>
+<td>Can target <strong>all damage</strong> (any type and source), a <strong>specific Damage Type</strong>, or a <strong>specific Damage Source</strong></td>
+</tr>
+<tr>
+<td><strong>Nature</strong></td>
+<td>Derived from a defensive stat value, processed through a damage reduction formula</td>
+<td>Flat or percentage-based modifications driven by higher-level systems (resistances, weaknesses, status effects, etc.)</td>
+</tr>
+<tr>
+<td><strong>Duration</strong></td>
+<td>Permanent — tied to the entity's stat value</td>
+<td>Temporary or permanent, depending on the higher-level systems that apply them</td>
+</tr>
+<tr>
+<td><strong>Value origin</strong></td>
+<td>Set as a fixed base value on the entity, or derived from its Class's <code>GrowthFormula</code></td>
+<td>Driven by <strong>flat stat modifiers</strong> added or removed by individual game mechanics (potions, passives, buffs, debuffs, etc.)</td>
+</tr>
+</tbody>
+</table>
 <h2 id="how-is-astra-rpg-health-organized-and-how-does-it-work">How is Astra RPG Health organized and how does it work?</h2>
 <h3 id="-astra-rpg-health-config"><img src="../images/AstraRPG/astra-health_astra-rpg-health-config.png" alt="attribute" width="30" class="icon-background"> Astra RPG Health Config</h3>
 <p>The <code>AstraRPGHealthConfig</code> is a <code>ScriptableObject</code> that serves as the central configuration point for the Astra RPG Health package. It has several properties that allow you to define how the health and damage systems should behave in your game.</p>
