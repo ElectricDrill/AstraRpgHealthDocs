@@ -39,9 +39,15 @@ The value of the defensive stat is fed into the associated **Damage Reduction Fn
 - **Percent Dmg Reduction**: Reduces damage by a percentage equal to the defensive stat value.
 - **Log Dmg Reduction**: Reduces damage in a logarithmic way based on the defensive stat value, providing diminishing returns as the stat increases.
 
+> [!NOTE]
+> **Defensive Stat** and **Damage Reduction Fn** are optional. However, they must always be configured together: if one is set, the other must be set as well. If only one of them is assigned, a warning will be logged at runtime and the damage reduction step will be skipped for that `DamageType`.
+
+> [!WARNING]
+> If the target entity lacks the statistic referenced by **Defensive Stat**, an error will be logged when applying damage of that type. Ensure that all entities with an `EntityHealth` component have the defensive statistic referenced by the `DamageType`s used in your game.
+
 Let's see all of them in detail.
 
-#### Flat Dmg Reduction
+#### Damage Reduction Functions - Flat Dmg Reduction
 *Relative path:* `Dmg Reduction Functions -> Flat Dmg Reduction`  
 
 ![Flat Dmg Reduction](../../images/AstraRPG/workflows/damage/damage-type/damage-reduction-functions-flat.png)  
@@ -66,7 +72,7 @@ This function is best suited for games where offensive and defensive stat values
 - Simplistic system: this function may not suit games that require nuanced or complex defensive mechanics.
 - Risk of complete damage negation: if defensive stat values grow too high relative to typical damage values, entities can become entirely immune to certain damage types. This can happen, for example, if the level difference between attacker and defender is too high.
 
-#### Percent Dmg Reduction
+#### Damage Reduction Functions - Percent Dmg Reduction
 *Relative path:* `Dmg Reduction Functions -> Percentage Dmg Reduction`  
 
 ![Percent Dmg Reduction](../../images/AstraRPG/workflows/damage/damage-type/damage-reduction-functions-percentage.png)  
@@ -84,7 +90,7 @@ The percentage damage reduction function reduces incoming damage by a percentage
 - High risk of damage immunity at extreme values: once the defensive stat reaches 100, the entity becomes completely immune to that damage type. This can be especially problematic for tank-oriented entities or builds designed to stack defensive stats.
 - Can make late-game balancing challenging if stat values are not tightly bounded.
 
-#### Log Dmg Reduction
+#### Damage Reduction Functions - Log Dmg Reduction
 *Relative path:* `Dmg Reduction Functions -> Log Dmg Reduction`  
 
 ![Log Dmg Reduction](../../images/AstraRPG/workflows/damage/damage-type/damage-reduction-functions-log.png)  
@@ -104,11 +110,49 @@ The logarithmic damage reduction function reduces damage using a logarithmic cur
 - Less intuitive than flat or percentage reduction: players and designers cannot easily predict the exact damage reduction for a given stat value at a glance — the log graph window tool is typically needed.
 - More complex to debug and tune: the non-linear relationship between the stat and the reduction requires more careful analysis and testing during development.
 
-#### Custom Dmg Reduction Functions
+#### Damage Reduction Functions - Custom Dmg Reduction Functions
 If you want to provide your own custom damage reduction function, you can create a new class that inherits from [DamageReductionFnSO](xref:ElctricDrill.AstraRpgHealth.DamageReductionFunctions.DamageReductionFnSO) and implement the `CalculateReducedDamage` method. Remember to use the `CreateAssetMenu` attribute (or the `MenuItem` attribute) to make it creatable from the Unity editor.  
 You can take a look at the existing damage reduction functions implementations for reference.
 
-### Defense Penetration
+#### Defense Penetration
+
+Defense penetration allows the damage dealer to partially bypass the target's defensive stat before damage reduction is calculated. This mechanism is useful for implementing mechanics such as armor penetration or magic penetration, where an attacker can reduce the effective defenses of the target.
+
+Two optional parameters of the `DamageType` control this behavior:
+- **Defensive Stat Pierced By**: the statistic on the **damage dealer** that pierces the target's defensive stat. For example, an `Armor Penetration` stat might pierce the `Armor` stat of the target.
+- **Defense Reduction Fn**: the function that computes how the piercing stat lowers the target's defensive stat. The resulting reduced defensive stat value is then passed to the **Damage Reduction Fn** in place of the original value.
+
+> [!NOTE]
+> **Defensive Stat Pierced By** and **Defense Reduction Fn** are optional. However, they must always be configured together: if one is set, the other must be set as well. If only one of them is assigned, a warning will be logged at runtime and the defense penetration step will be skipped for that `DamageType`.
+
+> [!WARNING]
+> If the damage dealer entity lacks the statistic referenced by **Defensive Stat Pierced By**, an error will be logged when applying damage of that type. Ensure that all entities capable of dealing damage of this type have the relevant piercing statistic.
+
+To illustrate how defense penetration interacts with the rest of the damage pipeline, consider the following example:
+- **Damage Type**: Physical damage.
+- **Defensive Stat for the Physical Damage Type**: Armor.
+- **Damage Reduction Function for the Physical Damage Type**: Flat Dmg Reduction with a factor of 1.
+- **Defensive Stat Pierced By**: Armor Penetration.
+- **Defense Reduction Fn**: Flat Def Reduction with a factor of 1.
+
+In this case, if the target has Armor equal to 30 and the attacker has Armor Penetration equal to 10, the effective Armor value fed into the Damage Reduction Fn will be 30 (Armor) − 10 (Armor Penetration) × 1 (factor) = 20. So, if the incoming damage is 80, the final damage taken will be 80 − 20 (effective Armor) = 60 Physical damage. This example assumes no other damage modifications are active.
+
+The package provides three built-in Defense Reduction Functions — Flat, Percentage, and Logarithmic — that work in a fully analogous way to their counterparts described in the [Damage Reduction](#damage-reduction) section above. The parameters, trade-offs, and use cases of each variant are the same; the only difference is that these functions operate on the **defensive stat value** rather than directly on the damage amount. For a detailed description of each, refer to the [Damage Reduction](#damage-reduction) section.
+
+*Relative path:* `Def Reduction Functions -> Flat Def Reduction`  
+![Flat Def Reduction](../../images/AstraRPG/workflows/damage/damage-type/defense-reduction-functions-flat.png)
+
+*Relative path:* `Def Reduction Functions -> Percentage Def Reduction`  
+![Percentage Def Reduction](../../images/AstraRPG/workflows/damage/damage-type/defense-reduction-functions-percentage.png)
+
+*Relative path:* `Def Reduction Functions -> Log Def Reduction`  
+![Log Def Reduction](../../images/AstraRPG/workflows/damage/damage-type/defense-reduction-functions-log.png)
+
+If none of the built-in Defense Reduction Functions suits your needs, you can implement a custom one by creating a class that inherits from [DefenseReductionFnSO](xref:ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.DefenseReductionFnSO) and implementing the `CalculateReducedDefense` method. As with the Damage Reduction Functions, remember to use the `CreateAssetMenu` attribute (or the `MenuItem` attribute) to make it creatable from the Unity editor.
+
+### Damage Modifiers
+
+### True Damage Options
 
 ## Damage Calculation Pipeline
 
