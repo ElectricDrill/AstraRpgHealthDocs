@@ -37,22 +37,48 @@ Always precede an image with its Unity relative path on a separate line:
 
 Image base path from `MD/workflows/`: `../../images/AstraRPG/workflows/`
 
-**Never reference an image file that has not been confirmed to exist on disk.** Check with glob/view before adding new image references.
+**Be proactive about adding images.** Study the existing documentation to understand where screenshots are used (inspector views, custom windows, example configurations) and apply the same pattern in new sections. When a screenshot would naturally belong in a section — for example, to show a new inspector section, a custom editor window, or a configuration example — add the image reference using the conventional format even if the file does not yet exist on disk. The user will provide the missing screenshots and place them in the correct folder.
+
+When referencing an image that does not yet exist, add a comment immediately after to signal that the file is missing:
+
+```markdown
+*Relative path:* `True Damage Options`  
+![True Damage Options](../../images/AstraRPG/workflows/damage/damage-type/true-damage-options.png)
+<!-- IMAGE MISSING: true-damage-options.png — screenshot of the True Damage Options inspector section -->
+```
+
+This way the user can search for `IMAGE MISSING` in the docs to find all placeholders that still need a screenshot.
 
 ---
 
 ## Callout Boxes
 
+DocFx supports five alert types. Use them as follows:
+
 ```markdown
 > [!NOTE]
 > Text of the note.
+
+> [!TIP]
+> Text of the tip.
+
+> [!IMPORTANT]
+> Text of the important notice.
+
+> [!CAUTION]
+> Text of the caution.
 
 > [!WARNING]
 > Text of the warning.
 ```
 
-- `[!NOTE]`: use for optional-but-important clarifications, pairing rules, configuration tips.
-- `[!WARNING]`: use for runtime errors that will occur if the user misconfigures something (missing stats, unset fields, etc.).
+| Type | When to use |
+|---|---|
+| `[!NOTE]` | Optional-but-important clarifications, pairing rules, configuration tips, nuances the user should be aware of. |
+| `[!TIP]` | Practical suggestions, workflow shortcuts, or recommendations that improve the development experience but are not required. |
+| `[!IMPORTANT]` | Information that is critical for correct behavior and must not be overlooked — stronger than NOTE, but not an error condition. |
+| `[!CAUTION]` | Potential pitfalls or design choices that may lead to unintended behavior if not carefully considered. |
+| `[!WARNING]` | Runtime errors that **will** occur if the user misconfigures something (missing stats, unset fields, incompatible settings, etc.). |
 
 ---
 
