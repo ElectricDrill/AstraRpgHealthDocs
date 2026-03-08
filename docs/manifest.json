@@ -2108,6 +2108,26 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "images/AstraRPG/workflows/damage/damage-type/log-dmg-red-graph-visualizer-hover.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/AstraRPG/workflows/damage/damage-type/log-dmg-red-graph-visualizer-hover.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/AstraRPG/workflows/damage/damage-type/log-dmg-red-graph-visualizer.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/AstraRPG/workflows/damage/damage-type/log-dmg-red-graph-visualizer.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "images/AstraRPG/workflows/damage/damage-type/magic-damage-type-inspector.png",
       "output": {
         "resource": {

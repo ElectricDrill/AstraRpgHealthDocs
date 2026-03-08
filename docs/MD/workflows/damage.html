@@ -181,6 +181,39 @@ The percentage damage reduction function reduces incoming damage by a percentage
 <p><em>Relative path:</em> <code>Dmg Reduction Functions -&gt; Log Dmg Reduction</code></p>
 <p><img src="../../images/AstraRPG/workflows/damage/damage-type/damage-reduction-functions-log.png" alt="Log Dmg Reduction"><br>
 The logarithmic damage reduction function reduces damage using a logarithmic curve, providing diminishing returns as the defensive stat value increases. A small initial investment in the defensive stat yields a substantial reduction, while further investment produces progressively smaller gains. This makes it theoretically impossible to reach 100% reduction regardless of how high the stat grows.</p>
+<p><strong>The Formula</strong><br>
+The logarithmic damage reduction function applies the following formula to compute the final damage taken:</p>
+<pre><code>Reduced Damage = Damage × (BaseValue / (BaseValue + Log(1 + DefensiveStat × ScaleFactor)))
+</code></pre>
+<p>Two parameters, configurable directly on the <code>Log Dmg Reduction</code> asset, control the shape of the curve:</p>
+<ul>
+<li><strong>Base Value</strong>: the constant in the denominator of the reduction multiplier. A larger Base Value reduces the relative weight of the logarithmic term, making the reduction curve less aggressive — the same defensive stat value will produce less damage reduction. Conversely, a smaller Base Value amplifies the effect of the logarithm, yielding stronger reductions even at lower stat values.</li>
+<li><strong>Scale Factor</strong>: the multiplier applied to the defensive stat value before computing the logarithm. A larger Scale Factor causes the curve to climb more steeply at low stat values, reaching substantial reductions earlier. A smaller Scale Factor stretches the curve, requiring higher stat values to achieve the same reduction.</li>
+</ul>
+<p>Both parameters must be set to strictly positive values.</p>
+<p><strong>Log Damage Reduction Graph</strong><br>
+Because the non-linear nature of the formula makes it difficult to reason about the effect of Base Value and Scale Factor at a glance, the package includes a dedicated visualization window. You can open it in two ways:</p>
+<ul>
+<li>Clicking the <strong>Open Graph Visualizer</strong> button in the inspector of any <code>Log Dmg Reduction</code> asset.</li>
+<li>From the Unity menu: <code>Window → Astra RPG Health → Log Damage Reduction Graph</code>.</li>
+</ul>
+<p>The graph visualizer window should look like this:
+<img src="../../images/AstraRPG/workflows/damage/damage-type/log-dmg-red-graph-visualizer.png" alt="Log Dmg Reduction Graph"></p>
+<p>Once the window is open, three fields let you configure the visualization:</p>
+<ul>
+<li><strong>Base Value</strong>: the reference Base Value to analyze, matching the value you have set on your asset.</li>
+<li><strong>Scale Factor</strong>: the reference Scale Factor to analyze, matching the value you have set on your asset.</li>
+<li><strong>Max Defensive Stat</strong>: the upper bound of the X-axis, i.e., the maximum defensive stat value to plot.</li>
+</ul>
+<p>The window displays two separate graphs, each plotting <strong>Damage Reduction %</strong> on the Y-axis and the <strong>Defensive Stat value</strong> on the X-axis:</p>
+<ol>
+<li><p><strong>Scale Factor fixed, Base Value varying</strong> — shows five curves corresponding to different Base Values centered around the reference value you configured, while Scale Factor is held constant. This lets you compare how increasing or decreasing Base Value shifts the reduction curve, making it easier to find a value that achieves the desired behavior for your game's stat range.</p>
+</li>
+<li><p><strong>Base Value fixed, Scale Factor varying</strong> — shows five curves corresponding to different Scale Factors centered around the reference value, while Base Value is held constant. This lets you compare how Scale Factor affects the steepness of the initial climb of the curve.</p>
+</li>
+</ol>
+<p>In both graphs the legend labels each curve with its exact parameter value, and the middle curve (marked <em>Current</em>) corresponds to the reference value you entered. Hovering the mouse over either graph shows a tooltip with the exact damage reduction percentage produced by each curve for the defensive stat value under the cursor, like this:
+<img src="../../images/AstraRPG/workflows/damage/damage-type/log-dmg-red-graph-visualizer-hover.png" alt="Log Dmg Reduction Graph Tooltip"></p>
 <p><strong>Use Cases</strong>:</p>
 <ul>
 <li>RPGs with wide stat ranges and long progression curves — for example, games with levels 1 through 100 or beyond — where both offensive and defensive stats grow substantially over time. The diminishing returns ensure that no entity can become completely immune to a damage type simply by stacking the defensive stat.</li>

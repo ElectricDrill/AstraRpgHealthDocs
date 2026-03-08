@@ -96,6 +96,41 @@ The percentage damage reduction function reduces incoming damage by a percentage
 ![Log Dmg Reduction](../../images/AstraRPG/workflows/damage/damage-type/damage-reduction-functions-log.png)  
 The logarithmic damage reduction function reduces damage using a logarithmic curve, providing diminishing returns as the defensive stat value increases. A small initial investment in the defensive stat yields a substantial reduction, while further investment produces progressively smaller gains. This makes it theoretically impossible to reach 100% reduction regardless of how high the stat grows.
 
+**The Formula**  
+The logarithmic damage reduction function applies the following formula to compute the final damage taken:
+
+```
+Reduced Damage = Damage × (BaseValue / (BaseValue + Log(1 + DefensiveStat × ScaleFactor)))
+```
+
+Two parameters, configurable directly on the `Log Dmg Reduction` asset, control the shape of the curve:
+- **Base Value**: the constant in the denominator of the reduction multiplier. A larger Base Value reduces the relative weight of the logarithmic term, making the reduction curve less aggressive — the same defensive stat value will produce less damage reduction. Conversely, a smaller Base Value amplifies the effect of the logarithm, yielding stronger reductions even at lower stat values.
+- **Scale Factor**: the multiplier applied to the defensive stat value before computing the logarithm. A larger Scale Factor causes the curve to climb more steeply at low stat values, reaching substantial reductions earlier. A smaller Scale Factor stretches the curve, requiring higher stat values to achieve the same reduction.
+
+Both parameters must be set to strictly positive values.
+
+**Log Damage Reduction Graph**  
+Because the non-linear nature of the formula makes it difficult to reason about the effect of Base Value and Scale Factor at a glance, the package includes a dedicated visualization window. You can open it in two ways:
+- Clicking the **Open Graph Visualizer** button in the inspector of any `Log Dmg Reduction` asset.
+- From the Unity menu: `Window → Astra RPG Health → Log Damage Reduction Graph`.
+
+The graph visualizer window should look like this:
+![Log Dmg Reduction Graph](../../images/AstraRPG/workflows/damage/damage-type/log-dmg-red-graph-visualizer.png)
+
+Once the window is open, three fields let you configure the visualization:
+- **Base Value**: the reference Base Value to analyze, matching the value you have set on your asset.
+- **Scale Factor**: the reference Scale Factor to analyze, matching the value you have set on your asset.
+- **Max Defensive Stat**: the upper bound of the X-axis, i.e., the maximum defensive stat value to plot.
+
+The window displays two separate graphs, each plotting **Damage Reduction %** on the Y-axis and the **Defensive Stat value** on the X-axis:
+
+1. **Scale Factor fixed, Base Value varying** — shows five curves corresponding to different Base Values centered around the reference value you configured, while Scale Factor is held constant. This lets you compare how increasing or decreasing Base Value shifts the reduction curve, making it easier to find a value that achieves the desired behavior for your game's stat range.
+
+2. **Base Value fixed, Scale Factor varying** — shows five curves corresponding to different Scale Factors centered around the reference value, while Base Value is held constant. This lets you compare how Scale Factor affects the steepness of the initial climb of the curve.
+
+In both graphs the legend labels each curve with its exact parameter value, and the middle curve (marked *Current*) corresponds to the reference value you entered. Hovering the mouse over either graph shows a tooltip with the exact damage reduction percentage produced by each curve for the defensive stat value under the cursor, like this:
+![Log Dmg Reduction Graph Tooltip](../../images/AstraRPG/workflows/damage/damage-type/log-dmg-red-graph-visualizer-hover.png)
+
 **Use Cases**:
 - RPGs with wide stat ranges and long progression curves — for example, games with levels 1 through 100 or beyond — where both offensive and defensive stats grow substantially over time. The diminishing returns ensure that no entity can become completely immune to a damage type simply by stacking the defensive stat.
 - Games where investing in defense should always be viable, but never dominant: players are rewarded for defensive investment, yet the diminishing returns naturally discourage over-specialization and keep combat meaningful at all stages.
