@@ -27,7 +27,7 @@ You can notice that the parameters are divided in three sections:
 3. **True Damage Options**: parameters related to the true damage options for this damage type.
 
 > [!NOTE]
-> I recall the [Damage Modifiers vs. Stat-Based Damage Reduction](../introduction.md#damage-modifiers-vs-stat-based-damage-reduction) section of the introduction documentation, where I explained the difference between damage reduction and damage modifiers.
+> I recall the [Damage Modifiers vs. Stat-Based Damage Reduction](../introduction.md#damage-modifiers-vs-defensive-stat-based-damage-reduction) section of the introduction documentation, where I explained the difference between damage reduction and damage modifiers.
 
 We will now see each of these sections in detail.
 
@@ -187,7 +187,39 @@ If none of the built-in Defense Reduction Functions suits your needs, you can im
 
 ### Damage Modifiers
 
+The **Percentage Modifier Stat** and **Flat Modifier Stat** fields in this section let you assign stat-based damage modifiers that apply specifically when an entity receives damage of this `DamageType`. Assigning a positive value to either stat increases the damage received from this type; a negative value decreases it. For a full explanation of how all damage modifier categories work and how they stack together, see the [Damage Modifiers](#damage-modifiers) section.
+
 ### True Damage Options
+
+## Damage Modifiers
+
+Damage modifiers are a flexible tool for implementing mechanics such as resistances, weaknesses, buffs, and debuffs that affect how much damage an entity receives. Unlike [Defensive Stat-Based Damage Reduction](../introduction.md#damage-modifiers-vs-defensive-stat-based-damage-reduction), damage modifiers are off by default — their stats default to 0 — and can both increase and decrease the damage amount.
+
+Three categories of damage modifiers exist, and they all stack additively with one another:
+- **Generic modifiers**: apply to all damage received by an entity, regardless of damage type or source.
+- **DamageSource modifiers**: apply only when the damage originates from a specific `DamageSource`.
+- **DamageType modifiers**: apply only when the damage is of a specific `DamageType`.
+
+### Generic Damage Modifiers
+Generic modifiers are configured in the `AstraRpgHealthConfig` asset and apply universally to every instance of damage received by an entity. The two relevant fields are **Generic Flat Damage Modification Stat** and **Generic Percentage Damage Modification Stat**, described in detail in the [Package Configuration](./package-configuration.md#generic-flat-damage-modification-stat) page.
+
+As a quick recap:
+- **Generic Flat Damage Modification Stat**: a `Stat` whose value is added to (or subtracted from) the incoming damage amount as a flat quantity. A positive value increases the damage received; a negative value decreases it.
+- **Generic Percentage Damage Modification Stat**: a `Stat` whose value is applied as a percentage modification to the incoming damage. A value of 20 means +20% more damage received; a value of −20 means −20% less damage received.
+
+### DamageSource Modifiers
+As already introduced in the [Damage Sources](#damage-sources) section, each `DamageSource` asset exposes a **Percentage Modifier Stat** and a **Flat Modifier Stat**. These work identically to the generic modifiers described above, but are applied only when the damage originates from that specific `DamageSource`.
+
+### DamageType Modifiers
+Similarly, each `DamageType` asset exposes a **Percentage Modifier Stat** and a **Flat Modifier Stat** in its **Damage Modifiers** inspector section. These work in the same way as the source-specific modifiers, but are applied only when the damage is of that specific `DamageType`. A typical use case is implementing elemental weaknesses and resistances: for example, a `Fire Weakness` stat could be assigned as the **Percentage Modifier Stat** of a Fire `DamageType`, so that entities with a positive value of that stat take proportionally more Fire damage.
+
+> [!WARNING]
+> As with `DamageSource` modifiers, if the target entity lacks any statistic referenced by the **Percentage Modifier Stat** or **Flat Modifier Stat** fields on a `DamageType`, an error will be logged when applying damage of that type. Ensure that all entities with an `EntityHealth` component have the damage modifier statistics referenced by the `DamageType`s used in your game. A practical approach is the same suggested for `DamageSource` modifiers: centralize all modifier stats in a dedicated `StatSet` and include it in the relevant entities' stat sets.
+
+### Stacking Behavior
+When the `ApplyFlatDmgModifiersStep` and `ApplyPercentageDmgModifiersStep` steps are included in the active `DamageCalculationStrategy` (that we will see soon in the [Damage Calculation Strategy](#damage-calculation-strategy) section), all applicable modifiers of the same kind are **summed additively** into a single net value, which is then applied to the current damage amount in one operation.
+
+For percentage modifiers, the system also performs individual immunity checks before summing: if the generic percentage modifier alone reaches −100 or below, the damage is fully prevented and the entity is flagged as immune to all damage for that hit; if the source- or type-specific modifier alone reaches −100 or below, the damage is prevented and the entity is flagged as immune to that specific source or type respectively.
 
 ## Damage Calculation Pipeline
 

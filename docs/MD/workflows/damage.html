@@ -113,7 +113,7 @@ A <code>DamageSource</code> represents the source of the damage. Some examples o
 </ol>
 <div class="NOTE">
 <h5>Note</h5>
-<p>I recall the <a href="../introduction.html#damage-modifiers-vs-stat-based-damage-reduction">Damage Modifiers vs. Stat-Based Damage Reduction</a> section of the introduction documentation, where I explained the difference between damage reduction and damage modifiers.</p>
+<p>I recall the <a href="../introduction.html#damage-modifiers-vs-defensive-stat-based-damage-reduction">Damage Modifiers vs. Stat-Based Damage Reduction</a> section of the introduction documentation, where I explained the difference between damage reduction and damage modifiers.</p>
 </div>
 <p>We will now see each of these sections in detail.</p>
 <h3 id="damage-reduction">Damage Reduction</h3>
@@ -267,7 +267,34 @@ You can take a look at the existing damage reduction functions implementations f
 <img src="../../images/AstraRPG/workflows/damage/damage-type/defense-reduction-functions-log.png" alt="Log Def Reduction"></p>
 <p>If none of the built-in Defense Reduction Functions suits your needs, you can implement a custom one by creating a class that inherits from <a class="xref" href="../../api/ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.DefenseReductionFnSO.html">DefenseReductionFnSO</a> and implementing the <code>CalculateReducedDefense</code> method. As with the Damage Reduction Functions, remember to use the <code>CreateAssetMenu</code> attribute (or the <code>MenuItem</code> attribute) to make it creatable from the Unity editor.</p>
 <h3 id="damage-modifiers">Damage Modifiers</h3>
+<p>The <strong>Percentage Modifier Stat</strong> and <strong>Flat Modifier Stat</strong> fields in this section let you assign stat-based damage modifiers that apply specifically when an entity receives damage of this <code>DamageType</code>. Assigning a positive value to either stat increases the damage received from this type; a negative value decreases it. For a full explanation of how all damage modifier categories work and how they stack together, see the <a href="#damage-modifiers">Damage Modifiers</a> section.</p>
 <h3 id="true-damage-options">True Damage Options</h3>
+<h2 id="damage-modifiers-1">Damage Modifiers</h2>
+<p>Damage modifiers are a flexible tool for implementing mechanics such as resistances, weaknesses, buffs, and debuffs that affect how much damage an entity receives. Unlike <a href="../introduction.html#damage-modifiers-vs-defensive-stat-based-damage-reduction">Defensive Stat-Based Damage Reduction</a>, damage modifiers are off by default — their stats default to 0 — and can both increase and decrease the damage amount.</p>
+<p>Three categories of damage modifiers exist, and they all stack additively with one another:</p>
+<ul>
+<li><strong>Generic modifiers</strong>: apply to all damage received by an entity, regardless of damage type or source.</li>
+<li><strong>DamageSource modifiers</strong>: apply only when the damage originates from a specific <code>DamageSource</code>.</li>
+<li><strong>DamageType modifiers</strong>: apply only when the damage is of a specific <code>DamageType</code>.</li>
+</ul>
+<h3 id="generic-damage-modifiers">Generic Damage Modifiers</h3>
+<p>Generic modifiers are configured in the <code>AstraRpgHealthConfig</code> asset and apply universally to every instance of damage received by an entity. The two relevant fields are <strong>Generic Flat Damage Modification Stat</strong> and <strong>Generic Percentage Damage Modification Stat</strong>, described in detail in the <a href="package-configuration.html#generic-flat-damage-modification-stat">Package Configuration</a> page.</p>
+<p>As a quick recap:</p>
+<ul>
+<li><strong>Generic Flat Damage Modification Stat</strong>: a <code>Stat</code> whose value is added to (or subtracted from) the incoming damage amount as a flat quantity. A positive value increases the damage received; a negative value decreases it.</li>
+<li><strong>Generic Percentage Damage Modification Stat</strong>: a <code>Stat</code> whose value is applied as a percentage modification to the incoming damage. A value of 20 means +20% more damage received; a value of −20 means −20% less damage received.</li>
+</ul>
+<h3 id="damagesource-modifiers">DamageSource Modifiers</h3>
+<p>As already introduced in the <a href="#damage-sources">Damage Sources</a> section, each <code>DamageSource</code> asset exposes a <strong>Percentage Modifier Stat</strong> and a <strong>Flat Modifier Stat</strong>. These work identically to the generic modifiers described above, but are applied only when the damage originates from that specific <code>DamageSource</code>.</p>
+<h3 id="damagetype-modifiers">DamageType Modifiers</h3>
+<p>Similarly, each <code>DamageType</code> asset exposes a <strong>Percentage Modifier Stat</strong> and a <strong>Flat Modifier Stat</strong> in its <strong>Damage Modifiers</strong> inspector section. These work in the same way as the source-specific modifiers, but are applied only when the damage is of that specific <code>DamageType</code>. A typical use case is implementing elemental weaknesses and resistances: for example, a <code>Fire Weakness</code> stat could be assigned as the <strong>Percentage Modifier Stat</strong> of a Fire <code>DamageType</code>, so that entities with a positive value of that stat take proportionally more Fire damage.</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>As with <code>DamageSource</code> modifiers, if the target entity lacks any statistic referenced by the <strong>Percentage Modifier Stat</strong> or <strong>Flat Modifier Stat</strong> fields on a <code>DamageType</code>, an error will be logged when applying damage of that type. Ensure that all entities with an <code>EntityHealth</code> component have the damage modifier statistics referenced by the <code>DamageType</code>s used in your game. A practical approach is the same suggested for <code>DamageSource</code> modifiers: centralize all modifier stats in a dedicated <code>StatSet</code> and include it in the relevant entities' stat sets.</p>
+</div>
+<h3 id="stacking-behavior">Stacking Behavior</h3>
+<p>When the <code>ApplyFlatDmgModifiersStep</code> and <code>ApplyPercentageDmgModifiersStep</code> steps are included in the active <code>DamageCalculationStrategy</code> (that we will see soon in the <a href="#damage-calculation-strategy">Damage Calculation Strategy</a> section), all applicable modifiers of the same kind are <strong>summed additively</strong> into a single net value, which is then applied to the current damage amount in one operation.</p>
+<p>For percentage modifiers, the system also performs individual immunity checks before summing: if the generic percentage modifier alone reaches −100 or below, the damage is fully prevented and the entity is flagged as immune to all damage for that hit; if the source- or type-specific modifier alone reaches −100 or below, the damage is prevented and the entity is flagged as immune to that specific source or type respectively.</p>
 <h2 id="damage-calculation-pipeline">Damage Calculation Pipeline</h2>
 <h3 id="predamagecontext-and-damageresolutioncontext">PreDamageContext and DamageResolutionContext</h3>
 <h3 id="damage-step">Damage Step</h3>
