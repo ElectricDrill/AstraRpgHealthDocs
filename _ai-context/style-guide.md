@@ -82,6 +82,20 @@ DocFx supports five alert types. Use them as follows:
 
 ---
 
+## Lists
+
+**Bullet lists** — use for unordered items: features, field descriptions, options, non-sequential information.
+
+**Numbered lists** — use exclusively for **sequential steps or ordered procedures** (installation steps, tutorial walkthroughs, calculation breakdowns).
+
+**Punctuation in list items**:
+- Single-sentence items: **no trailing period**.
+- Multi-sentence or complex items: **period at end of each sentence**.
+
+**Nesting**: avoid nested lists. Use subsections or separate bullet groups instead.
+
+---
+
 ## Numeric Examples
 
 Use a bullet-list of premises followed by a prose result sentence:
@@ -96,6 +110,19 @@ In this case, if the target has Armor equal to 30 and the attacker has Armor Pen
 ```
 
 Always close examples with: "This example assumes no other damage modifications are active." (or a variant).
+
+For step-by-step calculation breakdowns, use a numbered list of steps with a bold inline final result:
+
+```markdown
+**Step-by-step calculation:**
+1. Start with base value: 100
+2. Apply flat modifiers: 100 + 20 = 120
+3. Apply percentage modifiers: 120 × 1.3 = 156
+
+**Final value: 156**
+```
+
+Inline math in prose uses the Unicode multiplication sign `×` and standard parentheses, never `*` for multiplication.
 
 ---
 
@@ -118,14 +145,19 @@ Order: Use Cases → Pros → Cons (when all three are present).
 
 ---
 
-## Cross-References (xref)
+## Cross-References and Links
 
-Format:
-```markdown
-[ClassName](xref:Namespace.ClassName)
-```
+| Link type | Format | Example |
+|---|---|---|
+| Same-file anchor | `[Title](#anchor)` | `[Damage Reduction](#damage-reduction)` |
+| Other file in same folder | `[Text](./filename.md)` | `[Package Configuration](./package-configuration.md)` |
+| Other file + anchor | `[Text](./filename.md#anchor)` | `[Generic Modifiers](./package-configuration.md#generic-flat-damage-modification-stat)` |
+| API type | `[ClassName](xref:Namespace.ClassName)` | `[DamageReductionFnSO](xref:ElectricDrill.AstraRpgHealth.DamageReductionFunctions.DamageReductionFnSO)` |
+| External URL | Plain text `https://...` | Not wrapped in markdown |
 
-Known namespaces:
+Anchor IDs are generated from heading text: lowercase, spaces replaced by hyphens.
+
+Known namespaces (xref):
 - `ElectricDrill.AstraRpgHealth.DamageReductionFunctions` → `DamageReductionFnSO`
 - `ElectricDrill.AstraRpgHealth.DefenseReductionFunctions` → `DefenseReductionFnSO`
 
@@ -133,24 +165,35 @@ Known namespaces:
 
 ---
 
-## Anchor Links (internal)
-
-Format: `[Section Title](#section-anchor)` where the anchor is the heading lowercased with spaces replaced by hyphens.
-
-Example: `[Damage Reduction](#damage-reduction)`, `[Damage Modifiers](#damage-modifiers)`
-
----
-
 ## Tone and Register
 
 - Professional, instructional, third-person neutral.
-- Avoid "you should" in favor of "ensure that" or imperative ("Ensure all entities…").
+- Avoid "you should" in favor of "ensure that" or the imperative ("Ensure all entities…").
 - Explanations move from general concept → parameters → example → use cases/trade-offs.
 - When referring to things explained elsewhere in the docs, use a cross-reference rather than re-explaining in full.
+- Use **"Let's"** framing for collaborative tutorial walkthroughs: *"Let's see an example of how to define a `GrowthFormula`."*
+- Use **parenthetical asides** `(like this)` for inline clarifications and side notes. Never use em-dashes for this purpose.
+- Sections end by flowing into the next topic or providing next-step guidance. No formal "Summary" sections.
 
 ---
 
-## Code Fences
+## Callout Box Details
+
+Multi-paragraph callout boxes use a blank `>` line as separator between paragraphs or between a header and a list:
+
+```markdown
+> [!NOTE]
+> **Header for the note**
+>
+> - First point
+> - Second point
+```
+
+Use a bold inline header inside a callout only when the box covers multiple distinct sub-points. Single-topic callouts use plain prose.
+
+---
+
+## Code Fences and Inline Code
 
 Use triple backtick fences for formulas and code snippets. No language tag for math formulas; use `csharp` for C# code.
 
@@ -158,11 +201,90 @@ Use triple backtick fences for formulas and code snippets. No language tag for m
 Reduced Damage = Damage × (BaseValue / (BaseValue + Log(1 + DefensiveStat × ScaleFactor)))
 ```
 
+Introduce code blocks with a colon at the end of the preceding sentence:
+
+```markdown
+For example, to get the Physical Attack value at level 5, you can do:
+```
+
+Backtick wrapping (`inline code`) is used universally for:
+- Class/type names: `EntityHealth`, `DamageTypeSO`
+- Method names: `TakeDamage`, `CalculateReducedDamage`
+- Variable/field names in code context: `BaseValue`, `ScaleFactor`
+- Unity menu paths: `` `Create > Astra RPG` ``, `` `Window > Astra RPG Health > Log Damage Reduction Graph` ``
+- Folder/asset paths: `` `Assets/Events/GeneratedEvents` ``
+
+No bold+code combination. Use one or the other.
+
+---
+
+## Special Inline Labels
+
+Two recurring italic-label patterns precede content blocks:
+
+```markdown
+*Relative path:* `Dmg Reduction Functions -> Flat Dmg Reduction`
+*Keyboard shortcut:* `Ctrl + Alt + S`
+```
+
+- Both use `*Italic label:*` followed by a backtick-wrapped value.
+- No trailing punctuation after the closing backtick.
+- Always on their own line, immediately before the relevant image or section.
+- Keyboard shortcuts: capitalize key names, spaces around `+`.
+
+---
+
+## Version Tags
+
+Use this format to indicate that a feature is available from a specific package version onwards:
+
+```markdown
+*🏷️ Version X.Y.Z+*
+```
+
+Or inline within a sentence: `(🏷️*vX.Y.Z+*)`.
+
+Place on its own line after the heading it applies to, or inline after the feature name.
+
+---
+
+## HTML in Markdown
+
+HTML is used in limited, specific cases:
+
+**Colored field-status markers** (for inspector field legends):
+```html
+<span style="color:red;">*</span>           <!-- required field -->
+<strong style="color:goldenrod;">R</strong>  <!-- replay field -->
+<strong style="color:teal;">RO</strong>      <!-- read-only field -->
+```
+
+These three markers correspond to field properties that may appear in the custom inspectors of the package:
+- **Red <span style="color:red;">*</span>** — the field is **required**: it must be assigned for the component to work correctly
+- **Ochre/goldenrod <strong style="color:goldenrod;">R</strong>** — the field is a **replay** field: its value is re-evaluated at runtime under certain conditions
+- **Teal <strong style="color:teal;">RO</strong>** — the field is **read-only**: it is displayed for information only and cannot be edited in the inspector
+
+When documenting an inspector section that contains fields carrying one of these markers, reproduce the marker in the documentation using the corresponding HTML tag so the reader can visually match what they see in the Unity editor.
+
+**Icon headings** (for architecture component definitions):
+```html
+### <img src="../images/icon.png" alt="Icon" width="30" class="icon-background"/> ComponentName
+```
+
+**HTML comments** for internal planning notes or TOC outlines visible in source but not rendered:
+```html
+<!-- This section covers: X, Y, Z -->
+```
+
+Avoid HTML for anything achievable with standard markdown.
+
 ---
 
 ## What NOT to Do
 
 - Do not repeat detailed explanations that already exist in another section — link instead.
 - Do not add `#####` headings.
+- Do not reference existing image files with incorrect filenames — check `code-reference.md` for confirmed existing images.
 - Do not change xref spelling in existing text unless the user asks.
 - Do not add new sections without the user's explicit request.
+- Do not use `*` for multiplication in prose — use the Unicode `×` character.
