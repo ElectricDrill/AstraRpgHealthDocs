@@ -7,6 +7,8 @@ A `DamageSource` represents the source of the damage. Some examples of `DamageSo
 An instance of `DamageSource`, in the inspector, should look like this:  
 ![DamageSource](../../images/AstraRPG/workflows/damage/damage-source.png)
 
+### Damage Sources - Modifiers
+
 There are two properties to set in a `DamageSource`:
 - **Percentage Modifier Stat**: the statistic to consider in an entity to apply percentage, specific damage modifiers for this damage source. Positive values of this statistic increase the damage received from this source, while negative values decrease it.
 - **Flat Modifier Stat**: the statistic to consider in an entity to apply flat, specific damage modifiers for this damage source. Positive values of this statistic increase the damage received from this source, while negative values decrease it.
@@ -185,9 +187,11 @@ The package provides three built-in Defense Reduction Functions — Flat, Percen
 
 If none of the built-in Defense Reduction Functions suits your needs, you can implement a custom one by creating a class that inherits from [DefenseReductionFnSO](xref:ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.DefenseReductionFnSO) and implementing the `CalculateReducedDefense` method. As with the Damage Reduction Functions, remember to use the `CreateAssetMenu` attribute (or the `MenuItem` attribute) to make it creatable from the Unity editor.
 
-### Damage Modifiers
+### Damage Types - Damage Modifiers
 
 The **Percentage Modifier Stat** and **Flat Modifier Stat** fields in this section let you assign stat-based damage modifiers that apply specifically when an entity receives damage of this `DamageType`. Assigning a positive value to either stat increases the damage received from this type; a negative value decreases it. For a full explanation of how all damage modifier categories work and how they stack together, see the [Damage Modifiers](#damage-modifiers) section.
+
+A possible way to simplify the management of all the `DamageType` modifier stats is to create a `StatSet` specifically for this purpose, and include it as a _Included Stat Set_ in the various entities' `StatSet`s of your game. This way, you centralize all the `DamageType` modifier stats in a single `StatSet`, and you can easily keep track of them and ensure that they are included in all the relevant entities.
 
 ### True Damage Options
 
