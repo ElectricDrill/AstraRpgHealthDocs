@@ -12,6 +12,7 @@ The user is writing English documentation for this package using DocFx. All conv
 
 ## Folder Paths
 
+On Windows workstation, the relevant paths are:
 | Asset | Path |
 |---|---|
 | Health package source | `C:\Users\emaci\Documents\AstraRpgPublishing_6_3\Packages\com.electricdrill.astra-rpg-health\` |
@@ -19,6 +20,15 @@ The user is writing English documentation for this package using DocFx. All conv
 | Documentation markdown | `C:\Users\emaci\Documents\AstraRpgHealthDocs\DocFx\MD\` |
 | Documentation images | `C:\Users\emaci\Documents\AstraRpgHealthDocs\DocFx\images\AstraRPG\` |
 | AI context (this folder) | `C:\Users\emaci\Documents\AstraRpgHealthDocs\_ai-context\` |
+
+On Ubuntu workstation, the paths are:
+| Asset | Path |
+|---|---|
+| Health package source | `/home/emanuele/RiderProjects/Geometrical-Invaders/Packages/com.electricdrill.astra-rpg-health/` |
+| Framework source | `/home/emanuele/RiderProjects/Geometrical-Invaders/Packages/com.electricdrill.astra-rpg-framework/` |
+| Documentation markdown | `/home/emanuele/Documents/Personal/ElectricDrill/AstraRpgHealthDocs/DocFx/MD/` |
+| Documentation images | `/home/emanuele/Documents/Personal/ElectricDrill/AstraRpgHealthDocs/DocFx/images/AstraRPG/` |
+| AI context (this folder) | `/home/emanuele/Documents/Personal/ElectricDrill/AstraRpgHealthDocs/_ai-context/` |
 
 ---
 

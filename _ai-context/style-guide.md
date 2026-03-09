@@ -37,6 +37,9 @@ Always precede an image with its Unity relative path on a separate line:
 
 Image base path from `MD/workflows/`: `../../images/AstraRPG/workflows/`
 
+> [!IMPORTANT]
+> `*Relative path:*` refers exclusively to the **asset creation path in the Unity context menu** (i.e., `Assets > Create > Astra RPG Health > ...`). Use it only when documenting a standalone `ScriptableObject` type that the user creates via that menu. Do **not** use it for inspector subsections that are part of an existing SO (for example, the **True Damage Options** section of a `DamageType` inspector). In those cases, add an image directly with no path prefix.
+
 **Be proactive about adding images.** Study the existing documentation to understand where screenshots are used (inspector views, custom windows, example configurations) and apply the same pattern in new sections. When a screenshot would naturally belong in a section — for example, to show a new inspector section, a custom editor window, or a configuration example — add the image reference using the conventional format even if the file does not yet exist on disk. The user will provide the missing screenshots and place them in the correct folder.
 
 When referencing an image that does not yet exist, add a comment immediately after to signal that the file is missing:
@@ -156,6 +159,8 @@ Order: Use Cases → Pros → Cons (when all three are present).
 | External URL | Plain text `https://...` | Not wrapped in markdown |
 
 Anchor IDs are generated from heading text: lowercase, spaces replaced by hyphens.
+
+**Forward references within the same page**: when a section mentions a class, step, or system that is documented in a later section of the same page, always wrap the name in a same-file anchor link pointing to that section. This lets the reader navigate directly to the explanation without losing context. For example, when mentioning `ApplyBarrierStep` before the pipeline section has been reached, write `[ApplyBarrierStep](#damage-calculation-pipeline)` rather than plain inline code.
 
 Known namespaces (xref):
 - `ElectricDrill.AstraRpgHealth.DamageReductionFunctions` → `DamageReductionFnSO`

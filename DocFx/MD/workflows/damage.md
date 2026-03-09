@@ -195,6 +195,22 @@ A possible way to simplify the management of all the `DamageType` modifier stats
 
 ### True Damage Options
 
+The **True Damage Options** section of a `DamageType` exposes three boolean flags that allow selective bypasses for individual stages of the damage pipeline. They are the primary tool for implementing "true damage" mechanics — damage that partially or entirely skips specific mitigation layers — without requiring a custom `DamageCalculationStrategy`.
+
+- **Ignore Barrier**: when enabled, the [`ApplyBarrierStep`](#damage-step) is skipped entirely for this `DamageType`. Damage bypasses the target's barrier and is applied directly to its health pool. Use this for damage types that are meant to be unavoidable through shielding — for example, a pure true damage type, fall damage, or damage-over-time effects that should not interact with temporary shields.
+
+- **Ignore Generic Percentage Modifiers**: when enabled, the [`ApplyPercentageDmgModifiersStep`](#damage-step) skips the **Generic Percentage Damage Modification Stat** configured in `AstraRpgHealthConfig`. Percentage modifiers from the `DamageSource` or from this `DamageType` itself still apply normally.
+
+- **Ignore Generic Flat Modifiers**: when enabled, the [`ApplyFlatDmgModifiersStep`](#damage-step) skips the **Generic Flat Damage Modification Stat** configured in `AstraRpgHealthConfig`. Flat modifiers from the `DamageSource` or from this `DamageType` itself still apply normally.
+
+> [!IMPORTANT]
+> **Ignore Generic Percentage Modifiers** and **Ignore Generic Flat Modifiers** bypass only the _generic_ modifier layer — the global stats configured in `AstraRpgHealthConfig`. Source-specific and type-specific modifier stats are never bypassed by these flags and always participate in the pipeline normally.
+>
+> However, if a `DamageSource` or this `DamageType` has no modifier stats assigned, those layers contribute nothing by construction — which effectively produces the same result as a bypass. Enabling all three flags while also leaving all modifier stats unset on the source and type produces a fully modifier-free damage type.
+
+> [!TIP]
+> To create a damage type that is also unaffected by any defensive stat, simply leave **Defensive Stat** and **Damage Reduction Fn** empty. The [`ApplyDefenseStep`](#damage-step) has nothing to compute and is skipped. Combined with the three True Damage Option flags and no modifier stats, this defines a fully unmitigated damage type.
+
 ## Damage Modifiers
 
 Damage modifiers are a flexible tool for implementing mechanics such as resistances, weaknesses, buffs, and debuffs that affect how much damage an entity receives. Unlike [Defensive Stat-Based Damage Reduction](../introduction.md#damage-modifiers-vs-defensive-stat-based-damage-reduction), damage modifiers are off by default — their stats default to 0 — and can both increase and decrease the damage amount.

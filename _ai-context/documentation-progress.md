@@ -1,7 +1,7 @@
 # Documentation Progress — Astra RPG Health
 
 > Update this file whenever a section is completed or its status changes.
-> Last updated: 2026-03-08
+> Last updated: 2026-03-09
 
 ---
 
@@ -47,7 +47,7 @@ Lines are approximate; re-check with view tool if needed.
 | `#### Custom Dmg Reduction Functions` | line ~148 | ✅ Done | Written by user |
 | `#### Defense Penetration` | line ~152 | ✅ Done | Full section written in session 1 |
 | `### Damage Modifiers` (under Damage Types) | line ~188 | ✅ Done | Brief callout + link to full section (session 1) |
-| `### True Damage Options` | line ~192 | ❌ EMPTY | Needs: IgnoresBarrier, IgnoreGenericPercentageDamageModifiers, IgnoreGenericFlatDamageModifiers |
+| `### True Damage Options` | line ~192 | ✅ Done | Written session 2: Ignore Barrier, Ignore Generic % Modifiers, Ignore Generic Flat Modifiers; IMPORTANT callout on generic-only scope |
 | `## Damage Modifiers` | line ~194 | ✅ Done | Full section written in session 1; includes Generic, DamageSource, DamageType, Stacking |
 | `## Damage Calculation Pipeline` | line ~224 | ❌ EMPTY | Container section; needs intro paragraph |
 | `### PreDamageContext and DamageResolutionContext` | line ~226 | ❌ EMPTY | Key files: PreDamageContext.cs, DamageResolutionContext.cs |
@@ -59,7 +59,10 @@ Lines are approximate; re-check with view tool if needed.
 
 ## Session History
 
-### Session 1 (2026-03-08)
+### Session 2 (2026-03-09)
+- Wrote `### True Damage Options` section (Ignore Barrier, Ignore Generic % Modifiers, Ignore Generic Flat Modifiers; IMPORTANT callout clarifying generic-only scope)
+
+
 - Initial familiarization of Framework + Health packages
 - Added `#### Defense Penetration` section
 - Added `[!NOTE]` and `[!WARNING]` to `### Damage Reduction`
