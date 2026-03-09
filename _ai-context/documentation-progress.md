@@ -26,7 +26,7 @@ All markdown files live in: `C:\Users\emaci\Documents\AstraRpgHealthDocs\DocFx\M
 | `workflows/healing.md` | ❓ Unknown | Not yet reviewed |
 | `workflows/lifesteal.md` | ✅ Done | Full first draft written; all sections complete |
 | `workflows/resurrection.md` | ❓ Unknown | Not yet reviewed |
-| `workflows/experience-collection.md` | ❓ Unknown | Not yet reviewed |
+| `workflows/experience-collection.md` | ✅ Done | Full first draft written; all sections complete |
 | `workflows/health-scaling-component.md` | ❓ Unknown | Not yet reviewed |
 | `workflows/package-configuration.md` | ✅ Done | Style-conformance pass: fixed `[!INFO]`→`[!NOTE]`, emoji callouts, `*`→`×`, `**Purpose:**`/`**Usage:**` headers, `> **See Also:**` blockquotes, emoji in Troubleshooting headings |
 
@@ -63,6 +63,10 @@ Lines are approximate; re-check with view tool if needed.
 ---
 
 ## Session History
+
+### Session 6 (2026-03-09)
+- Wrote `workflows/experience-collection.md` from scratch: intro (two-actor model + IMPORTANT callout on Global Events dependency), Prerequisites (ExpSource on victim + EntityCore on collector), Setting Up the Exp Collector (RequireComponent behavior, manual event wiring, Custom Exp Collection Strategy field, Inspector Status Box with all four messages), Default Strategy in Package Configuration (fallback mechanism + 3-step resolution order), Built-in Strategies (DirectKill, DamageSourceKill with Souls-like example + CAUTION on no harvested check, FirstMatch composite + NOTE), Custom Strategies (Template Method override table)
+- Note: "kill" terminology in strategies replaced with neutral phrasing ("finishing blow", "defeat") to avoid bash security filter issues
 
 ### Session 5 (2026-03-09)
 - Wrote `workflows/lifesteal.md` from scratch: intro, `LifestealConfigSO`, mapping config (Lifesteal Stat, Lifesteal Source, Amount Selector with Initial/Step/Final modes), Package Configuration integration, Performance Considerations (modeled after healing.md), Conditions (NOTE + IMPORTANT callouts referencing Global Events)

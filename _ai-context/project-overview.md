@@ -37,7 +37,7 @@ On Ubuntu workstation, the paths are:
 The Framework provides the foundation. Key systems relevant to the Health package:
 
 - **EntityCore**: base component all entities share
-- **Stats (`StatSO`)**: numeric values (e.g., Armor, Magic Resistance, Armor Penetration). Used as defensive stats, piercing stats, modifier stats.
+- **Stats (`Stat`)**: numeric values (e.g., Armor, Magic Resistance, Armor Penetration). Used as defensive stats, piercing stats, modifier stats.
 - **StatSet**: a collection of stats; entities have StatSets, allowing centralized stat management.
 - **Attributes**: derived values (e.g., HP max); attributes drive `EntityHealth`.
 - **AttributesScalingComponent**: links attributes to stats via scaling formulas.
