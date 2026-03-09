@@ -24,7 +24,7 @@ All markdown files live in: `C:\Users\emaci\Documents\AstraRpgHealthDocs\DocFx\M
 | `workflows/damage.md` | ✅ Done | See detailed breakdown below |
 | `workflows/entity-health.md` | ❓ Unknown | Not yet reviewed |
 | `workflows/healing.md` | ❓ Unknown | Not yet reviewed |
-| `workflows/lifesteal.md` | ❓ Unknown | Not yet reviewed |
+| `workflows/lifesteal.md` | ✅ Done | Full first draft written; all sections complete |
 | `workflows/resurrection.md` | ❓ Unknown | Not yet reviewed |
 | `workflows/experience-collection.md` | ❓ Unknown | Not yet reviewed |
 | `workflows/health-scaling-component.md` | ❓ Unknown | Not yet reviewed |
@@ -63,6 +63,9 @@ Lines are approximate; re-check with view tool if needed.
 ---
 
 ## Session History
+
+### Session 5 (2026-03-09)
+- Wrote `workflows/lifesteal.md` from scratch: intro, `LifestealConfigSO`, mapping config (Lifesteal Stat, Lifesteal Source, Amount Selector with Initial/Step/Final modes), Package Configuration integration, Performance Considerations (modeled after healing.md), Conditions (NOTE + IMPORTANT callouts referencing Global Events)
 
 ### Session 4 (2026-03-09)
 - Marked `workflows/damage.md` as complete
