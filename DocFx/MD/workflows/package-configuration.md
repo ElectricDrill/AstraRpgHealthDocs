@@ -29,7 +29,8 @@ The package automatically creates the Global Settings asset on first import or w
 2. If a default configuration exists (e.g., from imported samples), it's automatically assigned
 3. The system is immediately ready to use
 
-> **📁 Default Location:** `Assets/Resources/AstraRpgHealthGlobalSettings.asset`
+> [!NOTE]
+> Default location: `Assets/Resources/AstraRpgHealthGlobalSettings.asset`
 
 ### Project Settings
 
@@ -75,7 +76,8 @@ The configuration provider uses a **three-step loading strategy**:
    - If neither is found, logs an error with instructions
    - System will not function until a configuration is provided
 
-> **💡 Tip:** For production projects, always use **explicit configuration** via Project Settings for clarity and control.
+> [!TIP]
+> For production projects, always use **explicit configuration** via Project Settings for clarity and control.
 
 ---
 
@@ -122,7 +124,7 @@ If for any reason you need to create a new `AstraRpgHealthConfig` asset, you can
 ---
 
 ## Health Configuration Reference
-> [!INFO]
+> [!NOTE]
 > In the `AstraRpgHealthConfig` asset, you can hover over each field to see a tooltip with a brief description.
 
 The `AstraRpgHealthConfig` asset contains all gameplay parameters for the health system. Below is a detailed explanation of each field.
@@ -134,7 +136,7 @@ The `AstraRpgHealthConfig` asset contains all gameplay parameters for the health
 **Required:** No  
 **Description:** Defines how entities' maximum health scales based on character attributes (e.g., Vitality, Endurance).
 
-> **See Also:** [Astra RPG Framework Scaling documentation](https://electricdrill.github.io/AstraRpgFrameworkDocs/MD/workflows.html#create-scaling-formulas)
+See also: [Astra RPG Framework Scaling documentation](https://electricdrill.github.io/AstraRpgFrameworkDocs/MD/workflows.html#create-scaling-formulas)
 
 #### Generic Flat Heal Amount Modifier Stat
 **Type:** `Stat`  
@@ -171,7 +173,7 @@ The `AstraRpgHealthConfig` asset contains all gameplay parameters for the health
 - Base Heal: 100 HP
 - Generic Flat Heal Amount Modifier: 20 (means +20 extra HP healing received)
 - Generic Percentage Heal Amount Modifier: 20 (means +20% healing received)
-- Final Heal: (100 + 20) * 1.20 = **144 HP**
+- Final Heal: (100 + 20) × 1.20 = **144 HP**
 
 > [!WARNING]
 > Remember to remove the default lower bound of 0 from your flat and percentage heal modifiers if you want to allow negative values for healing reduction effects. By default, the base framework sets a lower bound of 0 on all stats.
@@ -185,19 +187,14 @@ The `AstraRpgHealthConfig` asset contains all gameplay parameters for the health
 **Required:** No  
 **Description:** The default strategy used to calculate net damage when an entity doesn't specify its own strategy.
 
-**Purpose:**
-- Provides a default damage calculation strategy to use for "regular" entities. In most cases, this is sufficient
-- Can be overridden per-entity for custom damage pipelines in their `EntityHealth` component
-
-> **See Also:** Damage Calculation Pipeline documentation
+The default strategy applied to entities that do not have a custom one assigned in their `EntityHealth` component. In most cases a single global default is sufficient; override it per-entity when a different calculation pipeline is required. See [Damage Calculation Strategy](./damage.md#damage-calculation-strategy) for details on how strategies work.
 
 #### Generic Flat Damage Modification Stat
 **Type:** `Stat`  
 **Required:** No  
 **Description:** A universal flat damage modifier that applies to **all damage received**, regardless of type or source.
 
-**Usage:**
-- Applied in the damage calculation pipeline if `ApplyFlatDmgModifiersStep` is included in the used strategy
+Applied by `ApplyFlatDmgModifiersStep` when that step is included in the active strategy.
 
 **Stacking Behavior:**
 - Combines **additively** with Type and Source **flat** modifications
@@ -212,8 +209,7 @@ The `AstraRpgHealthConfig` asset contains all gameplay parameters for the health
 **Required:** No
 **Description:** A universal percentage damage modifier that applies to **all damage received**, regardless of type or source.
 
-**Usage:**
-- Applied in the damage calculation pipeline if `ApplyPercentageDmgModifiersStep` is included in the used strategy
+Applied by `ApplyPercentageDmgModifiersStep` when that step is included in the active strategy.
 
 **Stacking Behavior:**
 - Combines **additively** with Type and Source **percentage** modifications
@@ -221,7 +217,7 @@ The `AstraRpgHealthConfig` asset contains all gameplay parameters for the health
 **Example:**
 - Incoming Damage: 150
 - Generic Percentage Damage Modification: -20 (means -20% damage taken)
-- **Damage Reduction:** -20% → Final Damage: 150 * 0.80 = **120**
+- **Damage Reduction:** -20% → Final Damage: 150 × 0.80 = **120**
 
 > [!NOTE]
 > If the entity to be healed doesn't have the specified flat/percentage heal modification stats, they will be considered as having a value of 0 for those stats, and therefore no modification will be applied to the healing amount for that entity.
@@ -312,7 +308,7 @@ entityHealth.ManualHealthRegenerationTick();
 - Heal source for lifesteal effects
 - Restrictions (e.g., only on critical hits, only physical damage)
 
-> **See Also:** Lifesteal documentation
+See also: [Lifesteal](./lifesteal.md)
 
 ---
 
@@ -358,7 +354,7 @@ Death → Execute composite on-death Game Action → [Spawn Death VFX → Drop L
 
 ## Troubleshooting
 
-### ⚠️ "No Configuration found!" error
+### "No Configuration found!" error
 
 **Cause:** No configuration is assigned and no fallback exists.
 
@@ -367,7 +363,7 @@ Death → Execute composite on-death Game Action → [Spawn Death VFX → Drop L
 2. Assign a configuration or create a new one
 3. Alternatively, create a config named `Astra Rpg Health Config` in a `Resources` folder
 
-### ⚠️ "Using Fallback" warning
+### "Using Fallback" warning
 
 **Cause:** No explicit configuration assigned in Project Settings.
 
@@ -376,7 +372,7 @@ Death → Execute composite on-death Game Action → [Spawn Death VFX → Drop L
 2. Assign the fallback configuration explicitly
 3. This warning is just informational and won't break functionality
 
-### ⚠️ Configuration not updating in Play Mode
+### Configuration not updating in Play Mode
 
 **Cause:** Configuration is cached on first access.
 
@@ -386,7 +382,7 @@ Death → Execute composite on-death Game Action → [Spawn Death VFX → Drop L
 AstraRpgHealthConfigProvider.Reset();
 ```
 
-### ⚠️ Missing Resources folder
+### Missing Resources folder
 
 **Cause:** The `Assets/Resources/` folder doesn't exist.
 

@@ -21,14 +21,14 @@ All markdown files live in: `C:\Users\emaci\Documents\AstraRpgHealthDocs\DocFx\M
 | `limitations.md` | ✅ Written by user | |
 | `migration-guide.md` | ✅ Written by user | |
 | `changelog.md` | ✅ Written by user | |
-| `workflows/damage.md` | 🔄 IN PROGRESS | See detailed breakdown below |
+| `workflows/damage.md` | ✅ Done | See detailed breakdown below |
 | `workflows/entity-health.md` | ❓ Unknown | Not yet reviewed |
 | `workflows/healing.md` | ❓ Unknown | Not yet reviewed |
 | `workflows/lifesteal.md` | ❓ Unknown | Not yet reviewed |
 | `workflows/resurrection.md` | ❓ Unknown | Not yet reviewed |
 | `workflows/experience-collection.md` | ❓ Unknown | Not yet reviewed |
 | `workflows/health-scaling-component.md` | ❓ Unknown | Not yet reviewed |
-| `workflows/package-configuration.md` | ✅ Written by user | |
+| `workflows/package-configuration.md` | ✅ Done | Style-conformance pass: fixed `[!INFO]`→`[!NOTE]`, emoji callouts, `*`→`×`, `**Purpose:**`/`**Usage:**` headers, `> **See Also:**` blockquotes, emoji in Troubleshooting headings |
 
 ---
 
@@ -63,6 +63,10 @@ Lines are approximate; re-check with view tool if needed.
 ---
 
 ## Session History
+
+### Session 4 (2026-03-09)
+- Marked `workflows/damage.md` as complete
+- Style-conformance pass on `workflows/package-configuration.md`: fixed invalid `[!INFO]` callout → `[!NOTE]`; replaced emoji blockquotes (`📁`, `💡`) with proper `[!NOTE]`/`[!TIP]`; replaced `> **See Also:**` blockquotes with inline links; removed `**Purpose:**` and `**Usage:**` sub-headers folding content into prose; replaced `*` with `×` for multiplication in examples; stripped `⚠️` emoji from Troubleshooting headings
 
 ### Session 3 (2026-03-09)
 - Evaluated `## Damage Calculation Pipeline` outline against source code; identified missing `ApplyCriticalMultiplierStep`
