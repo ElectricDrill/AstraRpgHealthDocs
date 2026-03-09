@@ -49,15 +49,26 @@ Lines are approximate; re-check with view tool if needed.
 | `### Damage Modifiers` (under Damage Types) | line ~188 | ✅ Done | Brief callout + link to full section (session 1) |
 | `### True Damage Options` | line ~192 | ✅ Done | Written session 2: Ignore Barrier, Ignore Generic % Modifiers, Ignore Generic Flat Modifiers; IMPORTANT callout on generic-only scope |
 | `## Damage Modifiers` | line ~194 | ✅ Done | Full section written in session 1; includes Generic, DamageSource, DamageType, Stacking |
-| `## Damage Calculation Pipeline` | line ~224 | ❌ EMPTY | Container section; needs intro paragraph |
-| `### PreDamageContext and DamageResolutionContext` | line ~226 | ❌ EMPTY | Key files: PreDamageContext.cs, DamageResolutionContext.cs |
-| `### Damage Step` | line ~228 | ❌ EMPTY | Key file: DamageStep.cs abstract class |
-| `### Damage Calculation Strategy` | line ~230 | ❌ EMPTY | Key files: DamageCalculationStrategySO.cs; per-entity override |
-| `## Dealing Damage to an Entity` | line ~232 | ✅ Done | Written by user; do NOT modify |
+| `## Damage Calculation Pipeline` | line ~244 | ✅ Done | Intro paragraph + all subsections written (session 3) |
+| `### Pipeline Data Types` | line ~248 | ✅ Done | PreDamageContext, DamageInfo, DamageAmountContext, DamageResolutionContext, DamageOutcome, DamagePreventionReason table |
+| `### Damage Step` | line ~290 | ✅ Done | Abstract base; Process() preconditions, StepAmountRecord, PipelineReducedToZero |
+| `#### ApplyBarrierStep` | line ~300 | ✅ Done | Barrier consumption, IgnoresBarrier skip, BarrierAbsorbed reason |
+| `#### ApplyCriticalMultiplierStep` | line ~310 | ✅ Done | IsCritical flag, multiplier skip conditions, pipeline position note |
+| `#### ApplyPercentageDmgModifiersStep` | line ~320 | ✅ Done | Three-layer application, per-layer immunity thresholds, net-percentage |
+| `#### ApplyFlatDmgModifiersStep` | line ~330 | ✅ Done | Three-layer application, additive sum, clamped-to-zero |
+| `#### ApplyDefenseStep` | line ~340 | ✅ Done | Defensive stat + fn validation, penetration, DefenseAbsorbed reason |
+| `### Damage Calculation Strategy` | line ~350 | ✅ Done | SO inspector, reorderable list, two images, three-tier priority with tooltips |
+| `## Dealing Damage to an Entity` | line ~370 | ✅ Done | Written by user; do NOT modify |
 
 ---
 
 ## Session History
+
+### Session 3 (2026-03-09)
+- Evaluated `## Damage Calculation Pipeline` outline against source code; identified missing `ApplyCriticalMultiplierStep`
+- Restructured outline: replaced `### PreDamageContext and DamageResolutionContext` with `### Pipeline Data Types`; added `#### ApplyCriticalMultiplierStep`
+- Wrote complete `## Damage Calculation Pipeline` section: intro, Pipeline Data Types (all 6 types + DamagePreventionReason table), Damage Step abstract base, all five `####` step subsections, Damage Calculation Strategy (two images + three-tier priority)
+- Updated `_ai-context/style-guide.md`: added forward-reference anchor guidance to Cross-References section
 
 ### Session 2 (2026-03-09)
 - Wrote `### True Damage Options` section (Ignore Barrier, Ignore Generic % Modifiers, Ignore Generic Flat Modifiers; IMPORTANT callout clarifying generic-only scope)
@@ -75,8 +86,5 @@ Lines are approximate; re-check with view tool if needed.
 
 ## Next Steps (Priority Order)
 
-1. **`### True Damage Options`** — shortest, self-contained; source: `DamageTypeSO.cs` fields `IgnoresBarrier`, `IgnoreGenericPercentageDamageModifiers`, `IgnoreGenericFlatDamageModifiers`
-2. **`## Damage Calculation Pipeline`** intro paragraph
-3. **`### PreDamageContext and DamageResolutionContext`** — source: `PreDamageContext.cs`, `DamageResolutionContext.cs`
-4. **`### Damage Step`** — source: `DamageStep.cs`
-5. **`### Damage Calculation Strategy`** — source: `DamageCalculationStrategySO.cs`, `EntityHealth.cs`
+1. Review `workflows/entity-health.md`, `workflows/healing.md`, and remaining workflow files — status unknown, need assessment.
+2. Review `## Dealing Damage to an Entity` for any cross-reference anchors that should link into the newly written pipeline section.
