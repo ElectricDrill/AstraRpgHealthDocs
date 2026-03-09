@@ -382,7 +382,7 @@ The step is a no-op when both **Defensive Stat** and **Damage Reduction Fn** are
 
 #### ApplyBarrierStep
 
-Barriers act as a temporary shield layer in front of an entity's health pool: incoming damage hits the barrier first, and only what the barrier cannot absorb continues on to the next step. This step is the mechanism behind shielding abilities and any temporary protective layer you implement with the barrier system. Place it early in the pipeline so that barriers are consumed before other reductions are applied.
+Barriers act as a temporary shield layer in front of an entity's health pool: incoming damage hits the barrier first, and only what the barrier cannot absorb continues on to the next step. This step is the mechanism behind shielding abilities and any temporary protective layer you implement with the barrier system. Its position in the pipeline determines how much barrier is actually consumed: placing it after `ApplyDefenseStep` means the barrier only ever sees damage that already survived defensive mitigation, so the barrier is drained more slowly. Placing it before defensive steps causes the barrier to absorb the full, unreduced hit — making it a purer shield but one that depletes faster.
 
 Consumes the target entity's barrier (temporary shield) to reduce incoming damage before it reaches health. If the `DamageType` has **Ignore Barrier** enabled, this step is skipped entirely. If the target has no `EntityHealth` component or its barrier is zero, the step is also a no-op.
 
@@ -393,7 +393,7 @@ The step subtracts from `DamageInfo.Amounts.Current` the portion absorbed by the
 
 #### ApplyPercentageDmgModifiersStep
 
-Percentage modifiers scale the incoming damage by a fraction — resistances, vulnerabilities, and general damage amplifiers all go through this step. For example, a target with a −50% fire resistance modifier takes half the fire damage; one with a +30% curse vulnerability takes 30% more damage from cursed sources. When a single modifier layer reaches −100% or below on its own, the entity becomes immune to that entire category of damage for this hit.
+Percentage modifiers scale the incoming damage by a fraction. The three modifier layers (generic, source-specific, type-specific) each correspond to a stat whose value the target entity holds at runtime. A negative value reduces damage, a positive value amplifies it. When a single modifier layer reaches −100% or below on its own, the entity becomes immune to that entire category of damage for this hit.
 
 Applies percentage-based damage modifiers from up to three layers, in order:
 1. **Generic** — reads `AstraRpgHealthConfig.GenericPercentageDamageModificationStat` from the target's stats. Skipped if the `DamageType` has **Ignore Generic Percentage Modifiers** enabled.
