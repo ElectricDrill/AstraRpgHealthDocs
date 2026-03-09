@@ -211,159 +211,6 @@ The **True Damage Options** section of a `DamageType` exposes three boolean flag
 > [!TIP]
 > To create a damage type that is also unaffected by any defensive stat, simply leave **Defensive Stat** and **Damage Reduction Fn** empty. The [`ApplyDefenseStep`](#damage-step) has nothing to compute and is skipped. Combined with the three True Damage Option flags and no modifier stats, this defines a fully unmitigated damage type.
 
-## Damage Modifiers
-
-Damage modifiers are a flexible tool for implementing mechanics such as resistances, weaknesses, buffs, and debuffs that affect how much damage an entity receives. Unlike [Defensive Stat-Based Damage Reduction](../introduction.md#damage-modifiers-vs-defensive-stat-based-damage-reduction), damage modifiers are off by default — their stats default to 0 — and can both increase and decrease the damage amount.
-
-Three categories of damage modifiers exist, and they all stack additively with one another:
-- **Generic modifiers**: apply to all damage received by an entity, regardless of damage type or source.
-- **DamageSource modifiers**: apply only when the damage originates from a specific `DamageSource`.
-- **DamageType modifiers**: apply only when the damage is of a specific `DamageType`.
-
-### Generic Damage Modifiers
-Generic modifiers are configured in the `AstraRpgHealthConfig` asset and apply universally to every instance of damage received by an entity. The two relevant fields are **Generic Flat Damage Modification Stat** and **Generic Percentage Damage Modification Stat**, described in detail in the [Package Configuration](./package-configuration.md#generic-flat-damage-modification-stat) page.
-
-As a quick recap:
-- **Generic Flat Damage Modification Stat**: a `Stat` whose value is added to (or subtracted from) the incoming damage amount as a flat quantity. A positive value increases the damage received; a negative value decreases it.
-- **Generic Percentage Damage Modification Stat**: a `Stat` whose value is applied as a percentage modification to the incoming damage. A value of 20 means +20% more damage received; a value of −20 means −20% less damage received.
-
-### DamageSource Modifiers
-As already introduced in the [Damage Sources](#damage-sources) section, each `DamageSource` asset exposes a **Percentage Modifier Stat** and a **Flat Modifier Stat**. These work identically to the generic modifiers described above, but are applied only when the damage originates from that specific `DamageSource`.
-
-### DamageType Modifiers
-Similarly, each `DamageType` asset exposes a **Percentage Modifier Stat** and a **Flat Modifier Stat** in its **Damage Modifiers** inspector section. These work in the same way as the source-specific modifiers, but are applied only when the damage is of that specific `DamageType`. A typical use case is implementing elemental weaknesses and resistances: for example, a `Fire Weakness` stat could be assigned as the **Percentage Modifier Stat** of a Fire `DamageType`, so that entities with a positive value of that stat take proportionally more Fire damage.
-
-> [!WARNING]
-> As with `DamageSource` modifiers, if the target entity lacks any statistic referenced by the **Percentage Modifier Stat** or **Flat Modifier Stat** fields on a `DamageType`, an error will be logged when applying damage of that type. Ensure that all entities with an `EntityHealth` component have the damage modifier statistics referenced by the `DamageType`s used in your game. A practical approach is the same suggested for `DamageSource` modifiers: centralize all modifier stats in a dedicated `StatSet` and include it in the relevant entities' stat sets.
-
-### Stacking Behavior
-When the `ApplyFlatDmgModifiersStep` and `ApplyPercentageDmgModifiersStep` steps are included in the active `DamageCalculationStrategy` (that we will see soon in the [Damage Calculation Strategy](#damage-calculation-strategy) section), all applicable modifiers of the same kind are **summed additively** into a single net value, which is then applied to the current damage amount in one operation.
-
-For percentage modifiers, the system also performs individual immunity checks before summing: if the generic percentage modifier alone reaches −100 or below, the damage is fully prevented and the entity is flagged as immune to all damage for that hit; if the source- or type-specific modifier alone reaches −100 or below, the damage is prevented and the entity is flagged as immune to that specific source or type respectively.
-
-## Damage Calculation Pipeline
-
-The Damage Calculation Pipeline is the core mechanism by which a raw damage value is transformed into the final amount applied to an entity. It is composed of an ordered sequence of `DamageStep` instances executed sequentially on a shared `DamageInfo` object. The pipeline short-circuits as soon as damage is flagged as prevented: once any step sets a terminal `DamagePreventionReason`, all remaining steps are skipped.
-
-### Pipeline Data Types
-
-The pipeline operates on a set of dedicated types that carry damage state from the initial request through to the final resolution.
-
-**`PreDamageContext`** is the descriptor you build before calling `TakeDamage`. Its mandatory fields are enforced by a fluent step-builder that requires them in order: amount → type → damage source → target → source/dealer. Optional fields include `IsCritical`, `CriticalMultiplier`, and `Ignore`. Setting `Ignore = true` causes the pipeline to be bypassed entirely; the damage is flagged as prevented with `PrePhaseIgnored` before any calculation begins.
-
-**`DamageInfo`** is the mutable state object that flows through the pipeline. It is constructed from a `PreDamageContext` at the start of `TakeDamage` and holds:
-- **`Amounts`** — a `DamageAmountContext` tracking the current damage value and step-by-step history.
-- **`Type`**, **`DamageSource`**, **`Target`**, **`Source`**, **`IsCritical`**, **`CriticalMultiplier`** — metadata forwarded from the `PreDamageContext`.
-- **`Reasons`** — a `DamagePreventionReason` flags enum accumulating all reasons why damage was prevented.
-- **`IsPrevented`** — returns `true` when `Reasons` is not `None`; used to short-circuit the pipeline.
-
-**`DamageAmountContext`** tracks the numerical amount throughout the pipeline:
-- **`InitialAmount`** — the original raw value; never modified after construction.
-- **`Current`** — the damage value as modified by each step; steps read and write this property.
-- **`Records`** — a read-only list of `StepAmountRecord` entries, each capturing the step type and the before/after `Current` values for that step. Useful for debugging and diagnostics.
-
-**`DamageResolutionContext`** is the value returned by `TakeDamage`. It contains:
-- **`Outcome`** — `DamageOutcome.Applied` or `DamageOutcome.Prevented`.
-- **`Reasons`** — the accumulated `DamagePreventionReason` flags when prevented; `None` when applied.
-- **`TerminationStepType`** — the `Type` of the step that caused early termination, if any.
-- **`FinalDamageInfo`** — the `DamageInfo` at the end of the pipeline; may be `null` when damage was prevented in the pre-phase.
-- **`PreDamageContext`** — the original input that initiated this damage attempt.
-
-**`DamageOutcome`** is a two-value enum: `Applied` (damage was applied to the entity's health or barrier) and `Prevented` (damage was stopped before affecting the entity).
-
-**`DamagePreventionReason`** is a flags enum that accumulates one or more reasons why damage was prevented:
-
-| Value | When set |
-|---|---|
-| `None` | No prevention; damage can proceed. |
-| `EntityImmune` | Target has global immunity (`IsImmune = true` on `EntityHealth`). |
-| `AllDamageImmune` | Generic percentage damage reduction stat alone reached ≤ −100%. |
-| `DamageTypeImmune` | Type-specific percentage modifier alone reached ≤ −100%. |
-| `DamageSourceImmune` | Source-specific percentage modifier alone reached ≤ −100%. |
-| `BarrierAbsorbed` | Barrier fully absorbed the incoming damage. |
-| `DefenseAbsorbed` | Defensive stat computation reduced damage to zero. |
-| `PrePhaseIgnored` | `PreDamageContext.Ignore` was `true` before the pipeline started. |
-| `PrePhaseZeroAmount` | `PreDamageContext.Amount` was zero or negative. |
-| `PipelineReducedToZero` | A step reduced damage to zero without a more specific absorption reason. |
-| `EntityDead` | Target was already dead when `TakeDamage` was called. |
-
-> [!NOTE]
-> `DamagePreventionReason` is a flags enum: multiple values can be set simultaneously on the same damage attempt. Inspect `DamageResolutionContext.Reasons` to read all accumulated reasons after a call to `TakeDamage`.
-
-### Damage Step
-
-`DamageStep` is the abstract base class for all pipeline steps. Each step performs one focused transformation on `DamageInfo`. The pipeline runner calls `Process()` on each step in order; concrete implementations override `ProcessStep()`.
-
-`Process()` enforces two preconditions automatically before delegating to `ProcessStep()`:
-- If `DamageInfo.IsPrevented` is `true`, the step is skipped.
-- If `DamageInfo.Amounts.Current` is ≤ 0, the step is skipped.
-
-After `ProcessStep()` returns, `Process()` appends a `StepAmountRecord` to `DamageAmountContext.Records` with the before and after amounts. If the step brought a positive amount to zero without setting a more specific prevention reason, `DamagePreventionReason.PipelineReducedToZero` is set automatically.
-
-The package includes five built-in `DamageStep` implementations:
-
-#### ApplyBarrierStep
-
-Consumes the target entity's barrier (temporary shield) to reduce incoming damage before it reaches health. If the `DamageType` has **Ignore Barrier** enabled, this step is skipped entirely. If the target has no `EntityHealth` component or its barrier is zero, the step is also a no-op.
-
-The step subtracts from `DamageInfo.Amounts.Current` the portion absorbed by the barrier, and reduces the entity's barrier by the same amount. If the barrier fully absorbs the hit, `DamagePreventionReason.BarrierAbsorbed` is set and the pipeline terminates. Damage that exceeds the barrier continues through subsequent steps as the updated `Current` value.
-
-> [!NOTE]
-> `ApplyBarrierStep` does not reduce health directly. Any remaining damage after barrier absorption continues through the pipeline and is applied to health at the end of `TakeDamage`.
-
-#### ApplyCriticalMultiplierStep
-
-Scales the current damage by the critical hit multiplier when the damage is flagged as a critical hit. The step reads `DamageInfo.IsCritical` and `DamageInfo.CriticalMultiplier`. It is a no-op if `IsCritical` is `false`, or if the multiplier is ≤ 0 or exactly 1.0.
-
-Both the critical flag and the multiplier are set in the `PreDamageContext` when building the damage request. A multiplier of 2.0 doubles the `Current` amount at the point where this step executes.
-
-> [!NOTE]
-> The position of `ApplyCriticalMultiplierStep` in the pipeline determines what value the multiplier is applied to. Placing it before `ApplyDefenseStep` amplifies damage prior to defensive mitigation; placing it after scales post-defense damage. Design your strategy order accordingly.
-
-#### ApplyPercentageDmgModifiersStep
-
-Applies percentage-based damage modifiers from up to three layers, in order:
-1. **Generic** — reads `AstraRpgHealthConfig.GenericPercentageDamageModificationStat` from the target's stats. Skipped if the `DamageType` has **Ignore Generic Percentage Modifiers** enabled.
-2. **DamageSource-specific** — reads `DamageSource.PercentageDamageModificationStat` from the target's stats.
-3. **DamageType-specific** — reads `DamageType.PercentageDamageModificationStat` from the target's stats.
-
-Each layer is evaluated individually for full immunity before contributions are summed. If the generic layer alone reaches ≤ −100%, `DamagePreventionReason.AllDamageImmune` is set and the step exits immediately. If the source-specific layer alone reaches ≤ −100%, `DamagePreventionReason.DamageSourceImmune` is set. If the type-specific layer alone reaches ≤ −100%, `DamagePreventionReason.DamageTypeImmune` is set. If no single layer triggers immunity, the three contributions are summed additively into a single net percentage applied to `Current` in one operation.
-
-#### ApplyFlatDmgModifiersStep
-
-Applies flat damage modifiers from the same three layers as `ApplyPercentageDmgModifiersStep`:
-1. **Generic** — reads `AstraRpgHealthConfig.GenericFlatDamageModificationStat`. Skipped if the `DamageType` has **Ignore Generic Flat Modifiers** enabled.
-2. **DamageSource-specific** — reads `DamageSource.FlatDamageModificationStat`.
-3. **DamageType-specific** — reads `DamageType.FlatDamageModificationStat`.
-
-All three contributions are summed additively. The net value is added to or subtracted from `DamageInfo.Amounts.Current`. The result is clamped to a minimum of 0: flat modifiers cannot bring damage below zero.
-
-> [!NOTE]
-> The conventional order is to run percentage modifiers before flat modifiers, so that flat additions or reductions are applied to the already-scaled value. This ordering is not enforced by the system; you can arrange steps freely.
-
-#### ApplyDefenseStep
-
-Applies defensive stat-based damage reduction as configured in the `DamageType`. The step reads the **Defensive Stat** and **Damage Reduction Fn**, and optionally the **Defense Penetration Stat** and **Defense Reduction Fn** (see [Defense Penetration](#defense-penetration)).
-
-The step is a no-op when both **Defensive Stat** and **Damage Reduction Fn** are unset — which is the intended configuration for a damage type that should never be mitigated by defenses. If the configuration is inconsistent (one field set, the other null), a warning is logged and the step is skipped. The effective defensive value is computed after applying any penetration reduction, then fed into the **Damage Reduction Fn** to yield the final reduced amount. If the result is ≤ 0, `DamagePreventionReason.DefenseAbsorbed` is set.
-
-### Damage Calculation Strategy
-
-*Relative path:* `Damage Calculation Strategy`
-
-A `DamageCalculationStrategySO` is a `ScriptableObject` that defines the ordered sequence of steps composing a damage calculation pipeline. In the Inspector, the strategy displays a reorderable list labelled **Damage Pipeline Steps**. Steps can be added via a type-selection dropdown (the "Step" suffix is trimmed from each type's display name), removed, and reordered via drag.
-
-![Empty strategy inspector](../../images/AstraRPG/workflows/damage/damage-calculation-pipeline/damage-calculation-pipeline-empty-strategy.png)
-![Example strategy with steps configured](../../images/AstraRPG/workflows/damage/damage-calculation-pipeline/damage-calculation-pipeline-example-strategy.png)
-
-Every `EntityHealth` component resolves the active strategy at runtime through a **three-tier priority**:
-1. **Override Damage Calculation Strategy** — takes precedence over all other settings. Intended for temporary runtime effects (e.g., a debuff that temporarily changes how an entity takes damage) or for testing when a custom strategy is already assigned.
-2. **Custom Damage Calculation Strategy** — an entity-specific strategy that overrides the global default but can itself be overridden at runtime by the tier above.
-3. **Default Damage Calculation Strategy** — configured in `AstraRpgHealthConfig` and applied to every entity that defines neither a custom nor an override strategy.
-
-> [!IMPORTANT]
-> If no strategy is resolved — neither custom nor override is set on the entity, and no default is configured in `AstraRpgHealthConfig` — `TakeDamage` logs an error and the pipeline does not run.
-
 ## Dealing Damage to an Entity
 
 The API method you will use the most with this package is certainly `TakeDamage`, whose responsibility is to apply damage to the entity, taking into account modifiers, immunity, the damage calculation strategy, and other relevant mechanics. This method takes a `PreDamageContext` as input.
@@ -413,3 +260,180 @@ var preDamageContext = PreDamageContext.Builder
         .WithDealer(skillCaster)
         .Build();
 ```
+
+
+## Damage Modifiers
+
+Damage modifiers are a flexible tool for implementing mechanics such as resistances, weaknesses, buffs, and debuffs that affect how much damage an entity receives. Unlike [Defensive Stat-Based Damage Reduction](../introduction.md#damage-modifiers-vs-defensive-stat-based-damage-reduction), damage modifiers are off by default — their stats default to 0 — and can both increase and decrease the damage amount.
+
+Three categories of damage modifiers exist, and they all stack additively with one another:
+- **Generic modifiers**: apply to all damage received by an entity, regardless of damage type or source.
+- **DamageSource modifiers**: apply only when the damage originates from a specific `DamageSource`.
+- **DamageType modifiers**: apply only when the damage is of a specific `DamageType`.
+
+### Generic Damage Modifiers
+Generic modifiers are configured in the `AstraRpgHealthConfig` asset and apply universally to every instance of damage received by an entity. The two relevant fields are **Generic Flat Damage Modification Stat** and **Generic Percentage Damage Modification Stat**, described in detail in the [Package Configuration](./package-configuration.md#generic-flat-damage-modification-stat) page.
+
+As a quick recap:
+- **Generic Flat Damage Modification Stat**: a `Stat` whose value is added to (or subtracted from) the incoming damage amount as a flat quantity. A positive value increases the damage received; a negative value decreases it.
+- **Generic Percentage Damage Modification Stat**: a `Stat` whose value is applied as a percentage modification to the incoming damage. A value of 20 means +20% more damage received; a value of −20 means −20% less damage received.
+
+### DamageSource Modifiers
+As already introduced in the [Damage Sources](#damage-sources) section, each `DamageSource` asset exposes a **Percentage Modifier Stat** and a **Flat Modifier Stat**. These work identically to the generic modifiers described above, but are applied only when the damage originates from that specific `DamageSource`.
+
+### DamageType Modifiers
+Similarly, each `DamageType` asset exposes a **Percentage Modifier Stat** and a **Flat Modifier Stat** in its **Damage Modifiers** inspector section. These work in the same way as the source-specific modifiers, but are applied only when the damage is of that specific `DamageType`. A typical use case is implementing elemental weaknesses and resistances: for example, a `Fire Weakness` stat could be assigned as the **Percentage Modifier Stat** of a Fire `DamageType`, so that entities with a positive value of that stat take proportionally more Fire damage.
+
+> [!WARNING]
+> As with `DamageSource` modifiers, if the target entity lacks any statistic referenced by the **Percentage Modifier Stat** or **Flat Modifier Stat** fields on a `DamageType`, an error will be logged when applying damage of that type. Ensure that all entities with an `EntityHealth` component have the damage modifier statistics referenced by the `DamageType`s used in your game. A practical approach is the same suggested for `DamageSource` modifiers: centralize all modifier stats in a dedicated `StatSet` and include it in the relevant entities' stat sets.
+
+### Stacking Behavior
+When the `ApplyFlatDmgModifiersStep` and `ApplyPercentageDmgModifiersStep` steps are included in the active `DamageCalculationStrategy` (that we will see soon in the [Damage Calculation Strategy](#damage-calculation-strategy) section), all applicable modifiers of the same kind are **summed additively** into a single net value, which is then applied to the current damage amount in one operation.
+
+For percentage modifiers, the system also performs individual immunity checks before summing: if the generic percentage modifier alone reaches −100 or below, the damage is fully prevented and the entity is flagged as immune to all damage for that hit; if the source- or type-specific modifier alone reaches −100 or below, the damage is prevented and the entity is flagged as immune to that specific source or type respectively.
+
+## Damage Calculation Pipeline
+
+When you call `TakeDamage` on an `EntityHealth`, the raw damage amount you specify does not reach the entity's health pool directly. Instead, it passes through the **Damage Calculation Pipeline**: an ordered sequence of processing steps, each responsible for one aspect of the calculation — barriers, critical multipliers, modifiers, and defenses. Think of it as a production line: raw damage enters at the first station and is transformed by each step in turn; what exits the last step is what the entity actually loses from its health.
+
+The strength of this design is its configurability. Which steps are active, and in what order, is defined entirely by a `DamageCalculationStrategy` asset that you set up in the Inspector — no scripting required. Different entities can use different strategies: a boss might have its own pipeline featuring an extra final step that limits the incoming damage to a maximum value of 10% of the Max HP, while regular enemies fall back to the project-wide default. Strategies can also be swapped at runtime, enabling mechanics such as temporary invincibility phases or damage rules that change mid-encounter.
+
+Internally, the pipeline runs its steps sequentially on a shared state object and short-circuits the moment damage is marked as prevented: if a barrier fully absorbs the hit, or a modifier grants immunity, all remaining steps are skipped and the result is returned immediately.
+
+### Pipeline Data Types
+
+The pipeline uses a small set of dedicated types to keep concerns cleanly separated — there is one type for what you request, one for what flows through the steps, and one for what you receive back. As a designer integrating `TakeDamage` into your game code, you will interact with two of these directly: `PreDamageContext` to describe the damage you want to apply, and `DamageResolutionContext` to inspect the outcome. The others are managed internally by the pipeline and are primarily relevant if you are implementing custom steps or hooking into damage events for analytics or reactions.
+
+**`PreDamageContext`** is the descriptor you build before calling `TakeDamage`. Its mandatory fields are enforced by a fluent step-builder that requires them in order: amount → type → damage source → target → source/dealer. Optional fields include `IsCritical`, `CriticalMultiplier`, and `Ignore`. Setting `Ignore = true` causes the pipeline to be bypassed entirely; the damage is flagged as prevented with `PrePhaseIgnored` before any calculation begins.
+
+**`DamageInfo`** is the mutable state object that flows through the pipeline. It is constructed from a `PreDamageContext` at the start of `TakeDamage` and holds:
+- **`Amounts`** — a `DamageAmountContext` tracking the current damage value and step-by-step history.
+- **`Type`**, **`DamageSource`**, **`Target`**, **`Source`**, **`IsCritical`**, **`CriticalMultiplier`** — metadata forwarded from the `PreDamageContext`.
+- **`Reasons`** — a `DamagePreventionReason` flags enum accumulating all reasons why damage was prevented.
+- **`IsPrevented`** — returns `true` when `Reasons` is not `None`; used to short-circuit the pipeline.
+
+**`DamageAmountContext`** tracks the numerical amount throughout the pipeline:
+- **`InitialAmount`** — the original raw value; never modified after construction.
+- **`Current`** — the damage value as modified by each step; steps read and write this property.
+- **`Records`** — a read-only list of `StepAmountRecord` entries, each capturing the step type and the before/after `Current` values for that step. Useful for debugging and diagnostics.
+
+**`DamageResolutionContext`** is the value returned by `TakeDamage`. It contains:
+- **`Outcome`** — `DamageOutcome.Applied` or `DamageOutcome.Prevented`.
+- **`Reasons`** — the accumulated `DamagePreventionReason` flags when prevented; `None` when applied.
+- **`TerminationStepType`** — the `Type` of the step that caused early termination, if any.
+- **`FinalDamageInfo`** — the `DamageInfo` at the end of the pipeline; may be `null` when damage was prevented in the pre-phase.
+- **`PreDamageContext`** — the original input that initiated this damage attempt.
+
+**`DamageOutcome`** is a two-value enum: `Applied` (damage was applied to the entity's health or barrier) and `Prevented` (damage was stopped before affecting the entity).
+
+**`DamagePreventionReason`** is a flags enum that accumulates one or more reasons why damage was prevented:
+
+| Value | When set |
+|---|---|
+| `None` | No prevention; damage can proceed. |
+| `EntityImmune` | Target has global immunity (`IsImmune = true` on `EntityHealth`). |
+| `AllDamageImmune` | Generic percentage damage reduction stat alone reached ≤ −100%. |
+| `DamageTypeImmune` | Type-specific percentage modifier alone reached ≤ −100%. |
+| `DamageSourceImmune` | Source-specific percentage modifier alone reached ≤ −100%. |
+| `BarrierAbsorbed` | Barrier fully absorbed the incoming damage. |
+| `DefenseAbsorbed` | Defensive stat computation reduced damage to zero. |
+| `PrePhaseIgnored` | `PreDamageContext.Ignore` was `true` before the pipeline started. |
+| `PrePhaseZeroAmount` | `PreDamageContext.Amount` was zero or negative. |
+| `PipelineReducedToZero` | A step reduced damage to zero without a more specific absorption reason. |
+| `EntityDead` | Target was already dead when `TakeDamage` was called. |
+
+> [!NOTE]
+> `DamagePreventionReason` is a flags enum: multiple values can be set simultaneously on the same damage attempt. Inspect `DamageResolutionContext.Reasons` to read all accumulated reasons after a call to `TakeDamage`.
+
+### Damage Step
+
+Each station in the pipeline is a `DamageStep` — an independent, composable unit of work that applies one focused transformation to the damage in flight. The five built-in steps cover the most common scenarios out of the box. If your game needs specialised behaviour — for example, a step that clamps the damage to a maximum value of 10% of the Max HP — you can implement a custom step by creating a class that inherits from [`DamageStep`](xref:ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageStep) and implements `ProcessStep()`.
+
+Step order matters. Each step receives the output of the one before it, so a different arrangement of the same steps produces a different result. Placing a critical multiplier step before defensive steps amplifies the pre-mitigation damage; placing it after scales a lower, post-mitigation value. We will see how to compose and reorder steps from the Inspector in the [Damage Calculation Strategy](#damage-calculation-strategy) section.
+
+`DamageStep` is the abstract base class for all pipeline steps. Each step performs one focused transformation on `DamageInfo`. The pipeline runner calls `Process()` on each step in order; concrete implementations override `ProcessStep()`.
+
+`Process()` enforces two preconditions automatically before delegating to `ProcessStep()`:
+- If `DamageInfo.IsPrevented` is `true`, the step is skipped.
+- If `DamageInfo.Amounts.Current` is ≤ 0, the step is skipped.
+
+After `ProcessStep()` returns, `Process()` appends a `StepAmountRecord` to `DamageAmountContext.Records` with the before and after amounts. If the step brought a positive amount to zero without setting a more specific prevention reason, `DamagePreventionReason.PipelineReducedToZero` is set automatically.
+
+The package includes five built-in `DamageStep` implementations:
+
+#### ApplyCriticalMultiplierStep
+
+Critical hits deal amplified damage. This step multiplies the current damage amount by the critical hit multiplier when the incoming damage has been flagged as a critical strike. Its position in the pipeline is a design decision: placed before defensive steps, the multiplier scales raw (or modifier-adjusted) damage; placed after, it scales the already-mitigated result. Usually critical multipliers are applied early or as first step.
+
+Scales the current damage by the critical hit multiplier when the damage is flagged as a critical hit. The step reads `DamageInfo.IsCritical` and `DamageInfo.CriticalMultiplier`. It is a no-op if `IsCritical` is `false`, or if the multiplier is ≤ 0 or exactly 1.0.
+
+Both the critical flag and the multiplier are set in the `PreDamageContext` when building the damage request. A multiplier of 2.0 doubles the `Current` amount at the point where this step executes.
+
+> [!NOTE]
+> The position of `ApplyCriticalMultiplierStep` in the pipeline determines what value the multiplier is applied to. Placing it before `ApplyDefenseStep` amplifies damage prior to defensive mitigation; placing it after scales post-defense damage. Design your strategy order accordingly.
+
+#### ApplyDefenseStep
+
+This step applies the target entity's defensive stat for this damage type — the primary stat-based mitigation layer in a typical RPG setup. For example, for a Physical damage type with Armor as its **Defensive Stat**, this step reads the target's Armor value, optionally reduces it by any armor penetration, then feeds the result into the **Damage Reduction Fn** to compute the mitigated damage. This is usually the step that eliminates most of the incoming damage for well-armored targets.
+
+Applies defensive stat-based damage reduction as configured in the `DamageType`. The step reads the **Defensive Stat** and **Damage Reduction Fn**, and optionally the **Defense Penetration Stat** and **Defense Reduction Fn** (see [Defense Penetration](#defense-penetration)).
+
+The step is a no-op when both **Defensive Stat** and **Damage Reduction Fn** are unset — which is the intended configuration for a damage type that should never be mitigated by defenses. If the configuration is inconsistent (one field set, the other null), a warning is logged and the step is skipped. The effective defensive value is computed after applying any penetration reduction, then fed into the **Damage Reduction Fn** to yield the final reduced amount. If the result is ≤ 0, `DamagePreventionReason.DefenseAbsorbed` is set.
+
+#### ApplyBarrierStep
+
+Barriers act as a temporary shield layer in front of an entity's health pool: incoming damage hits the barrier first, and only what the barrier cannot absorb continues on to the next step. This step is the mechanism behind shielding abilities and any temporary protective layer you implement with the barrier system. Place it early in the pipeline so that barriers are consumed before other reductions are applied.
+
+Consumes the target entity's barrier (temporary shield) to reduce incoming damage before it reaches health. If the `DamageType` has **Ignore Barrier** enabled, this step is skipped entirely. If the target has no `EntityHealth` component or its barrier is zero, the step is also a no-op.
+
+The step subtracts from `DamageInfo.Amounts.Current` the portion absorbed by the barrier, and reduces the entity's barrier by the same amount. If the barrier fully absorbs the hit, `DamagePreventionReason.BarrierAbsorbed` is set and the pipeline terminates. Damage that exceeds the barrier continues through subsequent steps as the updated `Current` value.
+
+> [!NOTE]
+> `ApplyBarrierStep` does not reduce health directly. Any remaining damage after barrier absorption continues through the pipeline and is applied to health at the end of `TakeDamage`.
+
+#### ApplyPercentageDmgModifiersStep
+
+Percentage modifiers scale the incoming damage by a fraction — resistances, vulnerabilities, and general damage amplifiers all go through this step. For example, a target with a −50% fire resistance modifier takes half the fire damage; one with a +30% curse vulnerability takes 30% more damage from cursed sources. When a single modifier layer reaches −100% or below on its own, the entity becomes immune to that entire category of damage for this hit.
+
+Applies percentage-based damage modifiers from up to three layers, in order:
+1. **Generic** — reads `AstraRpgHealthConfig.GenericPercentageDamageModificationStat` from the target's stats. Skipped if the `DamageType` has **Ignore Generic Percentage Modifiers** enabled.
+2. **DamageSource-specific** — reads `DamageSource.PercentageDamageModificationStat` from the target's stats.
+3. **DamageType-specific** — reads `DamageType.PercentageDamageModificationStat` from the target's stats.
+
+Each layer is evaluated individually for full immunity before contributions are summed. If the generic layer alone reaches ≤ −100%, `DamagePreventionReason.AllDamageImmune` is set and the step exits immediately. If the source-specific layer alone reaches ≤ −100%, `DamagePreventionReason.DamageSourceImmune` is set. If the type-specific layer alone reaches ≤ −100%, `DamagePreventionReason.DamageTypeImmune` is set. If no single layer triggers immunity, the three contributions are summed additively into a single net percentage applied to `Current` in one operation.
+
+#### ApplyFlatDmgModifiersStep
+
+Where percentage modifiers scale damage proportionally, flat modifiers add or subtract a fixed amount regardless of the hit's magnitude. A −15 flat absorb always removes 15 damage, whether the incoming hit was 20 or 2000. Flat modifiers are typically placed after percentage modifiers so they adjust the already-scaled value — but you are free to order them as your game design requires.
+
+Applies flat damage modifiers from the same three layers as `ApplyPercentageDmgModifiersStep`:
+1. **Generic** — reads `AstraRpgHealthConfig.GenericFlatDamageModificationStat`. Skipped if the `DamageType` has **Ignore Generic Flat Modifiers** enabled.
+2. **DamageSource-specific** — reads `DamageSource.FlatDamageModificationStat`.
+3. **DamageType-specific** — reads `DamageType.FlatDamageModificationStat`.
+
+All three contributions are summed additively. The net value is added to or subtracted from `DamageInfo.Amounts.Current`. The result is clamped to a minimum of 0: flat modifiers cannot bring damage below zero.
+
+> [!NOTE]
+> The conventional order is to run percentage modifiers before flat modifiers, so that flat additions or reductions are applied to the already-scaled value. This ordering is not enforced by the system; you can arrange steps freely.
+
+### Damage Calculation Strategy
+
+*Relative path:* `Damage Calculation Strategy`
+
+Rather than embedding damage calculation logic in scripts, Astra RPG Health externalises the pipeline into a `DamageCalculationStrategy` asset — a `ScriptableObject` you control entirely from the Inspector. Each strategy holds an ordered list of steps; changing the list changes the pipeline. This separation lets you design, tune, and swap calculation behaviours without touching any code. A boss encounter can use a custom strategy with a specific subset of steps (e.g., one final extra step that limits the incoming damage to a maximum value of 10% of the Max HP); regular enemies fall back to the project-wide default; a runtime debuff can temporarily replace an entity's strategy to alter how it takes damage during a special encounter phase (e.g., all lightning damage is doubled).
+
+In the Inspector, the strategy exposes a reorderable list labelled **Damage Pipeline Steps**. Steps can be added via a type-selection dropdown (the "Step" suffix is trimmed from display names for readability), removed, and reordered via drag. A newly created, empty strategy looks like this:
+
+![Empty strategy inspector](../../images/AstraRPG/workflows/damage/damage-calculation-pipeline/damage-calculation-pipeline-empty-strategy.png)
+
+Once steps are added and arranged, the Inspector shows them as a numbered list reflecting the execution order:
+
+![Example strategy with steps configured](../../images/AstraRPG/workflows/damage/damage-calculation-pipeline/damage-calculation-pipeline-example-strategy.png)
+
+Every `EntityHealth` component resolves the active strategy at runtime through a **three-tier priority**:
+1. **Override Damage Calculation Strategy** — takes precedence over all other settings. Intended for temporary runtime effects (e.g., a debuff that temporarily changes how an entity takes damage) or for testing when a custom strategy is already assigned.
+2. **Custom Damage Calculation Strategy** — an entity-specific strategy that overrides the global default but can itself be overridden at runtime by the tier above.
+3. **Default Damage Calculation Strategy** — configured in `AstraRpgHealthConfig` and applied to every entity that defines neither a custom nor an override strategy.
+
+> [!IMPORTANT]
+> If no strategy is resolved — neither custom nor override is set on the entity, and no default is configured in `AstraRpgHealthConfig` — `TakeDamage` logs an error and the pipeline does not run.
