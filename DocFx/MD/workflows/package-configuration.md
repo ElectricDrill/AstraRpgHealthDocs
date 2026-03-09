@@ -9,7 +9,7 @@ The package uses a flexible configuration system that balances convenience with 
 The Astra RPG Health system uses a **two-tier configuration architecture**:
 
 1. **Global Settings** (`AstraRpgHealthGlobalSettings`) - A lightweight pointer stored in `Resources` that references your active configuration
-2. **Gameplay Configuration** (`AstraRpgHealthConfig`) - The actual configuration containing all gameplay parameters
+2. **Gameplay Configuration** (`AstraRpgHealthConfigSO`) - The actual configuration containing all gameplay parameters
 
 This separation allows you to:
 - Switch between different configuration profiles easily (e.g., for testing, different game modes)
@@ -104,7 +104,7 @@ AstraRpgHealthConfigProvider.Reset();
 ---
 
 ## Creating Configuration Assets
-If for any reason you need to create a new `AstraRpgHealthConfig` asset, you can do so via two methods:
+If for any reason you need to create a new `AstraRpgHealthConfigSO` asset, you can do so via two methods:
 
 ### Via Project Settings
 
@@ -125,9 +125,9 @@ If for any reason you need to create a new `AstraRpgHealthConfig` asset, you can
 
 ## Health Configuration Reference
 > [!NOTE]
-> In the `AstraRpgHealthConfig` asset, you can hover over each field to see a tooltip with a brief description.
+> In the `AstraRpgHealthConfigSO` asset, you can hover over each field to see a tooltip with a brief description.
 
-The `AstraRpgHealthConfig` asset contains all gameplay parameters for the health system. Below is a detailed explanation of each field.
+The `AstraRpgHealthConfigSO` asset contains all gameplay parameters for the health system. Below is a detailed explanation of each field.
 
 ### Health
 
@@ -227,7 +227,7 @@ Applied by `ApplyPercentageDmgModifiersStep` when that step is included in the a
 ### Health Regeneration
 
 #### Health Regeneration Source
-**Type:** `HealSource`  
+**Type:** `HealSourceSO`  
 **Required:** No  
 **Description:** The heal source used for passive regeneration effects.
 
@@ -299,7 +299,7 @@ entityHealth.ManualHealthRegenerationTick();
 ### Lifesteal
 
 #### Lifesteal Config
-**Type:** `LifestealConfig`  
+**Type:** `LifestealConfigSO`  
 **Required:** No  
 **Description:** Configuration for lifesteal mechanics (healing based on damage dealt).
 
@@ -341,7 +341,7 @@ Death → Execute composite on-death Game Action → [Spawn Death VFX → Drop L
 - **Stat Penalties** - Applies temporary debuffs after resurrection
 
 #### Default Resurrection Source
-**Type:** `HealSource`  
+**Type:** `HealSourceSO`  
 **Required:** Yes  
 **Description:** The heal source used when an entity is resurrected.
 

@@ -2,25 +2,25 @@
 
 ## Damage Sources
 *Relative path:* `Damage Source`  
-A `DamageSource` represents the source of the damage. Some examples of `DamageSource` could be: skill, base attack, fall damage, trap, environmental, etc. The `DamageSource` is used to categorize the damage and can be used in various mechanics, such as damage modifiers that only apply to specific damage sources, for triggering specific effects when taking damage from a certain source, or for tracking damage statistics based on the source.
+A `DamageSourceSO` represents the source of the damage. Some examples of `DamageSourceSO` could be: skill, base attack, fall damage, trap, environmental, etc. The `DamageSourceSO` is used to categorize the damage and can be used in various mechanics, such as damage modifiers that only apply to specific damage sources, for triggering specific effects when taking damage from a certain source, or for tracking damage statistics based on the source.
 
-An instance of `DamageSource`, in the inspector, should look like this:  
+An instance of `DamageSourceSO`, in the inspector, should look like this:  
 ![DamageSource](../../images/AstraRPG/workflows/damage/damage-source.png)
 
 ### Damage Sources - Modifiers
 
-There are two properties to set in a `DamageSource`:
+There are two properties to set in a `DamageSourceSO`:
 - **Percentage Modifier Stat**: the statistic to consider in an entity to apply percentage, specific damage modifiers for this damage source. Positive values of this statistic increase the damage received from this source, while negative values decrease it.
 - **Flat Modifier Stat**: the statistic to consider in an entity to apply flat, specific damage modifiers for this damage source. Positive values of this statistic increase the damage received from this source, while negative values decrease it.
 
 > [!WARNING]
-> If the entity lacks a percentage or flat damage source modifier statistic, an error will be logged when applying damage from that source. Ensure all entities with an `EntityHealth` component have the statistics referenced in your game's `DamageSource`s.
+> If the entity lacks a percentage or flat damage source modifier statistic, an error will be logged when applying damage from that source. Ensure all entities with an `EntityHealth` component have the statistics referenced in your game's `DamageSourceSO`s.
 
-A possible way to simplify the management of all the `DamageSource` modifier stats is to create a `StatSet` specifically for this purpose, and include it as a _Included Stat Set_ in the various entities' `StatSet`s of your game. This way, you centralize all the `DamageSource` modifier stats in a single `StatSet`, and you can easily keep track of them and ensure that they are included in all the relevant entities.
+A possible way to simplify the management of all the `DamageSourceSO` modifier stats is to create a `StatSet` specifically for this purpose, and include it as a _Included Stat Set_ in the various entities' `StatSet`s of your game. This way, you centralize all the `DamageSourceSO` modifier stats in a single `StatSet`, and you can easily keep track of them and ensure that they are included in all the relevant entities.
 
 ## Damage Types
 
-A `DamageType` represents the type of damage—such as physical, fire, ice, lightning, or damage-over-time (DoT) effects like bleeding. In the following image you cane see an example of a `DamageType` instance in the inspector:  
+A `DamageTypeSO` represents the type of damage—such as physical, fire, ice, lightning, or damage-over-time (DoT) effects like bleeding. In the following image you cane see an example of a `DamageTypeSO` instance in the inspector:  
 ![DamageType](../../images/AstraRPG/workflows/damage/damage-type/magic-damage-type-inspector.png)
 
 You can notice that the parameters are divided in three sections:
@@ -34,18 +34,18 @@ You can notice that the parameters are divided in three sections:
 We will now see each of these sections in detail.
 
 ### Damage Reduction
-The primary use case for `DamageType` is implementing entities with varying resistances to specific damage types. This is primarily achieved via **Defensive Stats**.
-For each `DamageType`, you can define a defensive statistic that reduces incoming damage of that type. For example, an `Armor` stat might reduce `Physical` damage, while a `Magic Resistance` stat reduces `Magic` damage.  
+The primary use case for `DamageTypeSO` is implementing entities with varying resistances to specific damage types. This is primarily achieved via **Defensive Stats**.
+For each `DamageTypeSO`, you can define a defensive statistic that reduces incoming damage of that type. For example, an `Armor` stat might reduce `Physical` damage, while a `Magic Resistance` stat reduces `Magic` damage.  
 The value of the defensive stat is fed into the associated **Damage Reduction Fn** (function) and used to calculate the actual damage reduction. The package provides some built-in damage reduction functions, such as:
 - **Flat Dmg Reduction**: Reduces damage by a flat amount equal to the defensive stat value multiplied by a constant.
 - **Percent Dmg Reduction**: Reduces damage by a percentage equal to the defensive stat value.
 - **Log Dmg Reduction**: Reduces damage in a logarithmic way based on the defensive stat value, providing diminishing returns as the stat increases.
 
 > [!NOTE]
-> **Defensive Stat** and **Damage Reduction Fn** are optional. However, they must always be configured together: if one is set, the other must be set as well. If only one of them is assigned, a warning will be logged at runtime and the damage reduction step will be skipped for that `DamageType`.
+> **Defensive Stat** and **Damage Reduction Fn** are optional. However, they must always be configured together: if one is set, the other must be set as well. If only one of them is assigned, a warning will be logged at runtime and the damage reduction step will be skipped for that `DamageTypeSO`.
 
 > [!WARNING]
-> If the target entity lacks the statistic referenced by **Defensive Stat**, an error will be logged when applying damage of that type. Ensure that all entities with an `EntityHealth` component have the defensive statistic referenced by the `DamageType`s used in your game.
+> If the target entity lacks the statistic referenced by **Defensive Stat**, an error will be logged when applying damage of that type. Ensure that all entities with an `EntityHealth` component have the defensive statistic referenced by the `DamageTypeSO`s used in your game.
 
 Let's see all of them in detail.
 
@@ -155,12 +155,12 @@ You can take a look at the existing damage reduction functions implementations f
 
 Defense penetration allows the damage dealer to partially bypass the target's defensive stat before damage reduction is calculated. This mechanism is useful for implementing mechanics such as armor penetration or magic penetration, where an attacker can reduce the effective defenses of the target.
 
-Two optional parameters of the `DamageType` control this behavior:
+Two optional parameters of the `DamageTypeSO` control this behavior:
 - **Defensive Stat Pierced By**: the statistic on the **damage dealer** that pierces the target's defensive stat. For example, an `Armor Penetration` stat might pierce the `Armor` stat of the target.
 - **Defense Reduction Fn**: the function that computes how the piercing stat lowers the target's defensive stat. The resulting reduced defensive stat value is then passed to the **Damage Reduction Fn** in place of the original value.
 
 > [!NOTE]
-> **Defensive Stat Pierced By** and **Defense Reduction Fn** are optional. However, they must always be configured together: if one is set, the other must be set as well. If only one of them is assigned, a warning will be logged at runtime and the defense penetration step will be skipped for that `DamageType`.
+> **Defensive Stat Pierced By** and **Defense Reduction Fn** are optional. However, they must always be configured together: if one is set, the other must be set as well. If only one of them is assigned, a warning will be logged at runtime and the defense penetration step will be skipped for that `DamageTypeSO`.
 
 > [!WARNING]
 > If the damage dealer entity lacks the statistic referenced by **Defensive Stat Pierced By**, an error will be logged when applying damage of that type. Ensure that all entities capable of dealing damage of this type have the relevant piercing statistic.
@@ -189,24 +189,24 @@ If none of the built-in Defense Reduction Functions suits your needs, you can im
 
 ### Damage Types - Damage Modifiers
 
-The **Percentage Modifier Stat** and **Flat Modifier Stat** fields in this section let you assign stat-based damage modifiers that apply specifically when an entity receives damage of this `DamageType`. Assigning a positive value to either stat increases the damage received from this type; a negative value decreases it. For a full explanation of how all damage modifier categories work and how they stack together, see the [Damage Modifiers](#damage-modifiers) section.
+The **Percentage Modifier Stat** and **Flat Modifier Stat** fields in this section let you assign stat-based damage modifiers that apply specifically when an entity receives damage of this `DamageTypeSO`. Assigning a positive value to either stat increases the damage received from this type; a negative value decreases it. For a full explanation of how all damage modifier categories work and how they stack together, see the [Damage Modifiers](#damage-modifiers) section.
 
-A possible way to simplify the management of all the `DamageType` modifier stats is to create a `StatSet` specifically for this purpose, and include it as a _Included Stat Set_ in the various entities' `StatSet`s of your game. This way, you centralize all the `DamageType` modifier stats in a single `StatSet`, and you can easily keep track of them and ensure that they are included in all the relevant entities.
+A possible way to simplify the management of all the `DamageTypeSO` modifier stats is to create a `StatSet` specifically for this purpose, and include it as a _Included Stat Set_ in the various entities' `StatSet`s of your game. This way, you centralize all the `DamageTypeSO` modifier stats in a single `StatSet`, and you can easily keep track of them and ensure that they are included in all the relevant entities.
 
 ### True Damage Options
 
-The **True Damage Options** section of a `DamageType` exposes three boolean flags that allow selective bypasses for individual stages of the damage pipeline. They are the primary tool for implementing "true damage" mechanics — damage that partially or entirely skips specific mitigation layers — without requiring a custom `DamageCalculationStrategy`.
+The **True Damage Options** section of a `DamageTypeSO` exposes three boolean flags that allow selective bypasses for individual stages of the damage pipeline. They are the primary tool for implementing "true damage" mechanics — damage that partially or entirely skips specific mitigation layers — without requiring a custom `DamageCalculationStrategy`.
 
-- **Ignore Barrier**: when enabled, the [`ApplyBarrierStep`](#damage-step) is skipped entirely for this `DamageType`. Damage bypasses the target's barrier and is applied directly to its health pool. Use this for damage types that are meant to be unavoidable through shielding — for example, a pure true damage type, fall damage, or damage-over-time effects that should not interact with temporary shields.
+- **Ignore Barrier**: when enabled, the [`ApplyBarrierStep`](#damage-step) is skipped entirely for this `DamageTypeSO`. Damage bypasses the target's barrier and is applied directly to its health pool. Use this for damage types that are meant to be unavoidable through shielding — for example, a pure true damage type, fall damage, or damage-over-time effects that should not interact with temporary shields.
 
-- **Ignore Generic Percentage Modifiers**: when enabled, the [`ApplyPercentageDmgModifiersStep`](#damage-step) skips the **Generic Percentage Damage Modification Stat** configured in `AstraRpgHealthConfig`. Percentage modifiers from the `DamageSource` or from this `DamageType` itself still apply normally.
+- **Ignore Generic Percentage Modifiers**: when enabled, the [`ApplyPercentageDmgModifiersStep`](#damage-step) skips the **Generic Percentage Damage Modification Stat** configured in `AstraRpgHealthConfigSO`. Percentage modifiers from the `DamageSourceSO` or from this `DamageTypeSO` itself still apply normally.
 
-- **Ignore Generic Flat Modifiers**: when enabled, the [`ApplyFlatDmgModifiersStep`](#damage-step) skips the **Generic Flat Damage Modification Stat** configured in `AstraRpgHealthConfig`. Flat modifiers from the `DamageSource` or from this `DamageType` itself still apply normally.
+- **Ignore Generic Flat Modifiers**: when enabled, the [`ApplyFlatDmgModifiersStep`](#damage-step) skips the **Generic Flat Damage Modification Stat** configured in `AstraRpgHealthConfigSO`. Flat modifiers from the `DamageSourceSO` or from this `DamageTypeSO` itself still apply normally.
 
 > [!IMPORTANT]
-> **Ignore Generic Percentage Modifiers** and **Ignore Generic Flat Modifiers** bypass only the _generic_ modifier layer — the global stats configured in `AstraRpgHealthConfig`. Source-specific and type-specific modifier stats are never bypassed by these flags and always participate in the pipeline normally.
+> **Ignore Generic Percentage Modifiers** and **Ignore Generic Flat Modifiers** bypass only the _generic_ modifier layer — the global stats configured in `AstraRpgHealthConfigSO`. Source-specific and type-specific modifier stats are never bypassed by these flags and always participate in the pipeline normally.
 >
-> However, if a `DamageSource` or this `DamageType` has no modifier stats assigned, those layers contribute nothing by construction — which effectively produces the same result as a bypass. Enabling all three flags while also leaving all modifier stats unset on the source and type produces a fully modifier-free damage type.
+> However, if a `DamageSourceSO` or this `DamageTypeSO` has no modifier stats assigned, those layers contribute nothing by construction — which effectively produces the same result as a bypass. Enabling all three flags while also leaving all modifier stats unset on the source and type produces a fully modifier-free damage type.
 
 > [!TIP]
 > To create a damage type that is also unaffected by any defensive stat, simply leave **Defensive Stat** and **Damage Reduction Fn** empty. The [`ApplyDefenseStep`](#damage-step) has nothing to compute and is skipped. Combined with the three True Damage Option flags and no modifier stats, this defines a fully unmitigated damage type.
@@ -268,24 +268,24 @@ Damage modifiers are a flexible tool for implementing mechanics such as resistan
 
 Three categories of damage modifiers exist, and they all stack additively with one another:
 - **Generic modifiers**: apply to all damage received by an entity, regardless of damage type or source.
-- **DamageSource modifiers**: apply only when the damage originates from a specific `DamageSource`.
-- **DamageType modifiers**: apply only when the damage is of a specific `DamageType`.
+- **DamageSource modifiers**: apply only when the damage originates from a specific `DamageSourceSO`.
+- **DamageType modifiers**: apply only when the damage is of a specific `DamageTypeSO`.
 
 ### Generic Damage Modifiers
-Generic modifiers are configured in the `AstraRpgHealthConfig` asset and apply universally to every instance of damage received by an entity. The two relevant fields are **Generic Flat Damage Modification Stat** and **Generic Percentage Damage Modification Stat**, described in detail in the [Package Configuration](./package-configuration.md#generic-flat-damage-modification-stat) page.
+Generic modifiers are configured in the `AstraRpgHealthConfigSO` asset and apply universally to every instance of damage received by an entity. The two relevant fields are **Generic Flat Damage Modification Stat** and **Generic Percentage Damage Modification Stat**, described in detail in the [Package Configuration](./package-configuration.md#generic-flat-damage-modification-stat) page.
 
 As a quick recap:
 - **Generic Flat Damage Modification Stat**: a `Stat` whose value is added to (or subtracted from) the incoming damage amount as a flat quantity. A positive value increases the damage received; a negative value decreases it.
 - **Generic Percentage Damage Modification Stat**: a `Stat` whose value is applied as a percentage modification to the incoming damage. A value of 20 means +20% more damage received; a value of −20 means −20% less damage received.
 
 ### DamageSource Modifiers
-As already introduced in the [Damage Sources](#damage-sources) section, each `DamageSource` asset exposes a **Percentage Modifier Stat** and a **Flat Modifier Stat**. These work identically to the generic modifiers described above, but are applied only when the damage originates from that specific `DamageSource`.
+As already introduced in the [Damage Sources](#damage-sources) section, each `DamageSourceSO` asset exposes a **Percentage Modifier Stat** and a **Flat Modifier Stat**. These work identically to the generic modifiers described above, but are applied only when the damage originates from that specific `DamageSourceSO`.
 
 ### DamageType Modifiers
-Similarly, each `DamageType` asset exposes a **Percentage Modifier Stat** and a **Flat Modifier Stat** in its **Damage Modifiers** inspector section. These work in the same way as the source-specific modifiers, but are applied only when the damage is of that specific `DamageType`. A typical use case is implementing elemental weaknesses and resistances: for example, a `Fire Weakness` stat could be assigned as the **Percentage Modifier Stat** of a Fire `DamageType`, so that entities with a positive value of that stat take proportionally more Fire damage.
+Similarly, each `DamageTypeSO` asset exposes a **Percentage Modifier Stat** and a **Flat Modifier Stat** in its **Damage Modifiers** inspector section. These work in the same way as the source-specific modifiers, but are applied only when the damage is of that specific `DamageTypeSO`. A typical use case is implementing elemental weaknesses and resistances: for example, a `Fire Weakness` stat could be assigned as the **Percentage Modifier Stat** of a Fire `DamageTypeSO`, so that entities with a positive value of that stat take proportionally more Fire damage.
 
 > [!WARNING]
-> As with `DamageSource` modifiers, if the target entity lacks any statistic referenced by the **Percentage Modifier Stat** or **Flat Modifier Stat** fields on a `DamageType`, an error will be logged when applying damage of that type. Ensure that all entities with an `EntityHealth` component have the damage modifier statistics referenced by the `DamageType`s used in your game. A practical approach is the same suggested for `DamageSource` modifiers: centralize all modifier stats in a dedicated `StatSet` and include it in the relevant entities' stat sets.
+> As with `DamageSourceSO` modifiers, if the target entity lacks any statistic referenced by the **Percentage Modifier Stat** or **Flat Modifier Stat** fields on a `DamageTypeSO`, an error will be logged when applying damage of that type. Ensure that all entities with an `EntityHealth` component have the damage modifier statistics referenced by the `DamageTypeSO`s used in your game. A practical approach is the same suggested for `DamageSourceSO` modifiers: centralize all modifier stats in a dedicated `StatSet` and include it in the relevant entities' stat sets.
 
 ### Stacking Behavior
 When the `ApplyFlatDmgModifiersStep` and `ApplyPercentageDmgModifiersStep` steps are included in the active `DamageCalculationStrategy` (that we will see soon in the [Damage Calculation Strategy](#damage-calculation-strategy) section), all applicable modifiers of the same kind are **summed additively** into a single net value, which is then applied to the current damage amount in one operation.
@@ -308,7 +308,7 @@ The pipeline uses a small set of dedicated types to keep concerns cleanly separa
 
 **`DamageInfo`** is the mutable state object that flows through the pipeline. It is constructed from a `PreDamageContext` at the start of `TakeDamage` and holds:
 - **`Amounts`** — a `DamageAmountContext` tracking the current damage value and step-by-step history.
-- **`Type`**, **`DamageSource`**, **`Target`**, **`Source`**, **`IsCritical`**, **`CriticalMultiplier`** — metadata forwarded from the `PreDamageContext`.
+- **`Type`**, **`DamageSourceSO`**, **`Target`**, **`Source`**, **`IsCritical`**, **`CriticalMultiplier`** — metadata forwarded from the `PreDamageContext`.
 - **`Reasons`** — a `DamagePreventionReason` flags enum accumulating all reasons why damage was prevented.
 - **`IsPrevented`** — returns `true` when `Reasons` is not `None`; used to short-circuit the pipeline.
 
@@ -376,7 +376,7 @@ Both the critical flag and the multiplier are set in the `PreDamageContext` when
 
 This step applies the target entity's defensive stat for this damage type — the primary stat-based mitigation layer in a typical RPG setup. For example, for a Physical damage type with Armor as its **Defensive Stat**, this step reads the target's Armor value, optionally reduces it by any armor penetration, then feeds the result into the **Damage Reduction Fn** to compute the mitigated damage. This is usually the step that eliminates most of the incoming damage for well-armored targets.
 
-Applies defensive stat-based damage reduction as configured in the `DamageType`. The step reads the **Defensive Stat** and **Damage Reduction Fn**, and optionally the **Defense Penetration Stat** and **Defense Reduction Fn** (see [Defense Penetration](#defense-penetration)).
+Applies defensive stat-based damage reduction as configured in the `DamageTypeSO`. The step reads the **Defensive Stat** and **Damage Reduction Fn**, and optionally the **Defense Penetration Stat** and **Defense Reduction Fn** (see [Defense Penetration](#defense-penetration)).
 
 The step is a no-op when both **Defensive Stat** and **Damage Reduction Fn** are unset — which is the intended configuration for a damage type that should never be mitigated by defenses. If the configuration is inconsistent (one field set, the other null), a warning is logged and the step is skipped. The effective defensive value is computed after applying any penetration reduction, then fed into the **Damage Reduction Fn** to yield the final reduced amount. If the result is ≤ 0, `DamagePreventionReason.DefenseAbsorbed` is set.
 
@@ -384,7 +384,7 @@ The step is a no-op when both **Defensive Stat** and **Damage Reduction Fn** are
 
 Barriers act as a temporary shield layer in front of an entity's health pool: incoming damage hits the barrier first, and only what the barrier cannot absorb continues on to the next step. This step is the mechanism behind shielding abilities and any temporary protective layer you implement with the barrier system. Its position in the pipeline determines how much barrier is actually consumed: placing it after `ApplyDefenseStep` means the barrier only ever sees damage that already survived defensive mitigation, so the barrier is drained more slowly. Placing it before defensive steps causes the barrier to absorb the full, unreduced hit — making it a purer shield but one that depletes faster.
 
-Consumes the target entity's barrier (temporary shield) to reduce incoming damage before it reaches health. If the `DamageType` has **Ignore Barrier** enabled, this step is skipped entirely. If the target has no `EntityHealth` component or its barrier is zero, the step is also a no-op.
+Consumes the target entity's barrier (temporary shield) to reduce incoming damage before it reaches health. If the `DamageTypeSO` has **Ignore Barrier** enabled, this step is skipped entirely. If the target has no `EntityHealth` component or its barrier is zero, the step is also a no-op.
 
 The step subtracts from `DamageInfo.Amounts.Current` the portion absorbed by the barrier, and reduces the entity's barrier by the same amount. If the barrier fully absorbs the hit, `DamagePreventionReason.BarrierAbsorbed` is set and the pipeline terminates. Damage that exceeds the barrier continues through subsequent steps as the updated `Current` value.
 
@@ -396,9 +396,9 @@ The step subtracts from `DamageInfo.Amounts.Current` the portion absorbed by the
 Percentage modifiers scale the incoming damage by a fraction. The three modifier layers (generic, source-specific, type-specific) each correspond to a stat whose value the target entity holds at runtime. A negative value reduces damage, a positive value amplifies it. When a single modifier layer reaches −100% or below on its own, the entity becomes immune to that entire category of damage for this hit.
 
 Applies percentage-based damage modifiers from up to three layers, in order:
-1. **Generic** — reads `AstraRpgHealthConfig.GenericPercentageDamageModificationStat` from the target's stats. Skipped if the `DamageType` has **Ignore Generic Percentage Modifiers** enabled.
-2. **DamageSource-specific** — reads `DamageSource.PercentageDamageModificationStat` from the target's stats.
-3. **DamageType-specific** — reads `DamageType.PercentageDamageModificationStat` from the target's stats.
+1. **Generic** — reads `AstraRpgHealthConfigSO.GenericPercentageDamageModificationStat` from the target's stats. Skipped if the `DamageTypeSO` has **Ignore Generic Percentage Modifiers** enabled.
+2. **DamageSource-specific** — reads `DamageSourceSO.PercentageDamageModificationStat` from the target's stats.
+3. **DamageType-specific** — reads `DamageTypeSO.PercentageDamageModificationStat` from the target's stats.
 
 Each layer is evaluated individually for full immunity before contributions are summed. If the generic layer alone reaches ≤ −100%, `DamagePreventionReason.AllDamageImmune` is set and the step exits immediately. If the source-specific layer alone reaches ≤ −100%, `DamagePreventionReason.DamageSourceImmune` is set. If the type-specific layer alone reaches ≤ −100%, `DamagePreventionReason.DamageTypeImmune` is set. If no single layer triggers immunity, the three contributions are summed additively into a single net percentage applied to `Current` in one operation.
 
@@ -407,9 +407,9 @@ Each layer is evaluated individually for full immunity before contributions are 
 Where percentage modifiers scale damage proportionally, flat modifiers add or subtract a fixed amount regardless of the hit's magnitude. A −15 flat absorb always removes 15 damage, whether the incoming hit was 20 or 2000. Flat modifiers are typically placed after percentage modifiers so they adjust the already-scaled value — but you are free to order them as your game design requires.
 
 Applies flat damage modifiers from the same three layers as `ApplyPercentageDmgModifiersStep`:
-1. **Generic** — reads `AstraRpgHealthConfig.GenericFlatDamageModificationStat`. Skipped if the `DamageType` has **Ignore Generic Flat Modifiers** enabled.
-2. **DamageSource-specific** — reads `DamageSource.FlatDamageModificationStat`.
-3. **DamageType-specific** — reads `DamageType.FlatDamageModificationStat`.
+1. **Generic** — reads `AstraRpgHealthConfigSO.GenericFlatDamageModificationStat`. Skipped if the `DamageTypeSO` has **Ignore Generic Flat Modifiers** enabled.
+2. **DamageSource-specific** — reads `DamageSourceSO.FlatDamageModificationStat`.
+3. **DamageType-specific** — reads `DamageTypeSO.FlatDamageModificationStat`.
 
 All three contributions are summed additively. The net value is added to or subtracted from `DamageInfo.Amounts.Current`. The result is clamped to a minimum of 0: flat modifiers cannot bring damage below zero.
 
@@ -433,7 +433,7 @@ Once steps are added and arranged, the Inspector shows them as a numbered list r
 Every `EntityHealth` component resolves the active strategy at runtime through a **three-tier priority**:
 1. **Override Damage Calculation Strategy** — takes precedence over all other settings. Intended for temporary runtime effects (e.g., a debuff that temporarily changes how an entity takes damage) or for testing when a custom strategy is already assigned.
 2. **Custom Damage Calculation Strategy** — an entity-specific strategy that overrides the global default but can itself be overridden at runtime by the tier above.
-3. **Default Damage Calculation Strategy** — configured in `AstraRpgHealthConfig` and applied to every entity that defines neither a custom nor an override strategy.
+3. **Default Damage Calculation Strategy** — configured in `AstraRpgHealthConfigSO` and applied to every entity that defines neither a custom nor an override strategy.
 
 > [!IMPORTANT]
-> If no strategy is resolved — neither custom nor override is set on the entity, and no default is configured in `AstraRpgHealthConfig` — `TakeDamage` logs an error and the pipeline does not run.
+> If no strategy is resolved — neither custom nor override is set on the entity, and no default is configured in `AstraRpgHealthConfigSO` — `TakeDamage` logs an error and the pipeline does not run.

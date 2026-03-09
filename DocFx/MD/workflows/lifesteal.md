@@ -6,14 +6,14 @@ Lifesteal is a mechanic that lets an entity recover health proportional to the d
 
 *Relative path:* `Astra RPG Health/Lifesteal Config`
 
-The `LifestealConfigSO` is the root asset for lifesteal configuration. It holds a dictionary that maps each `DamageType` to a `LifestealStatConfig`, defining how lifesteal behaves for that specific damage type. Damage types not present in the dictionary do not trigger lifesteal.
+The `LifestealConfigSO` is the root asset for lifesteal configuration. It holds a dictionary that maps each `DamageTypeSO` to a `LifestealStatConfig`, defining how lifesteal behaves for that specific damage type. Damage types not present in the dictionary do not trigger lifesteal.
 
 The following image shows an example of a `LifestealConfigSO` with two mappings configured:  
 ![Lifesteal Config inspector](../../images/AstraRPG/workflows/lifesteal/lifesteal-config.png)
 
 ## Configuring Lifesteal Mappings
 
-Each entry in the dictionary pairs a `DamageType` with a `LifestealStatConfig`. The following image shows what a single mapping looks like in the inspector:  
+Each entry in the dictionary pairs a `DamageTypeSO` with a `LifestealStatConfig`. The following image shows what a single mapping looks like in the inspector:  
 ![Lifesteal Stat Config inspector](../../images/AstraRPG/workflows/lifesteal/lifesteal-stat-config.png)
 
 There are three fields to configure for each mapping:
@@ -46,9 +46,9 @@ The following image shows the inspector when Step mode is selected:
 
 ## Adding Lifesteal to the Package Configuration
 
-Once the `LifestealConfigSO` is set up, assign it to the **Lifesteal Config** field in the `AstraRpgHealthConfig`. All entities that share this configuration asset will have lifesteal enabled according to the mappings defined in the assigned `LifestealConfigSO`. See [Lifesteal](package-configuration.md#lifesteal) in the Package Configuration reference for field details.
+Once the `LifestealConfigSO` is set up, assign it to the **Lifesteal Config** field in the `AstraRpgHealthConfigSO`. All entities that share this configuration asset will have lifesteal enabled according to the mappings defined in the assigned `LifestealConfigSO`. See [Lifesteal](package-configuration.md#lifesteal) in the Package Configuration reference for field details.
 
-The following image shows the Lifesteal section of the `AstraRpgHealthConfig` in the inspector:  
+The following image shows the Lifesteal section of the `AstraRpgHealthConfigSO` in the inspector:  
 ![Lifesteal section in Package Configuration](../../images/AstraRPG/workflows/lifesteal/lifesteal-package-config.png)
 
 ## Performance Considerations
@@ -58,7 +58,7 @@ The following image shows the Lifesteal section of the `AstraRpgHealthConfig` in
 
 By default, lifesteal heals raise the standard healing events (`Pre Heal` and `Entity Healed`). In games where many entities deal lifesteal damage frequently — for example, a horde of enemies all with a lifesteal stat, each landing hits several times per second — the volume of heal events generated can become significant, especially when the global `Entity Healed Event` has multiple listeners.
 
-If profiling reveals this to be a bottleneck, the **Suppress Lifesteal Events** flag in `AstraRpgHealthConfig` disables healing event emission for lifesteal heals entirely. The heal is still applied; only the events are suppressed. This option is appropriate when you do not need to react to lifesteal heals through event listeners — for example, when your UI or combat log does not track lifesteal healing specifically.
+If profiling reveals this to be a bottleneck, the **Suppress Lifesteal Events** flag in `AstraRpgHealthConfigSO` disables healing event emission for lifesteal heals entirely. The heal is still applied; only the events are suppressed. This option is appropriate when you do not need to react to lifesteal heals through event listeners — for example, when your UI or combat log does not track lifesteal healing specifically.
 
 A similar consideration applies to passive health regeneration, which can also generate a high volume of heal events under certain conditions. See [Performance Considerations](healing.md#performance-considerations) in the Healing documentation for a broader discussion.
 
@@ -68,8 +68,8 @@ A similar consideration applies to passive health regeneration, which can also g
 > Lifesteal is evaluated after every damage application. The following conditions must all be met for it to trigger:
 > - The dealing entity is the source of the damage. Lifesteal does not trigger on damage dealt by others.
 > - The dealing entity is alive at the moment of damage resolution.
-> - `AstraRpgHealthConfig` has a `LifestealConfigSO` assigned.
-> - The `DamageType` of the hit has a mapping in the `LifestealConfigSO`.
+> - `AstraRpgHealthConfigSO` has a `LifestealConfigSO` assigned.
+> - The `DamageTypeSO` of the hit has a mapping in the `LifestealConfigSO`.
 > - The configured **Lifesteal Stat** is present in the dealing entity's `StatSet`.
 > - The computed heal amount is greater than zero. A lifesteal stat of 0% produces no heal.
 

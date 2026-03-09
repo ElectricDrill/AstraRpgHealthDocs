@@ -24,6 +24,9 @@
 | Both (named parameter that is also a class) | Bold preferred for inspector fields | **Damage Reduction Fn** (not `DamageReductionFn`) |
 | Paths (Unity asset menu paths) | `*Relative path:* \`...\`` | `*Relative path:* \`Dmg Reduction Functions -> Flat Dmg Reduction\`` |
 
+> [!IMPORTANT]
+> All ScriptableObject types in Astra RPG Health use the `SO` suffix in their C# class name (e.g., `DamageTypeSO`, `DamageSourceSO`, `HealSourceSO`, `LifestealConfigSO`, `AstraRpgHealthConfigSO`). When referencing one of these types inside backticks — whether introducing the asset, describing its fields, or using member-access notation — always include the full SO suffix. **Never** use the bare name without SO in code spans (e.g., `` `DamageType` `` is wrong; `` `DamageTypeSO` `` is correct).
+
 ---
 
 ## Images
