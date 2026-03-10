@@ -33,7 +33,7 @@ You can notice that the parameters are divided in three sections:
 
 We will now see each of these sections in detail.
 
-### Damage Reduction
+### Damage Type's Damage Reduction
 The primary use case for `DamageTypeSO` is implementing entities with varying resistances to specific damage types. This is primarily achieved via **Defensive Stats**.
 For each `DamageTypeSO`, you can define a defensive statistic that reduces incoming damage of that type. For example, an `Armor` stat might reduce `Physical` damage, while a `Magic Resistance` stat reduces `Magic` damage.  
 The value of the defensive stat is fed into the associated **Damage Reduction Fn** (function) and used to calculate the actual damage reduction. The package provides some built-in damage reduction functions, such as:
@@ -187,13 +187,13 @@ The package provides three built-in Defense Reduction Functions — Flat, Percen
 
 If none of the built-in Defense Reduction Functions suits your needs, you can implement a custom one by creating a class that inherits from [DefenseReductionFnSO](xref:ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.DefenseReductionFnSO) and implementing the `CalculateReducedDefense` method. As with the Damage Reduction Functions, remember to use the `CreateAssetMenu` attribute (or the `MenuItem` attribute) to make it creatable from the Unity editor.
 
-### Damage Types - Damage Modifiers
+### Damage Type's Damage Modifiers
 
 The **Percentage Modifier Stat** and **Flat Modifier Stat** fields in this section let you assign stat-based damage modifiers that apply specifically when an entity receives damage of this `DamageTypeSO`. Assigning a positive value to either stat increases the damage received from this type; a negative value decreases it. For a full explanation of how all damage modifier categories work and how they stack together, see the [Damage Modifiers](#damage-modifiers) section.
 
 A possible way to simplify the management of all the `DamageTypeSO` modifier stats is to create a `StatSet` specifically for this purpose, and include it as a _Included Stat Set_ in the various entities' `StatSet`s of your game. This way, you centralize all the `DamageTypeSO` modifier stats in a single `StatSet`, and you can easily keep track of them and ensure that they are included in all the relevant entities.
 
-### True Damage Options
+### Damage Type's True Damage Options
 
 The **True Damage Options** section of a `DamageTypeSO` exposes three boolean flags that allow selective bypasses for individual stages of the damage pipeline. They are the primary tool for implementing "true damage" mechanics — damage that partially or entirely skips specific mitigation layers — without requiring a custom `DamageCalculationStrategy`.
 
@@ -210,6 +210,124 @@ The **True Damage Options** section of a `DamageTypeSO` exposes three boolean fl
 
 > [!TIP]
 > To create a damage type that is also unaffected by any defensive stat, simply leave **Defensive Stat** and **Damage Reduction Fn** empty. The [`ApplyDefenseStep`](#damage-step) has nothing to compute and is skipped. Combined with the three True Damage Option flags and no modifier stats, this defines a fully unmitigated damage type.
+
+### Damage Reduction Graph
+
+The **Damage Reduction Graph** is an Editor window that plots how damage received scales as a function of a defender's defensive stat value. Use it to visually verify the behavior of your damage reduction and defense penetration configuration, preview the impact of armor penetration at different stat values, and compare clamped vs. unclamped curves — all without modifying any asset.
+
+To open it, click the **Open Damage Reduction Graph** button in the inspector of any `DamageTypeSO`. The window is pre-populated from the asset: **Defensive Stat** and **Pierced Stat** are shown as read-only and reflect the asset directly — to change them, edit the `DamageTypeSO`. **Damage Reduction Fn** and **Defense Reduction Fn** are overridable inside the window without touching the asset, which lets you compare different function implementations on the fly.
+
+> [!NOTE]
+> The Damage Reduction Graph is a **simulation tool only**. No asset or scene object is modified when you change values inside the window.
+
+<!-- IMAGE: damage reduction graph window opened from a DamageTypeSO inspector, showing the pre-populated defensive stat, damage reduction fn, piercing stat, defense reduction fn, and the graph with at least the yellow and green lines active -->
+
+#### Control Panel
+
+The window is divided into two equal columns that scale with the window width. Below them are the **Resolved Values** panel, an optional **Defender Breakdown** panel, and the graph itself.
+
+**Context** (read-only)  
+Displays the `DamageTypeSO` that opened the window as a disabled field. It cannot be reassigned here — to analyze a different asset, open its graph from its own inspector.
+
+---
+
+**Damage Reduction**
+
+| Field | Description |
+|---|---|
+| **Defensive Stat** | The stat whose value sweeps the X axis of the graph. Read-only — sourced directly from the `DamageTypeSO`. To change it, edit the asset. |
+| **Damage Reduction Fn** | The `DamageReductionFnSO` that converts `(damage, effectiveDefense)` into `finalDamage`. Pre-filled from the asset; overridable inside the window. |
+
+If either field is left empty, a warning is shown and the graph is not drawn.
+
+---
+
+**Defense Penetration**
+
+| Field | Description |
+|---|---|
+| **Pierced Stat** | The stat on the attacker that provides armor penetration, read-only — sourced from `DamageTypeSO.DefensiveStatPiercedBy`. To change it, edit the asset. |
+| **Defense Reduction Fn** | Optional `DefenseReductionFnSO` that reduces the defender's stat before damage reduction is applied. Pre-filled from the asset; overridable inside the window. When assigned, a **Piercing Stat Source** selector appears. |
+
+The **Piercing Stat Source** controls where the piercing stat value comes from:
+
+| Source | Description |
+|---|---|
+| **Raw Value** | A plain number field. Type the piercing stat value directly. |
+| **Growth Formula** | A `GrowthFormula` asset plus a Level field clamped to the formula's valid range. The resolved value is displayed inline. |
+| **Class at Level** | A `Class` asset with either a constant level integer or a runtime `IntVar`. The piercing stat is read from `DamageTypeSO.DefensiveStatPiercedBy` for that class at the given level. Requires **Defensive Stat Pierced By** to be set on the asset. |
+| **From Attacker** | Reads `DamageTypeSO.DefensiveStatPiercedBy` directly from the Attacker entity set in the Entities section. Requires **Defensive Stat Pierced By** to be set on the asset and an Attacker to be assigned. |
+
+> [!NOTE]
+> If no **Defense Reduction Fn** is assigned, the Piercing Stat Source controls are hidden and the grey baseline line is not drawn on the graph.
+
+---
+
+**Damage Amount**
+
+| Source | Description |
+|---|---|
+| **Constant** | A plain number field. Defaults to 100. |
+| **Scaling Formula** | A `ScalingFormula` asset evaluated against the Attacker and/or Defender entities configured in the Entities section. Info panels in the window list which entity components the formula requires. |
+
+---
+
+**Entities**
+
+| Field | Description |
+|---|---|
+| **Attacker** | An in-scene `GameObject` with `EntityCore`. Required when Damage Amount source is **Scaling Formula** or Piercing Stat Source is **From Attacker**. |
+| **Defender** | An in-scene `GameObject` with `EntityCore` and `EntityStats`. When assigned, the **Defender Breakdown** panel appears below the Resolved Values panel. |
+
+> [!TIP]
+> To simulate how the graph changes at different entity levels, modify the entity's **Level** field directly in the Inspector while the window is open. The graph updates in real time. Level controls are intentionally absent from the window itself to avoid triggering `OnEntityLevelUp` / `OnEntityLevelDown` events during edit time.
+
+---
+
+**Simulation Parameters**
+
+| Field | Description |
+|---|---|
+| **Def. Stat Min Value** | Left bound of the X axis. If the Defensive Stat has a **Min Value** defined, this field is locked to that value automatically. |
+| **Def. Stat Max Value** | Right bound of the X axis. Always editable. |
+
+---
+
+#### Reading the Graph
+
+The graph plots **Damage Received** on the Y axis and the **Defensive Stat Value** on the X axis. Up to three lines are drawn simultaneously:
+
+| Line | Color | Condition | What it represents |
+|---|---|---|---|
+| Unclamped formula | Yellow | Always | Damage received as the stat grows, using the configured piercing value. The stat is **not** clamped to its maximum — useful for understanding the theoretical shape of the reduction function. |
+| Clamped formula | Green | Only when the Defensive Stat has a **Max Value** | Same formula with the stat clamped to `stat.MaxValue`. This is the gameplay-accurate curve — it reflects the real behavior any entity can exhibit at its stat cap. |
+| No-piercing baseline | Grey | Only when **Defense Reduction Fn** is assigned and effective piercing ≠ 0 | The damage curve with piercing forced to zero. Lets you immediately see how much the configured penetration shifts the outcome relative to a no-penetration scenario. |
+
+The legend below the graph labels each active line with its color and — for the green line — the exact max value at which the stat is capped.
+
+**Hover tooltip** — moving the mouse over the graph shows a tooltip with, for each active line, the damage received and the absolute and percentage reduction at the hovered stat value. The detail rows also show the raw defensive stat value at the cursor and, when a `DefenseReductionFnSO` is set, the portion of the stat ignored by piercing and the resulting effective defense.
+
+---
+
+#### Resolved Values and Defender Breakdown
+
+The **Resolved Values** panel, always visible below the control columns, shows the values actually fed into the graph — the resolved damage amount and the resolved piercing stat value. If either resolution fails (e.g., a required entity is missing or a formula throws an exception), an error message is shown here and the graph is suppressed.
+
+When a **Defender** is assigned with `EntityCore` and `EntityStats`, the **Defender Breakdown** panel appears alongside the Resolved Values panel. It provides a point-in-time snapshot of the exact damage calculation for the defender at its current in-scene stat values:
+
+| Row | Description |
+|---|---|
+| Damage Amount | The resolved incoming damage |
+| Piercing Stat Value | The resolved piercing value |
+| `{stat.name}` (defender) | The defender's current defensive stat value |
+| Defense Reduced by Piercing | How much of the defensive stat is bypassed by the piercing value (only when **Defense Reduction Fn** is set) |
+| Effective `{stat.name}` | The final defensive stat fed into the damage reduction function (only when **Defense Reduction Fn** is set) |
+| Final Damage Received | The final damage the defender would receive at its current level and stats |
+| Damage Reduction (abs / %) | The absolute and percentage difference between raw and final damage |
+
+The breakdown reflects the Defender's **current** in-scene stat values at its current level. To see how the numbers change at a different level, modify the entity's Level field directly in the Inspector as described above.
+
+<!-- IMAGE: damage reduction graph window with a Defender entity assigned and a Scaling Formula for the damage amount, showing the Defender Breakdown panel and the Entities section in use -->
 
 ## Dealing Damage to an Entity
 
