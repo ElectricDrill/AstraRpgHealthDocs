@@ -312,6 +312,19 @@ See also: [Lifesteal](./lifesteal.md)
 
 ---
 
+### Experience
+
+#### Default Exp Collection Strategy
+**Type:** `ExpCollectionStrategySO`  
+**Required:** No  
+**Description:** The fallback strategy used by any `ExpCollector` that does not have a custom strategy assigned on the component itself.
+
+Setting this once is usually all you need: every collector in the project that relies on the default will automatically use it without requiring per-entity configuration. Override it on individual `ExpCollector` components only when a specific entity needs different award logic.
+
+See also: [Experience Collection](./experience-collection.md)
+
+---
+
 ### Death
 
 #### Default On Death Game Action

@@ -54,7 +54,7 @@ The following image shows the status box in each of these states:
 
 ## Default Strategy in Package Configuration
 
-Collectors without a **Custom Exp Collection Strategy** fall back to the **Default Exp Collection Strategy** set in the `AstraRpgHealthConfigSO`. Configuring this field once means every bare `ExpCollector` in the project inherits the same behavior without needing an explicit assignment on each one.
+Collectors without a **Custom Exp Collection Strategy** fall back to the **Default Exp Collection Strategy** set in the `AstraRpgHealthConfigSO` (see [Package Configuration - Experience](package-configuration.md#experience)). Configuring this field once means every bare `ExpCollector` in the project inherits the same behavior without needing an explicit assignment on each one.
 
 The following image shows the Experience section of the `AstraRpgHealthConfigSO`:  
 ![Experience section in Package Configuration](../../images/AstraRPG/workflows/experience-collection/exp-config.png)
@@ -143,10 +143,12 @@ The table below lists the available override points:
 
 | Method | Type | Purpose |
 |---|---|---|
-| `Validate()` | abstract | Determine whether XP should be collected for this event. Returns a `multiplier` out parameter alongside the bool result. |
-| `CollectExp()` | virtual | Perform the actual collection: calculate the amount, call `AddExp`, and mark the source as harvested. Override for behaviors like distributing XP across a party. |
-| `CalculateExpAmount()` | virtual | Compute the final XP amount from the source and the multiplier. Override to change the formula. |
-| `TryGetExpSource()` | virtual | Extract an `IExpSource` from the victim. Override if experience sources are not standard `MonoBehaviour` components on the victim's GameObject. |
-| `TryCollectExp()` | virtual | The full template method. Override for complete control over the collection flow, as `FirstMatchExpStrategySO` does. |
+| `Validate` | abstract | Determine whether XP should be collected for this event. Returns a `multiplier` out parameter alongside the bool result. |
+| `CollectExp` | virtual | Perform the actual collection: calculate the amount, call `AddExp`, and mark the source as harvested. Override for behaviors like distributing XP across a party. |
+| `CalculateExpAmount` | virtual | Compute the final XP amount from the source and the multiplier. Override to change the formula. |
+| `TryGetExpSource` | virtual | Extract an `IExpSource` from the victim. Override if experience sources are not standard `MonoBehaviour` components on the victim's GameObject. |
+| `TryCollectExp` | virtual | The full template method. Override for complete control over the collection flow, as `FirstMatchExpStrategySO` does. |
 
 For most custom strategies, overriding `Validate` is sufficient: implement your conditions, set the multiplier, and return `true` or `false`. Override `CollectExp` only when the collection action itself must differ — for example, to split the XP reward across multiple entities simultaneously.
+
+For more information about the API and extension points, refer to the [`ExpCollectionStrategySO`](xref:ElectricDrill.AstraRpgHealth.Experience.ExpCollectionStrategySO) API documentation.
