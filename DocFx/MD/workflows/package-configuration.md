@@ -356,7 +356,7 @@ Death → Execute composite on-death Game Action → [Spawn Death VFX → Drop L
 #### Default Resurrection Source
 **Type:** `HealSourceSO`  
 **Required:** Yes  
-**Description:** The heal source used when an entity is resurrected.
+**Description:** The heal source used when an entity is resurrected via convenience overload `Resurrect` methods, or via the built-in [Resurrect Game Action](resurrection.md#the-resurrect-game-action).
 
 **Use cases:**
 - Categorizes resurrection healing separately from normal healing

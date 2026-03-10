@@ -25,7 +25,7 @@ All markdown files live in: `C:\Users\emaci\Documents\AstraRpgHealthDocs\DocFx\M
 | `workflows/entity-health.md` | ❓ Unknown | Not yet reviewed |
 | `workflows/healing.md` | ❓ Unknown | Not yet reviewed |
 | `workflows/lifesteal.md` | ✅ Done | Full first draft written; all sections complete |
-| `workflows/resurrection.md` | ❓ Unknown | Not yet reviewed |
+| `workflows/resurrection.md` | ✅ Done | Complete |
 | `workflows/experience-collection.md` | ✅ Done | Full first draft written; all sections complete |
 | `workflows/health-scaling-component.md` | ❓ Unknown | Not yet reviewed |
 | `workflows/package-configuration.md` | ✅ Done | Style-conformance pass: fixed `[!INFO]`→`[!NOTE]`, emoji callouts, `*`→`×`, `**Purpose:**`/`**Usage:**` headers, `> **See Also:**` blockquotes, emoji in Troubleshooting headings |

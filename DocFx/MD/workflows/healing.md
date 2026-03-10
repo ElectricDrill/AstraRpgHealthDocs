@@ -62,13 +62,14 @@ This table clearly shows how flat and percentage modifiers are summed, and how t
 The `Heal` method is the most straightforward way to heal an entity. It takes a `PreHealContext` as input, which contains all relevant information about the healing you intend to apply and operates as follows:
 1. It checks if the entity is dead. If the entity is dead, will raise an exception, as you cannot heal a dead entity. If you want to resurrect a dead entity, check the [Resurrection](resurrection.md) section.
 2. It checks if the healing to be applied is marked as a critical hit and, if so it applies the critical multiplier to the healing amount.
-3. It retrieves and applies the generic and `HealSourceSO`-specific **flat** heal modifiers for the entity.
-4. It retrieves and applies the generic and `HealSourceSO`-specific **percentage** heal modifiers for the entity.
-5. It retrieves the heal modifiers specific to the heal source.
-6. It sums the retrieved modifiers and applies them to the healing amount.
-7. It increases the entity's current HP by the final healing amount.
-8. It raises the _Entity Healed Event_ with a `HealResolutionContext` containing all relevant information about the healing that was just applied.
-9. It returns the `HealResolutionContext` created in the previous step so that the caller can use it for further processing if needed.
+3. It retrieves the generic and `HealSourceSO`-specific **flat** heal modifiers for the entity.
+4. It retrieves the generic and `HealSourceSO`-specific **percentage** heal modifiers for the entity.
+5. It retrieves the heal flat modifiers specific to the heal source, and sums them with the generic flat heal modifiers.
+6. It retrieves the heal percentage modifiers specific to the heal source, and sums them with the generic percentage heal modifiers.
+7. It applies the flat modifiers to the base healing amount, and then applies the percentage modifiers to the result, to calculate the final healing amount.
+8. It increases the entity's current HP by the final healing amount.
+9. It raises the _Entity Healed Event_ with a `HealResolutionContext` containing all relevant information about the healing that was just applied.
+10. It returns the `HealResolutionContext` created in the previous step so that the caller can use it for further processing if needed.
 
 The `Heal` method, differently from the `TakeDamage` method, cannot be configured to reorder the steps of the healing pipeline. This choice was made as healing is generally more straightforward than damage, and there are usually no mechanics that require reordering the steps of the healing pipeline. Therefore, I evaluated simplicity and ease of use more important than flexibility for this method.
 
