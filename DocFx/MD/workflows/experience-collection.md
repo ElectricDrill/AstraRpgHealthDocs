@@ -26,15 +26,14 @@ On the **collector** entity:
 Because `ExpCollector` carries `[RequireComponent(typeof(EntityDiedGameEventListener))]`, Unity automatically attaches an `EntityDiedGameEventListener` to the same GameObject when you add `ExpCollector`. This listener is what connects the global `EntityDied` event to the component's logic.
 
 The following image shows the `ExpCollector` inspector:  
-![ExpCollector inspector](../../images/AstraRPG/workflows/experience-collection/exp-collector.png)
-<!-- IMAGE MISSING: exp-collector.png — screenshot of the ExpCollector component inspector, showing the Custom Exp Collection Strategy field and the EntityDiedGameEventListener wiring below -->
+![ExpCollector status boxes](../../images/AstraRPG/workflows/experience-collection/exp-collector.png)
 
 Once both components are on the GameObject, two things must be wired manually in the inspector:
 
 1. On the `EntityDiedGameEventListener`, assign the **global `EntityDied` game event SO** to its **Event** field. This must be the same event asset that is assigned to each `EntityHealth` in the scene — that is what makes the listener fire when any entity dies.
 2. On the **Response** UnityEvent of the `EntityDiedGameEventListener`, add a callback and wire it to `ExpCollector.CheckCollectKillExp`. You should find it under the `Dynamic EntityDiedContext` section of the context menu.
 
-> [!IMPORTANT]
+> [!NOTE]
 > The event wiring described above is fully manual and must be done in the inspector. An automatic setup will be evaluated for a future release.
 
 **Custom Exp Collection Strategy** is the optional per-entity override. Assign a strategy here to give this specific collector its own behavior — for example, a boss that earns XP only from specific kill types, or a trap system with its own award logic. When left empty, the collector falls back to the project-wide default configured in `AstraRpgHealthConfigSO` (see [Default Strategy in Package Configuration](#default-strategy-in-package-configuration)).
@@ -48,17 +47,10 @@ The custom `ExpCollector` inspector includes a status indicator that shows at a 
 - **Warning — "No AstraRpgHealthConfig found…"**: no package configuration asset is in scope. See [Package Configuration](package-configuration.md) for setup details.
 - **Warning — "No default experience collection strategy configured in AstraRpgHealthConfig…"**: a configuration asset exists but no **Default Exp Collection Strategy** is set on it.
 
-The following image shows the status box in each of these states:  
-![ExpCollector status boxes](../../images/AstraRPG/workflows/experience-collection/exp-collector-status.png)
-<!-- IMAGE MISSING: exp-collector-status.png — screenshot showing the four possible status box states (info: custom, info: default from config, warning: no config, warning: no default) -->
 
 ## Default Strategy in Package Configuration
 
 Collectors without a **Custom Exp Collection Strategy** fall back to the **Default Exp Collection Strategy** set in the `AstraRpgHealthConfigSO` (see [Package Configuration - Experience](package-configuration.md#experience)). Configuring this field once means every bare `ExpCollector` in the project inherits the same behavior without needing an explicit assignment on each one.
-
-The following image shows the Experience section of the `AstraRpgHealthConfigSO`:  
-![Experience section in Package Configuration](../../images/AstraRPG/workflows/experience-collection/exp-config.png)
-<!-- IMAGE MISSING: exp-config.png — screenshot of the AstraRpgHealthConfigSO inspector, Experience section, showing the Default Exp Collection Strategy field -->
 
 Strategy resolution at runtime follows this order:
 
@@ -78,7 +70,6 @@ Three strategies are provided out of the box. Each is a `ScriptableObject` asset
 
 The following image shows a `DirectKillExpStrategySO` in the inspector:  
 ![DirectKillExpStrategySO inspector](../../images/AstraRPG/workflows/experience-collection/direct-kill-strategy.png)
-<!-- IMAGE MISSING: direct-kill-strategy.png — screenshot of the DirectKillExpStrategySO inspector showing the Exp Multiplier field -->
 
 - **Exp Multiplier**: a float multiplier applied to the victim's base XP amount (default: `1.0`). Values greater than `1` grant a bonus — for example, `2.0` awards double XP for personal kills.
 
@@ -98,7 +89,6 @@ The harvested check ensures that a single kill cannot be claimed twice when mult
 
 The following image shows a `DamageSourceKillExpStrategySO` in the inspector:  
 ![DamageSourceKillExpStrategySO inspector](../../images/AstraRPG/workflows/experience-collection/damage-source-kill-strategy.png)
-<!-- IMAGE MISSING: damage-source-kill-strategy.png — screenshot of the DamageSourceKillExpStrategySO inspector showing the Damage Source and Exp Multiplier fields -->
 
 - **Damage Source** *(required)*: the `DamageSourceSO` whose lethal hits trigger XP collection on this collector.
 - **Exp Multiplier**: float multiplier on the victim's base XP (default: `1.0`).
@@ -110,7 +100,7 @@ Let's look at a classic example from the Souls-like genre. In those games, the p
 
 Now whenever an enemy is killed by environmental damage, the player's collector fires and the player earns the XP.
 
-> [!CAUTION]
+> [!NOTE]
 > `DamageSourceKillExpStrategySO` does not check whether the victim's `ExpSource` has been harvested. If multiple `ExpCollector` entities use a strategy configured with the same `DamageSourceSO`, each of them receives XP independently when that source kills a victim. This is intentional for scenarios like the one above, but factor it into your design when multiple collectors may be active simultaneously.
 
 ### First Match Composite
@@ -123,7 +113,6 @@ With the previous strategies, you are bound to a single condition for XP collect
 
 The following image shows a `FirstMatchExpStrategySO` in the inspector:  
 ![FirstMatchExpStrategySO inspector](../../images/AstraRPG/workflows/experience-collection/first-match-strategy.png)
-<!-- IMAGE MISSING: first-match-strategy.png — screenshot of the FirstMatchExpStrategySO inspector showing the Strategies reorderable list -->
 
 - **Strategies**: the ordered list of `ExpCollectionStrategySO` assets to evaluate.
 

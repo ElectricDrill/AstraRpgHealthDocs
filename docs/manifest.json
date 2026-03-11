@@ -2078,6 +2078,36 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "images/AstraRPG/workflows/damage/damage-type/damage-reduction-graph-defender-breakdown.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/AstraRPG/workflows/damage/damage-type/damage-reduction-graph-defender-breakdown.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/AstraRPG/workflows/damage/damage-type/damage-reduction-graph.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/AstraRPG/workflows/damage/damage-type/damage-reduction-graph.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/AstraRPG/workflows/damage/damage-type/damage-type-graph-reduction-window-tooltip.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/AstraRPG/workflows/damage/damage-type/damage-type-graph-reduction-window-tooltip.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "images/AstraRPG/workflows/damage/damage-type/defense-reduction-functions-flat.png",
       "output": {
         "resource": {
@@ -2158,6 +2188,16 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "images/AstraRPG/workflows/experience-collection/damage-source-kill-strategy.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/AstraRPG/workflows/experience-collection/damage-source-kill-strategy.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "images/AstraRPG/workflows/experience-collection/direct-kill-strategy.png",
       "output": {
         "resource": {
@@ -2168,10 +2208,10 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/AstraRPG/workflows/experience-collection/environmental-kill-strategy.png",
+      "source_relative_path": "images/AstraRPG/workflows/experience-collection/exp-collector.png",
       "output": {
         "resource": {
-          "relative_path": "images/AstraRPG/workflows/experience-collection/environmental-kill-strategy.png"
+          "relative_path": "images/AstraRPG/workflows/experience-collection/exp-collector.png"
         }
       },
       "version": ""
@@ -2198,10 +2238,50 @@
     },
     {
       "type": "Resource",
-      "source_relative_path": "images/AstraRPG/workflows/health-scaling/health-scaling-component.png",
+      "source_relative_path": "images/AstraRPG/workflows/health-scaling/health-scaling-component-inspector.png",
       "output": {
         "resource": {
-          "relative_path": "images/AstraRPG/workflows/health-scaling/health-scaling-component.png"
+          "relative_path": "images/AstraRPG/workflows/health-scaling/health-scaling-component-inspector.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/AstraRPG/workflows/lifesteal/amount-selector-step.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/AstraRPG/workflows/lifesteal/amount-selector-step.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/AstraRPG/workflows/lifesteal/lifesteal-config.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/AstraRPG/workflows/lifesteal/lifesteal-config.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/AstraRPG/workflows/lifesteal/lifesteal-stat-config.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/AstraRPG/workflows/lifesteal/lifesteal-stat-config.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/AstraRPG/workflows/resurrection/resurrect-game-action.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/AstraRPG/workflows/resurrection/resurrect-game-action.png"
         }
       },
       "version": ""

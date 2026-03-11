@@ -101,12 +101,12 @@
 <p>We will first introduce some concepts that are common to all the four healing methods, and then we will analyze direct healing and health regeneration. As aforesaid, lifesteal and resurrection are analyzed in their respective sections, <a href="lifesteal.html">Lifesteal</a> and <a href="resurrection.html">Resurrection</a>.</p>
 <h2 id="heal-source">Heal Source</h2>
 <p><em>Relative path:</em> <code>Heal Source</code></p>
-<p>A <code>HealSource</code> represents the source of healing. Some examples of <code>HealSource</code> could be: healing potions, skills, passive regeneration, lifesteal, system (e.g., the player is healed to max health during the tutorial by a support machine), and so on. The <code>HealSource</code> is an important concept as it allows distinguishing between different sources of healing, and thus applying specific healing modifiers for each healing source, in addition to the generic healing modifiers that apply to all healing sources.
+<p>A <code>HealSourceSO</code> represents the source of healing. Some examples of <code>HealSourceSO</code> could be: healing potions, skills, passive regeneration, lifesteal, system (e.g., the player is healed to max health during the tutorial by a support machine), and so on. The <code>HealSourceSO</code> is an important concept as it allows distinguishing between different sources of healing, and thus applying specific healing modifiers for each healing source, in addition to the generic healing modifiers that apply to all healing sources.
 Furthermore, <code>HealSources</code> are important because they are communicated in healing contexts, and therefore in the listeners of healing events, allowing the latter to react specifically based on the healing source that triggered the event. Thanks to this, you could, for example, implement a buff that increases the healing received from healing potions.
 Finally, <code>HealSources</code> pave the way for the implementation of a combat log that tracks not only the amount of healing received but also the healing source, allowing the player to have a deeper understanding of what healed them most effectively in a specific game situation.</p>
-<p>An instance of <code>HealSource</code> in the inspector looks like this:<br>
+<p>An instance of <code>HealSourceSO</code> in the inspector looks like this:<br>
 <img src="../../images/AstraRPG/workflows/healing/heal-source-resurrection.png" alt=""></p>
-<p>You can notice that there are two properties to configure for each <code>HealSource</code>:</p>
+<p>You can notice that there are two properties to configure for each <code>HealSourceSO</code>:</p>
 <ul>
 <li><strong>Flat Heal Modification Stat</strong>: the statistic to consider in an entity to apply flat, specific healing modifiers for this healing source. Positive values of this statistic increase the healing received from this source, while negative values decrease it. If the entity does not have this statistic, a value of 0 will be considered for this statistic, and therefore no specific flat healing modifier will be applied for this healing source.</li>
 <li><strong>Percentage Heal Modification Stat</strong>: the statistic to consider in an entity to apply percentage, specific healing modifiers for this healing source. Positive values of this statistic increase the healing received from this source, while negative values decrease it. If the entity does not have this statistic, a value of 0 will be considered for this statistic, and therefore no specific percentage healing modifier will be applied for this healing source.</li>
@@ -164,10 +164,11 @@ For percentage modifiers, a statistic with a value of 120 increases the healing 
 <ol>
 <li>It checks if the entity is dead. If the entity is dead, will raise an exception, as you cannot heal a dead entity. If you want to resurrect a dead entity, check the <a href="resurrection.html">Resurrection</a> section.</li>
 <li>It checks if the healing to be applied is marked as a critical hit and, if so it applies the critical multiplier to the healing amount.</li>
-<li>It retrieves and applies the generic and <code>HealSource</code>-specific <strong>flat</strong> heal modifiers for the entity.</li>
-<li>It retrieves and applies the generic and <code>HealSource</code>-specific <strong>percentage</strong> heal modifiers for the entity.</li>
-<li>It retrieves the heal modifiers specific to the heal source.</li>
-<li>It sums the retrieved modifiers and applies them to the healing amount.</li>
+<li>It retrieves the generic and <code>HealSourceSO</code>-specific <strong>flat</strong> heal modifiers for the entity.</li>
+<li>It retrieves the generic and <code>HealSourceSO</code>-specific <strong>percentage</strong> heal modifiers for the entity.</li>
+<li>It retrieves the heal flat modifiers specific to the heal source, and sums them with the generic flat heal modifiers.</li>
+<li>It retrieves the heal percentage modifiers specific to the heal source, and sums them with the generic percentage heal modifiers.</li>
+<li>It applies the flat modifiers to the base healing amount, and then applies the percentage modifiers to the result, to calculate the final healing amount.</li>
 <li>It increases the entity's current HP by the final healing amount.</li>
 <li>It raises the <em>Entity Healed Event</em> with a <code>HealResolutionContext</code> containing all relevant information about the healing that was just applied.</li>
 <li>It returns the <code>HealResolutionContext</code> created in the previous step so that the caller can use it for further processing if needed.</li>
@@ -225,7 +226,7 @@ This package supports both passive and manual regeneration.</p>
 <h3 id="passive-health-regeneration">Passive Health Regeneration</h3>
 <p>Passive regeneration, to work, needs to be configured through the <a href="package-configuration.html#health-regeneration">Health Regeneration</a> section of the package configuration. The following parameters should be configured there:</p>
 <ul>
-<li><strong>Health Regeneration Source</strong>: the <code>HealSource</code> to associate with regeneration (passive and manual). The package will use this <code>HealSource</code> to create the healing contexts to pass to the <code>Heal</code> method when it's time to regenerate health.</li>
+<li><strong>Health Regeneration Source</strong>: the <code>HealSourceSO</code> to associate with regeneration (passive and manual). The package will use this <code>HealSourceSO</code> to create the healing contexts to pass to the <code>Heal</code> method when it's time to regenerate health.</li>
 <li><strong>Passive Health Regeneration Stat (HP/10s)</strong>: the amount of HP the entity regenerates every 10 seconds. The package will take care of scaling this amount based on the time that passes between consecutive ticks, to ensure smooth and consistent regeneration.</li>
 <li><strong>Passive Health Regeneration Interval</strong>: the time interval, in seconds, between one regeneration tick and the next.</li>
 </ul>

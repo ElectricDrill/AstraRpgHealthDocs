@@ -93,7 +93,7 @@
 <p>The Astra RPG Health system uses a <strong>two-tier configuration architecture</strong>:</p>
 <ol>
 <li><strong>Global Settings</strong> (<code>AstraRpgHealthGlobalSettings</code>) - A lightweight pointer stored in <code>Resources</code> that references your active configuration</li>
-<li><strong>Gameplay Configuration</strong> (<code>AstraRpgHealthConfig</code>) - The actual configuration containing all gameplay parameters</li>
+<li><strong>Gameplay Configuration</strong> (<code>AstraRpgHealthConfigSO</code>) - The actual configuration containing all gameplay parameters</li>
 </ol>
 <p>This separation allows you to:</p>
 <ul>
@@ -111,9 +111,10 @@
 <li>If a default configuration exists (e.g., from imported samples), it's automatically assigned</li>
 <li>The system is immediately ready to use</li>
 </ol>
-<blockquote>
-<p><strong>📁 Default Location:</strong> <code>Assets/Resources/AstraRpgHealthGlobalSettings.asset</code></p>
-</blockquote>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Default location: <code>Assets/Resources/AstraRpgHealthGlobalSettings.asset</code></p>
+</div>
 <h3 id="project-settings">Project Settings</h3>
 <p>You can manage the health system configuration through Unity's Project Settings window:</p>
 <ol>
@@ -161,9 +162,10 @@
 </ul>
 </li>
 </ol>
-<blockquote>
-<p><strong>💡 Tip:</strong> For production projects, always use <strong>explicit configuration</strong> via Project Settings for clarity and control.</p>
-</blockquote>
+<div class="TIP">
+<h5>Tip</h5>
+<p>For production projects, always use <strong>explicit configuration</strong> via Project Settings for clarity and control.</p>
+</div>
 <hr>
 <h2 id="configuration-loading-strategy">Configuration Loading Strategy</h2>
 <p>The health configuration is loaded lazily on first access and cached for performance:</p>
@@ -184,7 +186,7 @@ AstraRpgHealthConfigProvider.Reset();
 </ul>
 <hr>
 <h2 id="creating-configuration-assets">Creating Configuration Assets</h2>
-<p>If for any reason you need to create a new <code>AstraRpgHealthConfig</code> asset, you can do so via two methods:</p>
+<p>If for any reason you need to create a new <code>AstraRpgHealthConfigSO</code> asset, you can do so via two methods:</p>
 <h3 id="via-project-settings">Via Project Settings</h3>
 <ol>
 <li>Open <strong>Edit → Project Settings → Astra RPG Health</strong></li>
@@ -202,19 +204,17 @@ AstraRpgHealthConfigProvider.Reset();
 </ol>
 <hr>
 <h2 id="health-configuration-reference">Health Configuration Reference</h2>
-<blockquote>
-<p>[!INFO]
-In the <code>AstraRpgHealthConfig</code> asset, you can hover over each field to see a tooltip with a brief description.</p>
-</blockquote>
-<p>The <code>AstraRpgHealthConfig</code> asset contains all gameplay parameters for the health system. Below is a detailed explanation of each field.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>In the <code>AstraRpgHealthConfigSO</code> asset, you can hover over each field to see a tooltip with a brief description.</p>
+</div>
+<p>The <code>AstraRpgHealthConfigSO</code> asset contains all gameplay parameters for the health system. Below is a detailed explanation of each field.</p>
 <h3 id="health">Health</h3>
 <h4 id="health-attributes-scaling">Health Attributes Scaling</h4>
 <p><strong>Type:</strong> <code>AttributesScalingComponent</code><br>
 <strong>Required:</strong> No<br>
 <strong>Description:</strong> Defines how entities' maximum health scales based on character attributes (e.g., Vitality, Endurance).</p>
-<blockquote>
-<p><strong>See Also:</strong> <a href="https://electricdrill.github.io/AstraRpgFrameworkDocs/MD/workflows.html#create-scaling-formulas">Astra RPG Framework Scaling documentation</a></p>
-</blockquote>
+<p>See also: <a href="https://electricdrill.github.io/AstraRpgFrameworkDocs/MD/workflows.html#create-scaling-formulas">Astra RPG Framework Scaling documentation</a></p>
 <h4 id="generic-flat-heal-amount-modifier-stat">Generic Flat Heal Amount Modifier Stat</h4>
 <p><strong>Type:</strong> <code>Stat</code><br>
 <strong>Required:</strong> No<br>
@@ -254,7 +254,7 @@ In the <code>AstraRpgHealthConfig</code> asset, you can hover over each field to
 <li>Base Heal: 100 HP</li>
 <li>Generic Flat Heal Amount Modifier: 20 (means +20 extra HP healing received)</li>
 <li>Generic Percentage Heal Amount Modifier: 20 (means +20% healing received)</li>
-<li>Final Heal: (100 + 20) * 1.20 = <strong>144 HP</strong></li>
+<li>Final Heal: (100 + 20) × 1.20 = <strong>144 HP</strong></li>
 </ul>
 <div class="WARNING">
 <h5>Warning</h5>
@@ -266,22 +266,12 @@ In the <code>AstraRpgHealthConfig</code> asset, you can hover over each field to
 <p><strong>Type:</strong> <code>DamageCalculationStrategy</code><br>
 <strong>Required:</strong> No<br>
 <strong>Description:</strong> The default strategy used to calculate net damage when an entity doesn't specify its own strategy.</p>
-<p><strong>Purpose:</strong></p>
-<ul>
-<li>Provides a default damage calculation strategy to use for &quot;regular&quot; entities. In most cases, this is sufficient</li>
-<li>Can be overridden per-entity for custom damage pipelines in their <code>EntityHealth</code> component</li>
-</ul>
-<blockquote>
-<p><strong>See Also:</strong> Damage Calculation Pipeline documentation</p>
-</blockquote>
+<p>The default strategy applied to entities that do not have a custom one assigned in their <code>EntityHealth</code> component. In most cases a single global default is sufficient; override it per-entity when a different calculation pipeline is required. See <a href="damage.html#damage-calculation-strategy">Damage Calculation Strategy</a> for details on how strategies work.</p>
 <h4 id="generic-flat-damage-modification-stat">Generic Flat Damage Modification Stat</h4>
 <p><strong>Type:</strong> <code>Stat</code><br>
 <strong>Required:</strong> No<br>
 <strong>Description:</strong> A universal flat damage modifier that applies to <strong>all damage received</strong>, regardless of type or source.</p>
-<p><strong>Usage:</strong></p>
-<ul>
-<li>Applied in the damage calculation pipeline if <code>ApplyFlatDmgModifiersStep</code> is included in the used strategy</li>
-</ul>
+<p>Applied by <code>ApplyFlatDmgModifiersStep</code> when that step is included in the active strategy.</p>
 <p><strong>Stacking Behavior:</strong></p>
 <ul>
 <li>Combines <strong>additively</strong> with Type and Source <strong>flat</strong> modifications</li>
@@ -296,10 +286,7 @@ In the <code>AstraRpgHealthConfig</code> asset, you can hover over each field to
 <p><strong>Type:</strong> <code>Stat</code>
 <strong>Required:</strong> No
 <strong>Description:</strong> A universal percentage damage modifier that applies to <strong>all damage received</strong>, regardless of type or source.</p>
-<p><strong>Usage:</strong></p>
-<ul>
-<li>Applied in the damage calculation pipeline if <code>ApplyPercentageDmgModifiersStep</code> is included in the used strategy</li>
-</ul>
+<p>Applied by <code>ApplyPercentageDmgModifiersStep</code> when that step is included in the active strategy.</p>
 <p><strong>Stacking Behavior:</strong></p>
 <ul>
 <li>Combines <strong>additively</strong> with Type and Source <strong>percentage</strong> modifications</li>
@@ -308,7 +295,7 @@ In the <code>AstraRpgHealthConfig</code> asset, you can hover over each field to
 <ul>
 <li>Incoming Damage: 150</li>
 <li>Generic Percentage Damage Modification: -20 (means -20% damage taken)</li>
-<li><strong>Damage Reduction:</strong> -20% → Final Damage: 150 * 0.80 = <strong>120</strong></li>
+<li><strong>Damage Reduction:</strong> -20% → Final Damage: 150 × 0.80 = <strong>120</strong></li>
 </ul>
 <div class="NOTE">
 <h5>Note</h5>
@@ -317,7 +304,7 @@ In the <code>AstraRpgHealthConfig</code> asset, you can hover over each field to
 <hr>
 <h3 id="health-regeneration">Health Regeneration</h3>
 <h4 id="health-regeneration-source">Health Regeneration Source</h4>
-<p><strong>Type:</strong> <code>HealSource</code><br>
+<p><strong>Type:</strong> <code>HealSourceSO</code><br>
 <strong>Required:</strong> No<br>
 <strong>Description:</strong> The heal source used for passive regeneration effects.</p>
 <p><strong>Use cases:</strong></p>
@@ -402,7 +389,7 @@ entityHealth.ManualHealthRegenerationTick();
 <hr>
 <h3 id="lifesteal">Lifesteal</h3>
 <h4 id="lifesteal-config">Lifesteal Config</h4>
-<p><strong>Type:</strong> <code>LifestealConfig</code><br>
+<p><strong>Type:</strong> <code>LifestealConfigSO</code><br>
 <strong>Required:</strong> No<br>
 <strong>Description:</strong> Configuration for lifesteal mechanics (healing based on damage dealt).</p>
 <p><strong>Typical Settings:</strong></p>
@@ -411,9 +398,15 @@ entityHealth.ManualHealthRegenerationTick();
 <li>Heal source for lifesteal effects</li>
 <li>Restrictions (e.g., only on critical hits, only physical damage)</li>
 </ul>
-<blockquote>
-<p><strong>See Also:</strong> Lifesteal documentation</p>
-</blockquote>
+<p>See also: <a href="lifesteal.html">Lifesteal</a></p>
+<hr>
+<h3 id="experience">Experience</h3>
+<h4 id="default-exp-collection-strategy">Default Exp Collection Strategy</h4>
+<p><strong>Type:</strong> <code>ExpCollectionStrategySO</code><br>
+<strong>Required:</strong> No<br>
+<strong>Description:</strong> The fallback strategy used by any <code>ExpCollector</code> that does not have a custom strategy assigned on the component itself.</p>
+<p>Setting this once is usually all you need: every collector in the project that relies on the default will automatically use it without requiring per-entity configuration. Override it on individual <code>ExpCollector</code> components only when a specific entity needs different award logic.</p>
+<p>See also: <a href="experience-collection.html">Experience Collection</a></p>
 <hr>
 <h3 id="death">Death</h3>
 <h4 id="default-on-death-game-action">Default On Death Game Action</h4>
@@ -441,9 +434,9 @@ entityHealth.ManualHealthRegenerationTick();
 <li><strong>Stat Penalties</strong> - Applies temporary debuffs after resurrection</li>
 </ul>
 <h4 id="default-resurrection-source">Default Resurrection Source</h4>
-<p><strong>Type:</strong> <code>HealSource</code><br>
+<p><strong>Type:</strong> <code>HealSourceSO</code><br>
 <strong>Required:</strong> Yes<br>
-<strong>Description:</strong> The heal source used when an entity is resurrected.</p>
+<strong>Description:</strong> The heal source used when an entity is resurrected via convenience overload <code>Resurrect</code> methods, or via the built-in <a href="resurrection.html#the-resurrect-game-action">Resurrect Game Action</a>.</p>
 <p><strong>Use cases:</strong></p>
 <ul>
 <li>Categorizes resurrection healing separately from normal healing</li>
@@ -452,7 +445,7 @@ entityHealth.ManualHealthRegenerationTick();
 </ul>
 <hr>
 <h2 id="troubleshooting">Troubleshooting</h2>
-<h3 id="-no-configuration-found-error">⚠️ &quot;No Configuration found!&quot; error</h3>
+<h3 id="no-configuration-found-error">&quot;No Configuration found!&quot; error</h3>
 <p><strong>Cause:</strong> No configuration is assigned and no fallback exists.</p>
 <p><strong>Solution:</strong></p>
 <ol>
@@ -460,7 +453,7 @@ entityHealth.ManualHealthRegenerationTick();
 <li>Assign a configuration or create a new one</li>
 <li>Alternatively, create a config named <code>Astra Rpg Health Config</code> in a <code>Resources</code> folder</li>
 </ol>
-<h3 id="-using-fallback-warning">⚠️ &quot;Using Fallback&quot; warning</h3>
+<h3 id="using-fallback-warning">&quot;Using Fallback&quot; warning</h3>
 <p><strong>Cause:</strong> No explicit configuration assigned in Project Settings.</p>
 <p><strong>Solution:</strong></p>
 <ol>
@@ -468,13 +461,13 @@ entityHealth.ManualHealthRegenerationTick();
 <li>Assign the fallback configuration explicitly</li>
 <li>This warning is just informational and won't break functionality</li>
 </ol>
-<h3 id="-configuration-not-updating-in-play-mode">⚠️ Configuration not updating in Play Mode</h3>
+<h3 id="configuration-not-updating-in-play-mode">Configuration not updating in Play Mode</h3>
 <p><strong>Cause:</strong> Configuration is cached on first access.</p>
 <p><strong>Solution:</strong></p>
 <pre><code class="lang-csharp">// Force reload
 AstraRpgHealthConfigProvider.Reset();
 </code></pre>
-<h3 id="-missing-resources-folder">⚠️ Missing Resources folder</h3>
+<h3 id="missing-resources-folder">Missing Resources folder</h3>
 <p><strong>Cause:</strong> The <code>Assets/Resources/</code> folder doesn't exist.</p>
 <p><strong>Solution:</strong> The package creates it automatically. If it's missing, create it manually:</p>
 <ol>

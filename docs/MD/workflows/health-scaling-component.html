@@ -87,6 +87,59 @@
         <article data-uid="">
 <h1 id="health-scaling-component">Health Scaling Component</h1>
 
+<p><em>Relative path:</em> <code>Scaling -&gt; Health Scaling Component</code><br>
+<em>Base framework convenience relative path:</em> <code>Astra RPG Framework -&gt; Scaling -&gt; Health Scaling Component</code></p>
+<p><code>HealthScalingComponentSO</code> is a ScalingComponent provided by Astra RPG Health that calculates a scaled value from an entity's health metrics — current HP, maximum HP, or missing HP. It plugs into <code>ScalingFormula</code> assets as any other scaling component, enabling mechanics such as HP-based damage abilities and shields or heals that grow proportionally to an entity's health pool.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p><code>HealthScalingComponentSO</code> requires the target entity to have an <code>EntityHealth</code> component. If the component is absent, <code>CalculateValue</code> returns <code>0</code> and logs a warning. Refer to <a href="entity-health.html">Entity Health Component</a> for setup details.</p>
+</div>
+<h2 id="inspector">Inspector</h2>
+<p>The inspector exposes a <strong>Scaling Metrics</strong> list, where each entry pairs one health metric with a <code>double</code> multiplier.</p>
+<p>Here is a screenshot of the <code>HealthScalingComponentSO</code> inspector with two entries configured:<br>
+<img src="../../images/AstraRPG/workflows/health-scaling/health-scaling-component-inspector.png" alt="Health Scaling Component inspector"></p>
+<p>Each entry consists of:</p>
+<ul>
+<li><strong>Metric</strong>: the health value to scale on. See <a href="#health-metrics">Health Metrics</a> for the available options.</li>
+<li><strong>Value</strong> <em>(double)</em>: the multiplier applied to the chosen metric. <code>0.3</code> means 30%.</li>
+</ul>
+<p>Use the <strong>Add Scaling</strong> button to append a new entry and the <strong>−</strong> button on the right of each row to remove it.</p>
+<h2 id="health-metrics">Health Metrics</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>HP</strong></td>
+<td>The entity's current HP at the moment of calculation.</td>
+</tr>
+<tr>
+<td><strong>Max HP</strong></td>
+<td>The entity's current maximum HP.</td>
+</tr>
+<tr>
+<td><strong>Missing HP</strong></td>
+<td>The difference between maximum and current HP (<code>max − current</code>).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="combining-multiple-metrics">Combining Multiple Metrics</h2>
+<p>A single <code>HealthScalingComponentSO</code> can contain any number of entries. The final value is the integer sum of each individual contribution:</p>
+<pre><code>total = round(metric₁_value × multiplier₁) + round(metric₂_value × multiplier₂) + …
+</code></pre>
+<p>For example, a component configured with <code>Missing HP: 0.3</code> and <code>Max HP: 0.1</code> on an entity with 200 Max HP and 80 current HP (120 missing) yields:</p>
+<pre><code>round(120 × 0.3) + round(200 × 0.1) = 36 + 20 = 56
+</code></pre>
+<h2 id="usage-in-a-scaling-formula">Usage in a Scaling Formula</h2>
+<p><code>HealthScalingComponentSO</code> is a <code>ScalingComponent</code>, so it plugs directly into the <strong>Self Scaling Components</strong> or <strong>Target Scaling Components</strong> lists of a <code>ScalingFormula</code>. Refer to the <a href="https://electricdrill.github.io/AstraRpgFrameworkDocs/MD/workflows.html#create-scaling-formulas">Scaling Formulas</a> section of the base framework documentation for the full workflow.</p>
+<div class="TIP">
+<h5>Tip</h5>
+<p>Assign the component to <strong>Target Scaling Components</strong> when the value should reflect the <em>target's</em> health state — for example, execute damage that scales with the target's missing HP. Use <strong>Self Scaling Components</strong> when the value reflects the <em>caster's</em> state — for example, a shield whose strength scales with the caster's max HP.</p>
+</div>
 
 </article>
 

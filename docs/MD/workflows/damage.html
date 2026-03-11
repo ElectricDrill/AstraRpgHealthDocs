@@ -89,21 +89,22 @@
 
 <h2 id="damage-sources">Damage Sources</h2>
 <p><em>Relative path:</em> <code>Damage Source</code><br>
-A <code>DamageSource</code> represents the source of the damage. Some examples of <code>DamageSource</code> could be: skill, base attack, fall damage, trap, environmental, etc. The <code>DamageSource</code> is used to categorize the damage and can be used in various mechanics, such as damage modifiers that only apply to specific damage sources, for triggering specific effects when taking damage from a certain source, or for tracking damage statistics based on the source.</p>
-<p>An instance of <code>DamageSource</code>, in the inspector, should look like this:<br>
+A <code>DamageSourceSO</code> represents the source of the damage. Some examples of <code>DamageSourceSO</code> could be: skill, base attack, fall damage, trap, environmental, etc. The <code>DamageSourceSO</code> is used to categorize the damage and can be used in various mechanics, such as damage modifiers that only apply to specific damage sources, for triggering specific effects when taking damage from a certain source, or for tracking damage statistics based on the source.</p>
+<p>An instance of <code>DamageSourceSO</code>, in the inspector, should look like this:<br>
 <img src="../../images/AstraRPG/workflows/damage/damage-source.png" alt="DamageSource"></p>
-<p>There are two properties to set in a <code>DamageSource</code>:</p>
+<h3 id="damage-sources---modifiers">Damage Sources - Modifiers</h3>
+<p>There are two properties to set in a <code>DamageSourceSO</code>:</p>
 <ul>
 <li><strong>Percentage Modifier Stat</strong>: the statistic to consider in an entity to apply percentage, specific damage modifiers for this damage source. Positive values of this statistic increase the damage received from this source, while negative values decrease it.</li>
 <li><strong>Flat Modifier Stat</strong>: the statistic to consider in an entity to apply flat, specific damage modifiers for this damage source. Positive values of this statistic increase the damage received from this source, while negative values decrease it.</li>
 </ul>
 <div class="WARNING">
 <h5>Warning</h5>
-<p>If the entity lacks a percentage or flat damage source modifier statistic, an error will be logged when applying damage from that source. Ensure all entities with an <code>EntityHealth</code> component have the statistics referenced in your game's <code>DamageSource</code>s.</p>
+<p>If the entity lacks a percentage or flat damage source modifier statistic, an error will be logged when applying damage from that source. Ensure all entities with an <code>EntityHealth</code> component have the statistics referenced in your game's <code>DamageSourceSO</code>s.</p>
 </div>
-<p>A possible way to simplify the management of all the <code>DamageSource</code> modifier stats is to create a <code>StatSet</code> specifically for this purpose, and include it as a <em>Included Stat Set</em> in the various entities' <code>StatSet</code>s of your game. This way, you centralize all the <code>DamageSource</code> modifier stats in a single <code>StatSet</code>, and you can easily keep track of them and ensure that they are included in all the relevant entities.</p>
+<p>A possible way to simplify the management of all the <code>DamageSourceSO</code> modifier stats is to create a <code>StatSet</code> specifically for this purpose, and include it as a <em>Included Stat Set</em> in the various entities' <code>StatSet</code>s of your game. This way, you centralize all the <code>DamageSourceSO</code> modifier stats in a single <code>StatSet</code>, and you can easily keep track of them and ensure that they are included in all the relevant entities.</p>
 <h2 id="damage-types">Damage Types</h2>
-<p>A <code>DamageType</code> represents the type of damage—such as physical, fire, ice, lightning, or damage-over-time (DoT) effects like bleeding. In the following image you cane see an example of a <code>DamageType</code> instance in the inspector:<br>
+<p>A <code>DamageTypeSO</code> represents the type of damage—such as physical, fire, ice, lightning, or damage-over-time (DoT) effects like bleeding. In the following image you cane see an example of a <code>DamageTypeSO</code> instance in the inspector:<br>
 <img src="../../images/AstraRPG/workflows/damage/damage-type/magic-damage-type-inspector.png" alt="DamageType"></p>
 <p>You can notice that the parameters are divided in three sections:</p>
 <ol>
@@ -116,9 +117,9 @@ A <code>DamageSource</code> represents the source of the damage. Some examples o
 <p>I recall the <a href="../introduction.html#damage-modifiers-vs-defensive-stat-based-damage-reduction">Damage Modifiers vs. Stat-Based Damage Reduction</a> section of the introduction documentation, where I explained the difference between damage reduction and damage modifiers.</p>
 </div>
 <p>We will now see each of these sections in detail.</p>
-<h3 id="damage-reduction">Damage Reduction</h3>
-<p>The primary use case for <code>DamageType</code> is implementing entities with varying resistances to specific damage types. This is primarily achieved via <strong>Defensive Stats</strong>.
-For each <code>DamageType</code>, you can define a defensive statistic that reduces incoming damage of that type. For example, an <code>Armor</code> stat might reduce <code>Physical</code> damage, while a <code>Magic Resistance</code> stat reduces <code>Magic</code> damage.<br>
+<h3 id="damage-types-damage-reduction">Damage Type's Damage Reduction</h3>
+<p>The primary use case for <code>DamageTypeSO</code> is implementing entities with varying resistances to specific damage types. This is primarily achieved via <strong>Defensive Stats</strong>.
+For each <code>DamageTypeSO</code>, you can define a defensive statistic that reduces incoming damage of that type. For example, an <code>Armor</code> stat might reduce <code>Physical</code> damage, while a <code>Magic Resistance</code> stat reduces <code>Magic</code> damage.<br>
 The value of the defensive stat is fed into the associated <strong>Damage Reduction Fn</strong> (function) and used to calculate the actual damage reduction. The package provides some built-in damage reduction functions, such as:</p>
 <ul>
 <li><strong>Flat Dmg Reduction</strong>: Reduces damage by a flat amount equal to the defensive stat value multiplied by a constant.</li>
@@ -127,11 +128,11 @@ The value of the defensive stat is fed into the associated <strong>Damage Reduct
 </ul>
 <div class="NOTE">
 <h5>Note</h5>
-<p><strong>Defensive Stat</strong> and <strong>Damage Reduction Fn</strong> are optional. However, they must always be configured together: if one is set, the other must be set as well. If only one of them is assigned, a warning will be logged at runtime and the damage reduction step will be skipped for that <code>DamageType</code>.</p>
+<p><strong>Defensive Stat</strong> and <strong>Damage Reduction Fn</strong> are optional. However, they must always be configured together: if one is set, the other must be set as well. If only one of them is assigned, a warning will be logged at runtime and the damage reduction step will be skipped for that <code>DamageTypeSO</code>.</p>
 </div>
 <div class="WARNING">
 <h5>Warning</h5>
-<p>If the target entity lacks the statistic referenced by <strong>Defensive Stat</strong>, an error will be logged when applying damage of that type. Ensure that all entities with an <code>EntityHealth</code> component have the defensive statistic referenced by the <code>DamageType</code>s used in your game.</p>
+<p>If the target entity lacks the statistic referenced by <strong>Defensive Stat</strong>, an error will be logged when applying damage of that type. Ensure that all entities with an <code>EntityHealth</code> component have the defensive statistic referenced by the <code>DamageTypeSO</code>s used in your game.</p>
 </div>
 <p>Let's see all of them in detail.</p>
 <h4 id="damage-reduction-functions---flat-dmg-reduction">Damage Reduction Functions - Flat Dmg Reduction</h4>
@@ -236,14 +237,14 @@ Because the non-linear nature of the formula makes it difficult to reason about 
 You can take a look at the existing damage reduction functions implementations for reference.</p>
 <h4 id="defense-penetration">Defense Penetration</h4>
 <p>Defense penetration allows the damage dealer to partially bypass the target's defensive stat before damage reduction is calculated. This mechanism is useful for implementing mechanics such as armor penetration or magic penetration, where an attacker can reduce the effective defenses of the target.</p>
-<p>Two optional parameters of the <code>DamageType</code> control this behavior:</p>
+<p>Two optional parameters of the <code>DamageTypeSO</code> control this behavior:</p>
 <ul>
 <li><strong>Defensive Stat Pierced By</strong>: the statistic on the <strong>damage dealer</strong> that pierces the target's defensive stat. For example, an <code>Armor Penetration</code> stat might pierce the <code>Armor</code> stat of the target.</li>
 <li><strong>Defense Reduction Fn</strong>: the function that computes how the piercing stat lowers the target's defensive stat. The resulting reduced defensive stat value is then passed to the <strong>Damage Reduction Fn</strong> in place of the original value.</li>
 </ul>
 <div class="NOTE">
 <h5>Note</h5>
-<p><strong>Defensive Stat Pierced By</strong> and <strong>Defense Reduction Fn</strong> are optional. However, they must always be configured together: if one is set, the other must be set as well. If only one of them is assigned, a warning will be logged at runtime and the defense penetration step will be skipped for that <code>DamageType</code>.</p>
+<p><strong>Defensive Stat Pierced By</strong> and <strong>Defense Reduction Fn</strong> are optional. However, they must always be configured together: if one is set, the other must be set as well. If only one of them is assigned, a warning will be logged at runtime and the defense penetration step will be skipped for that <code>DamageTypeSO</code>.</p>
 </div>
 <div class="WARNING">
 <h5>Warning</h5>
@@ -258,7 +259,7 @@ You can take a look at the existing damage reduction functions implementations f
 <li><strong>Defense Reduction Fn</strong>: Flat Def Reduction with a factor of 1.</li>
 </ul>
 <p>In this case, if the target has Armor equal to 30 and the attacker has Armor Penetration equal to 10, the effective Armor value fed into the Damage Reduction Fn will be 30 (Armor) − 10 (Armor Penetration) × 1 (factor) = 20. So, if the incoming damage is 80, the final damage taken will be 80 − 20 (effective Armor) = 60 Physical damage. This example assumes no other damage modifications are active.</p>
-<p>The package provides three built-in Defense Reduction Functions — Flat, Percentage, and Logarithmic — that work in a fully analogous way to their counterparts described in the <a href="#damage-reduction">Damage Reduction</a> section above. The parameters, trade-offs, and use cases of each variant are the same; the only difference is that these functions operate on the <strong>defensive stat value</strong> rather than directly on the damage amount. For a detailed description of each, refer to the <a href="#damage-reduction">Damage Reduction</a> section.</p>
+<p>The package provides three built-in Defense Reduction Functions — Flat, Percentage, and Logarithmic — that work in a fully analogous way to their counterparts described in the <a href="#damage-types-damage-reduction">Damage Reduction</a> section above. The parameters, trade-offs, and use cases of each variant are the same; the only difference is that these functions operate on the <strong>defensive stat value</strong> rather than directly on the damage amount. For a detailed description of each, refer to the <a href="#damage-types-damage-reduction">Damage Reduction</a> section.</p>
 <p><em>Relative path:</em> <code>Def Reduction Functions -&gt; Flat Def Reduction</code><br>
 <img src="../../images/AstraRPG/workflows/damage/damage-type/defense-reduction-functions-flat.png" alt="Flat Def Reduction"></p>
 <p><em>Relative path:</em> <code>Def Reduction Functions -&gt; Percentage Def Reduction</code><br>
@@ -266,39 +267,261 @@ You can take a look at the existing damage reduction functions implementations f
 <p><em>Relative path:</em> <code>Def Reduction Functions -&gt; Log Def Reduction</code><br>
 <img src="../../images/AstraRPG/workflows/damage/damage-type/defense-reduction-functions-log.png" alt="Log Def Reduction"></p>
 <p>If none of the built-in Defense Reduction Functions suits your needs, you can implement a custom one by creating a class that inherits from <a class="xref" href="../../api/ElectricDrill.AstraRpgHealth.DefenseReductionFunctions.DefenseReductionFnSO.html">DefenseReductionFnSO</a> and implementing the <code>CalculateReducedDefense</code> method. As with the Damage Reduction Functions, remember to use the <code>CreateAssetMenu</code> attribute (or the <code>MenuItem</code> attribute) to make it creatable from the Unity editor.</p>
-<h3 id="damage-modifiers">Damage Modifiers</h3>
-<p>The <strong>Percentage Modifier Stat</strong> and <strong>Flat Modifier Stat</strong> fields in this section let you assign stat-based damage modifiers that apply specifically when an entity receives damage of this <code>DamageType</code>. Assigning a positive value to either stat increases the damage received from this type; a negative value decreases it. For a full explanation of how all damage modifier categories work and how they stack together, see the <a href="#damage-modifiers">Damage Modifiers</a> section.</p>
-<h3 id="true-damage-options">True Damage Options</h3>
-<h2 id="damage-modifiers-1">Damage Modifiers</h2>
-<p>Damage modifiers are a flexible tool for implementing mechanics such as resistances, weaknesses, buffs, and debuffs that affect how much damage an entity receives. Unlike <a href="../introduction.html#damage-modifiers-vs-defensive-stat-based-damage-reduction">Defensive Stat-Based Damage Reduction</a>, damage modifiers are off by default — their stats default to 0 — and can both increase and decrease the damage amount.</p>
-<p>Three categories of damage modifiers exist, and they all stack additively with one another:</p>
+<h3 id="damage-types-damage-modifiers">Damage Type's Damage Modifiers</h3>
+<p>The <strong>Percentage Modifier Stat</strong> and <strong>Flat Modifier Stat</strong> fields in this section let you assign stat-based damage modifiers that apply specifically when an entity receives damage of this <code>DamageTypeSO</code>. Assigning a positive value to either stat increases the damage received from this type; a negative value decreases it. For a full explanation of how all damage modifier categories work and how they stack together, see the <a href="#damage-modifiers">Damage Modifiers</a> section.</p>
+<p>A possible way to simplify the management of all the <code>DamageTypeSO</code> modifier stats is to create a <code>StatSet</code> specifically for this purpose, and include it as a <em>Included Stat Set</em> in the various entities' <code>StatSet</code>s of your game. This way, you centralize all the <code>DamageTypeSO</code> modifier stats in a single <code>StatSet</code>, and you can easily keep track of them and ensure that they are included in all the relevant entities.</p>
+<h3 id="damage-types-true-damage-options">Damage Type's True Damage Options</h3>
+<p>The <strong>True Damage Options</strong> section of a <code>DamageTypeSO</code> exposes three boolean flags that allow selective bypasses for individual stages of the damage pipeline. They are the primary tool for implementing &quot;true damage&quot; mechanics — damage that partially or entirely skips specific mitigation layers — without requiring a custom <code>DamageCalculationStrategy</code>.</p>
 <ul>
-<li><strong>Generic modifiers</strong>: apply to all damage received by an entity, regardless of damage type or source.</li>
-<li><strong>DamageSource modifiers</strong>: apply only when the damage originates from a specific <code>DamageSource</code>.</li>
-<li><strong>DamageType modifiers</strong>: apply only when the damage is of a specific <code>DamageType</code>.</li>
+<li><p><strong>Ignore Barrier</strong>: when enabled, the <a href="#damage-step"><code>ApplyBarrierStep</code></a> is skipped entirely for this <code>DamageTypeSO</code>. Damage bypasses the target's barrier and is applied directly to its health pool. Use this for damage types that are meant to be unavoidable through shielding — for example, a pure true damage type, fall damage, or damage-over-time effects that should not interact with temporary shields.</p>
+</li>
+<li><p><strong>Ignore Generic Percentage Modifiers</strong>: when enabled, the <a href="#damage-step"><code>ApplyPercentageDmgModifiersStep</code></a> skips the <strong>Generic Percentage Damage Modification Stat</strong> configured in <code>AstraRpgHealthConfigSO</code>. Percentage modifiers from the <code>DamageSourceSO</code> or from this <code>DamageTypeSO</code> itself still apply normally.</p>
+</li>
+<li><p><strong>Ignore Generic Flat Modifiers</strong>: when enabled, the <a href="#damage-step"><code>ApplyFlatDmgModifiersStep</code></a> skips the <strong>Generic Flat Damage Modification Stat</strong> configured in <code>AstraRpgHealthConfigSO</code>. Flat modifiers from the <code>DamageSourceSO</code> or from this <code>DamageTypeSO</code> itself still apply normally.</p>
+</li>
 </ul>
-<h3 id="generic-damage-modifiers">Generic Damage Modifiers</h3>
-<p>Generic modifiers are configured in the <code>AstraRpgHealthConfig</code> asset and apply universally to every instance of damage received by an entity. The two relevant fields are <strong>Generic Flat Damage Modification Stat</strong> and <strong>Generic Percentage Damage Modification Stat</strong>, described in detail in the <a href="package-configuration.html#generic-flat-damage-modification-stat">Package Configuration</a> page.</p>
-<p>As a quick recap:</p>
-<ul>
-<li><strong>Generic Flat Damage Modification Stat</strong>: a <code>Stat</code> whose value is added to (or subtracted from) the incoming damage amount as a flat quantity. A positive value increases the damage received; a negative value decreases it.</li>
-<li><strong>Generic Percentage Damage Modification Stat</strong>: a <code>Stat</code> whose value is applied as a percentage modification to the incoming damage. A value of 20 means +20% more damage received; a value of −20 means −20% less damage received.</li>
-</ul>
-<h3 id="damagesource-modifiers">DamageSource Modifiers</h3>
-<p>As already introduced in the <a href="#damage-sources">Damage Sources</a> section, each <code>DamageSource</code> asset exposes a <strong>Percentage Modifier Stat</strong> and a <strong>Flat Modifier Stat</strong>. These work identically to the generic modifiers described above, but are applied only when the damage originates from that specific <code>DamageSource</code>.</p>
-<h3 id="damagetype-modifiers">DamageType Modifiers</h3>
-<p>Similarly, each <code>DamageType</code> asset exposes a <strong>Percentage Modifier Stat</strong> and a <strong>Flat Modifier Stat</strong> in its <strong>Damage Modifiers</strong> inspector section. These work in the same way as the source-specific modifiers, but are applied only when the damage is of that specific <code>DamageType</code>. A typical use case is implementing elemental weaknesses and resistances: for example, a <code>Fire Weakness</code> stat could be assigned as the <strong>Percentage Modifier Stat</strong> of a Fire <code>DamageType</code>, so that entities with a positive value of that stat take proportionally more Fire damage.</p>
-<div class="WARNING">
-<h5>Warning</h5>
-<p>As with <code>DamageSource</code> modifiers, if the target entity lacks any statistic referenced by the <strong>Percentage Modifier Stat</strong> or <strong>Flat Modifier Stat</strong> fields on a <code>DamageType</code>, an error will be logged when applying damage of that type. Ensure that all entities with an <code>EntityHealth</code> component have the damage modifier statistics referenced by the <code>DamageType</code>s used in your game. A practical approach is the same suggested for <code>DamageSource</code> modifiers: centralize all modifier stats in a dedicated <code>StatSet</code> and include it in the relevant entities' stat sets.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p><strong>Ignore Generic Percentage Modifiers</strong> and <strong>Ignore Generic Flat Modifiers</strong> bypass only the <em>generic</em> modifier layer — the global stats configured in <code>AstraRpgHealthConfigSO</code>. Source-specific and type-specific modifier stats are never bypassed by these flags and always participate in the pipeline normally.</p>
+<p>However, if a <code>DamageSourceSO</code> or this <code>DamageTypeSO</code> has no modifier stats assigned, those layers contribute nothing by construction — which effectively produces the same result as a bypass. Enabling all three flags while also leaving all modifier stats unset on the source and type produces a fully modifier-free damage type.</p>
 </div>
-<h3 id="stacking-behavior">Stacking Behavior</h3>
-<p>When the <code>ApplyFlatDmgModifiersStep</code> and <code>ApplyPercentageDmgModifiersStep</code> steps are included in the active <code>DamageCalculationStrategy</code> (that we will see soon in the <a href="#damage-calculation-strategy">Damage Calculation Strategy</a> section), all applicable modifiers of the same kind are <strong>summed additively</strong> into a single net value, which is then applied to the current damage amount in one operation.</p>
-<p>For percentage modifiers, the system also performs individual immunity checks before summing: if the generic percentage modifier alone reaches −100 or below, the damage is fully prevented and the entity is flagged as immune to all damage for that hit; if the source- or type-specific modifier alone reaches −100 or below, the damage is prevented and the entity is flagged as immune to that specific source or type respectively.</p>
-<h2 id="damage-calculation-pipeline">Damage Calculation Pipeline</h2>
-<h3 id="predamagecontext-and-damageresolutioncontext">PreDamageContext and DamageResolutionContext</h3>
-<h3 id="damage-step">Damage Step</h3>
-<h3 id="damage-calculation-strategy">Damage Calculation Strategy</h3>
+<div class="TIP">
+<h5>Tip</h5>
+<p>To create a damage type that is also unaffected by any defensive stat, simply leave <strong>Defensive Stat</strong> and <strong>Damage Reduction Fn</strong> empty. The <a href="#damage-step"><code>ApplyDefenseStep</code></a> has nothing to compute and is skipped. Combined with the three True Damage Option flags and no modifier stats, this defines a fully unmitigated damage type.</p>
+</div>
+<h3 id="damage-reduction-graph">Damage Reduction Graph</h3>
+<p>The <strong>Damage Reduction Graph</strong> is an Editor window that plots how damage received scales as a function of a defender's defensive stat value. Use it to visually verify the behavior of your damage reduction and defense penetration configuration, preview the impact of armor penetration at different stat values, and compare clamped (defensive stat) vs. unclamped (defensive stat) curves.</p>
+<p>To open it, click the <strong>Open Damage Reduction Graph</strong> button in the inspector of any <code>DamageTypeSO</code>. Once opened, it should look something like this:<br>
+<img src="../../images/AstraRPG/workflows/damage/damage-type/damage-reduction-graph.png" alt="Damage Reduction Graph"><br>
+Obviously the plot and the values will vary based on the specific configuration of the <code>DamageTypeSO</code> you have.</p>
+<p>All configuration fields — <strong>Defensive Stat</strong>, <strong>Damage Reduction Fn</strong>, <strong>Pierced Stat</strong>, and <strong>Defense Reduction Fn</strong> — are read-only inside the window and reflect the asset directly. To change any of them, edit the <code>DamageTypeSO</code>.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The Damage Reduction Graph is a <strong>simulation tool only</strong>. No asset or scene object is modified when you change values inside the window.</p>
+</div>
+<h4 id="control-panel">Control Panel</h4>
+<p>The window is divided into two equal columns that scale with the window width. Below them are the <strong>Resolved Values</strong> panel, an optional <strong>Defender Breakdown</strong> panel (shown only when a Defender is assigned in the Entities section), and the graph itself.</p>
+<p><strong>Context</strong> (read-only)<br>
+Displays the <code>DamageTypeSO</code> that opened the window as a disabled field. It cannot be reassigned here — to analyze a different asset, open its graph from its own inspector.</p>
+<hr>
+<p><strong>Damage Reduction</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Defensive Stat</strong></td>
+<td>The stat whose value sweeps the X axis of the graph. Read-only — sourced directly from the <code>DamageTypeSO</code>. To change it, edit the asset.</td>
+</tr>
+<tr>
+<td><strong>Damage Reduction Fn</strong></td>
+<td>The <code>DamageReductionFnSO</code> that converts <code>(damage, effectiveDefense)</code> into <code>finalDamage</code>. Read-only — sourced directly from the <code>DamageTypeSO</code>. To change it, edit the asset.</td>
+</tr>
+</tbody>
+</table>
+<p>If either field is left empty, a warning is shown and the graph is not drawn.</p>
+<hr>
+<p><strong>Defense Penetration</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pierced Stat</strong></td>
+<td>The stat on the attacker that provides armor penetration, read-only — sourced from <code>DamageTypeSO.DefensiveStatPiercedBy</code>. To change it, edit the asset.</td>
+</tr>
+<tr>
+<td><strong>Defense Reduction Fn</strong></td>
+<td>Optional <code>DefenseReductionFnSO</code> that reduces the defender's stat before damage reduction is applied. Read-only — sourced directly from the <code>DamageTypeSO</code>. To change it, edit the asset. When assigned, a <strong>Piercing Stat Source</strong> selector appears.</td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>Piercing Stat Source</strong> controls where the piercing stat value comes from:</p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Raw Value</strong></td>
+<td>A plain number field. Type the piercing stat value directly.</td>
+</tr>
+<tr>
+<td><strong>Growth Formula</strong></td>
+<td>A <code>GrowthFormula</code> asset plus a Level field clamped to the formula's valid range. The resolved value is displayed inline.</td>
+</tr>
+<tr>
+<td><strong>Class at Level</strong></td>
+<td>A <code>Class</code> asset with either a constant level integer or a runtime <code>IntVar</code>. The piercing stat is read from <code>DamageTypeSO.DefensiveStatPiercedBy</code> for that class at the given level. Requires <strong>Defensive Stat Pierced By</strong> to be set on both the <code>Class</code> and <code>DamageTypeSO</code> assets.</td>
+</tr>
+<tr>
+<td><strong>From Attacker</strong></td>
+<td>Reads <code>DamageTypeSO.DefensiveStatPiercedBy</code> directly from the Attacker entity set in the Entities section. Requires <strong>Defensive Stat Pierced By</strong> to be set on the <code>DamageTypeSO</code> asset and an Attacker to be assigned. The Attacker must also have the <strong>Defensive Stat Pierced By</strong> stat in its <code>EntityStats</code> component.</td>
+</tr>
+</tbody>
+</table>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If no <strong>Defense Reduction Fn</strong> is assigned, the Piercing Stat Source controls are hidden and the grey baseline line is not drawn on the graph.</p>
+</div>
+<hr>
+<p><strong>Damage Amount</strong></p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Constant</strong></td>
+<td>A plain number field. Defaults to 100.</td>
+</tr>
+<tr>
+<td><strong>Scaling Formula</strong></td>
+<td>A <code>ScalingFormula</code> asset evaluated against the Attacker and/or Defender entities configured in the Entities section. Info panels in the window list which entity components the formula requires.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><strong>Entities</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Attacker</strong></td>
+<td>An in-scene <code>GameObject</code> with <code>EntityCore</code>. Required when Damage Amount source is <strong>Scaling Formula</strong> or Piercing Stat Source is <strong>From Attacker</strong>.</td>
+</tr>
+<tr>
+<td><strong>Defender</strong></td>
+<td>An in-scene <code>GameObject</code> with <code>EntityCore</code> and <code>EntityStats</code>. When assigned, the <strong>Defender Breakdown</strong> panel appears below the Resolved Values panel.</td>
+</tr>
+</tbody>
+</table>
+<div class="TIP">
+<h5>Tip</h5>
+<p>To simulate how the graph changes at different entity levels, modify the entity's <strong>Level</strong> field directly in the Inspector while the window is open. The graph updates in real time. Level controls are intentionally absent from the window itself to avoid triggering <code>OnEntityLevelUp</code> / <code>OnEntityLevelDown</code> events while interacting with the graph window.</p>
+</div>
+<hr>
+<p><strong>Simulation Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Min Value — {stat name}</strong></td>
+<td>Left bound of the X axis. Defaults to 0. Always editable, regardless of whether the Defensive Stat has a Min Value defined.</td>
+</tr>
+<tr>
+<td><strong>Max Value — {stat name}</strong></td>
+<td>Right bound of the X axis. Always editable.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="reading-the-graph">Reading the Graph</h4>
+<p>The graph plots <strong>Damage Received</strong> on the Y axis and the <strong>Defensive Stat Value</strong> on the X axis. Up to three lines are drawn simultaneously:</p>
+<table>
+<thead>
+<tr>
+<th>Line</th>
+<th>Color</th>
+<th>Condition</th>
+<th>What it represents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Real gameplay</td>
+<td>Green</td>
+<td><strong>Always</strong></td>
+<td>Damage received as the stat grows, with the stat clamped to its configured bounds (if any). This is the primary reference curve — it reflects the exact behavior any entity can exhibit in-game. When the stat has no bounds configured, this line coincides with the unclamped formula and is the only curve shown.</td>
+</tr>
+<tr>
+<td>Unclamped formula</td>
+<td>Yellow</td>
+<td>Only when the Defensive Stat has a <strong>Min Value</strong> and/or <strong>Max Value</strong></td>
+<td>Same formula but with the stat <strong>not</strong> clamped to its bounds — useful for understanding the theoretical shape of the reduction function and how much the configured bounds constrain it. Only shown when it meaningfully differs from the green line. It may happen that you still see only the green line if the bounds do not affect the outcome (aka. the two lines coincide).</td>
+</tr>
+<tr>
+<td>No-piercing baseline</td>
+<td>Grey</td>
+<td>Only when <strong>Defense Reduction Fn</strong> is assigned and effective piercing ≠ 0</td>
+<td>The damage curve with piercing forced to zero. Lets you immediately see how much the configured penetration shifts the outcome relative to a no-penetration scenario.</td>
+</tr>
+</tbody>
+</table>
+<p>The legend below the graph labels each active line with its color and — for the green line — the exact bound(s) at which the stat is clamped.</p>
+<p><strong>Hover tooltip</strong> — moving the mouse over the graph shows a tooltip with, for each active line, the damage received and the absolute and percentage reduction at the hovered stat value. The detail rows also show the raw defensive stat value at the cursor and, when a <code>DefenseReductionFnSO</code> is set, the portion of the stat ignored by piercing and the resulting effective defense.<br>
+It should look like this:<br>
+<img src="../../images/AstraRPG/workflows/damage/damage-type/damage-type-graph-reduction-window-tooltip.png" alt="Damage Type Graph Hover Tooltip"></p>
+<hr>
+<h4 id="resolved-values-and-defender-breakdown">Resolved Values and Defender Breakdown</h4>
+<p>The <strong>Resolved Values</strong> panel, always visible below the control columns, shows the values actually fed into the graph — the resolved damage amount and the resolved piercing stat value. If either resolution fails (e.g., a required entity is missing or a formula throws an exception), an error message is shown here and the graph is suppressed.</p>
+<p>When a <strong>Defender</strong> is assigned with <code>EntityCore</code> and <code>EntityStats</code>, the <strong>Defender Breakdown</strong> panel appears alongside the Resolved Values panel. It provides a point-in-time snapshot of the exact damage calculation for the defender at its current in-scene stat values:</p>
+<table>
+<thead>
+<tr>
+<th>Row</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Damage Amount</td>
+<td>The resolved incoming damage</td>
+</tr>
+<tr>
+<td>Piercing Stat Value</td>
+<td>The resolved piercing value</td>
+</tr>
+<tr>
+<td><code>{stat.name}</code> (defender)</td>
+<td>The defender's current defensive stat value</td>
+</tr>
+<tr>
+<td>Defense Reduced by Piercing</td>
+<td>How much of the defensive stat is bypassed by the piercing value (only when <strong>Defense Reduction Fn</strong> is set)</td>
+</tr>
+<tr>
+<td>Effective <code>{stat.name}</code></td>
+<td>The final defensive stat fed into the damage reduction function (only when <strong>Defense Reduction Fn</strong> is set)</td>
+</tr>
+<tr>
+<td>Final Damage Received</td>
+<td>The final damage the defender would receive at its current level and stats</td>
+</tr>
+<tr>
+<td>Damage Reduction (abs / %)</td>
+<td>The absolute and percentage difference between raw and final damage</td>
+</tr>
+</tbody>
+</table>
+<p>The breakdown reflects the Defender's <strong>current</strong> in-scene stat values at its current level. To see how the numbers change at a different level, modify the entity's Level field directly in the Inspector as described above.</p>
+<p>Here is a screenshot of the Defender Breakdown panel in action:<br>
+<img src="../../images/AstraRPG/workflows/damage/damage-type/damage-reduction-graph-defender-breakdown.png" alt="Defender Breakdown"></p>
+<p>Notice that a <code>ScalingFormula</code> is used for the damage amount, the <em>Dummy</em> entity set as Defender in the Entities section, and the Defender Breakdown panel on the bottom showing the exact damage calculation for the Defender based on its current stats and level.</p>
 <h2 id="dealing-damage-to-an-entity">Dealing Damage to an Entity</h2>
 <p>The API method you will use the most with this package is certainly <code>TakeDamage</code>, whose responsibility is to apply damage to the entity, taking into account modifiers, immunity, the damage calculation strategy, and other relevant mechanics. This method takes a <code>PreDamageContext</code> as input.</p>
 <p>The recommended way via code to inflict damage on an entity is as follows:</p>
@@ -342,6 +565,190 @@ var preDamageContext = PreDamageContext.Builder
         .WithDealer(skillCaster)
         .Build();
 </code></pre>
+<h2 id="damage-modifiers">Damage Modifiers</h2>
+<p>Damage modifiers are a flexible tool for implementing mechanics such as resistances, weaknesses, buffs, and debuffs that affect how much damage an entity receives. Unlike <a href="../introduction.html#damage-modifiers-vs-defensive-stat-based-damage-reduction">Defensive Stat-Based Damage Reduction</a>, damage modifiers are off by default — their stats default to 0 — and can both increase and decrease the damage amount.</p>
+<p>Three categories of damage modifiers exist, and they all stack additively with one another:</p>
+<ul>
+<li><strong>Generic modifiers</strong>: apply to all damage received by an entity, regardless of damage type or source.</li>
+<li><strong>DamageSource modifiers</strong>: apply only when the damage originates from a specific <code>DamageSourceSO</code>.</li>
+<li><strong>DamageType modifiers</strong>: apply only when the damage is of a specific <code>DamageTypeSO</code>.</li>
+</ul>
+<h3 id="generic-damage-modifiers">Generic Damage Modifiers</h3>
+<p>Generic modifiers are configured in the <code>AstraRpgHealthConfigSO</code> asset and apply universally to every instance of damage received by an entity. The two relevant fields are <strong>Generic Flat Damage Modification Stat</strong> and <strong>Generic Percentage Damage Modification Stat</strong>, described in detail in the <a href="package-configuration.html#generic-flat-damage-modification-stat">Package Configuration</a> page.</p>
+<p>As a quick recap:</p>
+<ul>
+<li><strong>Generic Flat Damage Modification Stat</strong>: a <code>Stat</code> whose value is added to (or subtracted from) the incoming damage amount as a flat quantity. A positive value increases the damage received; a negative value decreases it.</li>
+<li><strong>Generic Percentage Damage Modification Stat</strong>: a <code>Stat</code> whose value is applied as a percentage modification to the incoming damage. A value of 20 means +20% more damage received; a value of −20 means −20% less damage received.</li>
+</ul>
+<h3 id="damagesource-modifiers">DamageSource Modifiers</h3>
+<p>As already introduced in the <a href="#damage-sources">Damage Sources</a> section, each <code>DamageSourceSO</code> asset exposes a <strong>Percentage Modifier Stat</strong> and a <strong>Flat Modifier Stat</strong>. These work identically to the generic modifiers described above, but are applied only when the damage originates from that specific <code>DamageSourceSO</code>.</p>
+<h3 id="damagetype-modifiers">DamageType Modifiers</h3>
+<p>Similarly, each <code>DamageTypeSO</code> asset exposes a <strong>Percentage Modifier Stat</strong> and a <strong>Flat Modifier Stat</strong> in its <strong>Damage Modifiers</strong> inspector section. These work in the same way as the source-specific modifiers, but are applied only when the damage is of that specific <code>DamageTypeSO</code>. A typical use case is implementing elemental weaknesses and resistances: for example, a <code>Fire Weakness</code> stat could be assigned as the <strong>Percentage Modifier Stat</strong> of a Fire <code>DamageTypeSO</code>, so that entities with a positive value of that stat take proportionally more Fire damage.</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>As with <code>DamageSourceSO</code> modifiers, if the target entity lacks any statistic referenced by the <strong>Percentage Modifier Stat</strong> or <strong>Flat Modifier Stat</strong> fields on a <code>DamageTypeSO</code>, an error will be logged when applying damage of that type. Ensure that all entities with an <code>EntityHealth</code> component have the damage modifier statistics referenced by the <code>DamageTypeSO</code>s used in your game. A practical approach is the same suggested for <code>DamageSourceSO</code> modifiers: centralize all modifier stats in a dedicated <code>StatSet</code> and include it in the relevant entities' stat sets.</p>
+</div>
+<h3 id="stacking-behavior">Stacking Behavior</h3>
+<p>When the <code>ApplyFlatDmgModifiersStep</code> and <code>ApplyPercentageDmgModifiersStep</code> steps are included in the active <code>DamageCalculationStrategy</code> (that we will see soon in the <a href="#damage-calculation-strategy">Damage Calculation Strategy</a> section), all applicable modifiers of the same kind are <strong>summed additively</strong> into a single net value, which is then applied to the current damage amount in one operation.</p>
+<p>For percentage modifiers, the system also performs individual immunity checks before summing: if the generic percentage modifier alone reaches −100 or below, the damage is fully prevented and the entity is flagged as immune to all damage for that hit; if the source- or type-specific modifier alone reaches −100 or below, the damage is prevented and the entity is flagged as immune to that specific source or type respectively.</p>
+<h2 id="damage-calculation-pipeline">Damage Calculation Pipeline</h2>
+<p>When you call <code>TakeDamage</code> on an <code>EntityHealth</code>, the raw damage amount you specify does not reach the entity's health pool directly. Instead, it passes through the <strong>Damage Calculation Pipeline</strong>: an ordered sequence of processing steps, each responsible for one aspect of the calculation — barriers, critical multipliers, modifiers, and defenses. Think of it as a production line: raw damage enters at the first station and is transformed by each step in turn; what exits the last step is what the entity actually loses from its health.</p>
+<p>The strength of this design is its configurability. Which steps are active, and in what order, is defined entirely by a <code>DamageCalculationStrategy</code> asset that you set up in the Inspector — no scripting required. Different entities can use different strategies: a boss might have its own pipeline featuring an extra final step that limits the incoming damage to a maximum value of 10% of the Max HP, while regular enemies fall back to the project-wide default. Strategies can also be swapped at runtime, enabling mechanics such as temporary invincibility phases or damage rules that change mid-encounter.</p>
+<p>Internally, the pipeline runs its steps sequentially on a shared state object and short-circuits the moment damage is marked as prevented: if a barrier fully absorbs the hit, or a modifier grants immunity, all remaining steps are skipped and the result is returned immediately.</p>
+<h3 id="pipeline-data-types">Pipeline Data Types</h3>
+<p>The pipeline uses a small set of dedicated types to keep concerns cleanly separated — there is one type for what you request, one for what flows through the steps, and one for what you receive back. As a designer integrating <code>TakeDamage</code> into your game code, you will interact with two of these directly: <code>PreDamageContext</code> to describe the damage you want to apply, and <code>DamageResolutionContext</code> to inspect the outcome. The others are managed internally by the pipeline and are primarily relevant if you are implementing custom steps or hooking into damage events for analytics or reactions.</p>
+<p><strong><code>PreDamageContext</code></strong> is the descriptor you build before calling <code>TakeDamage</code>. Its mandatory fields are enforced by a fluent step-builder that requires them in order: amount → type → damage source → target → source/dealer. Optional fields include <code>IsCritical</code>, <code>CriticalMultiplier</code>, and <code>Ignore</code>. Setting <code>Ignore = true</code> causes the pipeline to be bypassed entirely; the damage is flagged as prevented with <code>PrePhaseIgnored</code> before any calculation begins.</p>
+<p><strong><code>DamageInfo</code></strong> is the mutable state object that flows through the pipeline. It is constructed from a <code>PreDamageContext</code> at the start of <code>TakeDamage</code> and holds:</p>
+<ul>
+<li><strong><code>Amounts</code></strong> — a <code>DamageAmountContext</code> tracking the current damage value and step-by-step history.</li>
+<li><strong><code>Type</code></strong>, <strong><code>DamageSourceSO</code></strong>, <strong><code>Target</code></strong>, <strong><code>Source</code></strong>, <strong><code>IsCritical</code></strong>, <strong><code>CriticalMultiplier</code></strong> — metadata forwarded from the <code>PreDamageContext</code>.</li>
+<li><strong><code>Reasons</code></strong> — a <code>DamagePreventionReason</code> flags enum accumulating all reasons why damage was prevented.</li>
+<li><strong><code>IsPrevented</code></strong> — returns <code>true</code> when <code>Reasons</code> is not <code>None</code>; used to short-circuit the pipeline.</li>
+</ul>
+<p><strong><code>DamageAmountContext</code></strong> tracks the numerical amount throughout the pipeline:</p>
+<ul>
+<li><strong><code>InitialAmount</code></strong> — the original raw value; never modified after construction.</li>
+<li><strong><code>Current</code></strong> — the damage value as modified by each step; steps read and write this property.</li>
+<li><strong><code>Records</code></strong> — a read-only list of <code>StepAmountRecord</code> entries, each capturing the step type and the before/after <code>Current</code> values for that step. Useful for debugging and diagnostics.</li>
+</ul>
+<p><strong><code>DamageResolutionContext</code></strong> is the value returned by <code>TakeDamage</code>. It contains:</p>
+<ul>
+<li><strong><code>Outcome</code></strong> — <code>DamageOutcome.Applied</code> or <code>DamageOutcome.Prevented</code>.</li>
+<li><strong><code>Reasons</code></strong> — the accumulated <code>DamagePreventionReason</code> flags when prevented; <code>None</code> when applied.</li>
+<li><strong><code>TerminationStepType</code></strong> — the <code>Type</code> of the step that caused early termination, if any.</li>
+<li><strong><code>FinalDamageInfo</code></strong> — the <code>DamageInfo</code> at the end of the pipeline; may be <code>null</code> when damage was prevented in the pre-phase.</li>
+<li><strong><code>PreDamageContext</code></strong> — the original input that initiated this damage attempt.</li>
+</ul>
+<p><strong><code>DamageOutcome</code></strong> is a two-value enum: <code>Applied</code> (damage was applied to the entity's health or barrier) and <code>Prevented</code> (damage was stopped before affecting the entity).</p>
+<p><strong><code>DamagePreventionReason</code></strong> is a flags enum that accumulates one or more reasons why damage was prevented:</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>When set</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>None</code></td>
+<td>No prevention; damage can proceed.</td>
+</tr>
+<tr>
+<td><code>EntityImmune</code></td>
+<td>Target has global immunity (<code>IsImmune = true</code> on <code>EntityHealth</code>).</td>
+</tr>
+<tr>
+<td><code>AllDamageImmune</code></td>
+<td>Generic percentage damage reduction stat alone reached ≤ −100%.</td>
+</tr>
+<tr>
+<td><code>DamageTypeImmune</code></td>
+<td>Type-specific percentage modifier alone reached ≤ −100%.</td>
+</tr>
+<tr>
+<td><code>DamageSourceImmune</code></td>
+<td>Source-specific percentage modifier alone reached ≤ −100%.</td>
+</tr>
+<tr>
+<td><code>BarrierAbsorbed</code></td>
+<td>Barrier fully absorbed the incoming damage.</td>
+</tr>
+<tr>
+<td><code>DefenseAbsorbed</code></td>
+<td>Defensive stat computation reduced damage to zero.</td>
+</tr>
+<tr>
+<td><code>PrePhaseIgnored</code></td>
+<td><code>PreDamageContext.Ignore</code> was <code>true</code> before the pipeline started.</td>
+</tr>
+<tr>
+<td><code>PrePhaseZeroAmount</code></td>
+<td><code>PreDamageContext.Amount</code> was zero or negative.</td>
+</tr>
+<tr>
+<td><code>PipelineReducedToZero</code></td>
+<td>A step reduced damage to zero without a more specific absorption reason.</td>
+</tr>
+<tr>
+<td><code>EntityDead</code></td>
+<td>Target was already dead when <code>TakeDamage</code> was called.</td>
+</tr>
+</tbody>
+</table>
+<div class="NOTE">
+<h5>Note</h5>
+<p><code>DamagePreventionReason</code> is a flags enum: multiple values can be set simultaneously on the same damage attempt. Inspect <code>DamageResolutionContext.Reasons</code> to read all accumulated reasons after a call to <code>TakeDamage</code>.</p>
+</div>
+<h3 id="damage-step">Damage Step</h3>
+<p>Each station in the pipeline is a <code>DamageStep</code> — an independent, composable unit of work that applies one focused transformation to the damage in flight. The five built-in steps cover the most common scenarios out of the box. If your game needs specialised behaviour — for example, a step that clamps the damage to a maximum value of 10% of the Max HP — you can implement a custom step by creating a class that inherits from <a class="xref" href="../../api/ElectricDrill.AstraRpgHealth.Damage.CalculationPipeline.DamageStep.html"><code>DamageStep</code></a> and implements <code>ProcessStep()</code>.</p>
+<p>Step order matters. Each step receives the output of the one before it, so a different arrangement of the same steps produces a different result. Placing a critical multiplier step before defensive steps amplifies the pre-mitigation damage; placing it after scales a lower, post-mitigation value. We will see how to compose and reorder steps from the Inspector in the <a href="#damage-calculation-strategy">Damage Calculation Strategy</a> section.</p>
+<p><code>DamageStep</code> is the abstract base class for all pipeline steps. Each step performs one focused transformation on <code>DamageInfo</code>. The pipeline runner calls <code>Process()</code> on each step in order; concrete implementations override <code>ProcessStep()</code>.</p>
+<p><code>Process()</code> enforces two preconditions automatically before delegating to <code>ProcessStep()</code>:</p>
+<ul>
+<li>If <code>DamageInfo.IsPrevented</code> is <code>true</code>, the step is skipped.</li>
+<li>If <code>DamageInfo.Amounts.Current</code> is ≤ 0, the step is skipped.</li>
+</ul>
+<p>After <code>ProcessStep()</code> returns, <code>Process()</code> appends a <code>StepAmountRecord</code> to <code>DamageAmountContext.Records</code> with the before and after amounts. If the step brought a positive amount to zero without setting a more specific prevention reason, <code>DamagePreventionReason.PipelineReducedToZero</code> is set automatically.</p>
+<p>The package includes five built-in <code>DamageStep</code> implementations:</p>
+<h4 id="applycriticalmultiplierstep">ApplyCriticalMultiplierStep</h4>
+<p>Critical hits deal amplified damage. This step multiplies the current damage amount by the critical hit multiplier when the incoming damage has been flagged as a critical strike. Its position in the pipeline is a design decision: placed before defensive steps, the multiplier scales raw (or modifier-adjusted) damage; placed after, it scales the already-mitigated result. Usually critical multipliers are applied early or as first step.</p>
+<p>Scales the current damage by the critical hit multiplier when the damage is flagged as a critical hit. The step reads <code>DamageInfo.IsCritical</code> and <code>DamageInfo.CriticalMultiplier</code>. It is a no-op if <code>IsCritical</code> is <code>false</code>, or if the multiplier is ≤ 0 or exactly 1.0.</p>
+<p>Both the critical flag and the multiplier are set in the <code>PreDamageContext</code> when building the damage request. A multiplier of 2.0 doubles the <code>Current</code> amount at the point where this step executes.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The position of <code>ApplyCriticalMultiplierStep</code> in the pipeline determines what value the multiplier is applied to. Placing it before <code>ApplyDefenseStep</code> amplifies damage prior to defensive mitigation; placing it after scales post-defense damage. Design your strategy order accordingly.</p>
+</div>
+<h4 id="applydefensestep">ApplyDefenseStep</h4>
+<p>This step applies the target entity's defensive stat for this damage type — the primary stat-based mitigation layer in a typical RPG setup. For example, for a Physical damage type with Armor as its <strong>Defensive Stat</strong>, this step reads the target's Armor value, optionally reduces it by any armor penetration, then feeds the result into the <strong>Damage Reduction Fn</strong> to compute the mitigated damage. This is usually the step that eliminates most of the incoming damage for well-armored targets.</p>
+<p>Applies defensive stat-based damage reduction as configured in the <code>DamageTypeSO</code>. The step reads the <strong>Defensive Stat</strong> and <strong>Damage Reduction Fn</strong>, and optionally the <strong>Defense Penetration Stat</strong> and <strong>Defense Reduction Fn</strong> (see <a href="#defense-penetration">Defense Penetration</a>).</p>
+<p>The step is a no-op when both <strong>Defensive Stat</strong> and <strong>Damage Reduction Fn</strong> are unset — which is the intended configuration for a damage type that should never be mitigated by defenses. If the configuration is inconsistent (one field set, the other null), a warning is logged and the step is skipped. The effective defensive value is computed after applying any penetration reduction, then fed into the <strong>Damage Reduction Fn</strong> to yield the final reduced amount. If the result is ≤ 0, <code>DamagePreventionReason.DefenseAbsorbed</code> is set.</p>
+<h4 id="applybarrierstep">ApplyBarrierStep</h4>
+<p>Barriers act as a temporary shield layer in front of an entity's health pool: incoming damage hits the barrier first, and only what the barrier cannot absorb continues on to the next step. This step is the mechanism behind shielding abilities and any temporary protective layer you implement with the barrier system. Its position in the pipeline determines how much barrier is actually consumed: placing it after <code>ApplyDefenseStep</code> means the barrier only ever sees damage that already survived defensive mitigation, so the barrier is drained more slowly. Placing it before defensive steps causes the barrier to absorb the full, unreduced hit — making it a purer shield but one that depletes faster.</p>
+<p>Consumes the target entity's barrier (temporary shield) to reduce incoming damage before it reaches health. If the <code>DamageTypeSO</code> has <strong>Ignore Barrier</strong> enabled, this step is skipped entirely. If the target has no <code>EntityHealth</code> component or its barrier is zero, the step is also a no-op.</p>
+<p>The step subtracts from <code>DamageInfo.Amounts.Current</code> the portion absorbed by the barrier, and reduces the entity's barrier by the same amount. If the barrier fully absorbs the hit, <code>DamagePreventionReason.BarrierAbsorbed</code> is set and the pipeline terminates. Damage that exceeds the barrier continues through subsequent steps as the updated <code>Current</code> value.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p><code>ApplyBarrierStep</code> does not reduce health directly. Any remaining damage after barrier absorption continues through the pipeline and is applied to health at the end of <code>TakeDamage</code>.</p>
+</div>
+<h4 id="applypercentagedmgmodifiersstep">ApplyPercentageDmgModifiersStep</h4>
+<p>Percentage modifiers scale the incoming damage by a fraction. The three modifier layers (generic, source-specific, type-specific) each correspond to a stat whose value the target entity holds at runtime. A negative value reduces damage, a positive value amplifies it. When a single modifier layer reaches −100% or below on its own, the entity becomes immune to that entire category of damage for this hit.</p>
+<p>Applies percentage-based damage modifiers from up to three layers, in order:</p>
+<ol>
+<li><strong>Generic</strong> — reads <code>AstraRpgHealthConfigSO.GenericPercentageDamageModificationStat</code> from the target's stats. Skipped if the <code>DamageTypeSO</code> has <strong>Ignore Generic Percentage Modifiers</strong> enabled.</li>
+<li><strong>DamageSource-specific</strong> — reads <code>DamageSourceSO.PercentageDamageModificationStat</code> from the target's stats.</li>
+<li><strong>DamageType-specific</strong> — reads <code>DamageTypeSO.PercentageDamageModificationStat</code> from the target's stats.</li>
+</ol>
+<p>Each layer is evaluated individually for full immunity before contributions are summed. If the generic layer alone reaches ≤ −100%, <code>DamagePreventionReason.AllDamageImmune</code> is set and the step exits immediately. If the source-specific layer alone reaches ≤ −100%, <code>DamagePreventionReason.DamageSourceImmune</code> is set. If the type-specific layer alone reaches ≤ −100%, <code>DamagePreventionReason.DamageTypeImmune</code> is set. If no single layer triggers immunity, the three contributions are summed additively into a single net percentage applied to <code>Current</code> in one operation.</p>
+<h4 id="applyflatdmgmodifiersstep">ApplyFlatDmgModifiersStep</h4>
+<p>Where percentage modifiers scale damage proportionally, flat modifiers add or subtract a fixed amount regardless of the hit's magnitude. A −15 flat absorb always removes 15 damage, whether the incoming hit was 20 or 2000. Flat modifiers are typically placed after percentage modifiers so they adjust the already-scaled value — but you are free to order them as your game design requires.</p>
+<p>Applies flat damage modifiers from the same three layers as <code>ApplyPercentageDmgModifiersStep</code>:</p>
+<ol>
+<li><strong>Generic</strong> — reads <code>AstraRpgHealthConfigSO.GenericFlatDamageModificationStat</code>. Skipped if the <code>DamageTypeSO</code> has <strong>Ignore Generic Flat Modifiers</strong> enabled.</li>
+<li><strong>DamageSource-specific</strong> — reads <code>DamageSourceSO.FlatDamageModificationStat</code>.</li>
+<li><strong>DamageType-specific</strong> — reads <code>DamageTypeSO.FlatDamageModificationStat</code>.</li>
+</ol>
+<p>All three contributions are summed additively. The net value is added to or subtracted from <code>DamageInfo.Amounts.Current</code>. The result is clamped to a minimum of 0: flat modifiers cannot bring damage below zero.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The conventional order is to run percentage modifiers before flat modifiers, so that flat additions or reductions are applied to the already-scaled value. This ordering is not enforced by the system; you can arrange steps freely.</p>
+</div>
+<h3 id="damage-calculation-strategy">Damage Calculation Strategy</h3>
+<p><em>Relative path:</em> <code>Damage Calculation Strategy</code></p>
+<p>Rather than embedding damage calculation logic in scripts, Astra RPG Health externalises the pipeline into a <code>DamageCalculationStrategy</code> asset — a <code>ScriptableObject</code> you control entirely from the Inspector. Each strategy holds an ordered list of steps; changing the list changes the pipeline. This separation lets you design, tune, and swap calculation behaviours without touching any code. A boss encounter can use a custom strategy with a specific subset of steps (e.g., one final extra step that limits the incoming damage to a maximum value of 10% of the Max HP); regular enemies fall back to the project-wide default; a runtime debuff can temporarily replace an entity's strategy to alter how it takes damage during a special encounter phase (e.g., all lightning damage is doubled).</p>
+<p>In the Inspector, the strategy exposes a reorderable list labelled <strong>Damage Pipeline Steps</strong>. Steps can be added via a type-selection dropdown (the &quot;Step&quot; suffix is trimmed from display names for readability), removed, and reordered via drag. A newly created, empty strategy looks like this:</p>
+<p><img src="../../images/AstraRPG/workflows/damage/damage-calculation-pipeline/damage-calculation-pipeline-empty-strategy.png" alt="Empty strategy inspector"></p>
+<p>Once steps are added and arranged, the Inspector shows them as a numbered list reflecting the execution order:</p>
+<p><img src="../../images/AstraRPG/workflows/damage/damage-calculation-pipeline/damage-calculation-pipeline-example-strategy.png" alt="Example strategy with steps configured"></p>
+<p>Every <code>EntityHealth</code> component resolves the active strategy at runtime through a <strong>three-tier priority</strong>:</p>
+<ol>
+<li><strong>Override Damage Calculation Strategy</strong> — takes precedence over all other settings. Intended for temporary runtime effects (e.g., a debuff that temporarily changes how an entity takes damage) or for testing when a custom strategy is already assigned.</li>
+<li><strong>Custom Damage Calculation Strategy</strong> — an entity-specific strategy that overrides the global default but can itself be overridden at runtime by the tier above.</li>
+<li><strong>Default Damage Calculation Strategy</strong> — configured in <code>AstraRpgHealthConfigSO</code> and applied to every entity that defines neither a custom nor an override strategy.</li>
+</ol>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>If no strategy is resolved — neither custom nor override is set on the entity, and no default is configured in <code>AstraRpgHealthConfigSO</code> — <code>TakeDamage</code> logs an error and the pipeline does not run.</p>
+</div>
 
 </article>
 

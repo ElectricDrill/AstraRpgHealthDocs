@@ -8,7 +8,7 @@ Lifesteal is a mechanic that lets an entity recover health proportional to the d
 
 The `LifestealConfigSO` is the root asset for lifesteal configuration. It holds a dictionary that maps each `DamageTypeSO` to a `LifestealStatConfig`, defining how lifesteal behaves for that specific damage type. Damage types not present in the dictionary do not trigger lifesteal.
 
-The following image shows an example of a `LifestealConfigSO` with two mappings configured:  
+The following image shows an example of a `LifestealConfigSO` with three mappings configured:  
 ![Lifesteal Config inspector](../../images/AstraRPG/workflows/lifesteal/lifesteal-config.png)
 
 ## Configuring Lifesteal Mappings
@@ -47,9 +47,6 @@ The following image shows the inspector when Step mode is selected:
 ## Adding Lifesteal to the Package Configuration
 
 Once the `LifestealConfigSO` is set up, assign it to the **Lifesteal Config** field in the `AstraRpgHealthConfigSO`. All entities that share this configuration asset will have lifesteal enabled according to the mappings defined in the assigned `LifestealConfigSO`. See [Lifesteal](package-configuration.md#lifesteal) in the Package Configuration reference for field details.
-
-The following image shows the Lifesteal section of the `AstraRpgHealthConfigSO` in the inspector:  
-![Lifesteal section in Package Configuration](../../images/AstraRPG/workflows/lifesteal/lifesteal-package-config.png)
 
 ## Performance Considerations
 

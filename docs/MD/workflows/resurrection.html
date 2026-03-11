@@ -87,6 +87,105 @@
         <article data-uid="">
 <h1 id="resurrection">Resurrection</h1>
 
+<p>Resurrection brings a dead entity back to life, restoring it to a playable state with a configurable amount of HP. Unlike healing — which throws an exception when applied to a dead entity — resurrection is exclusively for entities that have already crossed their <a href="entity-health.html#death">death threshold</a>.</p>
+<p>The requested HP amount is a <strong>base</strong> value before modifiers. Internally, resurrection routes through the same <code>Heal</code> pipeline used for <a href="healing.html#direct-healing">direct healing</a>, so all generic and <code>HealSourceSO</code>-specific heal modifiers apply. This means resurrection integrates naturally with any modifier system already in place: a buff that amplifies healing received will equally benefit resurrections, without any additional configuration.</p>
+<h2 id="package-configuration">Package Configuration</h2>
+<p>Before resurrection can be triggered, two fields in the <code>AstraRpgHealthConfigSO</code> need attention:</p>
+<h3 id="default-resurrection-source">Default Resurrection Source</h3>
+<p><strong>Type:</strong> <code>HealSourceSO</code> — <strong>Required:</strong> Yes</p>
+<p>The <code>HealSourceSO</code> used automatically by the convenience <code>Resurrect</code> overloads and by the built-in <a href="#the-resurrect-game-action">Resurrect Game Action</a> when no explicit source is provided. It categorises resurrection healing as a distinct type, enabling <code>HealSourceSO</code>-specific modifiers to apply. Without this field assigned, the convenience overloads fail at runtime with an assertion error.</p>
+<p>See <a href="healing.html#heal-source">Heal Source</a> for guidance on configuring <code>HealSourceSO</code> assets and <a href="package-configuration.html#default-resurrection-source">Default Resurrection Source</a> in the Package Configuration reference.</p>
+<h3 id="default-on-resurrection-game-action">Default On Resurrection Game Action</h3>
+<p><strong>Type:</strong> <code>GameAction&lt;Component&gt;</code> — <strong>Required:</strong> No</p>
+<p>The <a href="https://electricdrill.github.io/AstraRpgFrameworkDocs/MD/workflows.html#game-actions">Game Action</a> executed automatically whenever any entity is resurrected, unless the entity defines its own <a href="#per-entity-customization">Override On Resurrection Game Action</a>. Use this to implement a common post-resurrection behavior shared across all entities — playing a revival visual effect, re-enabling a disabled GameObject, or resetting specific state. Leave it empty if no shared behavior is needed.</p>
+<p>See <a href="package-configuration.html#default-on-resurrection-game-action">Default On Resurrection Game Action</a> in the Package Configuration reference.</p>
+<h2 id="resurrecting-an-entity">Resurrecting an Entity</h2>
+<p><code>EntityHealth</code> implements <code>IResurrectable</code>, which exposes three overloads.</p>
+<p><strong><code>Resurrect(PreHealContext)</code></strong> gives full control over the resurrection: amount, source, and healer entity. It expects a <code>PreHealContext</code> built with the same fluent builder used in direct healing:</p>
+<pre><code class="lang-csharp">// Assuming:
+// - resurrectionSource is the HealSourceSO categorising this resurrection
+// - healer is the EntityCore of the character performing the resurrection (null for a system action)
+// - target is the EntityCore of the dead entity to resurrect
+
+if (target.TryGetComponent(out EntityHealth targetHealth)) {
+    PreHealContext context = PreHealContext.Builder
+        .WithAmount(targetHealth.MaxHp / 2)   // 50% of max HP as base amount, before modifiers
+        .WithSource(resurrectionSource)
+        .WithHealer(healer)
+        .WithTarget(target)
+        .Build();
+
+    targetHealth.Resurrect(context);
+}
+</code></pre>
+<p>Refer to <a href="healing.html#direct-healing">Direct Healing</a> for a detailed explanation of <code>PreHealContext</code> and its fluent builder.</p>
+<p><strong><code>Resurrect(long)</code></strong> and <strong><code>Resurrect(Percentage)</code></strong> are convenience overloads that build the context automatically using the <strong>Default Resurrection Source</strong> from the configuration and a <code>null</code> healer (system-initiated resurrection). Use them when no specific caster is involved and the global default source is appropriate:</p>
+<pre><code class="lang-csharp">// Resurrect with a flat HP amount
+targetHealth.Resurrect(100L);
+
+// Resurrect with 30% of max HP
+Percentage thirtyPercent = 30L;
+targetHealth.Resurrect(thirtyPercent);
+</code></pre>
+<p>In all cases, the HP amount is the <strong>base</strong> value before heal modifiers are applied. Two constraints are always checked: the base amount must be strictly greater than the entity's death threshold, and must not exceed its maximum HP.</p>
+<h2 id="heal-modifiers-at-resurrection">Heal Modifiers at Resurrection</h2>
+<p>Because resurrection calls <code>Heal</code> internally, the full modifier stack applies:</p>
+<ul>
+<li><strong>Generic flat heal modifiers</strong> — add or subtract a flat HP amount from the base</li>
+<li><strong>Generic percentage heal modifiers</strong> — scale the base HP up or down by a percentage</li>
+<li><strong><code>HealSourceSO</code>-specific modifiers</strong> — flat and percentage modifiers associated with the configured resurrection source</li>
+</ul>
+<p>The order of application is the same as described in the <a href="healing.html#direct-healing">Direct Healing</a> section: first the flat modifiers (generic and <code>HealSourceSO</code>-specific) are summed and applied to the base amount, then all percentage modifiers (generic and <code>HealSourceSO</code>-specific) are summed and applied to the result.</p>
+<p>The entity's HP after resurrection may therefore differ from the base amount requested. <code>ResurrectionContext.NewValue</code> always reflects the <strong>actual HP after all modifiers</strong> have been applied.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If active negative heal modifiers are strong enough to reduce the effective HP to or below the entity's death threshold, the system applies a fallback and forces HP to <code>death threshold + 1</code>, guaranteeing the entity is always resurrected alive. <code>ResurrectionContext.NewValue</code> reflects this clamped value.</p>
+</div>
+<h2 id="the-resurrect-game-action">The Resurrect Game Action</h2>
+<p><em>Relative path:</em> <code>Astra RPG Framework/Game Actions/Context: Component/Resurrect</code></p>
+<p><code>ResurrectComponentGameActionSO</code> is a ready-made <a href="https://electricdrill.github.io/AstraRpgFrameworkDocs/MD/workflows.html#game-actions">Game Action</a> that can be dropped into any Game Action slot in the inspector to resurrect an entity. It always uses the <strong>Default Resurrection Source</strong> from the configuration; no source field is exposed in the inspector.</p>
+<p>The following image shows the <code>ResurrectComponentGameActionSO</code> inspector:<br>
+<img src="../../images/AstraRPG/workflows/resurrection/resurrect-game-action.png" alt="Resurrect Game Action inspector"></p>
+<p>The configurable fields are:</p>
+<ul>
+<li><strong>Use Percentage HP</strong>: if enabled, the entity is resurrected with a percentage of its maximum HP; if disabled, a flat HP amount is used instead</li>
+<li><strong>Percentage HP to Recover</strong>: the percentage of max HP to restore, in the range 0–100. Active only when <strong>Use Percentage HP</strong> is enabled</li>
+<li><strong>Flat HP to Recover</strong>: the flat HP amount to restore. Active only when <strong>Use Percentage HP</strong> is disabled</li>
+</ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If <strong>Percentage HP to Recover</strong> or <strong>Flat HP to Recover</strong> is set to 0, the game action falls back to resurrecting the entity with exactly 1 HP, guaranteeing the resurrection is always valid.</p>
+</div>
+<p><strong>Common use case — automatic resurrection after a delay:</strong> combine <code>ResurrectComponentGameActionSO</code> with a <a href="https://electricdrill.github.io/AstraRpgFrameworkDocs/api/ElectricDrill.AstraRpgFramework.GameActions.Actions.DelayedGameAction-1.html">Delayed Game Action</a> inside the entity's <strong>Override On Death Game Action</strong> (or the global <strong>Default On Death Game Action</strong>). When the entity dies, the death game action fires a delayed sequence that triggers the <code>ResurrectComponentGameActionSO</code> after a configured number of seconds — implementing an automatic respawn without a single line of code. See the <a href="https://electricdrill.github.io/AstraRpgFrameworkDocs/MD/workflows.html#game-actions">Game Actions</a> documentation for details on composing and chaining game actions.</p>
+<h2 id="per-entity-customization">Per-Entity Customization</h2>
+<p>Each <code>EntityHealth</code> component exposes an <strong>Override On Resurrection Game Action</strong> field in its inspector that takes precedence over the <strong>Default On Resurrection Game Action</strong> defined in the configuration. Use it to give specific entities a unique post-resurrection behavior while keeping a sensible global default for everything else.</p>
+<p>See <a href="entity-health.html#death">Death</a> in the Entity Health reference for the full list of per-entity death and resurrection inspector fields.</p>
+<h2 id="resurrection-events">Resurrection Events</h2>
+<p>Resurrecting an entity raises multiple events. Because resurrection routes through <code>Heal</code>, the healing events fire first:</p>
+<ul>
+<li><strong>Pre Heal Event</strong> and <strong>Entity Healed Event</strong> — raised by the internal <code>Heal</code> call, carrying the standard healing context before and after modifiers. Subscribe to these if your logic needs to react to the healing component of a resurrection; for example, to trigger a heal-triggered ability even during resurrection</li>
+<li><strong>Entity Gained Health Event</strong> — raised when the entity's HP increases during the <code>Heal</code> call. Useful for general HP-change listeners that do not need the full context of the healing, but just want to know when HP changes and by how much. An example use case is a UI health bar that needs to update whenever HP changes, regardless of the source of the change</li>
+</ul>
+<p>After the healing pipeline completes and the resurrection game action has been dispatched:</p>
+<ul>
+<li><strong>Entity Resurrected Event</strong> — the dedicated resurrection signal, carrying a <code>ResurrectionContext</code> with the following fields:
+<ul>
+<li><strong>Target</strong>: the <code>EntityCore</code> of the resurrected entity (convenience accessor for <code>ReceivedHeal.Target</code>)</li>
+<li><strong>PreviousValue</strong>: HP immediately before resurrection (at or below the death threshold)</li>
+<li><strong>NewValue</strong>: HP after resurrection, computed as <code>PreviousValue + ReceivedHeal.HealAmount.NetAmount</code></li>
+<li><strong>AbsAmount</strong>: <code>NewValue − PreviousValue</code></li>
+<li><strong>ReceivedHeal</strong>: the full <code>ReceivedHealContext</code> produced by the internal <code>Heal</code> call, exposing:
+<ul>
+<li><strong>HealAmount</strong>: a <code>HealAmountContext</code> with <code>RawAmount</code> (base amount before modifiers), <code>AfterModifierAmount</code> (after flat and percentage modifiers), and <code>NetAmount</code> (final HP actually added, capped to max HP)</li>
+<li><strong>HealSource</strong>: the <code>HealSourceSO</code> used for this resurrection</li>
+<li><strong>Source</strong>: the healer <code>EntityCore</code> (<code>null</code> for system-initiated resurrections, such as those triggered via the convenience overloads or the <code>ResurrectComponentGameActionSO</code>)</li>
+<li><strong>IsCritical</strong>: whether the resurrection heal was flagged as a critical</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Each event is available in both global and extra variants on <code>EntityHealth</code>. Use global events when any GameObject in the game needs to receive the signal; use extra events for targeted, component-specific or GO-hierarchy-specific communications. See <a href="entity-health.html#global-events">Global Events</a> for guidance on choosing between them.</p>
 
 </article>
 

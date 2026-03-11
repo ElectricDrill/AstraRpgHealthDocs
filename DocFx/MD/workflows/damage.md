@@ -174,7 +174,7 @@ To illustrate how defense penetration interacts with the rest of the damage pipe
 
 In this case, if the target has Armor equal to 30 and the attacker has Armor Penetration equal to 10, the effective Armor value fed into the Damage Reduction Fn will be 30 (Armor) − 10 (Armor Penetration) × 1 (factor) = 20. So, if the incoming damage is 80, the final damage taken will be 80 − 20 (effective Armor) = 60 Physical damage. This example assumes no other damage modifications are active.
 
-The package provides three built-in Defense Reduction Functions — Flat, Percentage, and Logarithmic — that work in a fully analogous way to their counterparts described in the [Damage Reduction](#damage-reduction) section above. The parameters, trade-offs, and use cases of each variant are the same; the only difference is that these functions operate on the **defensive stat value** rather than directly on the damage amount. For a detailed description of each, refer to the [Damage Reduction](#damage-reduction) section.
+The package provides three built-in Defense Reduction Functions — Flat, Percentage, and Logarithmic — that work in a fully analogous way to their counterparts described in the [Damage Reduction](#damage-types-damage-reduction) section above. The parameters, trade-offs, and use cases of each variant are the same; the only difference is that these functions operate on the **defensive stat value** rather than directly on the damage amount. For a detailed description of each, refer to the [Damage Reduction](#damage-types-damage-reduction) section.
 
 *Relative path:* `Def Reduction Functions -> Flat Def Reduction`  
 ![Flat Def Reduction](../../images/AstraRPG/workflows/damage/damage-type/defense-reduction-functions-flat.png)
@@ -203,7 +203,7 @@ The **True Damage Options** section of a `DamageTypeSO` exposes three boolean fl
 
 - **Ignore Generic Flat Modifiers**: when enabled, the [`ApplyFlatDmgModifiersStep`](#damage-step) skips the **Generic Flat Damage Modification Stat** configured in `AstraRpgHealthConfigSO`. Flat modifiers from the `DamageSourceSO` or from this `DamageTypeSO` itself still apply normally.
 
-> [!IMPORTANT]
+> [!NOTE]
 > **Ignore Generic Percentage Modifiers** and **Ignore Generic Flat Modifiers** bypass only the _generic_ modifier layer — the global stats configured in `AstraRpgHealthConfigSO`. Source-specific and type-specific modifier stats are never bypassed by these flags and always participate in the pipeline normally.
 >
 > However, if a `DamageSourceSO` or this `DamageTypeSO` has no modifier stats assigned, those layers contribute nothing by construction — which effectively produces the same result as a bypass. Enabling all three flags while also leaving all modifier stats unset on the source and type produces a fully modifier-free damage type.
@@ -215,12 +215,14 @@ The **True Damage Options** section of a `DamageTypeSO` exposes three boolean fl
 
 The **Damage Reduction Graph** is an Editor window that plots how damage received scales as a function of a defender's defensive stat value. Use it to visually verify the behavior of your damage reduction and defense penetration configuration, preview the impact of armor penetration at different stat values, and compare clamped (defensive stat) vs. unclamped (defensive stat) curves.
 
-To open it, click the **Open Damage Reduction Graph** button in the inspector of any `DamageTypeSO`. All configuration fields — **Defensive Stat**, **Damage Reduction Fn**, **Pierced Stat**, and **Defense Reduction Fn** — are read-only inside the window and reflect the asset directly. To change any of them, edit the `DamageTypeSO`.
+To open it, click the **Open Damage Reduction Graph** button in the inspector of any `DamageTypeSO`. Once opened, it should look something like this:  
+![Damage Reduction Graph](../../images/AstraRPG/workflows/damage/damage-type/damage-reduction-graph.png)  
+Obviously the plot and the values will vary based on the specific configuration of the `DamageTypeSO` you have.
+
+All configuration fields — **Defensive Stat**, **Damage Reduction Fn**, **Pierced Stat**, and **Defense Reduction Fn** — are read-only inside the window and reflect the asset directly. To change any of them, edit the `DamageTypeSO`.
 
 > [!NOTE]
 > The Damage Reduction Graph is a **simulation tool only**. No asset or scene object is modified when you change values inside the window.
-
-<!-- IMAGE: damage reduction graph window opened from a DamageTypeSO inspector, showing the pre-populated defensive stat, damage reduction fn, piercing stat, defense reduction fn, and the graph with at least the yellow and green lines active -->
 
 #### Control Panel
 
@@ -307,7 +309,7 @@ The legend below the graph labels each active line with its color and — for th
 
 **Hover tooltip** — moving the mouse over the graph shows a tooltip with, for each active line, the damage received and the absolute and percentage reduction at the hovered stat value. The detail rows also show the raw defensive stat value at the cursor and, when a `DefenseReductionFnSO` is set, the portion of the stat ignored by piercing and the resulting effective defense.  
 It should look like this:  
-![Log Dmg Reduction Graph Hover Tooltip](../../images/AstraRPG/workflows/damage/damage-type/damage-reduction-window-tooltip.png)
+![Damage Type Graph Hover Tooltip](../../images/AstraRPG/workflows/damage/damage-type/damage-type-graph-reduction-window-tooltip.png)
 
 ---
 
@@ -329,7 +331,10 @@ When a **Defender** is assigned with `EntityCore` and `EntityStats`, the **Defen
 
 The breakdown reflects the Defender's **current** in-scene stat values at its current level. To see how the numbers change at a different level, modify the entity's Level field directly in the Inspector as described above.
 
-<!-- IMAGE: damage reduction graph window with a Defender entity assigned and a Scaling Formula for the damage amount, showing the Defender Breakdown panel and the Entities section in use -->
+Here is a screenshot of the Defender Breakdown panel in action:  
+![Defender Breakdown](../../images/AstraRPG/workflows/damage/damage-type/damage-reduction-graph-defender-breakdown.png)
+
+Notice that a `ScalingFormula` is used for the damage amount, the _Dummy_ entity set as Defender in the Entities section, and the Defender Breakdown panel on the bottom showing the exact damage calculation for the Defender based on its current stats and level.
 
 ## Dealing Damage to an Entity
 

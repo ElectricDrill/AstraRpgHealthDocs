@@ -87,6 +87,66 @@
         <article data-uid="">
 <h1 id="lifesteal">Lifesteal</h1>
 
+<p>Lifesteal is a mechanic that lets an entity recover health proportional to the damage it deals. When an entity successfully damages a target, a percentage of the damage — determined by a configurable stat — is healed back to the attacker. The lifesteal percentage, the heal source used, and which point in the damage pipeline is sampled as the heal basis are all configurable per damage type, giving designers fine-grained control without any additional code.</p>
+<h2 id="lifesteal-config">Lifesteal Config</h2>
+<p><em>Relative path:</em> <code>Astra RPG Health/Lifesteal Config</code></p>
+<p>The <code>LifestealConfigSO</code> is the root asset for lifesteal configuration. It holds a dictionary that maps each <code>DamageTypeSO</code> to a <code>LifestealStatConfig</code>, defining how lifesteal behaves for that specific damage type. Damage types not present in the dictionary do not trigger lifesteal.</p>
+<p>The following image shows an example of a <code>LifestealConfigSO</code> with three mappings configured:<br>
+<img src="../../images/AstraRPG/workflows/lifesteal/lifesteal-config.png" alt="Lifesteal Config inspector"></p>
+<h2 id="configuring-lifesteal-mappings">Configuring Lifesteal Mappings</h2>
+<p>Each entry in the dictionary pairs a <code>DamageTypeSO</code> with a <code>LifestealStatConfig</code>. The following image shows what a single mapping looks like in the inspector:<br>
+<img src="../../images/AstraRPG/workflows/lifesteal/lifesteal-stat-config.png" alt="Lifesteal Stat Config inspector"></p>
+<p>There are three fields to configure for each mapping:</p>
+<p><strong>Lifesteal Stat</strong><br>
+The stat that drives the lifesteal percentage. At runtime, the attacker reads this stat value from its own <code>StatSet</code> and computes the heal as:</p>
+<blockquote>
+<p>heal amount = basis damage × (lifesteal stat value / 100)</p>
+</blockquote>
+<p>The stat value is read as a <code>Percentage</code> type, meaning the raw <code>long</code> value stored in the stat is divided by 100 internally. A stat value of <code>15</code> therefore corresponds to 15% lifesteal. For lifesteal to activate, this stat must be present in the dealing entity's <code>StatSet</code>.</p>
+<p><strong>Lifesteal Source</strong><br>
+The <code>HealSourceSO</code> used when applying the lifesteal heal. As with any heal in the framework, the heal source determines which heal modifiers — flat and percentage — are applied to the resulting heal, so lifesteal heals can be boosted or reduced by modifiers associated with the configured <code>HealSourceSO</code>. See <a href="healing.html#heal-source">Heal Source</a> for details on <code>HealSourceSO</code> configuration.</p>
+<p><strong>Amount Selector</strong><br>
+Determines which damage value is used as the basis for the lifesteal computation. See <a href="#amount-selector">Amount Selector</a> below.</p>
+<h3 id="amount-selector">Amount Selector</h3>
+<p>The Amount Selector controls which damage value is sampled as the lifesteal basis. Three modes are available:</p>
+<ul>
+<li><strong>Final</strong> <em>(default)</em>: uses the damage value after all pipeline steps — the damage actually applied to the target. This is the most intuitive mode for a straightforward &quot;heal for a percentage of damage dealt&quot; mechanic.</li>
+<li><strong>Initial</strong>: uses the raw damage value before any pipeline modifications. Useful when you want lifesteal to reflect the attacker's power output regardless of the target's defenses — for example, a vampire's lifesteal that scales with their attack power rather than with how much the target's armor reduced.</li>
+<li><strong>Step</strong>: samples the damage value at a specific pipeline step. You select a step and whether to use the value recorded before (<code>Pre</code>) or after (<code>Post</code>) that step executes, giving designers precise control over which phase of the calculation drives the heal. Refer to <a href="damage.html#damage-calculation-pipeline">Damage Calculation Pipeline</a> for an overview of the available pipeline steps.</li>
+</ul>
+<p>The following image shows the inspector when Step mode is selected:<br>
+<img src="../../images/AstraRPG/workflows/lifesteal/amount-selector-step.png" alt="Amount Selector - Step mode"></p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>If <strong>Step</strong> mode is selected but no step is configured, the system falls back to <strong>Final</strong> damage. The inspector displays a warning to indicate this condition.</p>
+</div>
+<h2 id="adding-lifesteal-to-the-package-configuration">Adding Lifesteal to the Package Configuration</h2>
+<p>Once the <code>LifestealConfigSO</code> is set up, assign it to the <strong>Lifesteal Config</strong> field in the <code>AstraRpgHealthConfigSO</code>. All entities that share this configuration asset will have lifesteal enabled according to the mappings defined in the assigned <code>LifestealConfigSO</code>. See <a href="package-configuration.html#lifesteal">Lifesteal</a> in the Package Configuration reference for field details.</p>
+<h2 id="performance-considerations">Performance Considerations</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Before making any considerations about performance, keep in mind that premature optimization is the root of all evil. A real performance problem should be identified through profiling before taking any action.</p>
+</div>
+<p>By default, lifesteal heals raise the standard healing events (<code>Pre Heal</code> and <code>Entity Healed</code>). In games where many entities deal lifesteal damage frequently — for example, a horde of enemies all with a lifesteal stat, each landing hits several times per second — the volume of heal events generated can become significant, especially when the global <code>Entity Healed Event</code> has multiple listeners.</p>
+<p>If profiling reveals this to be a bottleneck, the <strong>Suppress Lifesteal Events</strong> flag in <code>AstraRpgHealthConfigSO</code> disables healing event emission for lifesteal heals entirely. The heal is still applied; only the events are suppressed. This option is appropriate when you do not need to react to lifesteal heals through event listeners — for example, when your UI or combat log does not track lifesteal healing specifically.</p>
+<p>A similar consideration applies to passive health regeneration, which can also generate a high volume of heal events under certain conditions. See <a href="healing.html#performance-considerations">Performance Considerations</a> in the Healing documentation for a broader discussion.</p>
+<h2 id="conditions">Conditions</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Lifesteal is evaluated after every damage application. The following conditions must all be met for it to trigger:</p>
+<ul>
+<li>The dealing entity is the source of the damage. Lifesteal does not trigger on damage dealt by others.</li>
+<li>The dealing entity is alive at the moment of damage resolution.</li>
+<li><code>AstraRpgHealthConfigSO</code> has a <code>LifestealConfigSO</code> assigned.</li>
+<li>The <code>DamageTypeSO</code> of the hit has a mapping in the <code>LifestealConfigSO</code>.</li>
+<li>The configured <strong>Lifesteal Stat</strong> is present in the dealing entity's <code>StatSet</code>.</li>
+<li>The computed heal amount is greater than zero. A lifesteal stat of 0% produces no heal.</li>
+</ul>
+</div>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>Lifesteal relies on the <strong>Global Damage Resolution Event</strong> being correctly configured on each entity's <code>EntityHealth</code>. This event is used by the framework to propagate damage outcomes across all listening entities — including the attacker, which uses it to detect its own successful hits and trigger lifesteal. Assigning a non-global event to this slot will break lifesteal and other framework features that depend on centralized damage communication. See <a href="entity-health.html#global-events">Global Events</a> for setup details.</p>
+</div>
 
 </article>
 

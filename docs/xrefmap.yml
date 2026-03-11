@@ -3890,12 +3890,12 @@ references:
   commentId: M:ElectricDrill.AstraRpgHealth.EntityHealth.Resurrect(ElectricDrill.AstraRpgFramework.Utils.Percentage)
   fullName: ElectricDrill.AstraRpgHealth.EntityHealth.Resurrect(ElectricDrill.AstraRpgFramework.Utils.Percentage)
   nameWithType: EntityHealth.Resurrect(Percentage)
-- uid: ElectricDrill.AstraRpgHealth.EntityHealth.Resurrect(ElectricDrill.AstraRpgFramework.Utils.Percentage,ElectricDrill.AstraRpgHealth.Heal.HealSourceSO)
-  name: Resurrect(Percentage, HealSourceSO)
-  href: api/ElectricDrill.AstraRpgHealth.EntityHealth.html#ElectricDrill_AstraRpgHealth_EntityHealth_Resurrect_ElectricDrill_AstraRpgFramework_Utils_Percentage_ElectricDrill_AstraRpgHealth_Heal_HealSourceSO_
-  commentId: M:ElectricDrill.AstraRpgHealth.EntityHealth.Resurrect(ElectricDrill.AstraRpgFramework.Utils.Percentage,ElectricDrill.AstraRpgHealth.Heal.HealSourceSO)
-  fullName: ElectricDrill.AstraRpgHealth.EntityHealth.Resurrect(ElectricDrill.AstraRpgFramework.Utils.Percentage, ElectricDrill.AstraRpgHealth.Heal.HealSourceSO)
-  nameWithType: EntityHealth.Resurrect(Percentage, HealSourceSO)
+- uid: ElectricDrill.AstraRpgHealth.EntityHealth.Resurrect(ElectricDrill.AstraRpgHealth.Heal.PreHealContext)
+  name: Resurrect(PreHealContext)
+  href: api/ElectricDrill.AstraRpgHealth.EntityHealth.html#ElectricDrill_AstraRpgHealth_EntityHealth_Resurrect_ElectricDrill_AstraRpgHealth_Heal_PreHealContext_
+  commentId: M:ElectricDrill.AstraRpgHealth.EntityHealth.Resurrect(ElectricDrill.AstraRpgHealth.Heal.PreHealContext)
+  fullName: ElectricDrill.AstraRpgHealth.EntityHealth.Resurrect(ElectricDrill.AstraRpgHealth.Heal.PreHealContext)
+  nameWithType: EntityHealth.Resurrect(PreHealContext)
 - uid: ElectricDrill.AstraRpgHealth.EntityHealth.Resurrect(System.Int64)
   name: Resurrect(long)
   href: api/ElectricDrill.AstraRpgHealth.EntityHealth.html#ElectricDrill_AstraRpgHealth_EntityHealth_Resurrect_System_Int64_
@@ -3905,15 +3905,6 @@ references:
   fullName.vb: ElectricDrill.AstraRpgHealth.EntityHealth.Resurrect(Long)
   nameWithType: EntityHealth.Resurrect(long)
   nameWithType.vb: EntityHealth.Resurrect(Long)
-- uid: ElectricDrill.AstraRpgHealth.EntityHealth.Resurrect(System.Int64,ElectricDrill.AstraRpgHealth.Heal.HealSourceSO)
-  name: Resurrect(long, HealSourceSO)
-  href: api/ElectricDrill.AstraRpgHealth.EntityHealth.html#ElectricDrill_AstraRpgHealth_EntityHealth_Resurrect_System_Int64_ElectricDrill_AstraRpgHealth_Heal_HealSourceSO_
-  commentId: M:ElectricDrill.AstraRpgHealth.EntityHealth.Resurrect(System.Int64,ElectricDrill.AstraRpgHealth.Heal.HealSourceSO)
-  name.vb: Resurrect(Long, HealSourceSO)
-  fullName: ElectricDrill.AstraRpgHealth.EntityHealth.Resurrect(long, ElectricDrill.AstraRpgHealth.Heal.HealSourceSO)
-  fullName.vb: ElectricDrill.AstraRpgHealth.EntityHealth.Resurrect(Long, ElectricDrill.AstraRpgHealth.Heal.HealSourceSO)
-  nameWithType: EntityHealth.Resurrect(long, HealSourceSO)
-  nameWithType.vb: EntityHealth.Resurrect(Long, HealSourceSO)
 - uid: ElectricDrill.AstraRpgHealth.EntityHealth.Resurrect*
   name: Resurrect
   href: api/ElectricDrill.AstraRpgHealth.EntityHealth.html#ElectricDrill_AstraRpgHealth_EntityHealth_Resurrect_
@@ -4646,14 +4637,6 @@ references:
   fullName.vb: ElectricDrill.AstraRpgHealth.GameActions.Actions.ResurrectGameActionSO(Of TContext)._flatHpToRecover
   nameWithType: ResurrectGameActionSO<TContext>._flatHpToRecover
   nameWithType.vb: ResurrectGameActionSO(Of TContext)._flatHpToRecover
-- uid: ElectricDrill.AstraRpgHealth.GameActions.Actions.ResurrectGameActionSO`1._healSource
-  name: _healSource
-  href: api/ElectricDrill.AstraRpgHealth.GameActions.Actions.ResurrectGameActionSO-1.html#ElectricDrill_AstraRpgHealth_GameActions_Actions_ResurrectGameActionSO_1__healSource
-  commentId: F:ElectricDrill.AstraRpgHealth.GameActions.Actions.ResurrectGameActionSO`1._healSource
-  fullName: ElectricDrill.AstraRpgHealth.GameActions.Actions.ResurrectGameActionSO<TContext>._healSource
-  fullName.vb: ElectricDrill.AstraRpgHealth.GameActions.Actions.ResurrectGameActionSO(Of TContext)._healSource
-  nameWithType: ResurrectGameActionSO<TContext>._healSource
-  nameWithType.vb: ResurrectGameActionSO(Of TContext)._healSource
 - uid: ElectricDrill.AstraRpgHealth.GameActions.Actions.ResurrectGameActionSO`1._percentageHpToRecover
   name: _percentageHpToRecover
   href: api/ElectricDrill.AstraRpgHealth.GameActions.Actions.ResurrectGameActionSO-1.html#ElectricDrill_AstraRpgHealth_GameActions_Actions_ResurrectGameActionSO_1__percentageHpToRecover
@@ -6270,21 +6253,27 @@ references:
   commentId: T:ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable
   fullName: ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable
   nameWithType: IResurrectable
-- uid: ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable.Resurrect(ElectricDrill.AstraRpgFramework.Utils.Percentage,ElectricDrill.AstraRpgHealth.Heal.HealSourceSO)
-  name: Resurrect(Percentage, HealSourceSO)
-  href: api/ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable.html#ElectricDrill_AstraRpgHealth_Resurrection_IResurrectable_Resurrect_ElectricDrill_AstraRpgFramework_Utils_Percentage_ElectricDrill_AstraRpgHealth_Heal_HealSourceSO_
-  commentId: M:ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable.Resurrect(ElectricDrill.AstraRpgFramework.Utils.Percentage,ElectricDrill.AstraRpgHealth.Heal.HealSourceSO)
-  fullName: ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable.Resurrect(ElectricDrill.AstraRpgFramework.Utils.Percentage, ElectricDrill.AstraRpgHealth.Heal.HealSourceSO)
-  nameWithType: IResurrectable.Resurrect(Percentage, HealSourceSO)
-- uid: ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable.Resurrect(System.Int64,ElectricDrill.AstraRpgHealth.Heal.HealSourceSO)
-  name: Resurrect(long, HealSourceSO)
-  href: api/ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable.html#ElectricDrill_AstraRpgHealth_Resurrection_IResurrectable_Resurrect_System_Int64_ElectricDrill_AstraRpgHealth_Heal_HealSourceSO_
-  commentId: M:ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable.Resurrect(System.Int64,ElectricDrill.AstraRpgHealth.Heal.HealSourceSO)
-  name.vb: Resurrect(Long, HealSourceSO)
-  fullName: ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable.Resurrect(long, ElectricDrill.AstraRpgHealth.Heal.HealSourceSO)
-  fullName.vb: ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable.Resurrect(Long, ElectricDrill.AstraRpgHealth.Heal.HealSourceSO)
-  nameWithType: IResurrectable.Resurrect(long, HealSourceSO)
-  nameWithType.vb: IResurrectable.Resurrect(Long, HealSourceSO)
+- uid: ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable.Resurrect(ElectricDrill.AstraRpgFramework.Utils.Percentage)
+  name: Resurrect(Percentage)
+  href: api/ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable.html#ElectricDrill_AstraRpgHealth_Resurrection_IResurrectable_Resurrect_ElectricDrill_AstraRpgFramework_Utils_Percentage_
+  commentId: M:ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable.Resurrect(ElectricDrill.AstraRpgFramework.Utils.Percentage)
+  fullName: ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable.Resurrect(ElectricDrill.AstraRpgFramework.Utils.Percentage)
+  nameWithType: IResurrectable.Resurrect(Percentage)
+- uid: ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable.Resurrect(ElectricDrill.AstraRpgHealth.Heal.PreHealContext)
+  name: Resurrect(PreHealContext)
+  href: api/ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable.html#ElectricDrill_AstraRpgHealth_Resurrection_IResurrectable_Resurrect_ElectricDrill_AstraRpgHealth_Heal_PreHealContext_
+  commentId: M:ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable.Resurrect(ElectricDrill.AstraRpgHealth.Heal.PreHealContext)
+  fullName: ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable.Resurrect(ElectricDrill.AstraRpgHealth.Heal.PreHealContext)
+  nameWithType: IResurrectable.Resurrect(PreHealContext)
+- uid: ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable.Resurrect(System.Int64)
+  name: Resurrect(long)
+  href: api/ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable.html#ElectricDrill_AstraRpgHealth_Resurrection_IResurrectable_Resurrect_System_Int64_
+  commentId: M:ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable.Resurrect(System.Int64)
+  name.vb: Resurrect(Long)
+  fullName: ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable.Resurrect(long)
+  fullName.vb: ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable.Resurrect(Long)
+  nameWithType: IResurrectable.Resurrect(long)
+  nameWithType.vb: IResurrectable.Resurrect(Long)
 - uid: ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable.Resurrect*
   name: Resurrect
   href: api/ElectricDrill.AstraRpgHealth.Resurrection.IResurrectable.html#ElectricDrill_AstraRpgHealth_Resurrection_IResurrectable_Resurrect_
@@ -6336,15 +6325,15 @@ references:
   commentId: T:ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext
   fullName: ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext
   nameWithType: ResurrectionContext
-- uid: ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.#ctor(ElectricDrill.AstraRpgFramework.EntityCore,System.Int64,System.Int64,ElectricDrill.AstraRpgHealth.Heal.HealSourceSO)
-  name: ResurrectionContext(EntityCore, long, long, HealSourceSO)
-  href: api/ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.html#ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionContext__ctor_ElectricDrill_AstraRpgFramework_EntityCore_System_Int64_System_Int64_ElectricDrill_AstraRpgHealth_Heal_HealSourceSO_
-  commentId: M:ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.#ctor(ElectricDrill.AstraRpgFramework.EntityCore,System.Int64,System.Int64,ElectricDrill.AstraRpgHealth.Heal.HealSourceSO)
-  name.vb: New(EntityCore, Long, Long, HealSourceSO)
-  fullName: ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.ResurrectionContext(ElectricDrill.AstraRpgFramework.EntityCore, long, long, ElectricDrill.AstraRpgHealth.Heal.HealSourceSO)
-  fullName.vb: ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.New(ElectricDrill.AstraRpgFramework.EntityCore, Long, Long, ElectricDrill.AstraRpgHealth.Heal.HealSourceSO)
-  nameWithType: ResurrectionContext.ResurrectionContext(EntityCore, long, long, HealSourceSO)
-  nameWithType.vb: ResurrectionContext.New(EntityCore, Long, Long, HealSourceSO)
+- uid: ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.#ctor(System.Int64,ElectricDrill.AstraRpgHealth.Heal.ReceivedHealContext)
+  name: ResurrectionContext(long, ReceivedHealContext)
+  href: api/ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.html#ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionContext__ctor_System_Int64_ElectricDrill_AstraRpgHealth_Heal_ReceivedHealContext_
+  commentId: M:ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.#ctor(System.Int64,ElectricDrill.AstraRpgHealth.Heal.ReceivedHealContext)
+  name.vb: New(Long, ReceivedHealContext)
+  fullName: ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.ResurrectionContext(long, ElectricDrill.AstraRpgHealth.Heal.ReceivedHealContext)
+  fullName.vb: ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.New(Long, ElectricDrill.AstraRpgHealth.Heal.ReceivedHealContext)
+  nameWithType: ResurrectionContext.ResurrectionContext(long, ReceivedHealContext)
+  nameWithType.vb: ResurrectionContext.New(Long, ReceivedHealContext)
 - uid: ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.#ctor*
   name: ResurrectionContext
   href: api/ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.html#ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionContext__ctor_
@@ -6368,19 +6357,6 @@ references:
   isSpec: "True"
   fullName: ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.AbsAmount
   nameWithType: ResurrectionContext.AbsAmount
-- uid: ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.HealSource
-  name: HealSource
-  href: api/ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.html#ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionContext_HealSource
-  commentId: P:ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.HealSource
-  fullName: ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.HealSource
-  nameWithType: ResurrectionContext.HealSource
-- uid: ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.HealSource*
-  name: HealSource
-  href: api/ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.html#ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionContext_HealSource_
-  commentId: Overload:ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.HealSource
-  isSpec: "True"
-  fullName: ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.HealSource
-  nameWithType: ResurrectionContext.HealSource
 - uid: ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.NewValue
   name: NewValue
   href: api/ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.html#ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionContext_NewValue
@@ -6407,6 +6383,19 @@ references:
   isSpec: "True"
   fullName: ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.PreviousValue
   nameWithType: ResurrectionContext.PreviousValue
+- uid: ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.ReceivedHeal
+  name: ReceivedHeal
+  href: api/ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.html#ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionContext_ReceivedHeal
+  commentId: P:ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.ReceivedHeal
+  fullName: ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.ReceivedHeal
+  nameWithType: ResurrectionContext.ReceivedHeal
+- uid: ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.ReceivedHeal*
+  name: ReceivedHeal
+  href: api/ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.html#ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionContext_ReceivedHeal_
+  commentId: Overload:ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.ReceivedHeal
+  isSpec: "True"
+  fullName: ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.ReceivedHeal
+  nameWithType: ResurrectionContext.ReceivedHeal
 - uid: ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.Target
   name: Target
   href: api/ElectricDrill.AstraRpgHealth.Resurrection.ResurrectionContext.html#ElectricDrill_AstraRpgHealth_Resurrection_ResurrectionContext_Target

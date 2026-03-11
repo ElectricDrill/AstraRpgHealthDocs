@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class ResurrectGameActionSO&lt;TContext&gt; | Astra RPG Health ">
       
-      <meta name="description" content="Base generic game action for resurrecting entities with EntityHealth components. Can be configured to resurrect with either a percentage of max HP or a flat HP amount.">
+      <meta name="description" content="Base generic game action for resurrecting entities with EntityHealth components. Can be configured to resurrect with either a percentage of max HP or a flat HP amount. Uses the default resurrection source from config and no healer entity (system action).">
       <link rel="icon" href="../images/astra-health-ico.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/Cis8/SimpleRPGHealth/new/main/apiSpec/new?filename=ElectricDrill_AstraRpgHealth_GameActions_Actions_ResurrectGameActionSO_1.md&amp;value=---%0Auid%3A%20ElectricDrill.AstraRpgHealth.GameActions.Actions.ResurrectGameActionSO%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/Cis8/AstraRPGHealth/new/main/apiSpec/new?filename=ElectricDrill_AstraRpgHealth_GameActions_Actions_ResurrectGameActionSO_1.md&amp;value=---%0Auid%3A%20ElectricDrill.AstraRpgHealth.GameActions.Actions.ResurrectGameActionSO%601%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -89,7 +89,7 @@
 
 
   <h1 id="ElectricDrill_AstraRpgHealth_GameActions_Actions_ResurrectGameActionSO_1" data-uid="ElectricDrill.AstraRpgHealth.GameActions.Actions.ResurrectGameActionSO`1" class="text-break">
-Class ResurrectGameActionSO&lt;TContext&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/GameActions/Actions/ResurrectGameActionSO.cs/#L15"><i class="bi bi-code-slash"></i></a>
+Class ResurrectGameActionSO&lt;TContext&gt;  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/GameActions/Actions/ResurrectGameActionSO.cs/#L14"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -98,7 +98,8 @@ Class ResurrectGameActionSO&lt;TContext&gt;  <a class="header-action link-second
   </div>
 
   <div class="markdown summary"><p>Base generic game action for resurrecting entities with EntityHealth components.
-Can be configured to resurrect with either a percentage of max HP or a flat HP amount.</p>
+Can be configured to resurrect with either a percentage of max HP or a flat HP amount.
+Uses the default resurrection source from config and no healer entity (system action).</p>
 </div>
   <div class="markdown conceptual"></div>
 
@@ -169,7 +170,7 @@ Can be configured to resurrect with either a percentage of max HP or a flat HP a
 
   <h3 id="ElectricDrill_AstraRpgHealth_GameActions_Actions_ResurrectGameActionSO_1__flatHpToRecover" data-uid="ElectricDrill.AstraRpgHealth.GameActions.Actions.ResurrectGameActionSO`1._flatHpToRecover">
   _flatHpToRecover
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/GameActions/Actions/ResurrectGameActionSO.cs/#L24"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/GameActions/Actions/ResurrectGameActionSO.cs/#L23"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -199,41 +200,9 @@ protected long _flatHpToRecover</code></pre>
 
 
 
-  <h3 id="ElectricDrill_AstraRpgHealth_GameActions_Actions_ResurrectGameActionSO_1__healSource" data-uid="ElectricDrill.AstraRpgHealth.GameActions.Actions.ResurrectGameActionSO`1._healSource">
-  _healSource
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/GameActions/Actions/ResurrectGameActionSO.cs/#L27"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[SerializeField]
-[Tooltip(&quot;The heal source to attribute the resurrection to&quot;)]
-protected HealSourceSO _healSource</code></pre>
-  </div>
-
-
-
-
-  <h4 class="section">Field Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="ElectricDrill.AstraRpgHealth.Heal.HealSourceSO.html">HealSourceSO</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-
-
   <h3 id="ElectricDrill_AstraRpgHealth_GameActions_Actions_ResurrectGameActionSO_1__percentageHpToRecover" data-uid="ElectricDrill.AstraRpgHealth.GameActions.Actions.ResurrectGameActionSO`1._percentageHpToRecover">
   _percentageHpToRecover
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/GameActions/Actions/ResurrectGameActionSO.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/GameActions/Actions/ResurrectGameActionSO.cs/#L20"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -266,7 +235,7 @@ protected int _percentageHpToRecover</code></pre>
 
   <h3 id="ElectricDrill_AstraRpgHealth_GameActions_Actions_ResurrectGameActionSO_1__usePercentageHp" data-uid="ElectricDrill.AstraRpgHealth.GameActions.Actions.ResurrectGameActionSO`1._usePercentageHp">
   _usePercentageHp
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/GameActions/Actions/ResurrectGameActionSO.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/GameActions/Actions/ResurrectGameActionSO.cs/#L17"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -303,7 +272,7 @@ protected bool _usePercentageHp</code></pre>
 
   <h3 id="ElectricDrill_AstraRpgHealth_GameActions_Actions_ResurrectGameActionSO_1_ExecuteAsync__0_System_Threading_CancellationToken_" data-uid="ElectricDrill.AstraRpgHealth.GameActions.Actions.ResurrectGameActionSO`1.ExecuteAsync(`0,System.Threading.CancellationToken)">
   ExecuteAsync(TContext, CancellationToken)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/SimpleRPGHealth/blob/main/Runtime/GameActions/Actions/ResurrectGameActionSO.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Cis8/AstraRPGHealth/blob/main/Runtime/GameActions/Actions/ResurrectGameActionSO.cs/#L33"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Executes the resurrection logic asynchronously.

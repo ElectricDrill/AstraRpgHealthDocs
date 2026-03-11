@@ -75,7 +75,7 @@ The order of application is the same as described in the [Direct Healing](healin
 
 The entity's HP after resurrection may therefore differ from the base amount requested. `ResurrectionContext.NewValue` always reflects the **actual HP after all modifiers** have been applied.
 
-> [!CAUTION]
+> [!NOTE]
 > If active negative heal modifiers are strong enough to reduce the effective HP to or below the entity's death threshold, the system applies a fallback and forces HP to `death threshold + 1`, guaranteeing the entity is always resurrected alive. `ResurrectionContext.NewValue` reflects this clamped value.
 
 ## The Resurrect Game Action
@@ -86,7 +86,6 @@ The entity's HP after resurrection may therefore differ from the base amount req
 
 The following image shows the `ResurrectComponentGameActionSO` inspector:  
 ![Resurrect Game Action inspector](../../images/AstraRPG/workflows/resurrection/resurrect-game-action.png)
-<!-- IMAGE MISSING: resurrect-game-action.png — screenshot of the ResurrectComponentGameActionSO inspector -->
 
 The configurable fields are:
 

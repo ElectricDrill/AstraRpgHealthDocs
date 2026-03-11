@@ -11,7 +11,8 @@
 
 The inspector exposes a **Scaling Metrics** list, where each entry pairs one health metric with a `double` multiplier.
 
-<!-- IMAGE: health-scaling-component-inspector.png — screenshot of the HealthScalingComponentSO inspector showing two entries: "Missing HP · 0.3" and "Max HP · 0.1", Add Scaling button, and the info box below -->
+Here is a screenshot of the `HealthScalingComponentSO` inspector with two entries configured:  
+![Health Scaling Component inspector](../../images/AstraRPG/workflows/health-scaling/health-scaling-component-inspector.png)
 
 Each entry consists of:
 
