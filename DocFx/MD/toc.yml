@@ -18,8 +18,8 @@
     href: workflows/experience-collection.md
   - name: Resurrection
     href: workflows/resurrection.md
-- name: Advanced Topics
-  href: advanced-topics.md
+#- name: Advanced Topics
+#  href: advanced-topics.md
 - name: Limitations
   href: limitations.md
 - name: Requirements

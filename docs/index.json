@@ -7,12 +7,12 @@
   "MD/changelog.html": {
     "href": "MD/changelog.html",
     "title": "Changelog | Astra RPG Health",
-    "keywords": "Changelog All notable changes to this project will be documented in this file. The format is based on Keep a Changelog. [1.0.0] - 2025-10-30 Added Initial release of Astra RPG Health."
+    "keywords": "Changelog All notable changes to this project will be documented in this file. The format is based on Keep a Changelog. [1.0.0] - Unreleased Added Initial release of Astra RPG Health."
   },
   "MD/installation-instructions.html": {
     "href": "MD/installation-instructions.html",
     "title": "Installation instructions | Astra RPG Health",
-    "keywords": "Installation instructions Importing Astra RPG Health and its samples From the package manager, import Astra RPG HEalth. You can find the package in the \"My Assets\" section. After importing, head to the \"In Project\" section, always in the Package Manager, and click on \"AstraRPGHealth\". Click on the \"Samples\" tab and import the samples you desire. Find out more about the samples in the Samples documentation. If you imported the \"Example scene and instances\" samples you need to import also TextMeshPro Essentials. Click on \"Window > TextMeshPro > Import TMP Essential Resources\"."
+    "keywords": "Installation instructions Importing Astra RPG Health and its samples From the package manager, import Astra RPG Health. You can find the package in the \"My Assets\" section. After importing, head to the \"In Project\" section, always in the Package Manager, and click on \"AstraRPGHealth\". Click on the \"Samples\" tab and import the samples you desire. Find out more about the samples in the Samples documentation. If you imported the \"Example scene and instances\" samples you need to import also TextMeshPro Essentials. Click on \"Window > TextMeshPro > Import TMP Essential Resources\"."
   },
   "MD/introduction.html": {
     "href": "MD/introduction.html",
@@ -27,7 +27,7 @@
   "MD/migration-guide.html": {
     "href": "MD/migration-guide.html",
     "title": "Migration Guide | Astra RPG Health",
-    "keywords": "Migration Guide"
+    "keywords": "Migration Guide Any breaking changes in Astra RPG Health will be documented here, along with instructions on how to update your project to be compatible with the latest version of the package."
   },
   "MD/package-contents.html": {
     "href": "MD/package-contents.html",

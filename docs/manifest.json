@@ -1828,6 +1828,16 @@
     },
     {
       "type": "Resource",
+      "source_relative_path": "images/AstraRPG/astra-health_astra-health_astra-rpg-health-config.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/AstraRPG/astra-health_astra-health_astra-rpg-health-config.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
       "source_relative_path": "images/AstraRPG/astra-health_astra-rpg-health-config.png",
       "output": {
         "resource": {
@@ -1862,6 +1872,16 @@
       "output": {
         "resource": {
           "relative_path": "images/AstraRPG/astra-health_damage-type.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/AstraRPG/astra-health_death-strategy.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/AstraRPG/astra-health_death-strategy.png"
         }
       },
       "version": ""
@@ -2002,6 +2022,16 @@
       "output": {
         "resource": {
           "relative_path": "images/AstraRPG/astra-health_percentage-dmg-red-fo.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/AstraRPG/astra-health_resurrection-strategy.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/AstraRPG/astra-health_resurrection-strategy.png"
         }
       },
       "version": ""
